@@ -4,6 +4,7 @@ var defaultEnvConfig = require('./default');
 
 module.exports = {
   db: {
+    uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://user:useruser@iad1-mongos1.objectrocket.com:16301/CRW',
     options: {
       user: '',
       pass: ''
