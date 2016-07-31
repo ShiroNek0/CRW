@@ -1,0 +1,40 @@
+<section class="row" ng-init="vm.init()">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#waitingReviews" role="tab" data-toggle="tab">Waiting Reviews</a>
+        </li>
+        <li role="presentation">
+            <a href="#reportedReviews" role="tab" data-toggle="tab">Reported Reviews</a>
+        </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="waitingReviews">
+            <div ng-repeat="data in reviews">
+                <a ng-click="vm.approveModal(data)">
+                    <div style="border: solid 1px black; margin-bottom: 10px">
+                        <p>Công ty:{{data.name}}</p>
+                        <p>title: {{data.reviews.title}}</p>
+                        <p>Điểm đánh giá: {{data.reviews.overallRev.rating}}</p>
+                        <p>Số comment: {{data.reviews.comments.length}}</p>
+                        <p>Lượt ủng hộ: {{data.reviews.upvoteUsers.length}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="reportedReviews">
+            <div ng-repeat="data in reportedReviews ">
+                <a ng-click="vm.reportModal(data)">
+                    <div style="border: solid 1px black; margin-bottom: 10px">
+                        <p>Công ty:{{data.name}}</p>
+                        <p>title: {{data.reviews.title}}</p>
+                        <p>Số comment: {{data.reviews.comments.length}}</p>
+                        <p>Lượt ủng hộ: {{data.reviews.upvoteUsers.length}}</p>
+                        <span class="badge">Chưa xử lý: {{filteredReport.length}}</span>
+                         <div ng-repeat="report in data.reviews.reports | filter: { isConsidered: false } as filteredReport"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

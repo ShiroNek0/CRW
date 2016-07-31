@@ -1,0 +1,246 @@
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.rightAlign > input, .rightAlign > div{
+	text-align:right;
+}
+.label-review{
+	font-weight:bold;
+}
+.note-review{
+	color:#999999;
+	margin-left:8px;
+}
+.img-company{
+	width: 150px; height: 150px;
+	border: solid 1px;
+	border-color: lightgrey;
+	
+}
+.label-review-company{
+	font-weight: bold;color:#099999;
+}
+.input-review-company{
+	background-color:white;
+}
+.label-review-location{
+   font-weight: bold;color:#099999;
+}
+.input-review-location{
+	background-color:white;
+}
+.label-review-work{
+	font-weight: bold;color:#099999;
+}
+.label-radio-yes{
+	font-weight: bold;
+	color:#7f7f7f;
+}
+.label-radio-no{
+	font-weight: bold;
+	color:#7f7f7f;
+	margin-left:20px;
+}
+.label-review-time{
+	font-weight: bold;
+	color:#099999;
+}
+.label-radio-year{
+	font-weight: bold;
+	color:#7f7f7f;
+	margin-left:20px;
+}
+.label-radio-month{
+	font-weight: bold;color:#7f7f7f;
+}
+.label-review-contract{
+	font-weight: bold;color:#099999;
+}
+.label-radio-fulltime{
+	font-weight: bold;
+	color:#7f7f7f;
+}
+.label-radio-parttime{
+	font-weight: bold;
+	color:#7f7f7f;
+	margin-left:20px;
+}
+.label-review-all{
+	font-weight: bold;
+	color:#099999;
+}
+.star-all{
+	margin-right:90px;
+	font-size:25px;
+	color: red;
+}
+.label-review-title{
+	font-weight: bold;
+	color:#099999;
+}
+.input-review-title{
+	background-color:white;
+}
+.label-review-pros{
+	font-weight: bold;
+	color:#099999;
+}
+.textarea-pros{
+	background-color:white; 
+	height:80px;;
+}
+.label-review-cons{
+	font-weight: bold;
+	color:#099999;
+}
+.textarea-cons{
+	background-color:white; 
+	height:80px;
+}
+.label-review-supplement{
+	font-weight: bold;
+	color:#099999;
+}
+.textarea-supplement{
+	background-color:white; 
+	height:80px;
+}
+.separate{
+	border-left:solid 1px;
+
+}
+.review-all-left{
+
+}
+/*//*/
+.label-review-salary{
+	font-weight: bold;
+	color:#099999;
+}
+.input-review-salary{
+	background-color:white;
+}
+.label-review-grow{
+	font-weight: bold;
+	color:#099999;
+}
+.input-review-grow{
+	background-color:white;
+}
+.label-review-salary-year{
+	font-weight: bold;
+	color:#099999;
+}
+.input-review-salary-year{
+	background-color:white;
+}
+.label-review-salary-ln{
+	font-weight: bold;
+	color:#099999;
+}
+.input-review-salary-ln{
+	background-color:white;
+}
+.label-review-chance{
+	font-weight: bold;
+	color:#099999;
+}
+.star-chance{
+	margin-right:90px;
+	font-size:25px;
+	color: red;
+}
+
+.label-review-insurrance{
+	font-weight: bold;
+	color:#099999;
+}
+.star-insurrance{
+	margin-right:90px;
+	font-size:25px;
+	color: red;
+}
+
+.label-review-wife{
+	font-weight: bold;
+	color:#099999;
+}
+.star-wife{
+	margin-right:90px;
+	font-size:25px;
+	color: red;
+}
+.label-review-resttime{
+	font-weight: bold;
+	color:#099999;
+}
+.star-resttime{
+	margin-right:90px;
+	font-size:25px;
+	color: red;
+}
+.label-review-pension{
+	font-weight: bold;
+	color:#099999;
+}
+.star-pension{
+	margin-right:90px;
+	font-size:25px;
+	color: red;
+}
+.label-review-additional{
+	font-weight: bold;
+	color:#099999;
+}
+.textarea-additional{
+	background-color:#e5e5e5;
+}
+.error{
+	margin-left:800px;
+	color:red;
+}
+.cross{
+	margin-right:550px;
+	border:solid 1px;
+	margin-bottom:20px;
+}
+.button-send-review{
+	margin-bottom:100px;
+}
+.button-cancel{
+	font-weight:bold;
+	height:31px;
+	border:none;
+}
+.button-send{
+	padding-right:90px;
+	margin-right:570px;
+	border:none;width:90px;
+	 color:white;
+	 font-weight:bold;
+	 margin-left:20px;
+}
+.read{
+	margin-top: 20px;
+	width: 170px;
+	background-color: white;
+	height: 150px;
+	position: fixed;
+	border:solid 1px;
+}
+.termofuse{
+	margin-top: 20px;
+	padding-top: 10px;
+	padding-left: 5px;
+	background-color: #e5e5e5;
+	color: #666666;
+	font:inherit;
+	height: 60px;
+}
+.thanku{
+	margin-left: 35px;
+	color: black;
+}

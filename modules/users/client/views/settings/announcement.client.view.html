@@ -1,0 +1,7 @@
+<section class="row" ng-controller="AnnouncementController" style="overflow:hidden;max-height:800px">
+  <div ng-repeat="annou in user.announcement | orderBy:'-_id' ">
+  <p>content: {{annou.content}}</p>
+  <p><a href="{{annou.link}}">link</a></p>
+  <p>seen: {{annou.seen}}</p>
+  </div>
+</section>

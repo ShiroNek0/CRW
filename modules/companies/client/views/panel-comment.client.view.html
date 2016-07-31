@@ -1,0 +1,33 @@
+<div class="row" >
+        <div class="col-sm-1">
+            <img src="modules/users/client/img/profile/default.png" alt="avatar" class="img-circle  rotate360">
+        </div>
+        <div class="col-sm-11">
+            <div class="comment-text" style="overflow:hidden">
+            <div class="col-sm-10">
+                   <div class="comment-info" style="border-bottom:solid 1px; border-color:lightgrey">
+                    <h4 class=" text-left comment-username" data-ng-bind="comment.user.name">
+                    </h4>
+                    <h6 class="comment-date" data-ng-bind="comment.postTime | date:'mediumDate'"></h6>
+                   
+                  
+                </div>
+                 <h5 data-ng-bind="comment.content"><%= cmt.content %></h5>
+            </div>
+            <div class="col-sm-1">
+                  <div class=>
+                    <div class="dropdown drop-caret" ">
+                        <a data-toggle="dropdown" href="#"><span class="caret" style="width:10px;height:10px;  color: black;"></span></a>
+                        <ul class="dropdown-menu">
+                            <div class="divider"></div>
+                            <li><a href="#">Xóa</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+             
+              
+            </div>
+        </div>
+</div>
+<br>

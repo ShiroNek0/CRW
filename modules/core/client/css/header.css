@@ -1,0 +1,219 @@
+.dropdown-menu{
+	position: relative;
+}
+.navbar-account{
+font-size:20px;
+margin-top: 5px;
+}
+
+.important-navbar{
+	margin-top: 27px;
+	color: white;
+	
+	font-weight: none;
+
+}
+@-webkit-keyframes shine {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+.navbar-name{
+	color: white;
+
+	text-transform: uppercase;
+	font-size: 11px;
+}
+.caret{
+	color: white;
+}
+.navbar-name:link {
+    color: white;
+
+}
+
+/* visited link */
+.navbar-name:visited {
+    color:#3b5998;
+
+}
+/* mouse over link */
+.navbar-name:hover {
+    color: #3b5998;
+
+}
+
+.glyphicon-calendar{
+	color: white;
+}
+.glyphicon-home{
+	color: white;
+}
+.navbar-company-link{
+	list-style: none;
+  
+    font-size: 12px;
+    margin-top: 26px;
+    border-left: solid 1px;
+
+}
+.navbar-company-home{
+	list-style: none;
+    font-family: Arial ;
+    font-size: 12px;
+    margin-top: 26px;
+    margin-left: 25px;
+    width: 100px;
+}
+
+.b-company{
+	color: white;
+
+}
+.b-home{
+	color: white;
+	
+}
+
+/* selected link */
+.navbar-name:active {
+    color: #3b5998;
+
+}
+
+.navbar{
+	background-color: #222121; 
+	height: 70px;
+	border-bottom:solid 1px;
+	border-color: #cccccc;
+}
+.navbar-rating{
+	color:white;
+	font-family: Monospace;
+	margin-left: 22px;
+
+}
+.navbar-logo{
+	margin-left: 25px;
+	line-height: 10px;
+	margin-top: 15px;
+}
+.navbar-company{
+	color: white;
+    font-size: 31px;
+    font-family: Verdana;
+    margin-left: 21px;
+
+}
+a.navbar-company:link {
+    color: white;
+}
+
+/* visited link */
+a.navbar-company:visited {
+    color: white;
+}
+
+/* mouse over link */
+a.navbar-company:hover {
+    color: white;
+}
+
+/* selected link */
+a.navbar-company:active {
+    color: white;
+}
+li a.signin:link {
+    background-color: #222121; 
+}
+
+/* visited link */
+li a.signin:visited {
+	 color: white;
+   background-color: #222121; 
+}
+
+/* mouse over link */
+li a.signin:hover {
+	 color: white;
+     background-color: #222121; 
+}
+
+/* selected link */
+li a.signin:active {
+	color: white;
+    background-color: #222121; 
+}
+li a.signup:link {
+    background-color: #3b5998; 
+}
+
+/* visited link */
+li a.signup:visited {
+	 color: white;
+   background-color: #3b5998; 
+}
+
+/* mouse over link */
+li a.signup:hover {
+	 color: white;
+     background-color: #3b5998; 
+}
+
+/* selected link */
+li a.signup:active {
+	color: white;
+
+}
+.signin{
+    font-size: 12px;
+  
+    margin-top: 9px;
+    border-left: solid 1px;
+}
+
+
+.btn-search{
+	background-color: #3b5998;
+	height: 34px;
+	border:solid;
+	border-color: #3b5998;
+}
+.navbar-right{
+	margin-top: 8px;
+
+}
+
+.navbar-header{
+	padding:0px 55px;
+}
+#job{
+	color: #0aadad;
+
+ }
+ .search-comany-name{
+ 	border:none;
+ }
+
+/*//*/
+ .glyphicon-search{
+ 	color: white;
+ 	font-size: 15px;
+ }
+
+ .badge{
+ 	background-color: #1235e5;
+ }
+.header-profile-image{
+	width: 30px;
+	height: 32px;
+	
+}
+
+.navbar-collapse{
+	margin-top: 2px;
+	font-size: 17px;
+}

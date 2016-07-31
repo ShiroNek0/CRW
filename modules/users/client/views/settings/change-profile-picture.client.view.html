@@ -1,0 +1,35 @@
+<section class="row" ng-controller="ChangeProfilePictureController">
+  <div class="col-sm-1">
+    
+  </div>
+  <div class="col-sm-4">
+      <div>
+    <h3 style="color:green" >Cập nhật ảnh đại diện</h3>
+    <form class="signinpic form-horizontal" style="margin-left:20px">
+      <fieldset>
+        <div class="form-group ">
+          <img ng-src="{{imageURL}}" alt="{{user.displayName}}" class="img-thumbnail user-profile-picture">
+        </div>
+        <div class=" form-group" ng-hide="uploader.queue.length">
+          <span class="btn btn-info btn-file">
+              Chọn ảnh <input type="file" nv-file-select uploader="uploader">
+          </span>
+        </div>
+        <div class="form-group" ng-show="uploader.queue.length">
+          <button class="btn btn-primary" ng-click="uploadProfilePicture();">Tải lên</button>
+          <button class="btn btn-default" ng-click="cancelUpload();">Hủy</button>
+        </div>
+        <div ng-show="success" class="text-center text-success">
+          <strong>Profile Picture Changed Successfully</strong>
+        </div>
+        <div ng-show="error" class="text-center text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  </div>
+  <div class="col-sm-4">
+    
+  </div>
+</section>

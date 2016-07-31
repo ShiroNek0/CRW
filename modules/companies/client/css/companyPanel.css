@@ -1,0 +1,146 @@
+
+a.name-company-filter:hover{
+    color: green;
+}
+.name-company-filter{
+	color:white;
+}
+.review-company-filter{
+	color:white;
+}
+
+a.review-company-filter:hover{
+    color: green;
+}
+a.glyphicon-play:active {
+	color: white;
+    background-color: #3b5998; 
+}
+a.glyphicon-play:link {
+    background-color: #3b5998; 
+}
+
+/* visited link */
+a.glyphicon-play:visited {
+	 color: white;
+   background-color: #3b5998; 
+}
+
+/* mouse over link */
+a.glyphicon-play:hover {
+	 color: white;
+     background-color: #3b5998; 
+}
+
+
+.thumbnail-list{
+    border:none;
+	overflow: hidden;
+	width: 155px;
+   	height: 280px;
+    margin-bottom: 20px;
+
+}
+div.thumbnail{
+	 background: rgba(25,25,25, 0.5);
+}
+.thumbnail{
+	border:solid 1px;border-color:#b2b2b2;
+    background-color: black;
+ 	padding-right: 20px;
+    overflow: hidden;
+   	width: 155px;
+   	height: 280px;
+}
+
+.picture{
+	border: solid 1px;
+	border-color: #c5c6cc;
+	margin-top: 5px;
+
+	
+}
+.picture:hover{
+-moz-border-radius: 1px;
+    -webkit-border-radius: 1px;
+    -ms-border-radius: 1px;
+    -o-border-radius: 1px;
+    border-radius: 1px;
+}
+.picture{
+-webkit-transition-duration: 0.5s; /*Webkit: Animation duration*/
+-moz-transition-duration: 0.5s; /*Mozilla duration version*/
+-o-transition-duration: 0.5s; /*Opera duration version*/
+-moz-border-radius: 1px 30px 1px 30px ;
+    -webkit-border-radius:  1px  30px 1px 30px;
+    -ms-border-radius:  1px 30px 1px 30px;
+    -o-border-radius:  1px 30px 1px 30px;
+    border-radius: 1px 30px 1px  30px
+}
+.point{
+	color:white;
+	font-size: 20px;
+	margin-left: 25px;
+	font-weight: bold;
+
+}
+.companyname{
+	color: white;	
+	margin-left: 25px;
+	font-weight: bold;
+	text-transform: uppercase;
+
+}
+.btn-reviews{
+	margin-left: 26px;
+}
+.stars{
+    margin-right:50px;
+	font-size: 15px;
+	color:red;
+	margin-top:5px;
+	font-weight: bold;
+    
+}
+
+  blockquote{
+  	border: none;
+  	color:#999999;
+  	margin-left:4px; 
+  	font-size: 17px;
+  }
+ .new-review-company{
+	color:white;
+	font-weight:bold;
+	text-shadow:0 1px 2px rgba(0, 0, 0, .0);
+
+}
+div.new-review-company{
+     background-color: rgb(204,204,204,0.5);
+}
+.alot-review-company{
+	margin-left: 15px;
+}
+.list-company-new{
+	margin-top: 50px;
+    background-color: white;
+	margin-bottom: 50px;
+
+
+    background-color: rgb(2,33,34);
+	
+
+}
+div.list-company-new{
+     background: rgba(2,33,34, 0.5);
+}
+.list-company-highreview{
+    border: solid 1px;
+	border-color:#e5e5e5;
+	margin-top: 50px;
+	background:white;
+	margin-left: 40px;
+	margin-bottom: 70px;
+	border:solid 1px;
+    border-color:lightgrey;
+}

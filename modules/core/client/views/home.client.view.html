@@ -1,0 +1,91 @@
+<section ng-controller="HomeController">
+<!-- <img alt="MEAN.JS" class="img-responsive text-center" src="modules/core/client/img/brand/logo.png" />  -->
+<div class="Carousel">
+  <div class="row">
+
+         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+             
+            </ol>
+           
+            <!-- Wrapper for slides -->
+
+            <div class="carousel-inner">
+              <div class="item active">
+                <img src="modules/core/client/img/loaders/Company8.jpg" alt="Company8" style="height:600px;width:1500px;opacity:1; -webkit-filter: blur(0.5px); /* Chrome, Safari, Opera */
+    filter: blur(5px);">
+                <div class="carousel-caption">
+               
+                </div>
+              </div>
+              <div class="item">
+                  <img src="modules/core/client/img/loaders/Company9.jpg" alt="Company9" style="height:600px;width:1500px; -webkit-filter: blur(0.5spx); /* Chrome, Safari, Opera */
+    filter: blur(5px);">
+                <div class="carousel-caption">
+                    <div class="search">
+                         <div class="row">
+                             <h3 class="text-center text-declare">Tìm Kiếm. Đánh Giá Doanh Nghiệp</h3>
+                         </div>
+                       
+                         <div class="row">
+                    
+                          <form class="form-wrapper" >
+                              <input type="text" id="search" placeholder="Nhập công ty hoặc nghề nghiệp..." ng-keypress="enterToSearch($event)" ng-model="keyword" required >
+                              <input type="submit" value="Tìm kiếm" id="submit" ui-sref="companies.search({keyword: keyword})">
+                          </form>
+                         </div>
+                      </div>
+                </div>
+              </div>
+              <div class="item" >
+                <img src="modules/core/client/img/loaders/Company13.jpg" alt="Company13" style="height:600px;width:1500px; -webkit-filter: blur(0.5px); /* Chrome, Safari, Opera */
+    filter: blur(5px);">
+                <div class="carousel-caption" >
+                   <div class="col-sm-12 list-company-new">
+                      <div class="row" style="margin-bottom:20px">
+                        <h3 class="text-left new-review-company" style="margin-left:20px;">Các công ty có bài đánh giá mới nhất</h3>
+                      </div>
+                       <div class="row">
+                         <div ng-repeat="company in companies" ng-include="'modules/companies/client/views/panel-company.client.view.html'"></div>
+                       </div>
+                        
+                    </div>
+                </div>
+              </div>
+                 <div class="item" >
+                 <img src="modules/core/client/img/loaders/Company12.jpg" alt="Company12" style="height:600px;width:1500px; -webkit-filter: blur(0.5px); /* Chrome, Safari, Opera */
+    filter: blur(5px);">
+                <div class="carousel-caption">
+                   <div class="col-sm-12 list-company-new" >
+                      <div class="row" style="strokemargin-bottom:20px">
+                        <h3 class="text-left new-review-company" style="margin-left:20px;">Các công ty có bài đánh giá nhiều nhất</h3>
+                      </div>
+                       <div class="row">
+                         <div ng-repeat="company in companies" ng-include="'modules/companies/client/views/panel-company.client.view.html'"></div>
+                       </div>
+                        
+                    </div>
+                </div>
+              </div>
+            </div>
+           
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+              <span class=""></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-play-circle rotate360"  style="margin-top:260px;font-size:70px;color: white; "></span>
+            </a>
+       </div>
+  </div>
+</div>
+
+
+
+</section> 

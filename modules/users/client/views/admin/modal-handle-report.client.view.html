@@ -1,0 +1,33 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ng-click="close()">&times;</button>
+        <h3>Các lý do:</h3>
+        <div class="row">
+            <div ng-repeat="report in data.reviews.reports | filter: {isConsidered: false}">
+                <div style="border: solid 1px black; margin-bottom: 10px">
+                <p><a ui-sref="user({userId: report.user})">User:{{report.user}}</a></p>
+                <p>Content:{{report.content}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-4">
+                <img style="width: 100px;" ng-src="{{data.avatar}}"></img>
+            </div>
+            <div class="col-sm-8">
+                <h4 class="modal-title"><a ui-sref="companies.review({reviewId: data.reviews._id})">{{data.reviews.title}}</a></h4>
+            </div>
+        </div>
+        <p>title: {{data.reviews.title}}</p>
+        <p>Ưu điểm: {{data.reviews.overallRev.pros}}</p>
+        <p>Nhược điểm: {{data.reviews.overallRev.cons}}</p>
+        <p>Điểm đánh giá: {{data.reviews.overallRev.rating}}</p>
+        <p>Số comment: {{data.reviews.comments.length}}</p>
+        <p>Lượt ủng hộ: {{data.reviews.upvoteUsers.length}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="reject()">Đánh dấu tất cả report là đã xử lý nhưng ko khóa bài</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="accept()">Khóa bài, báo cho user và đánh dấu tất cả report là đã xử lý</button>
+    </div>

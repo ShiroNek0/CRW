@@ -1,0 +1,17 @@
+
+.about{
+	background-color: #222121;
+	float: bottom;
+}
+.company-name{
+ color: white;
+ padding-left: 100px;
+
+}
+.company-infor {
+   margin-top: 20px;
+}
+.company-infor a{
+	color: white;
+	margin-left: 30px;
+}

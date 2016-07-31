@@ -1,0 +1,79 @@
+<section class="row">
+   <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+         <a href="#postedReview" role="tab" data-toggle="tab" style="font-weight:bold;">Đăng bài đánh giá</a>
+      </li>
+      <li role="presentation">
+         <a href="#bookmarkedReviews" role="tab" data-toggle="tab" style="font-weight:bold;">Dấu trang bài đánh giá</a>
+      </li>
+   </ul>
+   <!-- Tab panes -->
+   <div class="tab-content" style="border:solid 1px;border-color:lightgrey">
+      <div role="tabpanel" class="tab-pane active" id="postedReview">
+
+        <table class="table table-striped">
+               <thead>
+     
+                  <tr style="color:white;font-weight:bold;background-color:#09ba5e;">
+                   
+                     <th  class="col-sm-2">Công ty</th>
+                     <th  class="col-sm-3" >Chủ đề</th>
+                     <th  class="col-sm-2">Điểm đánh giá</th>
+                     <th  class="col-sm-2">Số bình luận</th>
+                     <th  class="col-sm-2">Lượt ủng hộ</th>
+                  </tr>
+               
+               </thead>
+           
+            </table>
+         <div ng-repeat="data in vm.postedReviews">
+            <table class="table table-striped">
+               
+               <tbody>
+                  <tr style="color:black">
+                     <td class="col-sm-2" style="font-weight:bold;border-right:solid 1px;border-color:lightgrey"><a style="color:black" ui-sref="companies.view({companyId: data._id})">{{data.name}}</a></td>
+                     <td class="col-sm-3" style="font-weight:bold;border-right:solid 1px;border-color:lightgrey"><a style="color:black" ui-sref="companies.review({reviewId: data.reviews._id})">{{data.reviews.title}}</a></td>
+                     <td class="col-sm-2" style="border-right:solid 1px;border-color:lightgrey"> {{data.reviews.overallRev.rating}}</td>
+                     <td class="col-sm-2" style="border-right:solid 1px;border-color:lightgrey"> {{data.reviews.comments.length}}</td>
+                     <td class="col-sm-2" style="border-right:solid 1px;border-color:lightgrey"> {{data.reviews.upvoteUsers.length}}</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="bookmarkedReviews">
+       <table class="table table-striped">
+               <thead>
+     
+                  <tr style="color:white;font-weight:bold;background-color:#09ba5e;">
+                   
+                     <th  class="col-sm-2">Công ty</th>
+                     <th  class="col-sm-3" >Chủ đề</th>
+                     <th  class="col-sm-2">Điểm đánh giá</th>
+                     <th  class="col-sm-2">Số bình luận</th>
+                     <th  class="col-sm-2">Lượt ủng hộ</th>
+                  </tr>
+               
+               </thead>
+           
+            </table>
+         <div ng-repeat="data in vm.bookmarkedReviews">
+            <table class="table table-striped">
+            
+               <tbody>
+                  <tr style="color:black">
+                     <td  class="col-sm-2" style="font-weight:bold;border-right:solid 1px;border-color:lightgrey"><a style="color:black" ui-sref="companies.view({companyId: data._id})">{{data.name}}</a></td>
+                     <td  class="col-sm-3" style="font-weight:bold;border-right:solid 1px;border-color:lightgrey" ><a style="color:black" ui-sref="companies.review({reviewId: data.reviews._id})">{{data.reviews.title}}</a></td>
+                     <td  class="col-sm-2" style="border-right:solid 1px;border-color:lightgrey"> {{data.reviews.overallRev.rating}}</td>
+                     <td  class="col-sm-2" style="border-right:solid 1px;border-color:lightgrey"> {{data.reviews.comments.length}}</td>
+                     <td  class="col-sm-2" style="border-right:solid 1px;border-color:lightgrey"> {{data.reviews.upvoteUsers.length}}</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+
+
+
+</section>

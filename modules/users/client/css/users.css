@@ -1,0 +1,265 @@
+
+@media (min-width: 992px) {
+  .nav-users {
+    position: fixed;
+  }
+}
+
+/*//quan tri*/
+.admin-control-left{
+  overflow: hidden;
+  background-color:  #423b3b;
+  color: white;
+  float: left;
+  min-height:100em;
+
+}
+.settings-view{
+
+
+}
+/*li a.abc:link {
+     
+     background-color: #222121; 
+}*/
+li a.abc:visited {
+
+     background-color: none; 
+}
+li a.abc:hover {
+   
+     background-color: #18bc67; 
+}
+/*li a.abc:active {
+  
+     background-color: none ; 
+}*/
+/*//quan tri*/
+
+.fa-fw{
+ color:white;
+ margin-top: 30px;
+ font-size: 30px;
+
+}
+.social-account-container {
+  display: inline-block;
+  position: relative;
+
+}
+.btn-remove-account {
+  top: 10px;
+  right: 10px;
+  position: absolute;
+}
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+.user-profile-picture {
+  min-height: 100px;
+  max-height: 100px;
+}
+/*//change pw*/
+.change-pass{
+  background-color: white;
+  border: solid 1px;
+  border-color: lightgrey;
+}
+.change-pass-old{
+  margin-top: 20px;
+}
+
+.rating1 {
+    float:left;
+    width:300px;
+}
+.rating1 span { float:right; position:relative; }
+.rating1 span input {
+    position:absolute;
+    top:0px;
+    left:0px;
+    opacity:0;
+}
+.rating1 span label {
+    display:inline-block;
+    width:30px;
+    height:30px;
+    text-align:center;
+    color:#FFF;
+    background:#ccc;
+    font-size:30px;
+    margin-right:2px;
+    line-height:30px;
+    border-radius:50%;
+    -webkit-border-radius:50%;
+}
+.rating1 span:hover ~ span label,
+.rating1 span:hover label,
+.rating1 span.checked label,
+.rating1 span.checked ~ span label {
+    background:#F90;
+    color:#FFF;
+}
+.rating1 {
+    float:left;
+    width:300px;
+}
+/*//*/
+.rating2 {
+    float:left;
+    width:300px;
+}
+.rating2 span { float:right; position:relative; }
+.rating2 span input {
+    position:absolute;
+    top:0px;
+    left:0px;
+    opacity:0;
+}
+.rating2 span label {
+    display:inline-block;
+    width:30px;
+    height:30px;
+    text-align:center;
+    color:#FFF;
+    background:#ccc;
+    font-size:30px;
+    margin-right:2px;
+    line-height:30px;
+    border-radius:50%;
+    -webkit-border-radius:50%;
+}
+.rating2 span:hover ~ span label,
+.rating2 span:hover label,
+.rating2 span.checked label,
+.rating2 span.checked ~ span label {
+    background:#F90;
+    color:#FFF;
+}
+.rating2{
+    float:left;
+    width:300px;
+}
+/*//*/
+.rating3 {
+    float:left;
+    width:300px;
+}
+.rating3 span { float:right; position:relative; }
+.rating3 span input {
+    position:absolute;
+    top:0px;
+    left:0px;
+    opacity:0;
+}
+.rating3 span label {
+    display:inline-block;
+    width:30px;
+    height:30px;
+    text-align:center;
+    color:#FFF;
+    background:#ccc;
+    font-size:30px;
+    margin-right:2px;
+    line-height:30px;
+    border-radius:50%;
+    -webkit-border-radius:50%;
+}
+.rating3 span:hover ~ span label,
+.rating3 span:hover label,
+.rating3 span.checked label,
+.rating3 span.checked ~ span label {
+    background:#F90;
+    color:#FFF;
+}
+.rating3{
+    float:left;
+    width:300px;
+}
+/*//*/
+.rating4 {
+    float:left;
+    width:300px;
+}
+.rating4 span { float:right; position:relative; }
+.rating4 span input {
+    position:absolute;
+    top:0px;
+    left:0px;
+    opacity:0;
+}
+.rating4 span label {
+    display:inline-block;
+    width:30px;
+    height:30px;
+    text-align:center;
+    color:#FFF;
+    background:#ccc;
+    font-size:30px;
+    margin-right:2px;
+    line-height:30px;
+    border-radius:50%;
+    -webkit-border-radius:50%;
+}
+.rating4 span:hover ~ span label,
+.rating4 span:hover label,
+.rating4 span.checked label,
+.rating4 span.checked ~ span label {
+    background:#F90;
+    color:#FFF;
+}
+.rating4{
+    float:left;
+    width:300px;
+}
+/*//*/
+.rating5 {
+    float:left;
+    width:300px;
+}
+.rating5 span { float:right; position:relative; }
+.rating5 span input {
+    position:absolute;
+    top:0px;
+    left:0px;
+    opacity:0;
+}
+.rating5 span label {
+    display:inline-block;
+    width:30px;
+    height:30px;
+    text-align:center;
+    color:#FFF;
+    background:#ccc;
+    font-size:30px;
+    margin-right:2px;
+    line-height:30px;
+    border-radius:50%;
+    -webkit-border-radius:50%;
+}
+.rating5 span:hover ~ span label,
+.rating5 span:hover label,
+.rating5 span.checked label,
+.rating5 span.checked ~ span label {
+    background:#F90;
+    color:#FFF;
+}
+.rating5{
+    float:left;
+    width:300px;
+}

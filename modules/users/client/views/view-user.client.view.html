@@ -1,0 +1,20 @@
+<section>
+    <div style="width: 250px; height: 250px; display:table-cell; vertical-align:middle; border: solid 1px black">
+    <img ng-src="{{vm.user.profileImageURL}}" style="max-width: 100%; vertical-align: center">
+    </div>
+    <h4 data-ng-bind="vm.user._id"></h4>
+    <h4 data-ng-bind="vm.user.name"></h4>
+    <h4 data-ng-bind="vm.user.roles"></h4>
+    <h4 data-ng-bind="vm.user.email"></h4>
+    <h4 data-ng-bind="vm.user.accState"></h4>
+    <h3>Posted Review:</h3>
+    <div ng-repeat="data in vm.postedReviews">
+        <div style="border: solid 1px black; margin-bottom: 10px">
+            <p>Công ty: <a ui-sref="companies.view({companyId: data._id})">{{data.name}}</a></p>
+            <p>title: <a ui-sref="companies.review({reviewId: data.reviews._id})">{{data.reviews.title}}</a></p>
+            <p>Điểm đánh giá: {{data.reviews.overallRev.rating}}</p>
+            <p>Số comment: {{data.reviews.comments.length}}</p>
+            <p>Lượt ủng hộ: {{data.reviews.upvoteUsers.length}}</p>
+        </div>
+    </div>
+</section>

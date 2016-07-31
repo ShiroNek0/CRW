@@ -1,0 +1,34 @@
+<a ui-sref="companies.review({reviewId: review._id})">
+   <div class="row" ng-class="{highlightReview: review.highlight}" >
+         <div class="col-sm-1 review-detail-left" >
+       <div class="row">
+           <h5 class=" date-review" data-ng-bind="review.lastDate | date:'mediumDate'"></h5>
+       </div>
+       <div class="row">
+           <img ng-src="{{review.userID.profileImageURL? review.userID.profileImageURL : 'modules/users/client/img/profile/default.png'}}" class="content-avatar-review">
+       </div>
+       <div class="row">
+            <h5 ng-show="review.userID.name && !review.stayAnonymous" data-ng-bind="review.userID.name" class="review-user"></h5>
+            <h5 ng-hide="review.userID.name && !review.stayAnonymous" class="review-user">Anonymouse</h5>
+       </div>
+   </div>
+   <div class="col-sm-10 review-detail-right" >
+      <h3 class="text-left title-review" data-ng-bind="review.title"></h3>
+            <div class="star star-reviews">
+                 <form class="form-rating"  style="margin-bottom:11px" data-rating="" ng-model="vm.company.newReview.overallRev.rating" name="rating" required>
+                <input id="input-21b" value="4" type="number" class="rating" min=0 max=5 step=0.5 data-size="lg">
+                </form>
+            </div>
+        <h4 class="job-review"> Vị trí công việc: </h4>
+        <h5 class="jobs-review" data-ng-bind="review.job"></h5>
+        <h4 class="text-left time-review">Thời gian: </h4>
+        <h5 class="text-left times-review" data-ng-bind="review.jobLength"></h5>
+        <h4 class="text-left contract-review">Trạng thái: </h4>
+        <h5 class="text-left contracts-review" ng-show="(review.isJobCurrent)">Hiện đang làm việc tại vị trí trên</h5>
+        <h5 class="text-left contracts-review" ng-hide="(review.isJobCurrent)">Hiện không làm việc tại vị trí trên</h5>
+        <h4 class="text-left contract-review">Lượt upvote: {{review.upvoteUsers.length}}</h4>
+        <h5 class="text-right" style="margin-bottom:15px">Xem chi tiết</h5>
+    </div>
+   </div>
+   
+    </a>

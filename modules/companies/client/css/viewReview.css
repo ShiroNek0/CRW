@@ -1,0 +1,366 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+/*
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }*/
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+  font-size: 50px;
+  
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: grey; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+.highline{
+   background: #10cece;
+    height: 20px;
+    width: 60px;
+    transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    overflow: hidden;
+}
+.review-detail-center{
+  border: solid 1px;
+  border-color: lightgrey;
+  background-color: white;
+  margin-top: 20px;
+  overflow: hidden;
+}
+.content-avatar-review-detail{
+   height: 90px;
+   width: 90px;
+   border:solid 2px;
+   border-color: #b2b2b2;
+   margin-left: 10px;
+   margin-top: 30px;
+}
+.button-report{
+ margin-right: 45px;
+ margin-top: 15px;
+ background-color: #f24141;
+ color: white;
+ height: 40px;
+ width: 40px;
+ border-radius: 24px;
+}
+.button-reports{
+ margin-right: 30px;
+ margin-top: 15px;
+ background-color: #f24141;
+ color: white;
+ height: 40px;
+ width: 40px;
+ border-radius: 24px;
+}
+.button-bookmark{
+  margin-top: 18px;
+  margin-left: 10px;
+  font-weight: bold;
+  background-color: #005fbf;
+  color: white;
+
+  border-color: lightgrey;
+    height: 40px;
+}
+.button-vote{
+  box-shadow: 0 3px 0 0 white;
+  border-radius: 24px;
+  margin-top: 15px;
+}
+.button-vote.active, .button-vote.active {
+  background: #33a6cc;
+  box-shadow: none;
+  margin-bottom: -3px;
+  margin-top: 3px;
+}
+.button-votes{
+  border-radius: 24px;
+  box-shadow: 0 3px 0 0 white;
+}
+.button-votes.active, .button-vote.active {
+  background: #33a6cc;
+  box-shadow: none;
+  margin-bottom: -3px;
+  margin-top: 3px;
+}
+.button-bookmark{
+  box-shadow: 0 3px 0 0 white;
+  border-radius: 24px;
+}
+.button-bookmark.active, .button-vote.active {
+  background: #33a6cc;
+  box-shadow: none;
+  margin-bottom: -3px;
+  margin-top: 3px;
+}
+.button-vote{
+  margin-bottom: 10px;
+  margin-left: 25px;
+  font-weight: bold;
+
+    background-color:#e8e829;
+
+  border-color: lightgrey;
+  color: white;
+    height: 40px;
+}
+.button-votes{
+    background-color:#0fbcbc;
+  border-color: lightgrey;
+  margin-bottom: 10px;
+  margin-left: 25px;
+  font-weight: bold;
+
+  color: white;
+  height: 40px;
+}
+
+.review-detail-title{
+  margin-left: 10px;
+   font-weight:bold;
+ 
+}
+.review-detail-star{
+  color: red;
+  font-weight: bold;
+  font-size: 40px;
+  color: #1ab21a;
+
+}
+.review-vote {
+    color: green;
+    text-shadow: 0 0 150px green, 0 0 60px green, 0 0 10px green;
+}
+.review-vote{
+  margin-top: 25px;
+  margin-left: 32px;
+  margin-bottom: 20px;
+}
+.review-detail{
+  margin-left: 10px;
+    font-weight:bold;
+ 
+}
+.review-details{
+  
+   color: #7f7f7f;
+   text-transform: lowercase;
+   margin-left: 10px;
+}
+
+
+.star-overall-review{
+  border: solid 1px;
+  border-color: lightgrey;
+  background-color: white;
+  margin-top: 20px;
+  overflow: hidden;
+  margin-bottom:20px;
+}
+.star-overall{
+  font-size: 40px;
+  margin-top: 7px;
+  color: #1ab21a;
+}
+.review-cmt-note{
+    color: red;
+}
+
+/*
+.review-detail-company{
+  margin-top:20px;
+  border: solid 1px;
+  border-color: #cccccc;
+}
+.date-review-detail{
+  color: black;
+}
+
+
+.review-detail-user{
+	color: #7f7f7f;
+  margin-left:15px; 
+
+}
+.review-detail-detail{
+	margin-left: 160px;
+}
+.review-detail-compaanyname{
+	margin-left: 175px;
+	color: #7f7f7f;
+}
+.review-detail-contract{
+   font-weight:bold;
+   font-family:normal;
+}
+.review-detail-pros{
+   font-weight:bold;
+   font-family:normal;
+}
+.review-detail-cons{
+   font-weight:bold;
+   font-family:normal;
+}
+.review-detail-lk{
+   font-weight:bold;
+   font-family:normal;
+}
+
+.review-detail-time{
+    font-weight:bold;
+   font-family:normal;
+}
+.review-detail-supplement{
+  font-weight:bold;
+   font-family:normal;
+}
+.review-detail-salary{
+    font-weight:bold;
+   font-family:normal;
+   color: #0eb760;
+}
+.review-detail-salarybasic{
+  font-weight:bold;
+   font-family:normal;
+}
+.review-detail-grow{
+   font-weight:bold;
+   font-family:normal;
+}
+
+.review-detail-year{
+   font-weight:bold;
+   font-family:normal;
+}
+
+.review-detail-ln{
+   font-weight:bold;
+   font-family:normal;
+}
+
+
+.review-detail-contracts{
+   font-family:normal;
+   color: #7f7f7f;
+}
+.review-detail-pross{
+   font-family:normal;
+   color: #7f7f7f;
+}
+.review-detail-conss{
+   font-family:normal;
+   color: #7f7f7f;
+}.review-detail-lks{
+   font-family:normal;
+   color: #7f7f7f;
+   padding-bottom: 20px;
+}
+.review-detail-locations{
+     font-family:normal;
+   color: #7f7f7f;
+}
+.review-detail-times{
+      font-family:normal;
+   color: #7f7f7f;
+}
+.review-detail-supplements{
+     font-family:normal;
+   color: #7f7f7f;
+}
+.review-detail-salarybasics{
+     font-family:normal;
+   color: #7f7f7f;
+}
+.review-detail-salarybasics{
+    font-family:normal;
+   color: #7f7f7f;
+}
+.review-detail-grows{
+      font-family:normal;
+   color: #7f7f7f;
+}
+
+.review-detail-years{
+      font-family:normal;
+   color: #7f7f7f;
+}
+
+.review-detail-lns{
+     font-family:normal;
+   color: #7f7f7f;
+}
+
+.report{
+}
+.review-detail-comment{
+	border: solid 1px;
+	border-color: #cccccc;
+	margin-top: 20px;
+	background-color: #e5e5e5;
+}
+.textarea-cmt-inside{
+  width: 1125px;
+  margin-left: 20px;
+}
+.textarea-cmt{
+	margin-top: 15px;
+	height: 160px;
+}
+
+
+.hr{
+  margin-right: 5px;
+}
+.review-detail-showall{
+
+  color: red;
+}
+.button-star{
+  height: 22px;
+  width: 22px;
+  padding-left: 1px;
+  padding-top: 1px;
+  padding-right: 1px;
+  margin-bottom: 5px;
+  color: #0eb760;
+
+}
+.collapse{
+  color: #1ec970;
+}
+.caret{
+  font-size: 20px;
+}*/
