@@ -6,13 +6,15 @@ module.exports = function (app) {
 
   // Setting up the users profile api
   app.route('/api/users/me').get(users.me);
-  
   app.route('/api/users').put(users.update);
-  app.route('/api/users/bookmark').put(users.bookmarkHandler);
+  app.route('/api/users/bookmark').post(users.changeBookmark);
+  app.route('/api/users/noti/:notiId').put(users.updateNotification);
+  app.route('/api/users/markAllNoti').post(users.markAllNoti);
   app.route('/api/users/accounts').delete(users.removeOAuthProvider);
   app.route('/api/users/password').post(users.changePassword);
   app.route('/api/users/picture').post(users.changeProfilePicture);
 
   // Finish by binding the user middleware
   app.param('userId', users.userByID);
+  app.param('notiId', users.notiByID);
 };

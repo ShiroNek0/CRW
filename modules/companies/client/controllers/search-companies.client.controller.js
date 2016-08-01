@@ -11,10 +11,16 @@
     var vm = this;
     vm.onChange = onChange;
     vm.companies = companies;
+    vm.listTop10 = companies;
+
     vm.keyword = $stateParams.keyword;
     vm.sort = sort;
-    vm.itemsPerPage = 5;
-    
+    vm.itemsPerPage = 10;
+
+    vm.initPanel = function(company){
+      company.pointDisplay =  Math.round(company.averageRating*2)/2;
+    };
+
     function sort(keyname){
       vm.sortKey = keyname;
       vm.reverse = !vm.reverse;

@@ -1,74 +1,107 @@
-<section >
-<div class="container">
-     <div class="row">
-       
-              <div class="col-sm-1">
-      
-              </div>
-              <div class="col-sm-10"  style="margin-top:40px;border:solid 1px;border-color:grey;background-color:black; overflow:hidden;margin-bottom:30px">
-                     <div class="row" style="background-color:grey;margin-bottom:20px;height:60px"> 
-                         <div class="col-sm-6" style="color:white;margin-top:10px">
-                         <h4 ng-show="(vm.keyword)">Hiển thị kết quả cho từ khóa: {{vm.keyword}}</h4>
-                         <h4 ng-hide="(vm.keyword)">Hiển thị tất cả công ty:</h4>
-                       
-                       </div>
-                       <div class="col-sm-6">
-                      <!--  PHẦN NÀY LÀ FORM COMPANY--START -->
-                             <button ui-sref="companies.create"  class="pull-right btn btn-info" style="font-weight:bold;height:40px;margin-top:10px;  box-shadow: 0 3px 0 0 black" >Tạo công ty mới</button>
+<style type="text/css">
+   @font-face {
+   font-family: 'Roboto-Regular';
+   src: url('/modules/companies/client/css/RobotoTTF/Roboto-Regular.ttf');
+   }
+</style>
 
-                           
-                     <!-- PHẦN NÀY LÀ FORM COMPANY--END -->
-                       </div>
+<section style="font-family: Roboto-Regular" >
+   <div class="container" style="overflow:hidden">
+      <div class="row" style="margin-left:50px">
+         <div class="col-sm-7  "  style="margin-top:20px;border:solid 1px;border-color:grey;background-color:white; overflow:hidden;margin-bottom:30px;" >
+            <div class="row" style="margin-bottom:20px;height:60px">
+               <div class="col-sm-6" style="color:white;margin-top:10px">
+                  <h5 style="color:black" ng-show="(vm.keyword)">Hiển thị kết quả cho từ khóa: {{vm.keyword}}</h5>
+                  <h4 style="color:black;font-weight:bold" ng-hide="(vm.keyword)">Danh sách tất cả công ty:</h4>
+               </div>
+               <div class="col-sm-6">
+                  <!--  PHẦN NÀY LÀ FORM COMPANY--START -->
+                  <button ui-sref="companies.create"  class="pull-right btn btn-info" style="font-weight:bold;height:40px;margin-top:10px;  box-shadow: 0 3px 0 0 black" >Tạo công ty mới</button>
+                  <!-- PHẦN NÀY LÀ FORM COMPANY--END -->
+               </div>
+            </div>
+            <div class="row" style="margin-bottom:30px;margin-left:3px;">
+               <div class="col-sm-5">
+                  Hiển thị : 
+                  <select ng-model="vm.itemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:black">
+                     <option style="color:black" value="5">5</option>
+                     <option style="color:black" value="10">10</option>
+                     <option style="color:black" value="20">20</option>
+                  </select>
+               </div>
+               <div class="col-sm-7" >
+                  Sort
+                  <span class="sep" style="width:2px;height:1.1em;border-right:1px solid;padding-left:5px;border-color:lightgrey"></span>
+                  <a style="padding-left:5px" ng-click="vm.sort('name')" class="name-company-filter" >Tên công ty </a>
+                  <span class="glyphicon sort-icon" ng-show="vm.sortKey=='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" style="color:greens"></span></a>
+                  <span class="sep" style="width:2px;height:1.1em;border-right:1px solid;padding-left:5px;border-color:lightgrey"></span>
+                  <a style="padding-left:5px" ng-click="vm.sort('reviews.length')"  class="review-company-filter">Đánh giá
+                  <span class="glyphicon sort-icon" ng-show="vm.sortKey=='reviews.length'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" ></span></a>
+                  <span class="sep" style="width:2px;height:1.1em;padding-left:5px;border-color:lightgrey"></span>
+                  <input type="search" ng-model="vm.keyword" style="width:100px;margin-left:20px;border:solid 1px;border-color:grey;color:black" placeholder=" Tìm kiếm..." ng-change='vm.onChange()'>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-sm-12">
+                  <div dir-paginate="company in vm.companies | orderBy:vm.sortKey:vm.reverse | itemsPerPage:vm.itemsPerPage" ng-include="'modules/companies/client/views/panel-company.client.view.html'"></div>
+               </div>
+            </div>
+            <div class="row pull-right" style="font-size:10px;margin-right:10px" >
+               <dir-pagination-controls
+                  max-size="4"
+                  direction-links="true"
+                  boundary-links="true" >
+               </dir-pagination-controls>
+            </div>
+         </div>
+
+
+         <div class="pull-right col-sm-4  " style="margin-top:20px;border:solid 1px;border-color:grey;background-color:white; overflow:hidden;margin-bottom:30px;margin-right:50px;">
+            <div class="row">
+               <h4 style="margin-left:20px;margin-top:20px;font-weight:bold">Top 10 công ty nổi bật</h4>
+            </div>
+            <div class="row" ng-repeat="company in vm.listTop10 | orderBy: '-overallRating' | limitTo: 10">
+               <div class="col-sm-12">
+                  <div class="col-sm-4">
+                     
+                     
+                   
+                     <div class="row">
+                        <a ui-sref="companies.view({companyId: company._id})"><img src="{{company.avatar}}" alt="avatar" class="picture"  style="width:115px;height:90px;margin-bottom:20px"></a>
                      </div>
+                     
+                  </div>
+                  <div class="col-sm-8">
+                     <h5 style="color:grey;font-weight:bold;text-transform: uppercase;">{{company.name}}</h5>
+                     <h5 style="color:grey">Điểm trung bình:<b style="color:red"> {{company.averageRating | number: 2}} </b>của <b style="color: #079696; "> {{company.numOfReviews}}</b>  bài đánh giá</h5>
+                  </div>
+               </div>
 
 
+               <!--            <div class="col-sm-2">
+                  </div> -->
+            </div>
+         </div>
 
-
-                 <div class="row" style="margin-bottom:30px;margin-left:3px">
-                         <div class="col-sm-7">
-                             <div class="row" style="color:white">
-                                Hiển thị : 
-                              <select ng-model="vm.itemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:black">
-                                <option style="color:black" value="5">5</option>
-                                <option style="color:black" value="10">10</option>
-                                <option style="color:black" value="20">20</option>
-                              </select>
-                             </div>
-
-                         </div>
-                    
-                        <div class="col-sm-5" style="color:white">
-                            Sắp xếp theo:
-                       <span class="sep" style="width:2px;height:1.1em;border-right:1px solid;padding-left:5px;border-color:lightgrey"></span>
-                         <a style="padding-left:5px" ng-click="vm.sort('name')" class="name-company-filter" >Tên công ty </a>
-                          <span class="glyphicon sort-icon" ng-show="vm.sortKey=='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" style="color:greens"></span></a>
-                      <span class="sep" style="width:2px;height:1.1em;border-right:1px solid;padding-left:5px;border-color:lightgrey"></span>
-                           <a style="padding-left:5px" ng-click="vm.sort('reviews.length')"  class="review-company-filter">Đánh giá
-                            <span class="glyphicon sort-icon" ng-show="vm.sortKey=='reviews.length'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" ></span></a>
-                                <span class="sep" style="width:2px;height:1.1em;padding-left:5px;border-color:lightgrey"></span>
-                          <input type="search" ng-model="vm.keyword" style="width:80px;margin-left:20px;border:solid 1px;border-color:grey;color:black" placeholder=" Tìm kiếm..." ng-change='vm.onChange()'>
-                        </div> 
-                    </div>
-                 <div class="row">
-                   
-                    <div class="col-sm-12">
-                        <div dir-paginate="company in vm.companies | orderBy:vm.sortKey:vm.reverse | itemsPerPage:vm.itemsPerPage" ng-include="'modules/companies/client/views/panel-company.client.view.html'"></div>
-                    </div>
-                    
-                    
-                 </div>
-
-                 <div class="row pull-right" style="font-size:10px;margin-right:10px" >
-                 <dir-pagination-controls
-                   max-size="4"
-                   direction-links="true"
-                   boundary-links="true" >
-                </dir-pagination-controls>
-                   
-                 </div>
-           
-            
-        </div>
-     </div>
- 
+      <div class="row">
+         
+      </div>
+      </div>
+   </div>
 </section>
+<script >
+   $(function() {
+    $(window).scroll(function() {
+    if ($(this).scrollTop() != 0) {
+    $('.tesr').fadeIn();
+    } 
+ 
+    
+    });
+    $('.tesr').click(function() {
+    $('body,html').animate({
+    scrollTop: 0
+    }, 800);
+    });
+   });
+</script>

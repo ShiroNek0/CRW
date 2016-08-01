@@ -14,12 +14,6 @@
         url: '/companies',
         template: '<ui-view/>'
       })
-      .state('companies.list', {
-        url: '',
-        templateUrl: 'modules/companies/client/views/panel-company.client.view.html',
-        controller: 'CompaniesRecentController',
-        controllerAs: 'vm'
-      })
       .state('companies.create', {
         url: '/create',
         templateUrl: 'modules/companies/client/views/form-company.client.view.html',
@@ -29,23 +23,23 @@
           companyResolve: newCompany
         },
         data: {
-          pageTitle: 'Companies Create'
+          title: 'Tạo mới Công ty'
         }
       })
       .state('companies.createReview', {
         url: '/:companyId/createReview',
         templateUrl: 'modules/companies/client/views/form-review.client.view.html',
-        controller: 'CompaniesController',
+        controller: 'ReviewController',
         controllerAs: 'vm',
         resolve: {
-          companyResolve: getCompany
+          reviewResolve: newReview
         },
         data: {
-          pageTitle: 'Create Review Company {{ companyResolve.name }}'
+          title: 'Đăng bài đánh giá {{ reviewResolve.name }}'
         }
       })
       .state('companies.editReview', {
-        url: '/:companyId/editReview/:reviewId',
+        url: '/:companyId/editReview/:reviewId/:message',
         templateUrl: 'modules/companies/client/views/edit-review.client.view.html',
         controller: 'ReviewController',
         controllerAs: 'vm',
@@ -53,11 +47,14 @@
           reviewResolve: getReview
         },
         data: {
-          pageTitle: 'Edit Review Company'
+          title: 'Sửa bài đánh giá'
         }
       })
       .state('companies.view', {
         url: '/:companyId',
+        data:{
+          title: 'Chi tiết công ty'
+        },
         views: {
           '': {
             templateUrl: 'modules/companies/client/views/view-company.client.view.html',
@@ -75,12 +72,15 @@
         controllerAs: 'vm'
       })
       .state('companies.review', {
-        url: '/review/:reviewId',
+        url: '/:companyId/reviews/:reviewId',
         templateUrl: 'modules/companies/client/views/view-review.client.view.html',
-        controller: 'ReviewController2',
+        controller: 'ReviewController',
         controllerAs: 'vm',
         resolve: {
-          reviewResolve: getDetailReview
+          reviewResolve: getReview
+        },
+        data:{
+          title: 'Chi tiết đánh giá'
         }
       })
       .state('companies.search', {
@@ -90,6 +90,9 @@
         controllerAs: 'vm',
         resolve: {
           companyResolve: getSearchResult
+        },
+        data:{
+          title: 'Danh sách công ty'
         }
       });
   }
@@ -108,6 +111,14 @@
     return ReviewService.get({
       companyId: $stateParams.companyId,
       reviewId: $stateParams.reviewId
+    }).$promise;
+  }
+
+  newReview.$inject = ['$stateParams', 'ReviewService'];
+
+  function newReview($stateParams, ReviewService) {
+    return ReviewService.get({
+      companyId: $stateParams.companyId
     }).$promise;
   }
 

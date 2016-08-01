@@ -15,7 +15,10 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
     $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: 'modules/core/client/views/home.client.view.html'
+      templateUrl: 'modules/core/client/views/home.client.view.html',
+      data: {
+        title: 'Trang chủ'
+      }
     })
     .state('not-found', {
       url: '/not-found',
@@ -40,9 +43,3 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
     });
   }
 ]);
-
-// getRecentsCompany.$inject = ['$stateParams', 'CompaniesRecentService'];
-
-//   function getRecentsCompany($stateParams, CompaniesRecentService) {
-//     return CompaniesRecentService.query();
-//   }

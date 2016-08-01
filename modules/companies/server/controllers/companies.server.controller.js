@@ -8,99 +8,268 @@ var path = require('path'),
   Company = mongoose.model('Company'),
   User = mongoose.model('User'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
-  _ = require('lodash');
+  jobs = require(path.resolve('./modules/jobs/server/controllers/jobs.server.controller')),
+  users = require(path.resolve('./modules/users/server/controllers/users/users.profile.server.controller')),
+  _ = require('lodash'),
+  async = require('async');
 
-/**
- * Create a Company
+/*
+ *
+ *
+ *
+ ************INTERNAL METHODS***************
+ *
+ *
+ *
  */
-exports.create = function(req, res) {
-  var company = new Company(req.body);
-  if(req.user)
-    company.user = req.user;
 
-  company.save(function(err) {
+function broadcastMessage(list, notification) {
+  async.each(list, function(target, callback) {
+    users.createNotification(target, notification, callback);
+  });
+}
+
+function trimInfoCompany(item, parentCallback) {
+  var company = item instanceof Company ? item.toJSON() : item;
+
+  var numOfReviews = 0;
+
+  async.forEachOf(item.reviews, function(element, key, callback) {
+    if(['approved', 'trusted'].indexOf(element.state) >= 0) {
+      numOfReviews++;
+    }
+    callback();
+  }, function (err) {
+    if (!err) {
+      company.numOfReviews = numOfReviews;
+    }
+    company.numOfFollowers = item.followers ? item.followers.length : 0;
+    delete company.reviews;
+    delete company.followers;
+    if (parentCallback) parentCallback(company);
+  });
+}
+
+function sortAndFilterPassedReview(item, parentCallback) {
+  var company = item instanceof Company ? item.toJSON() : item;
+
+  async.filter(item.reviews, function (element, callback) {
+    callback(['approved', 'trusted'].indexOf(element.state) >= 0); // Chỉ lấy các bài được duyệt
+  }, function (filterResult) {
+    company.reviews = filterResult.reverse(); // Xếp bài đánh giá mới nhất lên đầu
+    parentCallback(company);
+  });
+}
+
+// Parameter chấp nhận: name, rating=[asc, desc] (xếp theo overallRating), newestReview=[asc, desc], limit
+function list(req, res, findCriteria, projectCriteria, sortCriteria, limitCriteria) { 
+  var findCondition = findCriteria ? findCriteria : {};
+  var projectionCondition = projectCriteria ? projectCriteria : {};
+  var sortCondition = sortCriteria ? sortCriteria : {};
+  var limitCondition = limitCriteria ? limitCriteria : 0;
+
+  if(req.query.name) {
+    findCondition.$text = {};
+    findCondition.$text.$search = req.query.name;
+
+    projectionCondition.score = {};
+    projectionCondition.score.$meta = 'textScore';
+
+    sortCondition.score = {};
+    sortCondition.score.$meta = 'textScore';
+  }
+
+  if(req.query.rating && (req.query.rating === 'asc' || req.query.rating === 'desc')) {
+    sortCondition.overallRating = req.query.rating;
+  }
+
+  if(req.query.newestReview && (req.query.newestReview === 'asc' || req.query.newestReview === 'desc')) {
+    sortCondition['reviews.lastUpdated'] = req.query.newestReview;
+  }
+
+  var limit = parseInt(req.query.limit);
+  if(!isNaN(limit) && limit > 0) limitCondition = limit;
+
+  // Lấy từ công ty mới nhất
+  sortCondition._id = -1;
+
+  Company.find(findCondition).select(projectionCondition).sort(sortCondition).limit(limitCondition).lean().exec(function(err, result) {
     if (err) {
-      return res.status(400).send({
+      return res.status(500).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(company);
+      var arrayResult = [];
+      async.each(result, function(item, eachCallback) {
+        trimInfoCompany(item, function (result) {
+          arrayResult.push(result);
+          eachCallback();
+        });
+      }, function(err) {
+        if (err) console.log('trimInfoCompany fail');
+        else res.jsonp(arrayResult);
+      });
+    }
+  });
+}
+
+function listReport(req, res, findCriteria) { 
+  var findCondition = findCriteria ? findCriteria : {};
+  var arrayResult = req.review.reports;
+
+  arrayResult = _.filter(arrayResult, function (element) {
+    if(findCondition) {
+      if(findCondition.hasOwnProperty('isConsidered')) {
+        if(element.isConsidered === findCondition.isConsidered) return true;
+      }
+    }
+    return false;
+  });
+
+  res.jsonp(arrayResult.reverse());
+}
+
+/*
+ *
+ *
+ *
+ ************SERVER METHODS***************
+ *
+ *
+ *
+ */
+
+exports.listPostedReviews = function (id, userId, callback) {
+  var matchCondition = { $match : { 'reviews.userID': id, 'reviews.stayAnonymous': false } };
+  if(userId.equals(id))
+    matchCondition = { $match : { 'reviews.userID': id } };
+
+  Company.aggregate([{ $unwind : '$reviews' }, matchCondition])
+  .exec(function (err, companies){
+    return callback(err, companies);
+  });
+};
+
+exports.countWaitingReviews = function (callback) { 
+  Company.aggregate([{ $unwind : '$reviews' }, { $match : { 'reviews.state': 'waiting' } }])
+  .exec(function (err, company) {
+    if (err) {
+      return null;
+    } else {
+      return callback ? callback(company.length) : null;
     }
   });
 };
 
-/**
- * Show the current Company
- */
-exports.read = function(req, res) {
-  // convert mongoose document to JSON
-  var company = req.company ? req.company.toJSON() : {};
-
-  // Add a custom field to the Article, for determining if the current User is the "owner".
-  // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  company.isCurrentUserOwner = req.user && company.user && company.user._id.toString() === req.user._id.toString() ? true : false;
-
-  res.jsonp(company);
-};
-
-exports.readReview = function(req, res) {
-  
-  res.jsonp(req.review); 
-};
-
-/**
- * Update a Company
- */
-exports.update = function(req, res) {
-  var company = req.company ;
-  
-  company = _.extend(company , req.body);
-  company.save(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.jsonp(company);
-    }
-  });
-};
-
-exports.updateReview = function(req, res) {
-  req.body.reviews.state="waiting";
-  Company.findOneAndUpdate({ 'reviews._id': req.body.reviews._id }, { $set: { 'reviews.$': req.body.reviews } }, { new: true }, function(err, result){
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.jsonp(result);
-    }    
-  });
-};
-
-exports.addreview = function(req, res) {
-  
-  
-  if(req.body.newReview){
-    var company = req.company;
-    company.newReview = req.body.newReview;
-    
-    if(req.user)
-      company.newReview.userID = req.user;
-
-    Company.findOneAndUpdate({ name: company.name }, { $push: { reviews: company.newReview } }, { upsert:true }, function(err, result){
-      res.jsonp(company);
+exports.countReportedReviews = function(callback) { 
+  Company.aggregate([{ $unwind : '$reviews' }, { $match : { 'reviews.state': { $in: ['approved', 'trusted'] } } }])
+  .exec(function (err, result) {
+    var reportedReviews = [];
+    async.forEachOf(result, function(company, index, callback) {
+      if(company.reviews.reports && company.reviews.reports.length > 0) {
+        async.detect(company.reviews.reports, function(report, callback) {
+          return callback(!report.isConsidered);
+        }, function(result) {
+          if(result) reportedReviews.push(company);
+        });
+      }
+      callback();
+    }, function (err) {
+      if (err) {
+        return null;
+      } else {
+        return callback ? callback(reportedReviews.length): null;
+      }
     });
+  });
+};
+
+/*
+ *
+ *
+ *
+ ************COMPANY METHODS***************
+ *
+ *
+ *
+ */
+
+exports.create = function(req, res) {
+  // Người dùng không phải admin hoặc mod
+  if (!req.user || 
+    (req.user && Array.isArray(req.user.roles) && req.user.roles.indexOf('mod') === -1 && req.user.roles.indexOf('admin') === -1)) {
+    delete req.body.state;
+  }
+  // Bỏ các trường không cần thiết
+  delete req.body.reviews;
+  delete req.body.followers;
+  delete req.body.overallRating;
+
+  var company = new Company(req.body);
+  company.save(function(err) {
+    if (err) {
+      return res.status(500).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(company);
+    }
+  });
+};
+
+exports.read = function(req, res) {
+  // Người dùng không phải admin hoặc mod
+  if (!req.user || 
+    (req.user && Array.isArray(req.user.roles) && req.user.roles.indexOf('mod') === -1 && req.user.roles.indexOf('admin') === -1)) {
+    if (req.company.state !== 'approved' && req.company.state !== 'trusted') {
+      return res.status(403).render({
+        message: 'Bạn không có quyền hạn truy cập trang này'
+      });
+    }
   }
   
+  sortAndFilterPassedReview(req.company, function (item) {
+    var company = item instanceof Company ? item.toJSON() : item;
+
+    var numOfReviews = 0;
+
+    async.forEachOf(item.reviews, function(element, key, callback) {
+      if(['approved', 'trusted'].indexOf(element.state) >= 0) {
+        numOfReviews++;
+      }
+      callback();
+    }, function (err) {
+      if (!err) {
+        company.numOfReviews = numOfReviews;
+      }
+      company.numOfFollowers = item.followers ? item.followers.length : 0;
+      res.jsonp(company);
+    });
+  });
 };
 
-/**
- * Delete an Company
- */
+exports.update = function(req, res) {
+  // Bỏ các trường không cần thiết
+  delete req.body.reviews;
+  
+  var company = req.company;
+
+  company = _.extend(company, req.body);
+  company.save(function(err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      sortAndFilterPassedReview(req.company, function (item) {
+        res.jsonp(item);
+      });
+    }
+  });
+};
+
 exports.delete = function(req, res) {
-  var company = req.company ;
+  var company = req.company;
 
   company.remove(function(err) {
     if (err) {
@@ -108,263 +277,527 @@ exports.delete = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      res.send('Đã xóa công ty ' + company.name);
+    }
+  });
+};
+
+exports.listNormal = function(req, res) {
+  var findCondition = { 'state': { $in: ['approved', 'trusted'] } };
+  list(req, res, findCondition);
+};
+
+exports.listFollowed = function (req, res) {
+  var findCondition = { '_id': { $in: req.user.follow } };
+  list(req, res, findCondition);
+};
+
+exports.changeFollow = function(req, res) {
+  if (req.body.followed === 'undefined' || (typeof req.body.followed !== 'boolean')) {
+    return res.status(400).json({
+      message: 'request body không đúng định dạng {"followed": [giá trị boolean]}'
+    });
+  }
+
+  var company = req.company;
+  var followers = company.followers;
+  var userID = req.user._id;
+  var arrayFound = followers.filter(function(item) {
+    return item.equals(userID);
+  });
+
+  if (!req.body.followed) {  
+    if(arrayFound.length === 0) {
+      followers.push(userID);
+    }
+  } else {
+    if(arrayFound.length > 0) {
+      followers.pull(userID);
+    }
+  }
+
+  async.series([
+    function(callback) {
+      company.save(function (err){
+        callback(err);
+      });
+    },
+    function(callback) {
+      callback(users.changeFollow(company._id, req.user, req.body.followed));
+    },
+  ], function(err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.send(followers);
+    }
+  });
+};
+
+/*
+ *
+ *
+ *
+ ************REVIEW METHODS***************
+ *
+ *
+ *
+ */
+
+exports.createReview = function(req, res) {  
+  // Ngăn cản sửa đổi các trường không đủ quyền hạn
+  console.log(req.body.newReview.state);
+  if (!req.user || 
+    (req.user && Array.isArray(req.user.roles) && req.user.roles.indexOf('mod') === -1 && req.user.roles.indexOf('admin') === -1)) {
+    delete req.body.newReview.state;
+    delete req.body.newReview.highlight;
+  }
+
+  // Bỏ các trường không cần thiết
+  delete req.body.newReview._id;
+  delete req.body.newReview.reports;
+  delete req.body.newReview.comments;
+  delete req.body.newReview.lastUpdated;
+  delete req.body.newReview.upvoteCount;
+  delete req.body.newReview.upvoteUsers;
+
+  var company = req.company;
+  var review = req.body.newReview;
+  console.log(review.state);
+  if (req.user) {
+    review.userID = req.user._id;
+  }
+  review = company.reviews.create(review);
+  company.reviews.push(review);
+  company.save(function(err){
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      jobs.createList(review.job);
+      users.notiEventEmitter.emit('review waiting');
+      // Nếu người gửi bài là admin hoặc mod
+      if (req.user && Array.isArray(req.user.roles) && 
+        (req.user.roles.indexOf('mod') >= 0 || req.user.roles.indexOf('admin') >= 0)) {
+        if (_.contains(['approved', 'trusted'], review.state)) {
+          // Bài vừa gửi lên đã set approved hoặc trusted luôn
+          // Gửi thông báo tới người theo dõi
+          broadcastMessage(company.followers, {
+            message: (req.user ? req.user.name : 'Người dùng ẩn') + ' đăng bài đánh giá mới cho công ty ' + company.name,
+            targetLink: '/companies/' + company._id + '/reviews/' + review._id
+          });
+        }
+      }
       res.jsonp(company);
     }
   });
 };
 
-/**
- * List of Companies
- */
-exports.list = function(req, res) { 
-  Company.find().sort('-created').populate('user', 'displayName').exec(function(err, companies) {
+exports.readReview = function(req, res) {
+  // Người dùng không phải admin, mod hoặc người viết bài
+  if (!req.user || 
+    (req.user && Array.isArray(req.user.roles) && 
+      req.user.roles.indexOf('mod') === -1 && 
+      req.user.roles.indexOf('admin') === -1 &&
+      !(req.review.userID && req.user._id.equals(req.review.userID._id)))) {
+    if (!_.contains(['approved', 'trusted'], req.review.state)) {
+      return res.status(403).send({
+        message: 'Bạn không có quyền hạn truy cập trang này'
+      });
+    }
+  }
+  
+  var company = req.company;
+  trimInfoCompany(company, function (item) {
+    item.reviews = req.review;
+    res.jsonp(item);
+  }); 
+};
+
+exports.updateReview = function(req, res) {
+  var company = req.company;
+  var review = req.review;
+  var oldState = review.state;
+  var oldJob = review.job;
+  // Ngăn cản sửa đổi các trường không đủ quyền hạn
+  if (!review.userID || !req.user._id.equals(review.userID._id)) {
+    // Là người dùng nhưng không phải người sở hữu bài
+    if (req.user.roles && Array.isArray(req.user.roles) && 
+      (req.user.roles.indexOf('mod') !== -1 || req.user.roles.indexOf('admin') !== -1)) {
+      // Là mod hoặc admin, chỉ được thay đổi trạng thái bài
+      review.state = req.body.reviews.state;
+    } else {
+      return res.status(403).json({
+        message: 'Bạn không có quyền hạn truy cập trang này'
+      });  
+    }
+  } else {
+    // Là người sở hữu bài
+    if (!(req.user.roles && Array.isArray(req.user.roles) && 
+      (req.user.roles.indexOf('mod') !== -1 || req.user.roles.indexOf('admin') !== -1))) {
+      req.body.reviews.state = 'waiting'; // Chờ duyệt lại nếu không phải admin hoặc mod
+    }
+    // Bỏ các trường không cần thiết
+    delete req.body.reviews.upvoteCount;
+    delete req.body.reviews.userID;
+    delete req.body.reviews.upvoteUsers;
+    delete req.body.reviews.lastUpdated;
+    delete req.body.reviews.comments;
+    _.extend(review, req.body.reviews);
+    review.lastUpdated = Date.now();
+  }
+
+  company.save(function(err){
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(companies);
-    }
-  });
-};
-
-exports.getRecent = function(req, res) { 
-  Company.find().sort({ 'reviews.lastUpdated': -1 }).limit(4).exec(function (err, companies){
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.jsonp(companies);
-    }
-  });
-};
-
-exports.followHandler = function(req, res) { 
-  if(req.body.follow)
-    Company.findOneAndUpdate({ _id: req.params.companyId }, { $push: { followers: req.body.userId } }, { upsert:true, new: true }, function(err, result){
-      res.jsonp(result);      
-    });
-  else{
-    Company.findOneAndUpdate({ _id: req.params.companyId }, { $pull: { followers : req.body.userId } }, { new: true }, function(err, result){
-      res.jsonp(result);      
-    });
-  }
-};
-
-exports.upvoteHandler= function(req, res) {
-  if(req.body.upvote)
-    Company.findOneAndUpdate({ 'reviews._id': req.params.reviewId }, { $push: { 'reviews.$.upvoteUsers': req.body.userId } }, { upsert:true, new: true }, function(err, result){
-      Company.aggregate([{ $unwind : '$reviews' }, { $match : { 'reviews._id': mongoose.Types.ObjectId(req.params.reviewId) } }])
-          .exec(function (err, company) {
-            
-            //console.log(JSON.stringify(company));
-            res.jsonp(company);
-          });
-    });
-  else{
-    Company.findOneAndUpdate({ 'reviews._id': req.params.reviewId }, { $pull: { 'reviews.$.upvoteUsers': req.body.userId } }, { new: true }, function(err, result){
-      Company.aggregate([{ $unwind : '$reviews' }, { $match : { 'reviews._id': mongoose.Types.ObjectId(req.params.reviewId) } }])
-          .exec(function (err, company) {
-            
-            res.jsonp(company);
-          });
-    });
-  }
-};
-
-exports.highlightReview= function(req, res) {
-    Company.findOneAndUpdate({ 'reviews._id': req.params.reviewId },
-       { $set: { 'reviews.$.highlight': !req.review.reviews.highlight} },
-        { upsert:true, new: true }, function(err, result){
-            if (err) {
-              return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-              });
-            } else {
-              res.jsonp(result);
-            }
-    
-    });
-  
-};
-
-exports.getWaitingReviews = function(req, res) { 
-  Company.aggregate([{ $unwind : '$reviews' }, { $match : { 'reviews.state': 'waiting' } }])
-          .exec(function (err, company) {
-            res.jsonp(company);
-          });
-};
-
-exports.getReportedReviews = function(req, res) { 
-  Company.aggregate([{ $unwind : '$reviews' }, { $match : { 'reviews.state': 'approved' } }])
-          .exec(function (err, results) {
-            var reportedReviews = [];
-            results.forEach(function(company, index){
-              if(company.reviews.reports.length>0){
-                var count = 0;
-                company.reviews.reports.forEach(function(report){
-                  if(!report.isConsidered)
-                    count++;
-                });
-                if(count>0)
-                  reportedReviews.push(company);
-              }
-            });
-
-            res.jsonp(reportedReviews);
-
-          });
-};
-
-exports.getDetailReviews= function(req, res) {
-  
-  //var review = req.review ? req.review.toJSON() : {};
-  res.jsonp(req.review);  
-};
-
-exports.search= function(req, res) {
-  // var rs = [{ params: req.params.keyword }];
-  // res.jsonp(rs);  
-  Company.find(
-        { $text : { $search : req.params.keyword } }, 
-        { score : { $meta: 'textScore' } },
-        { sort: { score: { $meta: 'textScore' } } },
-        function(err, results) {
-         
-          res.jsonp(results);
+      company.calculateRating(); // Tính toán lại điểm số của công ty
+      // Bài đăng được chấp nhận: đổi trạng thái sang approved hoặc trusted
+      if(!_.contains(['approved', 'trusted'], oldState) && _.contains(['approved', 'trusted'], review.state)) {
+        // Cập nhật nghề mới
+        jobs.createList(review.job);
+        // Gửi thông báo tới người theo dõi
+        broadcastMessage(company.followers, {
+          message: (req.user ? req.user.name : 'Người dùng ẩn') + ' đăng bài đánh giá mới cho công ty ' + company.name,
+          targetLink: '/companies/' + company._id + '/reviews/' + review._id
         });
-};
 
-exports.postComment= function(req, res) {
-  // var rs = [{ params: req.params.keyword }];
-  // res.jsonp(rs);  
-  var newCmt = {
-    'user': req.body.newComment.user._id,
-    'postTime': Date.now(),
-    'content': req.body.newComment.content
-  };
-
-  Company.findOneAndUpdate({ 'reviews._id': req.body._id }, { $push: { 'reviews.$.comments': newCmt } }, { new: true }, function(err, result){
-    Company.aggregate([{ $unwind : '$reviews' }, { $match : { 'reviews._id': mongoose.Types.ObjectId(req.body._id) } }])
-          .exec(function (err, company) {
-            Company.populate(company, [{ path:'reviews.userID' }, { path:'reviews.comments.user' }], function(err, populatedReview) {
-              
-              res.jsonp(populatedReview);       
-            });
+        // Gửi thông báo tới người viết bài
+        if(review.userID) {
+          broadcastMessage([review.userID._id], {
+            message: 'Bài đánh giá mang tên ' + review.title + ' của bạn đã được duyệt',
+            targetLink: '/companies/' + company._id + '/reviews/' + review._id
           });
-            
+        }
+      }
+      
+      // Bài đăng bị từ chối: đổi trạng thái từ sang denied
+      else if(oldState !== 'denied' && review.state === 'denied') {       
+        // Gửi thông báo tới người viết bài       
+        if(review.userID) {       
+          broadcastMessage([review.userID._id], {       
+            message: req.body.deniedReason,       
+            targetLink: '/companies/' + company._id + '/editReview/' + review._id       
+          });       
+        }       
+      } 
+
+      // Gửi thông báo tới admin và mod khi một bài ra khỏi trạng thái chờ
+      if(oldState === 'waiting' && review.state !== 'waiting') {
+        users.notiEventEmitter.emit('review waiting');
+      }
+
+      res.jsonp(review);
+    }
   });
 };
 
-exports.report= function(req, res) {
-  Company.findOneAndUpdate({ 'reviews._id': req.review.reviews._id }, { $push: { 'reviews.$.reports': req.body } }, { new: true }, function(err, result){
-    if(!err)
-      res.send('ok');
+exports.deleteReview = function(req, res) {
+  var company = req.company;
+  var review = req.review;
+  // Ngăn cản xóa bài nếu không đủ quyền hạn
+  if (!req.user || !req.user._id.equals(review.userID._id)) {
+    // Là người dùng nhưng không phải người sở hữu bài
+    if (Array.isArray(req.user.roles) && (req.user.roles.indexOf('mod') !== -1 || req.user.roles.indexOf('admin') !== -1)) {
+      // Là mod hoặc admin
+    } else {
+      return res.status(403).json({
+        message: 'Bạn không có quyền hạn truy cập trang này'
+      });  
+    }
+  }
+  review.remove();
+  company.save(function(err){
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      company.calculateRating(); // Tính toán lại điểm số của công ty
+      res.send('Đã xóa bài đánh giá ' + review.title);
+    }
+  });
+};
+
+exports.listUserReviews = function (req, res) {
+  var id;
+  if(req.query.userId) {
+    id = mongoose.Types.ObjectId(req.query.userId);
+  } else if(req.user && req.user._id) {
+    id = req.user._id;
+  } else return res.send();
+  exports.listPostedReviews(id, req.user._id, function (err, result) {
+    if (err) {
+      return res.status(500).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(result);
+    }
+  });
+};
+
+exports.listBookmarkedReviews = function (req, res) {
+  Company.aggregate([{ $unwind : '$reviews' }, { $match :{ 'reviews._id': { $in: req.user.bookmark } } }])
+  .exec(function (err, company) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(company);
+    }
+  });
+};
+
+exports.listWaitingReviews = function (req, res) { 
+  Company.aggregate([{ $unwind : '$reviews' }, { $match : { 'reviews.state': 'waiting' } }])
+  .exec(function (err, company) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(company);
+    }
+  });
+};
+
+exports.listReportedReviews = function(req, res) { 
+  Company.aggregate([{ $unwind : '$reviews' }, { $match : { 'reviews.state': { $in: ['approved', 'trusted'] } } }])
+  .exec(function (err, result) {
+    var reportedReviews = [];
+    async.forEachOf(result, function(company, index, callback) {
+      if(company.reviews.reports && company.reviews.reports.length > 0) {
+        async.detect(company.reviews.reports, function(report, callback) {
+          return callback(!report.isConsidered);
+        }, function(result) {
+          if(result) reportedReviews.push(company);
+        });
+      }
+      callback();
+    }, function (err) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.jsonp(reportedReviews);
+      }
+    });
+  });
+};
+
+// JSON đầu vào có dạng {"upvoted": true/false}
+exports.changeVote = function(req, res) {
+  if (req.body.upvoted === 'undefined' || (typeof req.body.upvoted !== 'boolean')) {
+    return res.status(400).json({
+      message: 'request body không đúng định dạng {"upvoted": [giá trị boolean]}'
+    });
+  }
+
+  var company = req.company;
+  var upvoteUsers = req.review.upvoteUsers;
+  var userID = req.user._id;
+  var arrayFound = upvoteUsers.filter(function(item) {
+    return item.equals(userID);
+  });
+
+  if (!req.body.upvoted) {  
+    if(arrayFound.length === 0) {
+      upvoteUsers.push(userID);
+      req.review.upvoteCount += 1;
+    }
+  } else {
+    if(arrayFound.length > 0) {
+      upvoteUsers.pull(userID);
+      req.review.upvoteCount -= 1;
+    }
+  }
+
+  req.company.save(function (err, result){
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(upvoteUsers);
+    }
+  });
+};
+
+exports.listReportNormal = function(req, res) {
+  var findCondition = { 'isConsidered': false };
+  listReport(req, res, findCondition);
+};
+
+exports.createReport = function(req, res) {
+  var company = req.company;
+  var oldReports = req.review.reports.slice(0);
+  var report = req.body;
+  report.user = req.user._id;
+
+  report = req.review.reports.create(report);
+  req.review.reports.push(report);
+  company.save(function(err, result){
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      // Chỉ phát sự kiện cập nhật báo cáo khi review chưa có báo cáo chưa xử lý từ trước đó
+      async.detect(oldReports, function(item, callback) {
+        return callback(!item.isConsidered);
+      }, function(result) {
+        if(!result) users.notiEventEmitter.emit('review reported');
+      });
+      
+      res.jsonp(report);
+    }
   });
 };
 
 exports.acceptReport= function(req, res) {
-  Company.findOneAndUpdate({ 'reviews._id': req.review.reviews._id }, { $set: { 'reviews.$.state': 'denied' } }, { new: true }, function(err, result){
-    if(!err){
-      var reason =[];
-      var newReportArr = [];
-      req.review.reviews.reports.forEach(function (report){
-        if(!report.isConsidered){
-          reason.push(report.content);
-          report.isConsidered = true;
-        }
-        newReportArr.push(report);
-      });
+  var review = req.review, newReports;
 
-      Company.findOneAndUpdate({ 'reviews._id': req.review.reviews._id }, { $set: { 'reviews.$.reports': newReportArr } }, { new: true }, function(err, result){
-        if(!err){
-          if(req.review.reviews.userID){
-            var annouce={
-              link: 'companies/'+req.review._id+'/editReview/' + req.review.reviews._id,
-              content: 'Bài đăng của bạn bị khóa vì lý do: '
-            };
-            reason.forEach(function(reason){
-              annouce.content += reason;
-              annouce.content += ', ';
-            });
-
-            annouce.content += 'bấm vào link để sửa bài.';
-            User.findOneAndUpdate({ _id: req.review.reviews.userID }, { $push: { announcement: annouce } }, { upsert:true }).exec();
-          }
-        }
+  review.state = 'denied';
+  newReports = _.map(review.reports, function(item) {
+    if(!item.isConsidered) item.isConsidered = true;
+    return item;
+  });
+  req.company.save(function(err, result){
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
       });
-      
-      res.send('ok');
+    } else {
+      // Gửi thông báo tới người viết bài
+      if(review.userID) {
+        broadcastMessage([review.userID._id], {       
+          message: req.body.deniedReason,       
+          targetLink: '/companies/' + req.company._id + '/editReview/' + review._id       
+        });
+      }
+
+      // Cập nhật số bài bị báo cáo cho admin và mod
+      users.notiEventEmitter.emit('review reported');
+
+      res.send('Đã khóa bài đăng');
     }
   });
 };
 
 exports.rejectReport= function(req, res) {
-  var newReportArr = [];
-  req.review.reviews.reports.forEach(function (report){
-    if(!report.isConsidered){
-      report.isConsidered = true;
-    }
-    newReportArr.push(report);
+  var review = req.review, newReports;
+
+  newReports = _.map(review.reports, function(item) {
+    if(!item.isConsidered) item.isConsidered = true;
+    return item;
   });
-
-  Company.findOneAndUpdate({ 'reviews._id': req.review.reviews._id }, { $set: { 'reviews.$.reports': newReportArr } }, { new: true }, function(err, result){
-    if(!err){
-      res.send('ok');
-    }
-  });
-
-};
-
-exports.approveReview= function(req, res) {
-  Company.findOneAndUpdate({ 'reviews._id': req.params.reviewId }, { $set: { 'reviews.$.state': 'approved' } }, { new: true }, function(err, company){
+  req.company.save(function(err, result){
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      company.followers.forEach(function(userId) {
-        var annouce={
-          link: 'companies/' + company._id,
-          content: company.name + ' co bai dang moi'
-        };
-        User.findOneAndUpdate({ _id: userId }, { $push: { announcement: annouce } }, { upsert:true }).exec();
+      // Cập nhật số bài bị báo cáo cho admin và mod
+      users.notiEventEmitter.emit('review reported');
 
-      });
-
-      if(req.review.reviews.userID){
-        var annouce={
-          link: 'companies/review/' + req.review.reviews._id,
-          content: 'Bài đăng của bạn đã được duyệt'
-        };
-        User.findOneAndUpdate({ _id: req.review.reviews.userID }, { $push: { announcement: annouce } }, { upsert:true }).exec();
-      }
-      //if(result)
-      res.send('ok');
+      res.send('Đã đánh dấu duyệt các báo cáo');
     }
-
   });
 };
 
-
-/**
- * Company middleware
+/*
+ *
+ *
+ *
+ ************COMMENT METHODS***************
+ *
+ *
+ *
  */
-exports.companyByID = function(req, res, next, id) {
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({
-      message: 'Company is invalid'
-    });
+exports.createComment = function(req, res) {
+  var company = req.company;
+  var review = req.review;
+  var comment = req.body;
+  comment.userID = req.user._id;
+
+  comment = req.review.comments.create(comment);
+  req.review.comments.push(comment);
+  company.save(function(err, result){
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      // Gửi thông báo tới người viết bài
+      if(review.userID) {
+        broadcastMessage([review.userID._id], {
+          message:  req.user.name + ' đã thêm một bình luận vào bài đánh giá mang tên ' + review.title + ' của bạn',
+          targetLink: '/companies/' + company._id + '/reviews/' + review._id
+        });
+      }
+      res.jsonp(comment);
+    }
+  });
+};
+
+exports.deleteComment = function(req, res) {
+  // Ngăn cản xóa bình luận nếu không đủ quyền hạn
+  if (!req.user || !req.user._id.equals(req.review.userID._id)) {
+    // Là người dùng nhưng không phải người sở hữu bình luận
+    if (Array.isArray(req.user.roles) && (req.user.roles.indexOf('mod') !== -1 || req.user.roles.indexOf('admin') !== -1)) {
+      // Là mod hoặc admin
+    } else {
+      return res.status(403).json({
+        message: 'Bạn không có quyền hạn truy cập trang này'
+      });  
+    }
   }
 
-  Company.findById(id).populate('reviews.userID').exec(function (err, company) {
+  req.comment.remove();
+  req.company.save(function(err, result){
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(req.review.comments.pull(req.comment));
+    }
+  });
+};
+
+/*
+ *
+ *
+ *
+ ************MIDDLEWARE***************
+ *
+ *
+ *
+ */
+
+exports.companyByID = function(req, res, next, id) {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({
+      message: 'ID công ty không hợp lệ'
+    });
+  }
+  Company.findById(id).populate('reviews.userID', 'name accState roles profileImageURL')
+  .populate('reviews.comments.userID', 'name accState roles profileImageURL')
+  .exec(function (err, company) {
     if (err) {
       return next(err);
     } else if (!company) {
       return res.status(404).send({
-        message: 'No Company with that identifier has been found'
+        message: 'Không tìm thấy công ty với ID tương ứng'
       });
     }
     req.company = company;
@@ -375,47 +808,41 @@ exports.companyByID = function(req, res, next, id) {
 exports.reviewById = function(req, res, next, id) {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'Review is invalid'
+      message: 'ID bài đánh giá không hợp lệ'
     });
   }
 
-  Company.aggregate([{ $unwind : '$reviews' }, { $match : { 'reviews._id': mongoose.Types.ObjectId(id) } }])
-          .exec(function (err, company) {
-            if (err) {
-              return next(err);
-            } else if (!company) {
-              return res.status(404).send({
-                message: 'No Review with that identifier has been found'
-              });
-            }
-            // req.review = company;              
-            // next();
-            Company.populate(company[0], [{ path:'reviews.userID' }, { path:'reviews.comments.user' }], function(err, populatedReview) {
-              req.review = populatedReview;              
-              next();
-            });
-          });
-};
-
-
-exports.postedReviews = function (req, res) {
-  Company.aggregate([{ $unwind : '$reviews' }, { $match : { 'reviews.userID': mongoose.Types.ObjectId(req.params.userId) } }])
-        .exec(function (err, reviews){
-          res.jsonp(reviews);  
-        });
-  
-};
-
-exports.bookmarkedReviews = function (req, res) {
-  var reviewIds = [];
-  for(var i =0; i< req.user.bookmark.length; i++){
-    reviewIds.push(mongoose.Types.ObjectId(req.user.bookmark[i]));
-  }
-  Company.aggregate([{ $unwind : '$reviews' }, { $match :{ 'reviews._id': { $in: reviewIds } } }]).exec(function(err, data) {
-    
-    res.jsonp(data);
+  async.detect(req.company.reviews, function(item, callback) {
+    return callback(item._id.toHexString() === id);
+  }, function(result) {
+    if(result) {
+      req.review = result;
+      next();
+    } else {
+      return res.status(404).send({
+        message: 'Không tìm thấy bài đánh giá với ID tương ứng'
+      });
+    }
   });
-  
 };
 
+exports.commentById = function(req, res, next, id) {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({
+      message: 'ID bình luận không hợp lệ'
+    });
+  }
 
+  async.detect(req.review.comments, function(item, callback) {
+    return callback(item._id.toHexString() === id);
+  }, function(result) {
+    if(result) {
+      req.comment = result;
+      next();
+    } else {
+      return res.status(404).send({
+        message: 'Không tìm thấy bình luận với ID tương ứng'
+      });
+    }
+  });
+};

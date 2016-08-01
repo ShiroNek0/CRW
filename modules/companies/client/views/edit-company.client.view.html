@@ -3,7 +3,7 @@
         <div class="row add-company-new">
         </div>
         <form name="vm.form.companyForm" class="form-horizontal" ng-submit="edit(vm.form.companyForm.$valid)" novalidate>
-            <fieldset ng-init="vm.init()">
+            <fieldset>
                 <div class="row">
                     <div class="col-sm-2">
                     </div>
@@ -54,7 +54,7 @@
                             <div class="row">
                                 <div class="form-group" show-errors>
                                     <h4>Website công ty</h4>
-                                    <input type="text" name="website" class="form-control" ng-model="vm.company.website" placeholder="Website...">
+                                    <input type="url" name="website" class="form-control" ng-model="vm.company.website" placeholder="Website...">
                                 </div>
                             </div>
                             <div class="row">
@@ -66,6 +66,16 @@
                                     </div>
                                 </div>
                                 <div ng-show="(vm.company.avatar)"><img src="{{vm.company.avatar}} " style="height:200px;width:200px"></div>
+                            </div>
+                            <div class="row">
+                            <h4 class="">Ảnh giới thiệu(*):</h4>
+                                Ban co the them nhieu ảnh giới thiệu
+                                <input type="text" placeholder="Nhập đường dẫn ảnh giới thiệu..." data-placement="bottom" ng-model="vm.introducePhoto">
+                                <button type="button" ng-click="vm.addPhoto()">Thêm ảnh</button>
+                                <div ng-repeat="photo in vm.company.photo">
+                                <img ng-src="{{photo}}">
+                                <button type="button" ng-click="vm.deletePhoto($index)">delete</button>
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -126,10 +136,11 @@
                 </div>
                 <div class="row" style="margin-bottom:20px">
                     <div class="col-sm-8">
+                        {{vm.error}}
                     </div>
                     <div class="col-sm-4">
                         <div class="col-sm-12">
-                            <button class="btn btn-info button-cancelcompany" ng-click="close()"> Hủy</button>
+                            <button type="button" class="btn btn-info button-cancelcompany" ng-click="close()"> Hủy</button>
                             <button style="margin-left:10px" type="submit" class="btn btn-primary button-sendcompany">Lưu chỉnh sửa</button>
                         </div>
                     </div>

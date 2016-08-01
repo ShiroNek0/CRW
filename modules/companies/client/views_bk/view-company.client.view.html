@@ -1,0 +1,283 @@
+<section>
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <div class="tab-contents-avatar" style=" /*background-image: url({{vm.company.avatar}});*/border:solid 1px;border-color:#b2b2b2;background-repeat:repeat-x;background-color:#3b5998;width:auto   ">
+                <div class="row" style="background-color:black;margin-left:0px;margin-right:0px">
+                    <div class="col-sm-8">
+                        <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar">
+                        <h3 class="text-reason" style="color:white">{{ vm.company.name }}</h3>
+                        <p style="margin-left:10px;color:white;font-weight:bold">Số người theo dõi: {{ vm.company.followers.length }}</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" ng-show="vm.authentication.user" class="btn btn-default btn-follow" data-toggle="modal" data-target="#modalFollow"><span class="glyphicon glyphicon-signal"></span><span ng-hide="vm.checkIfFollowed()"> Theo dõi</span><span ng-show="vm.checkIfFollowed()"> Bỏ theo dõi</span></button>
+                        <div id="modalFollow" ng-show="vm.authentication.user" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title" ng-hide="vm.checkIfFollowed()" style="color:green;font-weight:bold">Theo dõi</h4>
+                                        <h4 class="modal-title" ng-show="vm.checkIfFollowed()" style="color:red;font-weight:bold">Bỏ theo dõi</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p ng-hide="vm.checkIfFollowed()">Bạn có muốn theo dõi công ty này?</p>
+                                        <p ng-hide="vm.checkIfFollowed()">Bạn sẽ nhận được thông báo khi công ty này có bài đánh giá mới.</p>
+                                        <p ng-show="vm.checkIfFollowed()">Bạn có muốn bỏ theo dõi công ty này?</p>
+                                        <p ng-show="vm.checkIfFollowed()">Bạn sẽ không nhận được thông báo khi công ty này có bài đánh giá mới nữa.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default cancel-follow" data-dismiss="modal">Hủy</button>
+                                        <button type="button" class="btn btn-primary accept-follow" data-dismiss="modal" ng-click="vm.follow()">Xác nhận</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" ui-sref="companies.createReview({companyId: vm.company._id})" class="btn btn-info btn-review"> <span class="glyphicon glyphicon-plus"></span> Đánh giá</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-init="vm.viewInit()">
+                <div class="other">
+                    <div class="row">
+                        <h3 class="rating-review-all" style="color:green;margin-left:35px">Đánh giá công ty {{ vm.company.name }}  </h3>
+                    </div>
+                    <div class="row">
+                        <fieldset class="rating" style="margin-left:50px">
+                            <input type="radio" id="star5" name="rating" ng-model="vm.company.pointDisplay" value="5" />
+                            <label class="full" for="star5" title="Awesome - 5 stars"></label>
+                            <input type="radio" id="star4half" name="rating" ng-model="vm.company.pointDisplay" value="4.5" />
+                            <label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                            <input type="radio" id="star4" name="rating" ng-model="vm.company.pointDisplay" value="4" />
+                            <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                            <input type="radio" id="star3half" name="rating" ng-model="vm.company.pointDisplay" value="3.5" />
+                            <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                            <input type="radio" id="star3" name="rating" ng-model="vm.company.pointDisplay" value="3" />
+                            <label class="full" for="star3" title="Meh - 3 stars"></label>
+                            <input type="radio" id="star2half" name="rating" ng-model="vm.company.pointDisplay" value="2.5" />
+                            <label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                            <input type="radio" id="star2" name="rating" ng-model="vm.company.pointDisplay" value="2" />
+                            <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="star1half" name="rating" ng-model="vm.company.pointDisplay" value="1.5" />
+                            <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="star1" name="rating" ng-model="vm.company.pointDisplay" value="1" />
+                            <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="starhalf" name="rating" ng-model="vm.company.pointDisplay" value="0.5" />
+                            <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                            {{vm.company.averageRating | number:1}}
+                        </fieldset>
+                        <a class="rating-detail-caros" data-toggle="modal" data-target="#myModal"><h4 style="margin-left:550px;margin-top:30px"><span class="glyphicon glyphicon-list"></span> Của {{vm.company.numOfReviews}} bài đánh giá</h4></a>
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog modal-nm">
+                                <div class="modal-content" style="margin-top:200px;border:solid 1px;border-color:lightgrey;">
+                                    <h3 class="text-center" style="color:black;"> Xếp hạng {{ vm.company.name }} </h3>
+                                    <div class="row" style="margin-bottom:30px">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar">
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <div class="rating-detail">
+                                                <!--  <h4>{{vm.company.pointDisplay | number:1}}</h4> -->
+                                                <div ng-repeat="point in [1, 2, 3, 4, 5]">
+                                                    <h4 style="margin-left:20px;color:#119e9e;font-size:18px;font-weight:bold">{{vm.count[point-1]}}</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3" style="font-size:21px;margin-top:3px;margin-left:10px;color:green">
+                                            <div class="row">
+                                                <span class="glyphicon glyphicon-star"></span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <p style="margin-top:20px;font-size:60px;color:red;font-weight:bold">4.0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row label-picture">
+                <div class="row">
+                    <h3 class="pull-left " style="margin-left:36px;color:green">Hình ảnh công ty {{ vm.company.name }} </h3>
+                </div>
+                <div class="row ">
+                    <div class="list-picture-company">
+                        <div class="col-sm-8" style=" margin-bottom: 20px;margin-left:40px">
+                            <div style="display:block">
+                                <img ng-repeat="photo in vm.company.photo" ng-src="{{photo}}" class="list-picture-company1">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row tabs-overview">
+                <div class="row">
+                    <h3 class="pull-left text-company-overview" style="color:green">Thông tin công ty:</h3>
+                    <a class="pull-right fix-company" ng-show="(vm.authentication.user.roles.indexOf('admin')>0)" ng-click="vm.editCompany(vm.company)">Sửa thông tin</a>
+                </div>
+                <div class="row text-company-overview-detail">
+                    <div class="col-sm-6 text-company-overview-left">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4 class="pull-left text-label">Tên: </h4>
+                            </div>
+                            <div class="col-sm-3">
+                                <h4 class="text-labels" data-ng-bind="vm.company.name"></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4 class="pull-left text-label">Tên gọi khác: </h4>
+                            </div>
+                            <div class="col-sm-3">
+                                <div ng-show="(vm.company.alias.length >0)">
+                                    <div ng-repeat="name in vm.company.alias"><span> {{name}},</span></div>
+                                </div>
+                                <div ng-hide="(vm.company.alias.length >0)"> Không có tên gọi nào khác</div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4 class="pull-left text-label">Website: </h4>
+                            </div>
+                            <div class="col-sm-3">
+                                <h4 class="pull-left text-labels" data-ng-bind="vm.company.website"></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4 class="pull-left text-label">Loại hình công ty: </h4>
+                            </div>
+                            <div class="col-sm-3">
+                                <h4 class="pull-left text-labels" data-ng-bind="vm.company.companyType"></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4 class="pull-left text-label">Trụ sở chính: </h4>
+                            </div>
+                            <div class="col-sm-3">
+                                <h4 class="text-labels" data-ng-bind="vm.company.hq"></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 text-company-overview-left">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4 class="pull-left text-label">Thành lập: </h4>
+                            </div>
+                            <div class="col-sm-3">
+                                <h4 class="text-labels">{{vm.company.founded | date: 'yyyy'}}</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4 class="pull-left text-label">Quy mô nhân sự: </h4>
+                            </div>
+                            <div class="col-sm-3">
+                                <h4 class="text-labels" data-ng-bind="vm.company.personnelSize"></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4 class="pull-left text-label">Liên hệ: </h4>
+                            </div>
+                            <div class="col-sm-3">
+                                <h4 class="text-labels" data-ng-bind="vm.company.contact"></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4 class="pull-left text-label">Ngành nghề chính: </h4>
+                            </div>
+                            <div class="col-sm-3">
+                                <h4 class="text-labels" data-ng-bind="vm.company.industry"></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4 class="pull-left text-label">Giới thiệu, mô tả: </h4>
+                            </div>
+                            <div class="col-sm-3">
+                                <h4 class="text-labels" data-ng-bind="vm.company.description"></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" company-right" style=" margin-bottom: 20px;">
+                        <div class="row">
+                            <h3 class="pull-left text-company-overview-reivew" style="color:green">Đánh giá</h3>
+                            <div>
+                            Hiển thị :
+                            <select ng-model="vm.itemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:black">
+                                <option style="color:black" value="5">5</option>
+                                <option style="color:black" value="10">10</option>
+                                <option style="color:black" value="20">20</option>
+                            </select>
+                            </div>
+                            <div>
+                              Sắp xếp theo:
+                        <span class="sep" style="w"></span>
+                        <a style="" ng-click="vm.sort('overallRev.rating')" class="">Điểm đánh giá</a>
+                        <span class="glyphicon sort-icon" ng-show="vm.sortKey=='overallRev.rating'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" style=""></span>
+
+                        <span class="sep" style=""></span>
+                        <a style="" ng-click="vm.sort('lastUpdated')" class="">Thời gian cập nhật
+                            <span class="glyphicon sort-icon" ng-show="vm.sortKey=='lastUpdated'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" ></span></a>
+
+                        <input type="search" ng-model="keyword" style="" placeholder=" Tìm kiếm...">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                          <h4 class="review-sum">Có <b style="color:red">{{vm.company.numOfReviews}}</b> bài đánh giá: </h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <!--    Editor's choices: -->
+                                <div ng-repeat="review in vm.company.reviews | orderBy:'-lastUpdated' | filter: { highlight: true }" ng-include="'modules/companies/client/views/panel-review.client.view.html'" ng-init="companyId=vm.company._id" class="list-review-all">
+                                </div>
+                                <!--    Normal: -->
+                                <!-- <div ng-repeat="review in vm.company.reviews | orderBy:'-lastUpdated' | filter: { state: 'approved' } as filteredReviews" ng-include="'modules/companies/client/views/panel-review.client.view.html'" ng-init="companyId=vm.company._id" class="list-review-all">
+                                </div> -->
+
+                                <div dir-paginate="review in vm.company.reviews | filter: keyword | orderBy:vm.sortKey:!vm.reverse | itemsPerPage:vm.itemsPerPage" ng-include="'modules/companies/client/views/panel-review.client.view.html'" ng-init="companyId=vm.company._id" class="list-review-all">></div>
+
+                                <div class="row pull-right" style="font-size:10px;margin-right:10px">
+                                    <dir-pagination-controls max-size="4" direction-links="true" boundary-links="true">
+                                    </dir-pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+            </div>
+        </div>
+</section>
+<script>
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>

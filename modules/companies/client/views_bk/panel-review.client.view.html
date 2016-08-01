@@ -1,0 +1,47 @@
+<a ui-sref="companies.review({companyId: companyId, reviewId: review._id})">
+    <div class="row" ng-class="{highlightReview: review.highlight}">
+        <div class="col-sm-1 review-detail-left">
+            <div class="row">
+                <h5 class=" date-review" data-ng-bind="review.lastUpdated | date:'mediumDate'"></h5>
+            </div>
+            <div class="row">
+                <img ng-src="{{review.userID.profileImageURL? review.userID.profileImageURL : 'modules/users/client/img/profile/default.png'}}" class="content-avatar-review">
+            </div>
+            <div class="row">
+                <h5 ng-show="review.userID.name && !review.stayAnonymous" data-ng-bind="review.userID.name" class="review-user"></h5>
+                <h5 ng-hide="review.userID.name && !review.stayAnonymous" class="review-user">Anonymouse</h5>
+            </div>
+        </div>
+        <div class="col-sm-6 review-detail-right">
+            <h3 class="text-left title-review" data-ng-bind="review.title"></h3>
+            <h4 class="text-left title-review">"<span data-ng-bind="review.overallRev.pros"></span>..." (cắt vài chục ký tự như kiểu đang quote)</h4>
+            <h4 class="text-left title-review">- <span ng-repeat="job in review.job">{{job}} - </span> (List các vị trí làm việc)</h4>
+            <h4 class="text-left title-review"><span ng-hide="(review.isJobCurrent)"> Đã từng làm việc</span><span ng-show="(review.isJobCurrent)"> Hiện đang làm việc</span> - <span data-ng-bind="review.jobLength"></span></h4>
+        </div>
+        <div class="col-sm-4">
+            <div class="text-center">
+                <div class="row">
+                    <fieldset class="rating" style="margin-left:50px">
+                        <input type="radio" name="{{review._id}}" ng-model="review.overallRev.rating" value="5" />
+                        <label class="full" for="star5" title="Awesome - 5 stars"></label>
+                        
+                        <input type="radio" name="{{review._id}}" ng-model="review.overallRev.rating" value="4" />
+                        <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                        
+                        <input type="radio" name="{{review._id}}" ng-model="review.overallRev.rating" value="3" />
+                        <label class="full" for="star3" title="Meh - 3 stars"></label>
+                        
+                        <input type="radio" name="{{review._id}}" ng-model="review.overallRev.rating" value="2" />
+                        <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                        
+                        <input type="radio" name="{{review._id}}" ng-model="review.overallRev.rating" value="1" />
+                        <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                        
+                        {{review.overallRev.rating}}/5
+                    </fieldset>
+                </div>
+                {{review.upvoteUsers.length}} lượt ủng hộ
+            </div>
+        </div>
+    </div>
+</a>

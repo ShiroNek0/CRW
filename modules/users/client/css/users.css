@@ -11,12 +11,65 @@
   background-color:  #423b3b;
   color: white;
   float: left;
-  min-height:100em;
+  min-height:110em;
 
 }
 .settings-view{
 
 
+}
+
+#my-div-user{
+    width: 180px;
+    height: 180px;
+    background:#079696;
+    -moz-border-radius: 155px;
+    -webkit-border-radius: 155px;
+    -border-radius: 155px;
+    border-radius: 155px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    border: solid 2px;border-color: lightgrey;
+}
+div#my-div {
+    width: 190px;
+    height: 150px;
+    background: #1672ce;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -border-radius: 25px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    border: solid 2px;border-color: lightgrey;
+}
+div#my-divs {
+    width: 190px;
+    height: 150px;
+    background: #f4841a;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -border-radius: 25px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    border: solid 2px;border-color: lightgrey;
+}
+div#my-divss {
+    width: 190px;
+    height: 150px;
+    background: #423b3b;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -border-radius: 25px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    border: solid 2px;border-color: lightgrey;
 }
 /*li a.abc:link {
      

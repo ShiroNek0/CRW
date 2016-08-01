@@ -1,21 +1,127 @@
 <section>
-  <div class="page-header">
-    <div class="row">
-      <div class="col-md-4">
-        <h1>Users</h1>
-      </div>
-      <div class="col-md-4" style="margin-top: 2em">
-        <input class="form-control col-md-4" type="text" ng-model="search" placeholder="Search" ng-change="figureOutItemsToDisplay()" />
-      </div>
-    </div>
-  </div>
-  <div class="list-group">
-    <a ng-repeat="user in pagedItems" ui-sref="admin.user({userId: user._id})" class="list-group-item">
-      <h4 class="list-group-item-heading" ng-bind="user.username"></h4>
-      <p class="list-group-item-text pull-right small" ng-bind="user.roles"></p>
-      <p class="list-group-item-text" ng-bind="user.email"></p>
-    </a>
-  </div>
+ <h5 style="color:grey;margin-top:20px;margin-left:20px;font-weight:bold;background-color:lightgrey;margin-right:20px;height:30px;padding-left:20px;padding-top:10px">Quản lý các người dùng</h5>
 
-  <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+
+
+   <div class="row">
+     <div class="col-sm-3">
+         <div id="my-div-user">
+       <h6 style="padding-top:50px;padding-left:35px;color:white">TÀI KHOẢN ADMIN</h6>
+       <h3 style="padding-left:87px;color:white"><b></b></h3>
+    </div>
+     </div>
+     <div class="col-sm-3">
+         <div id="my-div-user" style="background-color:#e57a16">
+       <h6 style="padding-top:50px;padding-left:45px;color:white">TÀI KHOẢN MOD</h6>
+       <h3 style="padding-left:87px;color:white"><b></b></h3>
+    </div>
+     </div>
+     <div class="col-sm-3">
+         <div id="my-div-user" style="background-color:#ab65f7">
+       <h6 style="padding-top:50px;padding-left:25px;color:white">TÀI KHOẢN NGƯỜI DÙNG</h6>
+       <h3 style="padding-left:87px;color:white"><b></b></h3>
+    </div>
+
+     </div>
+     <div class="col-sm-3">
+         <div id="my-div-user" style="background-color:#4c4444">
+       <h6 style="padding-top:50px;padding-left:40px;color:white">TỔNG TÀI KHOẢN</h6>
+       <h3 style="padding-left:87px;color:white"><b>{{vm.users.length}}</b></h3>
+    </div>
+
+     </div>
+
+   </div>
+  <div class="row" style="margin-left:20px;margin-right:20px;background-color:white;border:solid 1px;border-color:#423b3b">
+       <div class="row" style="background-color:#423b3b;margin-left:0px;margin-right:0px">
+          <h5 style="margin-left:20px;color:white">Danh sách người dùng</h5>
+       </div>
+       <div class="row">
+          <div class="col-sm-8">
+              <b class="" style="color:white;font-weight:none;color:grey;margin-left:30px">Hiển thị</b>
+            <select ng-model="vm.ItemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:black; margin-right:10px;margin-top:10px;">
+            <option style="color:black" value="10">10</option>
+            <option style="color:black" value="20">20</option>
+            <option style="color:black" value="30">30</option>
+         </select>
+          </div>
+          <div class="col-sm-4 " style="margin-top:10px;">
+          <b style="color:grey;margin-right:10px">Tìm kiếm</b>
+                      <input type="search" ng-model="vm.keyword" style="" placeholder=" Tìm theo tên hiển thị..." style="border:solid 1px;border-color:lightgrey;">
+          </div>
+
+       </div>
+       <div class="" style="margin-right:10px;margin-left:10px;border:solid 1px;margin-top:10px;margin-bottom:10px;border-color:lightgrey">
+                <table class="table table-striped" >
+         <thead>
+            <tr style="color:white;font-weight:bold;background-color:#1fbaba">
+                <th class="col-sm-4" ng-click="vm.sort('email')">Email <span class="glyphicon sort-icon" ng-show="vm.sortKey=='email'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                <th class="col-sm-4" ng-click="vm.sort('name')">Tên hiển thị <span class="glyphicon sort-icon" ng-show="vm.sortKey=='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                <th class="col-sm-2" ng-click="vm.sort('accState')">Trạng thái tài khoản <span class="glyphicon sort-icon" ng-show="vm.sortKey=='accState'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                <th class="col-sm-2" ng-click="vm.sort('roles')">Quyền hạn <span class="glyphicon sort-icon" ng-show="vm.sortKey=='roles'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+            </tr>
+        </thead>
+      </table>
+       <div dir-paginate="user in vm.users | orderBy:vm.sortKey:!vm.reverse | itemsPerPage:vm.ItemsPerPage | filter: {name: vm.keyword}">
+         <table class="table table-striped" style="">
+           <tbody>
+                <tr style="color:black">
+                    <td class="col-sm-4" style="font-weight:bold;border-right:solid 1px;border-color:lightgrey"><a style="color:grey">{{user.email}}</a></td>
+                    <td class="col-sm-4" style="font-weight:bold;border-right:solid 1px;border-color:lightgrey"><a style="color:#1672ce" ui-sref="user({userId: user._id})">{{user.name}}</a></td>
+                    <td class="col-sm-2" style="border-right:solid 1px;border-color:lightgrey"> {{user.accState}}</td>
+                    <td class="col-sm-2" style="border-right:solid 1px;border-color:lightgrey"> <span ng-repeat="role in user.roles" class="badge"> {{role}}</span></td>
+                </tr>
+            </tbody>
+         </table>
+      </div>
+       </div>
+      <div class="row pull-right" style="font-size:10px;margin-right:10px">
+         <dir-pagination-controls max-size="4" direction-links="true" boundary-links="true">
+         </dir-pagination-controls>
+      </div>
+   </div>
+  <!--   <div class="page-header">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Tổng số: {{vm.users.length}} Users</h2>
+            </div>
+            <div class="col-md-4" style="margin-top: 2em">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="">
+        Hiển thị :
+        <select ng-model="vm.ItemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:black">
+            <option style="color:black" value="10">10</option>
+            <option style="color:black" value="20">20</option>
+            <option style="color:black" value="30">30</option>
+        </select>
+        <input type="search" ng-model="vm.keyword" style="" placeholder=" Tìm theo tên hiển thị...">
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr style="color:white;font-weight:bold;background-color:#09ba5e;">
+                <th class="col-sm-4" ng-click="vm.sort('email')">Email <span class="glyphicon sort-icon" ng-show="vm.sortKey=='email'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                <th class="col-sm-4" ng-click="vm.sort('name')">Tên hiển thị <span class="glyphicon sort-icon" ng-show="vm.sortKey=='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                <th class="col-sm-2" ng-click="vm.sort('accState')">Trạng thái tk <span class="glyphicon sort-icon" ng-show="vm.sortKey=='accState'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                <th class="col-sm-2" ng-click="vm.sort('roles')">Quyền hạn <span class="glyphicon sort-icon" ng-show="vm.sortKey=='roles'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+            </tr>
+        </thead>
+    </table>
+    <div dir-paginate="user in vm.users | orderBy:vm.sortKey:!vm.reverse | itemsPerPage:vm.ItemsPerPage | filter: {name: vm.keyword}">
+        <table class="table table-striped">
+            <tbody>
+                <tr style="color:black">
+                    <td class="col-sm-4" style="font-weight:bold;border-right:solid 1px;border-color:lightgrey"><a style="color:black">{{user.email}}</a></td>
+                    <td class="col-sm-4" style="font-weight:bold;border-right:solid 1px;border-color:lightgrey"><a style="color:black" ui-sref="user({userId: user._id})">{{user.name}}</a></td>
+                    <td class="col-sm-2" style="border-right:solid 1px;border-color:lightgrey"> {{user.accState}}</td>
+                    <td class="col-sm-2" style="border-right:solid 1px;border-color:lightgrey"> <span ng-repeat="role in user.roles" class="badge"> {{role}}</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row pull-right" style="font-size:10px;margin-right:10px">
+        <dir-pagination-controls max-size="4" direction-links="true" boundary-links="true">
+        </dir-pagination-controls>
+    </div> -->
 </section>

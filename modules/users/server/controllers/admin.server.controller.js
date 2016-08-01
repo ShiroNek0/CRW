@@ -6,13 +6,27 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
-  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
+  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+  companies = require(path.resolve('./modules/companies/server/controllers/companies.server.controller')),
+  users = require(path.resolve('./modules/users/server/controllers/users/users.profile.server.controller'));
 
 /**
  * Show the current user
  */
 exports.read = function (req, res) {
-  res.json(req.model);
+  companies.listPostedReviews(req.model._id, req.user._id, function (err, result) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      var user = req.model.toJSON();
+      user.postedReviews = result;
+      users.trimInfoUser(user, function(result) {
+        res.jsonp(result);
+      });
+    }
+  });
 };
 
 /**
@@ -22,8 +36,8 @@ exports.update = function (req, res) {
   var user = req.model;
 
   //For security purposes only merge these parameters
-  user.name = req.body.name;
   user.roles = req.body.roles;
+  user.accState = req.body.accState;
 
   user.save(function (err) {
     if (err) {
@@ -32,7 +46,9 @@ exports.update = function (req, res) {
       });
     }
 
-    res.json(user);
+    users.trimInfoUser(user, function(result) {
+      res.jsonp(result);
+    });
   });
 };
 
@@ -49,7 +65,9 @@ exports.delete = function (req, res) {
       });
     }
 
-    res.json(user);
+    users.trimInfoUser(user, function(result) {
+      res.jsonp(result);
+    });
   });
 };
 
@@ -57,14 +75,16 @@ exports.delete = function (req, res) {
  * List of Users
  */
 exports.list = function (req, res) {
-  User.find({}, '-salt -password').sort('-created').populate('user', 'name').exec(function (err, users) {
+  User.find({}, '-salt -password').sort('-created').populate('user', 'name').exec(function (err, result) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
 
-    res.json(users);
+    users.trimInfoUserList(result, function(userList) {
+      res.jsonp(userList);
+    });
   });
 };
 
@@ -74,7 +94,7 @@ exports.list = function (req, res) {
 exports.userByID = function (req, res, next, id) {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'Người dùng không hợp lệ'
+      message: 'ID người dùng không hợp lệ'
     });
   }
 
@@ -82,7 +102,7 @@ exports.userByID = function (req, res, next, id) {
     if (err) {
       return next(err);
     } else if (!user) {
-      return next(new Error('Không load được thông tin người dùng ' + id));
+      return next(new Error('Không tìm thấy người dùng với ID tương ứng'));
     }
 
     req.model = user;

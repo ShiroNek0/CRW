@@ -17,6 +17,10 @@
 @keyframes rotate360 {
   100% { transform: rotate(360deg); }
 }
+.tesr{
+   position: fixed;
+ 
+}
 
 .rotate360 {
   -webkit-animation-name: rotate360;
@@ -32,10 +36,9 @@
   animation-duration: 2s;
 }
 .company-right{
-	border-color: none;
-	background-color: white;
-	margin-top: 10px;
-	margin-left: 15px;
+  border-color: none;
+  background-color: white;
+  margin-left: 15px;
   border: solid 1px;
   border-color: lightgrey;
   margin-right: 15px;
@@ -43,7 +46,6 @@
 }
 .other{
   background-color: white;
-  margin-left: 15px;
   margin-right: 15px;
   border: solid 1px;
   border-color: #b2b2b2;
@@ -67,14 +69,14 @@
   background-color:white;
 }
 .rating-review-all{
-  margin-left: 20px;
+
 
 }
 
 .content-avatar{
-	width: 100px;
-	height: 100px;
-	margin-top: 20px;
+  width: 120px;
+  height: 100px;
+  margin-top: 20px;
   margin-left: 10px;
   border: solid 1px;
   border-color: lightgrey;
@@ -88,16 +90,6 @@
     -o-border-radius: 1px;
     border-radius: 1px;
 }
-.content-avatar{
-  -webkit-transition-duration: 0.5s; /*Webkit: Animation duration*/
--moz-transition-duration: 0.5s; /*Mozilla duration version*/
--o-transition-duration: 0.5s; /*Opera duration version*/
--moz-border-radius: 1px 30px 1px 30px ;
-    -webkit-border-radius:  1px  30px 1px 30px;
-    -ms-border-radius:  1px 30px 1px 30px;
-    -o-border-radius:  1px 30px 1px 30px;
-    border-radius: 1px 30px 1px  30px
-}
 .btn-followss{
   border: solid 1px;
   border-color: lightgrey;
@@ -106,7 +98,6 @@
   color: black;
   font-weight: bold;
   margin-top: 110px;
-  margin-left:30px;
 }
 .tab-contents-avatar{
   margin-top: 20px;
@@ -116,7 +107,7 @@
  margin-right: 30px;
  font-weight: bold;
 }
-.btn-reviewss{
+/*.btn-reviewss{
   border: solid 1px;
   border-color: lightgrey;
   width: 115px;
@@ -124,7 +115,7 @@
   height: 42px;
   color: black;
   font-weight: bold;
-}
+}*/
 .btn-follow{
   border: solid 1px;
   border-color: lightgrey;
@@ -133,7 +124,9 @@
   height: 35px;
   color: black;
   font-weight: bold;
-  box-shadow: 0 3px 0 0 black}
+  box-shadow: 0 3px 0 0 black;
+  margin-left: 50px;
+}
 
 .btn-review{
   border: solid 1px;
@@ -152,12 +145,12 @@
 
 
 .text-reason{
-	color:black;
-	margin-left: 140px;
-	margin-top: 90px;
-	font-size: 25px;
-	font-weight: bold;
-	text-transform: uppercase;
+  color:black;
+  margin-left: 140px;
+  margin-top: 90px;
+  font-size: 25px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 
@@ -177,7 +170,7 @@
 
 }
 .text-company-overview-detail{
-	 margin-left: 20px;
+   margin-left: 20px;
 }
 .text-company-overview-left{
  overflow: hidden;
@@ -186,14 +179,14 @@
  overflow: hidden;
 }
 .text-company-overview-reivew{
-	margin-left: 30px;
+  margin-left: 30px;
 
 }
 
 .text-label{
-	font-weight: bold;
-	margin-right: 10px;
-	overflow: hidden;
+  font-weight: bold;
+  margin-right: 10px;
+  overflow: hidden;
 }
 
 .glyphicon-menu-right{
@@ -224,26 +217,26 @@ opacity: 1; /*Độ mờ của hình ảnh*/
 margin-top:50px;
 }
 .list-picture-company1{
-  width:90px;height:90px;
+  width:80px;height:80px;
   border:solid 1px;border-color:lightgrey;
  
 }
 .list-picture-company2{
-  width:90px;height:90px;
+  width:80px;height:80px;
   border:solid 1px;border-color:lightgrey;
 }
 .list-picture-company3{
-  width:90px;height:90px;
+  width:80px;height:80px;
   border:solid 1px;border-color:lightgrey;
 
 }
 .list-picture-company4{
-  width:90px;height:90px;
+  width:80px;height:80px;
   border:solid 1px;border-color:lightgrey;
 
 }
 .list-picture-company5{
-  width:90px;height:90px;
+  width:80px;height:80px;
   border:solid 1px;border-color:lightgrey;
 
 }
@@ -272,51 +265,48 @@ margin-top:50px;
 .text-labels{
   color:#999999;
 }
-#thediv_scroll{
-height:850px;/* canh chinh noi dung va le the div*/
-overflow:auto; /* thuoc tinh nay lam xuat hien thanh cuon*/
-margin-bottom: 50px;
-}
+
 .review-sum{
-	margin-left: 30px;
-	color: #999999;
-	
+  margin-left: 50px;
+  color: #999999;
+  
 }
 .list-review-all{
-	border-bottom: solid 2px;
-	border-bottom-color: #b2b2b2;
+  border-bottom: solid 2px;
+  border-bottom-color: #b2b2b2;
 
 }
 .date-review{
-  color:#3b5998;
+  color:grey;
   margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 5px;
   font-weight: bold;
 }
 .review-detail-left{
-	margin-left: 20px;
+  margin-left: 20px;
 }
 .content-avatar-review{
    height: 80px;
    width: 80px;
    border:solid 2px;
    border-color: #b2b2b2;
-   margin-left: 10px;
+   margin-left: 5px;
 }
 .review-user{
-	margin-left: 10px;
-	font-weight: bold;
-	color: #0fbfbf;
+  margin-left: 5px;
+  font-weight: bold;
+  color: #079696; 
 }
 
 .title-review{
-    color:#3b5998;
+    color:#079696; 
    font-weight:bold;
+   margin-top: 20px;
 
 }
 
 .review-detail-right{
-	margin-left: 10px;
+  margin-left: 10px;
 }
 
 .job-review{
@@ -383,29 +373,29 @@ margin-bottom: 50px;
 
 
 .tab-information-company{
-	color:#19e5e5;
-	width:200px;
-	margin-left:40px;
+  color:#19e5e5;
+  width:200px;
+  margin-left:40px;
 }
 .tab-review-company{
-	color:#19e5e5;
-	width:200px;
+  color:#19e5e5;
+  width:200px;
 }
 .tab-salary-company{
     color:#19e5e5;
-	width:200px;
+  width:200px;
 }
 .tab-other-company{
     color:#19e5e5;
-	width:200px;
+  width:200px;
 }
 .tab-daingo-company{
     color:#19e5e5;
-	width:200px;
+  width:200px;
 }
 .show-all-review{
-	padding-top:40px;
-	color:#999999;
+  padding-top:40px;
+  color:#999999;
 }
 
 .rating-loading {
@@ -456,8 +446,6 @@ margin-bottom: 50px;
   border: solid 1px;
   border-color: #b2b2b2;
   background-color: white;
-  margin-left: 0px;
-  margin-right: 0px;
   margin-top: 10px;
 }
 .rating-rtl {

@@ -4,6 +4,7 @@ module.exports = {
   client: {
     lib: {
       css: [
+        'public/lib/angular-rateit/dist/ng-rateit.css',
         'public/lib/bootstrap/dist/css/bootstrap.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.css'
       ],
@@ -20,7 +21,8 @@ module.exports = {
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/angular-file-upload/angular-file-upload.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
-        'public/lib/angular-fcsa-number-master/src/fcsaNumber.js'
+        'public/lib/angular-fcsa-number-master/src/fcsaNumber.js',
+        'public/lib/angular-rateit/dist/ng-rateit.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },

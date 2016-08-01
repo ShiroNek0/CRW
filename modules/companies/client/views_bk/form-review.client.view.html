@@ -1,0 +1,316 @@
+<section ng-init="vm.Reviewinit()">
+    <div class="container">
+      <div class="row">
+        <div class="row" style="margin-top:20px">
+            <div class="text-left">
+                <h3 class="label-review" style="margin-left:120px;">Đánh giá công ty</h3>
+                <p class="note-review" style="color:green;margin-left:120px;">Bạn chỉ mất vài phút để đánh giá công ty bạn lựa chọn, nó sẽ giúp đỡ người khác tìm công việc họ muốn.</p>
+            </div>
+        </div>
+        <form name="vm.form.reviewForm" class="form-horizontal" ng-submit="vm.save(vm.form.reviewForm.$valid)" novalidate>
+            <fieldset>
+           <div class="row">
+                    <div class="col-sm-1">
+                        
+                    </div>
+                    <div class="col-sm-2">
+                        <img src="{{vm.company.avatar}}" alt="avatar" class="img-company">
+                    </div>
+
+                    <div class="col-sm-6" style="background-color:white;margin-bottom:20px">
+                               <div class="col-sm-12">
+                                       <div class="row">
+                                           <h3 class="review-all">Đánh giá tổng quan</h3>
+                                       </div>
+                                       <div class="row" ng-show=(vm.authentication.user)><label class="label-radio-year">
+                                       <input type="checkbox" ng-model="vm.company.newReview.stayAnonymous"> Đăng bài với chế độ ẩn danh</label>
+                                       </div>
+                                        <div class="row">
+                                            <h4 class="label-review-company">Công ty:</h4>
+                                            <input type="text" class="form-control input-review-company" ng-model="vm.company.name" disabled>
+                                        </div>
+                                       
+                                        <div class="row">
+                                             <div show-errors>
+                                                <h4 class="label-review-title">Tiêu đề(*):</h4>
+                                                <input type="text" class="form-control input-review-title" ng-model="vm.company.newReview.title" placeholder="Điền tiêu đề cho bài đánh giá..." name="title" required data-toggle="tooltip" data-placement="bottom" title="Tiêu đề bài đánh giá mô tả tổng quát nội dung bài đánh giá!">
+                                                <div ng-messages="vm.form.reviewForm.$submitted && vm.form.reviewForm.title.$error" role="alert">
+                                                    <p class="help-block error-text" ng-message="required">Hãy nhập tiêu đề cho bài đánh giá.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                             <div show-errors>
+                                                <h4 class="label-review-title">Vị trí công việc(*):</h4>
+                                                Ban co the them nhieu vi tri cong viec
+                                                <div ng-repeat="job in vm.company.newReview.job">
+                                                {{job}}
+                                                <button type="button" ng-click="vm.deleteJob($index)">delete</button>
+                                                </div>
+                                                <input type="text" list="jobList" class="form-control input-review-title" placeholder="Điền tiêu đề cho bài đánh giá..." data-toggle="tooltip" data-placement="bottom" title="Tiêu đề bài đánh giá mô tả tổng quát nội dung bài đánh giá!" ng-model="vm.job" ng-keypress="vm.jobEnter($event)">
+                                                <datalist id="jobList">
+                                                    <option ng-repeat="job in vm.jobList" value="{{job.name}}">
+                                                </datalist>
+                                                <button type="button" ng-click="vm.addJob()">Them vi tri</button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                             <div class="" show-errors>
+                                                <h4 class="label-review-pros">Ưu điểm(*):</h4>
+                                                <textarea class="form-control textarea-pros" rows="5" ng-model="vm.company.newReview.overallRev.pros" name="pros" placeholder="Ưu điểm..." required data-toggle="tooltip" data-placement="bottom" title="Chọn ưu điểm của công ty!"></textarea>
+                                                <div ng-messages="vm.form.reviewForm.$submitted && vm.form.reviewForm.pros.$error" role="alert">
+                                                    <p class="help-block error-text" ng-message="required">Hãy nhập ưu điểm.</p>
+                                                </div>
+                                            </div>
+                                         
+                                        </div>
+                                        <div class="row">
+                                               <div class="" show-errors>
+                                                <h4 class="label-review-cons">Nhược điểm(*):</h4>
+                                                <textarea class="form-control textarea-cons" rows="5" ng-model="vm.company.newReview.overallRev.cons" name="cons" placeholder="Nhược điểm..." required data-toggle="tooltip" data-placement="bottom" title="Chọn nhược điểm của công ty!"></textarea>
+                                                <div ng-messages="vm.form.reviewForm.$submitted && vm.form.reviewForm.cons.$error" role="alert">
+                                                    <p class="help-block error-text" ng-message="required">Hãy nhập nhược điểm.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <div class="row">
+                                                <div class=" rightAlign">
+                                                    <h4 class="label-review-salary">Lương cơ bản:</h4>
+                                                    <input type="number" min="0" name="basePay" class="form-control input-review-salary" placeholder="Nhập lương cơ bản..." ng-model="vm.company.newReview.salaryAndBenefit.basePay" data-toggle="tooltip" data-placement="bottom" title="Lương cơ bản là lương cố định hàng tháng!">
+                                                    <div>{{vm.company.newReview.salaryAndBenefit.basePay | number}} VND / Tháng</div>
+                                                    <div ng-messages="vm.form.reviewForm.basePay.$error" role="alert">
+                                                        <p class="help-block error-text" ng-message="number" style="color: red">Invalid</p>
+                                                        <p class="help-block error-text" ng-message="min" style="color: red">Chỉ nhập số lớn hơn 0.</p>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                            <div class="row">
+                                                <div class=" rightAlign">
+                                                    <h4 class="label-review-grow">Mức tăng lương trung bình:</h4>
+                                                    <input type="number" min="0" name="payRaise" class="form-control input-review-salary" placeholder="Nhập lương trung bình..." ng-model="vm.company.newReview.salaryAndBenefit.payRaise" data-toggle="tooltip" data-placement="bottom" title="Lương tăng trưởng trung bình hàng tháng !">
+                                                    <div>{{vm.company.newReview.salaryAndBenefit.payRaise | number}} VND / Tháng</div>
+                                                    <div ng-messages="vm.form.reviewForm.payRaise.$error" role="alert">
+                                                        <p class="help-block error-text" ng-message="number" style="color: red">Invalid</p>
+                                                        <p class="help-block error-text" ng-message="min" style="color: red">Chỉ nhập số lớn hơn 0.</p>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                            <div class="row">
+                                               <div class=" rightAlign">
+                                                    <h4 class="label-review-salary-year">Lương thưởng:</h4>
+                                                    <input type="number" min="0" name="cashBonus" class="form-control input-review-salary" placeholder="Nhập lương thưởng..." ng-model="vm.company.newReview.salaryAndBenefit.cashBonus" data-toggle="tooltip" data-placement="bottom" title="Lương được thưởng trung bình theo tháng!">
+                                                    <div>{{vm.company.newReview.salaryAndBenefit.cashBonus | number}} VND / Tháng</div>
+                                                    <div ng-messages="vm.form.reviewForm.cashBonus.$error" role="alert">
+                                                        <p class="help-block error-text" ng-message="number" style="color: red">Invalid</p>
+                                                        <p class="help-block error-text" ng-message="min" style="color: red">Chỉ nhập số lớn hơn 0.</p>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                            <div class="row">
+                                                   <div class=" rightAlign">
+                                                        <h4 class="label-review-salary-ln">Tiền lương ngoài:</h4>
+                                                        <input type="number" min="0" name="profitSharing" class="form-control input-review-salary" placeholder="Nhập lương ngoài..." ng-model="vm.company.newReview.salaryAndBenefit.profitSharing" data-toggle="tooltip" data-placement="bottom" title="Lương ngoài tăng thêm!">
+                                                        <div>{{vm.company.newReview.salaryAndBenefit.profitSharing | number}} VND / Tháng</div>
+                                                        <div ng-messages="vm.form.reviewForm.profitSharing.$error" role="alert">
+                                                            <p class="help-block error-text" ng-message="number" style="color: red">Invalid</p>
+                                                            <p class="help-block error-text" ng-message="min" style="color: red">Chỉ nhập số lớn hơn 0.</p>
+                                                        </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="row">
+                                                    <h4 class="label-review-chance" data-toggle="tooltip" data-placement="bottom" title="Cơ hội thăng tiến trong sự nghiệp tại công ty!">Cơ hội thăng tiến:</h4>
+                                    
+                                                    <div class="rating1">
+                                                        <span><input type="radio" name="rating" id="str51" value="5"><label for="str51"></label></span>
+                                                        <span><input type="radio" name="rating" id="str41" value="4"><label for="str41"></label></span>
+                                                        <span><input type="radio" name="rating" id="str31" value="3"><label for="str31"></label></span>
+                                                        <span><input type="radio" name="rating" id="str21" value="2"><label for="str21"></label></span>
+                                                        <span><input type="radio" name="rating" id="str11" value="1"><label for="str11"></label></span>
+                                                    </div>
+                                                   
+                                                  </div>
+                                                  <div class="row">
+                                                      <h4 class="label-review-insurrance" data-toggle="tooltip" data-placement="bottom" title="Chế độ bảo hiểm, chăm sóc sức khỏe tăng chất lượng làm việc!">Bảo hiểm và các chế độ chăm sóc sức khỏe:</h4>
+                                                    <div class="rating2">
+                                                        <span><input type="radio" name="rating" id="str52" value="5"><label for="str52"></label></span>
+                                                        <span><input type="radio" name="rating" id="str42" value="4"><label for="str42"></label></span>
+                                                        <span><input type="radio" name="rating" id="str32" value="3"><label for="str32"></label></span>
+                                                        <span><input type="radio" name="rating" id="str22" value="2"><label for="str22"></label></span>
+                                                        <span><input type="radio" name="rating" id="str12" value="1"><label for="str12"></label></span>
+                                                    </div>
+                                                    
+                                                  
+                                                  </div>
+                                                  <div class="row">
+                                                        <h4 class="label-review-resttime" data-toggle="tooltip" data-placement="bottom" title="Công ty có thời gian nghỉ thưởng như thế nào!">Thời gian nghỉ lương thưởng:</h4>
+                                                   
+                                                    <div class="rating3">
+                                                        <span><input type="radio" name="rating" id="str53" value="5"><label for="str53"></label></span>
+                                                        <span><input type="radio" name="rating" id="str43" value="4"><label for="str43"></label></span>
+                                                        <span><input type="radio" name="rating" id="str33" value="3"><label for="str33"></label></span>
+                                                        <span><input type="radio" name="rating" id="str23" value="2"><label for="str23"></label></span>
+                                                        <span><input type="radio" name="rating" id="str13" value="1"><label for="str13"></label></span>
+                                                    </div>
+                                            
+                                                  
+                                                  </div>
+                                                  <div class="row">
+                                                     <h4 class="label-review-pension" data-toggle="tooltip" data-placement="bottom" title="Lương hưu cho nhân viên như thế nào!">Chế độ lương hưu:</h4>
+                                                   
+                                                    <div class="rating4">
+                                                        <span><input type="radio" name="rating" id="str54" value="5"><label for="str54"></label></span>
+                                                        <span><input type="radio" name="rating" id="str44" value="4"><label for="str44"></label></span>
+                                                        <span><input type="radio" name="rating" id="str34" value="3"><label for="str34"></label></span>
+                                                        <span><input type="radio" name="rating" id="str24" value="2"><label for="str24"></label></span>
+                                                        <span><input type="radio" name="rating" id="str14" value="1"><label for="str14"></label></span>
+                                                    </div>
+                                            
+                                                  
+                                                  </div>
+                                                   <div class="row">
+                                                   <h4 class="label-review-wife" data-toggle="tooltip" data-placement="bottom" title="Cho điểm chế độ thai sản tại công ty như thế nào!">Chế độ thai sản/ nghỉ vợ đẻ:</h4>
+                                                   
+                                                    <div class="rating5">
+                                                        <span><input type="radio" name="rating" id="str55" value="5"><label for="str55"></label></span>
+                                                        <span><input type="radio" name="rating" id="str45" value="4"><label for="str45"></label></span>
+                                                        <span><input type="radio" name="rating" id="str35" value="3"><label for="str35"></label></span>
+                                                        <span><input type="radio" name="rating" id="str25" value="2"><label for="str25"></label></span>
+                                                        <span><input type="radio" name="rating" id="str15" value="1"><label for="str15"></label></span>
+                                                    </div>
+                                            
+                                                  
+                                                  </div>
+                                            <div class="row">
+                                               <div class="">
+                                                    <h4 class="label-review-supplement" style="">Nội dung:</h4>
+                                                    <textarea  style="color:black" class="form-control textarea-supplement" rows="5" ng-model="vm.company.newReview.overallRev.supplement" name="supplement" placeholder="Nội dung..." data-toggle="tooltip" data-placement="bottom" title="Nội dung của bài đánh giá rất quan trọng!"></textarea>
+                                                </div>
+                                           </div>
+
+                                           <div class="row">
+                                               <h3>Đánh giá tổng quan </h3> 
+                                           </div>
+                                           <div class="row">
+                                           <fieldset class="rating" style="margin-left:150px">
+                                                    <input type="radio" id="star5" name="rating" value="5" ng-model="vm.company.newReview.overallRev.rating"/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                                    
+                                                    <input type="radio" id="star4" name="rating" value="4" ng-model="vm.company.newReview.overallRev.rating"/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                                   
+                                                    <input type="radio" id="star3" name="rating" value="3" ng-model="vm.company.newReview.overallRev.rating"/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                                    
+                                                    <input type="radio" id="star2" name="rating" value="2" ng-model="vm.company.newReview.overallRev.rating"/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                                    
+                                                    <input type="radio" id="star1" name="rating" value="1" ng-model="vm.company.newReview.overallRev.rating"/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                                    
+                                                </fieldset>
+                                                <div ng-messages="vm.form.reviewForm.$submitted && vm.form.reviewForm.rating.$error" role="alert">
+                                                            <p class="help-block error-text" ng-message="required">Hãy cho điểm đánh giá tổng quan.</p>
+                                                        </div>
+                                    </div>
+                                           <div class="row">
+                                               <hr>
+                                           </div>
+                                           <div class="row">
+                                               <h3>Thông tin về bạn</h3ss>
+                                           </div>
+                                            <div class="row">
+                                              <div class="">
+                                                    <h4 class="label-review-work">Bạn có đang làm việc tại vị trí này?</h4>
+                                                    <label class="label-radio-yes">
+                                                        <input type="radio" ng-model="vm.company.newReview.isJobCurrent" value="true" name="isJobCurrent" ng-checked="true" data-toggle="tooltip" data-placement="bottom" title="Chọn có !"> Có</label>
+                                                    <label class="label-radio-no">
+                                                        <input type="radio" ng-model="vm.company.newReview.isJobCurrent" value="false" name="isJobCurrent" data-toggle="tooltip" data-placement="bottom" title="Chọn không!"> Không</label>
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                              <div class="">
+                                                    <h4 class="label-review-time">Thời gian làm việc tại vị trí trên:</h4>
+                                                    <label class="label-radio-month">
+                                                        <input type="radio" ng-model="vm.company.newReview.jobLength" value="Dưới 6 tháng" name="jobLength" ng-checked="true" data-toggle="tooltip" data-placement="bottom" title="Chọn 6 tháng!"> Dưới 6 tháng</label>
+                                                    <label class="label-radio-year">
+                                                        <input type="radio" ng-model="vm.company.newReview.jobLength" value="6 tháng - 1 năm" name="jobLength" data-toggle="tooltip" data-placement="bottom" title="Chọn 1 năm!"> 6 tháng - 1 năm</label>
+                                                    <label class="label-radio-year">
+                                                        <input type="radio" ng-model="vm.company.newReview.jobLength" value="1 năm - 3 năm" name="jobLength" data-toggle="tooltip" data-placement="bottom" title=""> 1 năm - 3 năm</label>
+                                                    <label class="label-radio-year">
+                                                        <input type="radio" ng-model="vm.company.newReview.jobLength" value="3 năm - 5 năm" name="jobLength" data-toggle="tooltip" data-placement="bottom" title=""> 3 năm - 5 năm</label>
+                                                    <label class="label-radio-year">
+                                                        <input type="radio" ng-model="vm.company.newReview.jobLength" value="1 năm - 3 năm" name="jobLength" data-toggle="tooltip" data-placement="bottom" title=""> 5 năm - 10 năm</label>
+                                                    <label class="label-radio-year">
+                                                        <input type="radio" ng-model="vm.company.newReview.jobLength" value="Trên 10 năm" name="jobLength" data-toggle="tooltip" data-placement="bottom" title=""> Trên 10 năm</label>
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                             <div class="">
+                                                    <h4 class="label-review-contract">Loại nhân viên:</h4>
+                                                    <label class="label-radio-fulltime">
+                                                        <input type="radio" ng-model="vm.company.newReview.contract" value="Nhân viên chính thức" name="contract" ng-checked="true" data-toggle="tooltip" data-placement="bottom" title="Kiểu hợp đồng fulltime!"> Nhân viên chính thức</label>
+                                                    <label class="label-radio-parttime">
+                                                        <input type="radio" ng-model="vm.company.newReview.contract" value=" Nhân viên hợp đồng" name="contract" data-toggle="tooltip" data-placement="bottom" title="Kiểu hợp đồng parttime!"> Nhân viên hợp đồng</label>
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                             <div class="termofuse">
+                                                    <input name="" type="radio" /> Tôi đồng ý với điều khoản của CRW.Những điều tôi đánh giá dựa vào kinh nghiệm làm việc và sự trung thực.
+                                                </div>
+                                        </div>
+                                        <div class="row pull-right" style="margin-bottom:20px; margin-top:20px">
+
+                                                            <button type="cancel" class="btn btn-default "> Hủy</button>
+                                                            <button type="submit" class="btn btn-primary"> Gửi đánh giá</button>
+                                            </div> 
+
+                               </div>
+
+
+                    </div>
+                   
+           </div>
+
+            </fieldset>
+        </form>
+    </div>
+</section>
+
+
+
+<script>
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+<script >
+$(document).ready(function(){
+//  Check Radio-box
+    $(".rating1 input:radio").attr("checked", false);
+    $('.rating1 input').click(function () {
+        $(".rating1 span").removeClass('checked');
+        $(this).parent().addClass('checked');
+    });
+    $(".rating2 input:radio").attr("checked", false);
+    $('.rating2 input').click(function () {
+        $(".rating2 span").removeClass('checked');
+        $(this).parent().addClass('checked');
+    });
+     $(".rating3 input:radio").attr("checked", false);
+    $('.rating3 input').click(function () {
+        $(".rating3 span").removeClass('checked');
+        $(this).parent().addClass('checked');
+    });
+     $(".rating4 input:radio").attr("checked", false);
+    $('.rating4 input').click(function () {
+        $(".rating4 span").removeClass('checked');
+        $(this).parent().addClass('checked');
+    });
+      $(".rating5 input:radio").attr("checked", false);
+    $('.rating5 input').click(function () {
+        $(".rating5 span").removeClass('checked');
+        $(this).parent().addClass('checked');
+    });
+    $('input:radio').change(
+    function(){
+        var userRating = this.value;
+    });
+
+});
+</script>
+

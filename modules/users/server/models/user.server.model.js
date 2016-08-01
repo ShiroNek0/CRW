@@ -66,7 +66,11 @@ var UserSchema = new Schema({
     default: ''
   },
   bookmark: [{
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: 'Company.reviews'
+  }],
+  follow: [{
+    type: Schema.Types.ObjectId,
     ref: 'Company'
   }],
   roles: {
@@ -74,34 +78,29 @@ var UserSchema = new Schema({
       type: String,
       enum: ['user', 'mod', 'admin']
     }],
-    default: ['user'],
-    required: 'Xin chọn tối thiểu một loại tài khoản'
+    default: ['user']
   },
   accState: {
     type: String,
     enum: ['unverified','active', 'deactive'],
     default: 'unverified',
-    required: 'Xin chọn trạng thái tài khoản'
   },
+  notification: [{
+    message: String,
+    targetLink: String,
+    hasRead: {
+      type: Boolean,
+      default: false
+    }
+  }],
+
   /* For reset password */
   resetPasswordToken: {
     type: String
   },
   resetPasswordExpires: {
     type: Date
-  },
-  announcement:[{
-    link: {
-      type: String
-    },
-    content: {
-      type: String
-    },
-    seen:{
-      type: Boolean,
-      default: false
-    }
-  }]
+  }
 });
 
 /**
@@ -194,7 +193,7 @@ UserSchema.statics.generateRandomPassphrase = function () {
 
     // Send the rejection back if the passphrase fails to pass the strength test
     if (owasp.test(password).errors.length) {
-      reject(new Error('An unexpected problem occured while generating the random passphrase'));
+      reject(new Error('Đã có lỗi xảy ra khi tạo passphrase ngẫu nhiên'));
     } else {
       // resolve with the validated passphrase
       resolve(password);

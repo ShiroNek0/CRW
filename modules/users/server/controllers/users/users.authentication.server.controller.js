@@ -198,7 +198,7 @@ exports.saveOAuthUserProfile = function (req, providerUserProfile, done) {
         return done(err, user, '/settings/accounts');
       });
     } else {
-      return done(new Error('User is already connected using this provider'), user);
+      return done(new Error('Tài khoản bên thứ ba này đã được sử dụng trong hệ thống từ trước'), user);
     }
   }
 };
@@ -212,7 +212,7 @@ exports.removeOAuthProvider = function (req, res, next) {
 
   if (!user) {
     return res.status(401).json({
-      message: 'Người dùng không được xác thực'
+      message: 'Bạn không có quyền hạn truy cập trang này'
     });
   } else if (!provider) {
     return res.status(400).send();

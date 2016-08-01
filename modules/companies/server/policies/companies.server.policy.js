@@ -13,60 +13,105 @@ acl = new acl(new acl.memoryBackend());
  */
 exports.invokeRolesPolicies = function () {
   acl.allow([{
-    roles: ['admin'],
+    roles: ['admin', 'mod'],
     allows: [{
       resources: '/api/companies',
       permissions: '*'
     }, {
+      resources: '/api/companies/waitingReviews',
+      permissions: ['get']
+    }, {
+      resources: '/api/companies/reportedReviews',
+      permissions: ['get']
+    }, {
+      resources: '/api/companies/bookmarkedReviews',
+      permissions: ['get']
+    }, {
+      resources: '/api/companies/postedReviews',
+      permissions: ['get']
+    }, {
       resources: '/api/companies/:companyId',
       permissions: '*'
     }, {
-      resources: '/api/companies/getRecent',
-      permissions: ['get']
+      resources: '/api/companies/:companyId/follow',
+      permissions: '*'
     }, {
-      resources: '/api/companies/reviews/:companyId',
-      permissions: ['get']
+      resources: '/api/companies/:companyId/reviews',
+      permissions: '*'
     }, {
-      resources: '/api/companies/review/:reviewId',
-      permissions: ['get']
+      resources: '/api/companies/:companyId/reviews/:reviewId',
+      permissions: '*'
     }, {
-      resources: '/api/companies/getWaitingReviews',
-      permissions: ['get']
+      resources: '/api/companies/:companyId/reviews/:reviewId/reports',
+      permissions: '*'
+    }, {
+      resources: '/api/companies/:companyId/reviews/:reviewId/reports/accept',
+      permissions: '*'
+    }, {
+      resources: '/api/companies/:companyId/reviews/:reviewId/reports/reject',
+      permissions: '*'
+    }, {
+      resources: '/api/companies/:companyId/reviews/:reviewId/upvote',
+      permissions: '*'
+    }, {
+      resources: '/api/companies/:companyId/reviews/:reviewId/comments',
+      permissions: ['post']
+    }, {
+      resources: '/api/companies/:companyId/reviews/:reviewId/comments/:commentId',
+      permissions: ['delete']
     }]
   }, {
     roles: ['user'],
     allows: [{
       resources: '/api/companies',
-      permissions: ['get', 'post']
+      permissions: '*'
+    }, {
+      resources: '/api/companies/bookmarkedReviews',
+      permissions: ['get']
+    }, {
+      resources: '/api/companies/postedReviews',
+      permissions: ['get']
     }, {
       resources: '/api/companies/:companyId',
-      permissions: ['get', 'put']
-    }, {
-      resources: '/api/companies/getRecent',
       permissions: ['get']
     }, {
-      resources: '/api/companies/reviews/:companyId',
-      permissions: ['get']
+      resources: '/api/companies/:companyId/follow',
+      permissions: '*'
     }, {
-      resources: '/api/companies/review/:reviewId',
-      permissions: ['get']
+      resources: '/api/companies/:companyId/reviews',
+      permissions: '*'
+    }, {
+      resources: '/api/companies/:companyId/reviews/:reviewId',
+      permissions: '*'
+    }, {
+      resources: '/api/companies/:companyId/reviews/:reviewId/reports',
+      permissions: '*'
+    }, {
+      resources: '/api/companies/:companyId/reviews/:reviewId/upvote',
+      permissions: '*'
+    }, {
+      resources: '/api/companies/:companyId/reviews/:reviewId/comments',
+      permissions: ['post']
+    }, {
+      resources: '/api/companies/:companyId/reviews/:reviewId/comments/:commentId',
+      permissions: ['delete']
     }]
   }, {
     roles: ['guest'],
     allows: [{
       resources: '/api/companies',
-      permissions: ['get', 'post']
+      permissions: '*'
+    }, {
+      resources: '/api/companies/postedReviews',
+      permissions: ['get']
     }, {
       resources: '/api/companies/:companyId',
-      permissions: ['get', 'post', 'put']
-    }, {
-      resources: '/api/companies/getRecent',
       permissions: ['get']
     }, {
-      resources: '/api/companies/reviews/:companyId',
-      permissions: ['get']
+      resources: '/api/companies/:companyId/reviews',
+      permissions: '*'
     }, {
-      resources: '/api/companies/review/:reviewId',
+      resources: '/api/companies/:companyId/reviews/:reviewId',
       permissions: ['get']
     }]
   }]);
@@ -78,23 +123,18 @@ exports.invokeRolesPolicies = function () {
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
 
-  // If an Company is being processed and the current user created it then allow any manipulation
-  if (req.company && req.user && req.company.user && req.company.user.id === req.user.id) {
-    return next();
-  }
-
   // Check for user roles
   acl.areAnyRolesAllowed(roles, req.route.path, req.method.toLowerCase(), function (err, isAllowed) {
     if (err) {
       // An authorization error occurred
-      return res.status(500).send('Unexpected authorization error');
+      return res.status(500).send('Lỗi cấp phép');
     } else {
       if (isAllowed) {
         // Access granted! Invoke next middleware
         return next();
       } else {
         return res.status(403).json({
-          message: 'User is not authorized'
+          message: 'Bạn không có quyền hạn truy cập trang này'
         });
       }
     }

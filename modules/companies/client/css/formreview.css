@@ -15,8 +15,8 @@ input[type=number]::-webkit-outer-spin-button {
 	margin-left:8px;
 }
 .img-company{
-	width: 150px; height: 150px;
-	border: solid 1px;
+	width: 120px; height: 120px;
+	border: solid 2px;
 	border-color: lightgrey;
 	
 }
@@ -239,6 +239,8 @@ input[type=number]::-webkit-outer-spin-button {
 	color: #666666;
 	font:inherit;
 	height: 60px;
+	border: solid 1px;
+	border-color: lightgrey;
 }
 .thanku{
 	margin-left: 35px;

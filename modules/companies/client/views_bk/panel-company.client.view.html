@@ -1,0 +1,52 @@
+<section >
+    <div class="col-sm-3" style=" text-shadow:0 1px 2px rgba(0, 0, 0, .0);">
+        <div class="thumbnail-list" >
+            <div class="thumbnail">
+
+            <div class="row">
+              <a ui-sref="companies.view({companyId: company._id})"><img src="{{company.avatar}}" alt="avatar" class="picture"  style="width:140px;height:140px;margin-left:21px;"></a>  
+            </div>
+            <div class="row">
+               <h4 class="pull-left companyname" data-ng-bind="company.name"></h4>
+            </div>
+            <div class=row>
+                   <p class="pull-left point">5</p>
+                   <div class="pull-right stars">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                    </div>
+            </div>
+            <div class="row">
+                  <div class="pull-left btn-reviews">
+                        <button class="btn btn-primary" type="button" ui-sref="companies.view({companyId: company._id})" style=" box-shadow: 0 3px 0 0 black;">
+                            Bài đánh giá
+                            <span class="badge">{{company.numOfReviews}}</span>
+                        </button>
+                   </div>
+            </div>
+         </div>
+        </div>
+        
+    </div>
+</section>
+<script type="text/javascript">
+//<=!=[=C=D=A=T=A=[
+if (top.location != self.location)
+{top.location = self.location}
+var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-18506635-11"]);_gaq.push(["_setDomainName",".nl-mus.blogspot.com"]);_gaq.push(["_trackPageview"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();
+//]=]=>
+</script>
+
+<style>
+.demo1{
+-moz-transition: all .5s ease-in-out;
+-webkit-transition: all .5s ease-in-out;
+}
+.demo1:hover{
+moz-transform: scale(1.2) rotate(0deg);
+-webkit-transform: scale(1.2) rotate(0deg);
+position: relative;}
+</style>

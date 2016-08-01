@@ -1,17 +1,5 @@
 
-a.name-company-filter:hover{
-    color: green;
-}
-.name-company-filter{
-	color:white;
-}
-.review-company-filter{
-	color:white;
-}
 
-a.review-company-filter:hover{
-    color: green;
-}
 a.glyphicon-play:active {
 	color: white;
     background-color: #3b5998; 
@@ -37,8 +25,7 @@ a.glyphicon-play:hover {
     border:none;
 	overflow: hidden;
 	width: 155px;
-   	height: 280px;
-    margin-bottom: 20px;
+   	height: 250px;
 
 }
 div.thumbnail{
@@ -49,14 +36,14 @@ div.thumbnail{
     background-color: black;
  	padding-right: 20px;
     overflow: hidden;
-   	width: 155px;
-   	height: 280px;
+   	width: 130px;
+   	height: 220px;
 }
 
 .picture{
 	border: solid 1px;
 	border-color: #c5c6cc;
-	margin-top: 5px;
+	margin-top: 10px;
 
 	
 }
@@ -67,32 +54,23 @@ div.thumbnail{
     -o-border-radius: 1px;
     border-radius: 1px;
 }
-.picture{
--webkit-transition-duration: 0.5s; /*Webkit: Animation duration*/
--moz-transition-duration: 0.5s; /*Mozilla duration version*/
--o-transition-duration: 0.5s; /*Opera duration version*/
--moz-border-radius: 1px 30px 1px 30px ;
-    -webkit-border-radius:  1px  30px 1px 30px;
-    -ms-border-radius:  1px 30px 1px 30px;
-    -o-border-radius:  1px 30px 1px 30px;
-    border-radius: 1px 30px 1px  30px
-}
+/**/
 .point{
 	color:white;
-	font-size: 20px;
-	margin-left: 25px;
+	font-size: 15px;
+	margin-left: 24px;
 	font-weight: bold;
 
 }
 .companyname{
 	color: white;	
-	margin-left: 25px;
+	margin-left: 24px;
 	font-weight: bold;
 	text-transform: uppercase;
 
 }
 .btn-reviews{
-	margin-left: 26px;
+	margin-left: 23px;
 }
 .stars{
     margin-right:50px;

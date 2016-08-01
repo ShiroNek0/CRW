@@ -1,0 +1,151 @@
+<section>
+    <div class="container" style="overflow:hidden">
+        <div class="row add-company-new">
+        </div>
+        <form name="vm.form.companyForm" class="form-horizontal" ng-submit="edit(vm.form.companyForm.$valid)" novalidate>
+            <fieldset>
+                <div class="row">
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-8 ">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="form-group" show-errors>
+                                    <h4>Tên công ty(*):</h4>
+                                    <input type="text" class="form-control" ng-model="vm.company.name" name="name" placeholder="Tên công ty..." required>
+                                    <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.name.$error" role="alert">
+                                        <p class="help-block error-text" ng-message="required">Hãy nhập tên công ty.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <h4>Tên gọi khác (Mỗi tên ngăn cách bởi dấu ','):</h4>
+                                    <input name="alias" class="form-control" ng-model="vm.company.alias" ng-list ng-change="vm.displayAlias()" placeholder="Tên gọi khác...">
+                                    <div ng-repeat="alias in vm.alias">{{alias}} </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <h4>Liên hệ:</h4>
+                                    <input type="text" class="form-control" ng-model="vm.company.contact" placeholder="Liên hệ ..." name="contact">
+                                </div>
+                                <strong ng-bind="error" class="error-company"></strong>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <h4>Quy mô nhân sự:</h4>
+                                    <label class="">
+                                        <input type="radio" ng-model="vm.company.personnelSize" value="Chưa rõ" name="personnelSize" ng-checked="true"> Chưa rõ</label>
+                                    <label class="">
+                                        <input type="radio" ng-model="vm.company.personnelSize" value="Dưới 10 người" name="personnelSize"> Dưới 10 người</label>
+                                    <label class="" s>
+                                        <input type="radio" ng-model="vm.company.personnelSize" value="Từ 10 - 50 người" name="personnelSize"> Từ 10 - 50 người</label>
+                                    <label class="">
+                                        <input type="radio" ng-model="vm.company.personnelSize" value="> Từ 50 - 100 người" name="personnelSize"> Từ 50 - 100 người</label>
+                                    <label class="">
+                                        <input type="radio" ng-model="vm.company.personnelSize" value="Từ 100 - 200 người" name="personnelSize"> Từ 100 - 200 người</label>
+                                    <label class="">
+                                        <input type="radio" ng-model="vm.company.personnelSize" value="Từ 200 - 300 người" name="personnelSize"> Từ 200 - 300 người</label>
+                                    <label class="">
+                                        <input type="radio" ng-model="vm.company.personnelSize" value="Trên 300 người" name="personnelSize"> Trên 300 người</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group" show-errors>
+                                    <h4>Website công ty</h4>
+                                    <input type="url" name="website" class="form-control" ng-model="vm.company.website" placeholder="Website..." >
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group" show-errors>
+                                    <h4>Link ảnh đại diện (*):</h4>
+                                    <input type="text" name="avatar" class="form-control" ng-model="vm.company.avatar" placeholder="Ảnh đại diện..." name="avatar" required>
+                                    <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.avatar.$error" role="alert">
+                                        <p class="help-block error-text" ng-message="required">Hãy nhập link ảnh đại diện.</p>
+                                    </div>
+                                </div>
+                                <div ng-show="(vm.company.avatar)"><img src="{{vm.company.avatar}} " style="height:200px;width:200px"></div>
+                            </div>
+                            <div class="row">
+                            <h4 class="">Ảnh giới thiệu(*):</h4>
+                                Ban co the them nhieu ảnh giới thiệu
+                                <input type="text" placeholder="Nhập đường dẫn ảnh giới thiệu..." data-placement="bottom" ng-model="vm.introducePhoto">
+                                <button type="button" ng-click="vm.addPhoto()">Thêm ảnh</button>
+                                <div ng-repeat="photo in vm.company.photo">
+                                <img ng-src="{{photo}}">
+                                <button type="button" ng-click="vm.deletePhoto($index)">delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="row">
+                                <div class="form-group">
+                                    <h4>Năm thành lập:</h4>
+                                    <input style="background-color:white" type="text" class="form-control" datepicker-popup="yyyy" ng-model="vm.company.founded" is-open="vm.pickerOpened" datepicker-options="vm.dateOptions" ng-readonly="true" ng-focus="vm.openYearPicker($event)" ng-click="vm.openYearPicker($event)" show-button-bar="false" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <h4>Ngành nghề chính của công ty:</h4>
+                                    <input type="text" class="form-control" ng-model="vm.company.industry" placeholder="Ngành nghề chính của công ty..." name="industry" required>
+                                    <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.industry.$error" role="alert">
+                                        <p class="help-block error-text" ng-message="required">Hãy nhập ngành nghề chính của công ty.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group" show-errors>
+                                    <h4>Trụ sở chính(*):</h4>
+                                    <input type="text" name="hq" class="form-control" ng-model="vm.company.hq" placeholder="Trụ sở chính của công ty..." required="">
+                                    <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.hq.$error" role="alert">
+                                        <p class="help-block error-text" ng-message="required">Hãy nhập trụ sở công ty.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <h4>Loại hình công ty:</h4>
+                                    <label class="">
+                                        <input type="radio" ng-model="vm.company.companyType" value="Công ty TNHH" name="companyType" ng-checked="true"> Công ty TNHH </label>
+                                    <label class="">
+                                        <input type="radio" ng-model="vm.company.companyType" value="Doanh nghiệp tư nhân" name="companyType"> Doanh nghiệp tư nhân</label>
+                                    <label class="">
+                                        <input type="radio" ng-model="vm.company.companyType" value="Công ty cổ phần" name="companyType"> Công ty cổ phần</label>
+                                    <label class="">
+                                        <input type="radio" ng-model="vm.company.companyType" value="Công ty hợp danh" name="companyType"> Công ty hợp danh</label>
+                                    <label class="">
+                                        <input type="radio" ng-model="vm.company.companyType" value="Doanh nghiệp có vốn đầu tư nước ngoài" name="companyType"> Doanh nghiệp có vốn đầu tư nước ngoài</label>
+                                    <label class="">
+                                        <input type="radio" ng-model="vm.company.companyType" value="Doanh nghiệp nhà nước" name="companyType"> Doanh nghiệp nhà nước</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <h4>Giới thiệu - mô tả về công ty:</h4>
+                                    <textarea class="form-control textarea-supplement" rows="4" ng-model="vm.company.description" name="description" placeholder="Mô tả..." style="background-color:white;overflow:hidden;color:black"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <hr class="text-left">
+                </div>
+                <div class="row" style="margin-bottom:20px">
+                    <div class="col-sm-8">
+                    {{vm.error}}
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-info button-cancelcompany" ng-click="close()"> Hủy</button>
+                            <button style="margin-left:10px" type="submit" class="btn btn-primary button-sendcompany">Lưu chỉnh sửa</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</section>

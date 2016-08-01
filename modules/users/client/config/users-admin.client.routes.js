@@ -8,7 +8,28 @@ angular.module('users.admin.routes').config(['$stateProvider',
         url: '/reviews',
         templateUrl: 'modules/users/client/views/admin/handle-reviews.client.view.html',
         controller: 'HandleReviewsController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data:{
+          title: 'Xử lý bài đánh giá'
+        }
+      })
+      .state('settings.users', {
+        url: '/users',
+        templateUrl: 'modules/users/client/views/admin/list-users.client.view.html',
+        controller: 'UserListController',
+        controllerAs: 'vm',
+        data:{
+          title: 'Danh dách người dùng'
+        }
+      })
+      .state('settings.companies', {
+        url: '/companies',
+        templateUrl: 'modules/users/client/views/admin/list-companies.client.view.html',
+        controller: 'CompaniesListController',
+        controllerAs: 'vm',
+        data:{
+          title: 'Danh dách công ty'
+        }
       })
       .state('admin.user', {
         url: '/users/:userId',

@@ -1,0 +1,46 @@
+<section>
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Tổng số: {{vm.users.length}} Users</h2>
+            </div>
+            <div class="col-md-4" style="margin-top: 2em">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="">
+        Hiển thị :
+        <select ng-model="vm.ItemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:black">
+            <option style="color:black" value="10">10</option>
+            <option style="color:black" value="20">20</option>
+            <option style="color:black" value="30">30</option>
+        </select>
+        <input type="search" ng-model="vm.keyword" style="" placeholder=" Tìm theo tên hiển thị...">
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr style="color:white;font-weight:bold;background-color:#09ba5e;">
+                <th class="col-sm-4" ng-click="vm.sort('email')">Email <span class="glyphicon sort-icon" ng-show="vm.sortKey=='email'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                <th class="col-sm-4" ng-click="vm.sort('name')">Tên hiển thị <span class="glyphicon sort-icon" ng-show="vm.sortKey=='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                <th class="col-sm-2" ng-click="vm.sort('accState')">Trạng thái tk <span class="glyphicon sort-icon" ng-show="vm.sortKey=='accState'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                <th class="col-sm-2" ng-click="vm.sort('roles')">Quyền hạn <span class="glyphicon sort-icon" ng-show="vm.sortKey=='roles'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+            </tr>
+        </thead>
+    </table>
+    <div dir-paginate="user in vm.users | orderBy:vm.sortKey:!vm.reverse | itemsPerPage:vm.ItemsPerPage | filter: {name: vm.keyword}">
+        <table class="table table-striped">
+            <tbody>
+                <tr style="color:black">
+                    <td class="col-sm-4" style="font-weight:bold;border-right:solid 1px;border-color:lightgrey"><a style="color:black">{{user.email}}</a></td>
+                    <td class="col-sm-4" style="font-weight:bold;border-right:solid 1px;border-color:lightgrey"><a style="color:black" ui-sref="user({userId: user._id})">{{user.name}}</a></td>
+                    <td class="col-sm-2" style="border-right:solid 1px;border-color:lightgrey"> {{user.accState}}</td>
+                    <td class="col-sm-2" style="border-right:solid 1px;border-color:lightgrey"> <span ng-repeat="role in user.roles" class="badge"> {{role}}</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row pull-right" style="font-size:10px;margin-right:10px">
+        <dir-pagination-controls max-size="4" direction-links="true" boundary-links="true">
+        </dir-pagination-controls>
+    </div>
+</section>

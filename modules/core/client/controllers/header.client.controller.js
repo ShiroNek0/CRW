@@ -1,10 +1,21 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$http', '$rootScope', '$scope', '$state', 'Authentication', 'Menus',
-  function ($http, $rootScope, $scope, $state, Authentication, Menus) {
+angular.module('core').controller('HeaderController', ['$http', '$rootScope', '$scope', '$state', 'Authentication', 'Menus', 'Socket',
+  function ($http, $rootScope, $scope, $state, Authentication, Menus, Socket) {
     // Expose view variables
     $scope.$state = $state;
     $scope.authentication = Authentication;
+    // if (!Socket.socket) {
+    //   Socket.connect();
+    // }
+    // $scope.test =0;
+    // Socket.on('notification', function (notif) {
+    //   $scope.test = 1;
+    // });
+
+    $scope.$on('$destroy', function () {
+      Socket.removeListener('notification');
+    });
 
     // Get the topbar menu
     $scope.menu = Menus.getMenu('topbar');
@@ -30,17 +41,16 @@ angular.module('core').controller('HeaderController', ['$http', '$rootScope', '$
 
       if($scope.authentication.user){
         if($scope.authentication.user.roles.indexOf('mod')>=0){
-          $http.get('api/companies/getWaitingReviews').then(successCallback, errorCallback);
+          $http.get('/api/companies/waitingReviews').then(successCallback, errorCallback);
 
         }
 
         else{
           $rootScope.unseenAnnouce = 0;
-          $scope.authentication.user.announcement.forEach(function(annou) {
-            if(!annou.seen)
+          $scope.authentication.user.notification.forEach(function(notif) {
+            if(!notif.hasRead)
               $rootScope.unseenAnnouce ++;
           });
-          
         }
       }
 

@@ -5,7 +5,24 @@ body{ margin: 20px; }
 h1 { font-size: 1.5em; margin: 10px; }*/
 
 /****** Style Star Rating Widget *****/
-
+ #bttop{
+ border:1px solid #4adcff;
+ background:#24bde2;
+ text-align:center;
+ padding:5px;
+ position:fixed;
+ bottom:35px;
+ right:10px;
+ cursor:pointer;
+ display:none;
+ color:#fff;
+ font-size:11px;
+ font-weight:900
+ }
+ #bttop:hover{
+ border:1px solid #ffa789;
+ background:#ff6734
+ }
 .rating { 
   font-size: 50px;
   
@@ -41,6 +58,42 @@ h1 { font-size: 1.5em; margin: 10px; }*/
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+.rating { 
+  font-size: 50px;
+  
+  border: none;
+  float: left;
+}
+
+.ratings > input { display: none; } 
+.ratings > label:before { 
+  margin-left: 10px;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+  margin-bottom: 5px;
+}
+
+.ratings > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.ratings > label { 
+  color: grey; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.ratings > input:checked ~ label, /* show gold star when clicked */
+.ratings:not(:checked) > label:hover, /* hover current star */
+.ratings:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.ratings > input:checked + label:hover, /* hover current star when changing rating */
+.ratings > input:checked ~ label:hover,
+.ratings > label:hover ~ input:checked ~ label, /* lighten current selection */
+.ratings > input:checked ~ label:hover ~ label { color: #FFED85;  } 
 .highline{
    background: #10cece;
     height: 20px;
@@ -52,104 +105,115 @@ h1 { font-size: 1.5em; margin: 10px; }*/
     -ms-transform: rotate(45deg);
     overflow: hidden;
 }
-.review-detail-center{
+.review-detail-companyrating{
+    border: solid 1px;
+  border-color: lightgrey;
+   background-color: white;
+   margin-left: 0px;
+   margin-right: 0px;
+}
+.content-avatar-detail{
+  height: 100px;
+  width: 150px;
+  border:solid 1px;
+  border-color:lightgrey; 
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.btn-review-detail{
   border: solid 1px;
   border-color: lightgrey;
-  background-color: white;
+  width: 160px;
+  height: 35px;
+  color: white;
+  font-weight: bold;
+  margin-left: 140px;
+}
+.review-detail-center{
+
+ background-color: white;
   margin-top: 20px;
   overflow: hidden;
 }
 .content-avatar-review-detail{
-   height: 90px;
-   width: 90px;
+   height: 70px;
+   width: 70px;
    border:solid 2px;
    border-color: #b2b2b2;
-   margin-left: 10px;
-   margin-top: 30px;
+   margin-left: 20px;
+   margin-top: 20px;
 }
 .button-report{
- margin-right: 45px;
+ margin-right: 15px;
  margin-top: 15px;
- background-color: #f24141;
+ background-color: #079696;
  color: white;
- height: 40px;
+ height: 30px;
  width: 40px;
- border-radius: 24px;
 }
 .button-reports{
- margin-right: 30px;
- margin-top: 15px;
  background-color: #f24141;
  color: white;
  height: 40px;
  width: 40px;
- border-radius: 24px;
 }
 .button-bookmark{
-  margin-top: 18px;
-  margin-left: 10px;
+  margin-top: 15px;
+  font-size: 15px;
+  margin-bottom: 20px;
+  margin-left: 15px;
   font-weight: bold;
-  background-color: #005fbf;
-  color: white;
-
+  background-color:#1173d6;
   border-color: lightgrey;
-    height: 40px;
+  color: white;
+  height: 30px;
+}
+.button-votes{
+  margin-top: 15px;
+  font-size: 15px;
+  margin-bottom: 20px;
+  margin-left: 15px;
+  font-weight: bold;
+  background-color:#0ccece;
+  border-color: lightgrey;
+  color: white;
+  height: 30px;
 }
 .button-vote{
-  box-shadow: 0 3px 0 0 white;
-  border-radius: 24px;
   margin-top: 15px;
+  font-size: 15px;
+  margin-bottom: 20px;
+  margin-left: 15px;
+  font-weight: bold;
+  background-color:#cccccc;
+  border-color: lightgrey;
+  color:#4c4c4c;
+  height: 30px;
 }
+
 .button-vote.active, .button-vote.active {
   background: #33a6cc;
-  box-shadow: none;
   margin-bottom: -3px;
   margin-top: 3px;
 }
-.button-votes{
-  border-radius: 24px;
-  box-shadow: 0 3px 0 0 white;
-}
+
 .button-votes.active, .button-vote.active {
   background: #33a6cc;
   box-shadow: none;
   margin-bottom: -3px;
   margin-top: 3px;
 }
-.button-bookmark{
-  box-shadow: 0 3px 0 0 white;
-  border-radius: 24px;
-}
+
 .button-bookmark.active, .button-vote.active {
   background: #33a6cc;
   box-shadow: none;
   margin-bottom: -3px;
   margin-top: 3px;
 }
-.button-vote{
-  margin-bottom: 10px;
-  margin-left: 25px;
-  font-weight: bold;
 
-    background-color:#e8e829;
-
-  border-color: lightgrey;
-  color: white;
-    height: 40px;
-}
-.button-votes{
-    background-color:#0fbcbc;
-  border-color: lightgrey;
-  margin-bottom: 10px;
-  margin-left: 25px;
-  font-weight: bold;
-
-  color: white;
-  height: 40px;
-}
 
 .review-detail-title{
-  margin-left: 10px;
+   margin-left: 10px;
    font-weight:bold;
  
 }
@@ -186,7 +250,7 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   border: solid 1px;
   border-color: lightgrey;
   background-color: white;
-  margin-top: 20px;
+  margin-top: 10px;
   overflow: hidden;
   margin-bottom:20px;
 }
@@ -211,16 +275,16 @@ h1 { font-size: 1.5em; margin: 10px; }*/
 
 
 .review-detail-user{
-	color: #7f7f7f;
+  color: #7f7f7f;
   margin-left:15px; 
 
 }
 .review-detail-detail{
-	margin-left: 160px;
+  margin-left: 160px;
 }
 .review-detail-compaanyname{
-	margin-left: 175px;
-	color: #7f7f7f;
+  margin-left: 175px;
+  color: #7f7f7f;
 }
 .review-detail-contract{
    font-weight:bold;
@@ -326,18 +390,18 @@ h1 { font-size: 1.5em; margin: 10px; }*/
 .report{
 }
 .review-detail-comment{
-	border: solid 1px;
-	border-color: #cccccc;
-	margin-top: 20px;
-	background-color: #e5e5e5;
+  border: solid 1px;
+  border-color: #cccccc;
+  margin-top: 20px;
+  background-color: #e5e5e5;
 }
 .textarea-cmt-inside{
   width: 1125px;
   margin-left: 20px;
 }
 .textarea-cmt{
-	margin-top: 15px;
-	height: 160px;
+  margin-top: 15px;
+  height: 160px;
 }
 
 

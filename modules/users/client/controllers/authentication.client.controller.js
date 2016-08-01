@@ -47,13 +47,13 @@ angular.module('users').controller('AuthenticationController', ['$rootScope', '$
         $scope.authentication.user = response;
 
         if($scope.authentication.user.roles.indexOf('mod')>=0)
-          $http.get('api/companies/getWaitingReviews').then(function (res){
+          $http.get('/api/companies/waitingReviews').then(function (res){
             $rootScope.waitingReviews = res.data.length;
             return true;}, function (res) { alert(res.data.message);});
 
         $rootScope.unseenAnnouce = 0;
-        $scope.authentication.user.announcement.forEach(function(annou) {
-          if(!annou.seen)
+        $scope.authentication.user.notification.forEach(function(notif) {
+          if(!notif.hasRead)
             $rootScope.unseenAnnouce ++;
         });
         

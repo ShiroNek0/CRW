@@ -1,7 +1,42 @@
 <section class="row" ng-controller="AnnouncementController" style="overflow:hidden;max-height:800px">
-  <div ng-repeat="annou in user.announcement | orderBy:'-_id' ">
-  <p>content: {{annou.content}}</p>
-  <p><a href="{{annou.link}}">link</a></p>
-  <p>seen: {{annou.seen}}</p>
-  </div>
+   <!--   <div ng-repeat="notif in user.notification | orderBy:'-_id' ">
+      <p>content: {{notif.message}}</p>
+      <p><a href="{{notif.targetLink}}/{{notif.message}}">targetLink</a></p>
+      <p>hasRead: {{notif.hasRead}}</p>
+      </div> -->
+   <div class="" style="margin-right:10px;margin-left:10px;border:solid 1px;margin-top:10px;margin-bottom:10px;border-color:lightgrey">
+      <table class="table table-striped" >
+         <thead>
+            <tr style="color:white;font-weight:bold;background-color:#1fbaba;">
+               <th class="col-sm-3" ng-click="vm.sort('name')">Nội dung <span class="glyphicon sort-icon" ng-show="vm.sortKey=='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+               <th class="col-sm-3" ng-click="vm.sort('reviews.title')">Đường dẫn <span class="glyphicon sort-icon" ng-show="vm.sortKey=='reviews.title'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+               <th class="col-sm-3" ng-click="vm.sort('reviews.overallRev.rating')">Trạng thái <span class="glyphicon sort-icon" ng-show="vm.sortKey=='reviews.overallRev.rating'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+            </tr>
+         </thead>
+      </table>
+   
+         <div ng-repeat="notif in user.notification | orderBy:'-_id' ">
+            <table class="table table-striped" style="">
+               <tbody>
+                  <tr style="color:black">
+                  <div ng-repeat="notif in user.notification | orderBy:'-_id' ">
+                     <td class="col-sm-3" style="font-weight:bold;">
+                     	
+                       <p> {{notif.message}}</p>
+                     </td>
+                     <td class="col-sm-3" style="font-weight:bold">
+                     	
+                  <p><a href="{{notif.targetLink}}/{{notif.message}}">Link</a></p>
+                     </td>
+                     <td class="col-sm-3">
+                     	
+                  <p>{{notif.hasRead}}</p>
+                     </td>
+                   </div>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
 </section>

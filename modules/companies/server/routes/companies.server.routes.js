@@ -7,52 +7,60 @@ var companiesPolicy = require('../policies/companies.server.policy'),
   companies = require('../controllers/companies.server.controller');
 
 module.exports = function(app) {
-  // Companies Routes
   app.route('/api/companies').all(companiesPolicy.isAllowed)
-    .get(companies.list)
+    .get(companies.listNormal)
     .post(companies.create);
 
-  app.route('/api/companies/getRecent').all(companiesPolicy.isAllowed)
-    .get(companies.getRecent);
+  app.route('/api/companies/waitingReviews').all(companiesPolicy.isAllowed)
+    .get(companies.listWaitingReviews);
 
-  app.route('/api/companies/getWaitingReviews').all(companiesPolicy.isAllowed)
-    .get(companies.getWaitingReviews);
-  app.route('/api/companies/getReportedReviews').get(companies.getReportedReviews);
+  app.route('/api/companies/reportedReviews').all(companiesPolicy.isAllowed)
+    .get(companies.listReportedReviews);
 
-  app.route('/api/companies/follow/:companyId').put(companies.followHandler);
-  app.route('/api/companies/review/upvote/:reviewId').put(companies.upvoteHandler);
+  app.route('/api/companies/bookmarkedReviews').all(companiesPolicy.isAllowed)
+    .get(companies.listBookmarkedReviews);
 
-  app.route('/api/companies/search/:keyword').get(companies.search);
-  app.route('/api/companies/search').get(companies.list);
-
-  app.route('/api/companies/postedReviews/:userId').get(companies.postedReviews);
-  app.route('/api/companies/bookmarkedReviews').get(companies.bookmarkedReviews);
-
-//  app.route('/api/companies/reviews/:companyId').get(companies.getReviews);
-  app.route('/api/companies/:companyId/reviews/:reviewId')
-    .get(companies.readReview)
-    .put(companies.updateReview);
-    
-
-  app.route('/api/companies/review/:reviewId').get(companies.getDetailReviews);
-  app.route('/api/companies/review/:reviewId/approve').put(companies.approveReview);
-  app.route('/api/companies/review/:reviewId/highlight').put(companies.highlightReview);
-
-  app.route('/api/companies/review/:reviewId/postComment').put(companies.postComment);
-
-  app.route('/api/companies/review/:reviewId/report').put(companies.report);
-
-  app.route('/api/companies/review/:reviewId/acceptReport').put(companies.acceptReport);
-  app.route('/api/companies/review/:reviewId/rejectReport').put(companies.rejectReport);
+  app.route('/api/companies/postedReviews').all(companiesPolicy.isAllowed)
+    .get(companies.listUserReviews);
 
   app.route('/api/companies/:companyId').all(companiesPolicy.isAllowed)
     .get(companies.read)
     .put(companies.update)
     .delete(companies.delete);
 
-  app.route('/api/companies/:companyId/addreview').put(companies.addreview);
+  app.route('/api/companies/:companyId/follow').all(companiesPolicy.isAllowed)
+    .post(companies.changeFollow);
+
+  app.route('/api/companies/:companyId/reviews').all(companiesPolicy.isAllowed)
+    .get(companies.read)
+    .post(companies.createReview);
+
+  app.route('/api/companies/:companyId/reviews/:reviewId').all(companiesPolicy.isAllowed)
+    .get(companies.readReview)
+    .put(companies.updateReview)
+    .delete(companies.deleteReview);
+
+  app.route('/api/companies/:companyId/reviews/:reviewId/reports').all(companiesPolicy.isAllowed)
+    .get(companies.listReportNormal)
+    .post(companies.createReport);
+
+  app.route('/api/companies/:companyId/reviews/:reviewId/reports/accept').all(companiesPolicy.isAllowed)
+    .post(companies.acceptReport);
+
+  app.route('/api/companies/:companyId/reviews/:reviewId/reports/reject').all(companiesPolicy.isAllowed)
+    .post(companies.rejectReport);
+
+  app.route('/api/companies/:companyId/reviews/:reviewId/upvote').all(companiesPolicy.isAllowed)
+    .post(companies.changeVote);
+
+  app.route('/api/companies/:companyId/reviews/:reviewId/comments').all(companiesPolicy.isAllowed)
+    .post(companies.createComment);
+
+  app.route('/api/companies/:companyId/reviews/:reviewId/comments/:commentId').all(companiesPolicy.isAllowed)
+    .delete(companies.deleteComment);
 
   // Finish by binding the Company middleware
   app.param('companyId', companies.companyByID);
   app.param('reviewId', companies.reviewById);
+  app.param('commentId', companies.commentById);
 };

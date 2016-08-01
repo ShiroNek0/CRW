@@ -1,17 +1,18 @@
-<section class="row" ng-controller="ChangeProfilePictureController">
+<section class="row" ng-controller="ChangeProfilePictureController" style="margin-left:20px">
   <div class="col-sm-1">
     
   </div>
-  <div class="col-sm-4">
+   <h3 style="color:green" >Cập nhật ảnh đại diện</h3>
+  <div class="col-sm-4" style="background-color:white;border:solid 2px;border-color:lightgrey;height:300px" >
       <div>
-    <h3 style="color:green" >Cập nhật ảnh đại diện</h3>
+     <h5>Cập nhật hình đại diện của bạn</h5>
     <form class="signinpic form-horizontal" style="margin-left:20px">
       <fieldset>
         <div class="form-group ">
-          <img ng-src="{{imageURL}}" alt="{{user.displayName}}" class="img-thumbnail user-profile-picture">
+          <img ng-src="{{imageURL}}" alt="{{user.displayName}}" class="img-thumbnail user-profile-picture" style="margin-top:20px;">
         </div>
         <div class=" form-group" ng-hide="uploader.queue.length">
-          <span class="btn btn-info btn-file">
+          <span class="btn btn-info btn-file" style="margin-left:90px">
               Chọn ảnh <input type="file" nv-file-select uploader="uploader">
           </span>
         </div>

@@ -1,800 +1,363 @@
-<section>
-<div class="row">
-
-<div class="col-sm-2">
-
-</div>
-<div class="col-sm-8">
-
-   <div class="tab-contents-avatar" style=" /*background-image: url({{vm.company.avatar}});*/border:solid 1px;border-color:#b2b2b2;background-repeat:repeat-x;background-color:#3b5998;width:auto   " >
-
-      <div class="row" style="background-color:black;margin-left:0px;margin-right:0px">
+<style type="text/css">
+   @font-face {
+   font-family: 'Roboto-Regular';
+   src: url('/modules/companies/client/css/RobotoTTF/Roboto-Regular.ttf');
+   }
+</style>
+<section style="font-family: Roboto-Regular">
+   <div class="row">
+   <div class="col-sm-2">
+   </div>
+   <div class="col-sm-8">
+      <!--  //open top -->
+      <div class="row">
+         <div class="tab-contents-avatar" style=" border:solid 1px;border-color:#b2b2b2;background-repeat:repeat-x;background-color:#3b5998;width:auto   ">
+            <div class="row" style="background-color:white;margin-left:0px;margin-right:0px">
+               <div class="col-sm-7">
+                  <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar">
+                  <h3 class="text-reason" style="color:black">{{ vm.company.name }}</h3>
+                  <p style="margin-left:10px;color:black;font-weight:bold">Số người theo dõi: {{ vm.company.followers.length }}</p>
+               </div>
+               <div class="col-sm-5">
+                  <button type="button" ng-show="vm.authentication.user" class=" btn btn-default btn-follow" data-toggle="modal" data-target="#modalFollow"><span class="glyphicon glyphicon-signal"></span><span ng-hide="vm.checkIfFollowed()"> Theo dõi</span><span ng-show="vm.checkIfFollowed()"> Bỏ theo dõi</span></button>
+                  <div id="modalFollow" ng-show="vm.authentication.user" class="modal fade" role="dialog" >
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title" ng-hide="vm.checkIfFollowed()" style="color:green;font-weight:bold">Theo dõi</h4>
+                              <h4 class="modal-title" ng-show="vm.checkIfFollowed()" style="color:red;font-weight:bold">Bỏ theo dõi</h4>
+                           </div>
+                           <div class="modal-body">
+                              <p ng-hide="vm.checkIfFollowed()">Bạn có muốn theo dõi công ty này?</p>
+                              <p ng-hide="vm.checkIfFollowed()">Bạn sẽ nhận được thông báo khi công ty này có bài đánh giá mới.</p>
+                              <p ng-show="vm.checkIfFollowed()">Bạn có muốn bỏ theo dõi công ty này?</p>
+                              <p ng-show="vm.checkIfFollowed()">Bạn sẽ không nhận được thông báo khi công ty này có bài đánh giá mới nữa.</p>
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-default cancel-follow" data-dismiss="modal">Hủy</button>
+                              <button type="button" class="btn btn-primary accept-follow" data-dismiss="modal" ng-click="vm.follow()">Xác nhận</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <button type="button" ui-sref="companies.createReview({companyId: vm.company._id})" class="pull-right btn btn-info btn-review"> <span class="glyphicon glyphicon-plus"></span> Đánh giá</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--     //ket thuc top -->
+      <div class="row">
          <div class="col-sm-8">
-            <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar" >
-            <h3 class="text-reason" style="color:white">{{ vm.company.name }}</h3>
-            <p style="margin-left:10px;color:white;font-weight:bold">Số người theo dõi: {{ vm.company.followers.length }}</p>
+            <div class="row" ng-init="vm.viewInit()" >
+               <div class="other" >
+                  <div class="row">
+                     <h4 class="rating-review-all" style="color:#079696;margin-left:35px;font-weight:bold">Đánh giá công ty {{ vm.company.name }}  </h4>
+                     <h5 style="color:grey;margin-left:35px;margin-top:20px">Điểm trung bình của các bài đánh giá.(không biết gi cái gì ở đây).</h5>
+                  </div>
+                  <div class="row" style="margin-top:20px;margin-bottom:58px">
+                     <div class="col-sm-2" >
+                        <p style="margin-left:50px;font-size:45px;color:red;font-weight:bold;">{{vm.company.averageRating | number:1}} </p>
+                     </div>
+                     <div class="col-sm-6">
+                        <fieldset class="pull-right rating" style="font-size:34px;margin-top:5px;margin-left:20px">
+
+                           <input type="radio" id="star5" name="rating" ng-model="vm.company.pointDisplay" value="5" disabled="disabled" checked="checked" />
+                           <label class="full" for="star5" title="Awesome - 5 stars"></label>
+
+                           <input type="radio" id="star4half" name="rating" ng-model="vm.company.pointDisplay" value="4.5" disabled="disabled" checked="checked"/>
+                           <label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+
+                           <input type="radio" id="star4" name="rating" ng-model="vm.company.pointDisplay" value="4"  disabled="disabled" checked="checked"/>
+                           <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+
+                           <input type="radio" id="star3half" name="rating" ng-model="vm.company.pointDisplay" value="3.5"  disabled="disabled" checked="checked" />
+                           <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+
+                           <input type="radio" id="star3" name="rating" ng-model="vm.company.pointDisplay" value="3"  disabled="disabled" checked="checked" />
+                           <label class="full" for="star3" title="Meh - 3 stars"></label>
+
+                           <input type="radio" id="star2half" name="rating" ng-model="vm.company.pointDisplay" value="2.5"  disabled="disabled" checked="checked" />
+                           <label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+
+                           <input type="radio" id="star2" name="rating" ng-model="vm.company.pointDisplay" value="2"  disabled="disabled" checked="checked" />
+                           <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+
+                           <input type="radio" id="star1half" name="rating" ng-model="vm.company.pointDisplay" value="1.5"  disabled="disabled" checked="checked" />
+                           <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+
+                           <input type="radio" id="star1" name="rating" ng-model="vm.company.pointDisplay" value="1"  disabled="disabled" checked="checked" />
+                           <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+
+                           <input type="radio" id="starhalf" name="rating" ng-model="vm.company.pointDisplay" value="0.5"  disabled="disabled" checked="checked" />
+                           <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                        </fieldset>
+                     </div>
+                     <a  data-toggle="modal" data-target="#myModal">
+                        <h5 style="margin-top:50px"><span class="glyphicon glyphicon-list"></span> Của {{vm.company.numOfReviews}} bài đánh giá</h5>
+                     </a>
+                     <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                           <div class="modal-content" style="margin-top:200px;border:solid 1px;border-color:lightgrey;">
+                              <h3 class="text-center" style="color:black;">{{ vm.company.name }} </h3>
+                              <div class="row" style="margin-bottom:30px">
+                                 
+                                 <div class="col-sm-6">
+                                    <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar" style="margin-top:25px">
+                                 </div>
+                                 <div class="col-sm-1" style="margin-top:12px">
+                                    <div class="rating-detail">
+                                       <div ng-repeat="point in [5, 4, 3, 2, 1]">
+                                          <h4 style="color:red;font-size:12px;font-weight:bold">{{vm.count[point-1]}}</h4>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-sm-4" style="font-size:16px;margin-top:20px;color:green;">
+                                    <div class="row">
+                                       <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey"></span> <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey"></span> <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey"></span> <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey"></span> <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey"></span>
+                                    </div>
+                                    <div class="row">
+                                      <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey"></span> <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey"></span> <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey"></span> <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey"></span>
+                                    </div>
+                                    <div class="row">
+                                    <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey"></span> <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey"></span> <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey"></span>
+                                    </div>
+                                    <div class="row">
+                                     <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey"></span> <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey"></span>
+                                    </div>
+                                    <div class="row">
+                                      <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey"></span>
+                                    </div>
+                                 </div>
+                               
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
          </div>
          <div class="col-sm-4">
-            <button type="button" ng-show="vm.authentication.user" class="btn btn-default btn-follow" data-toggle="modal" data-target="#modalFollow"><span class="glyphicon glyphicon-signal"></span><span ng-hide="vm.checkIfFollowed()" > Theo dõi</span><span ng-show="vm.checkIfFollowed()"> Bỏ theo dõi</span></button>
-            <div id="modalFollow" ng-show="vm.authentication.user" class="modal fade" role="dialog">
-               <div class="modal-dialog">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" ng-hide="vm.checkIfFollowed()" style="color:green;font-weight:bold">Theo dõi</h4>
-                        <h4 class="modal-title" ng-show="vm.checkIfFollowed()" style="color:red;font-weight:bold">Bỏ theo dõi</h4> 
-                     </div>
-                     <div class="modal-body">
-                        <p ng-hide="vm.checkIfFollowed()">Bạn có muốn theo dõi công ty này?</p>
-                        <p ng-hide="vm.checkIfFollowed()">Bạn sẽ nhận được thông báo khi công ty này có bài đánh giá mới.</p>
-                        <p ng-show="vm.checkIfFollowed()">Bạn có muốn bỏ theo dõi công ty này?</p>
-                        <p ng-show="vm.checkIfFollowed()">Bạn sẽ không nhận được thông báo khi công ty này có bài đánh giá mới nữa.</p>
-                     </div>
-                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default cancel-follow" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-primary accept-follow" data-dismiss="modal" ng-click="vm.follow()">Xác nhận</button>
-                     </div>
-                  </div>
+            <div class="row label-picture" >
+               <div class="row">
+                  <h4 class="pull-left " style="margin-left:36px;color:#079696; font-weight:bold">Hình ảnh công ty {{ vm.company.name }} </h4>
                </div>
-            </div>
-            <button type="button" ui-sref="companies.createReview({companyId: vm.company._id})" class="btn btn-info btn-review" > <span class="glyphicon glyphicon-plus"></span> Đánh giá</button>
-           
-         </div>
-      </div>
-   </div>
-   <div class="row" ng-init="vm.viewInit()">
-      <div class="other">
-    
-       
-         <div class="row">
-                <h3 class="rating-review-all" style="color:green;margin-left:35px" >Đánh giá công ty {{ vm.company.name }}  </h3>
-         </div>
-          <div class="row" >
-           <fieldset class="rating" style="margin-left:230px">
-                <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-            </fieldset>
-           <a class="rating-detail-caros" data-toggle="modal" data-target="#myModal"><h4 style="margin-left:550px;margin-top:30px"><span class="glyphicon glyphicon-list"></span> Của {{filteredReviews.length}} bài đánh giá</h4></a>
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog modal-nm">
-                  <div class="modal-content" style="margin-top:200px;border:solid 1px;border-color:lightgrey;">
-                   
-                  <h3 class="text-center" style="color:black;"> Xếp hạng {{ vm.company.name }} </h3>
-                   <div class="row" style="margin-bottom:30px">
-                   <div class="col-sm-1">
-                       
-                   </div>
-                   <div class="col-sm-3">
-                        <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar" >
-                   </div>
-                       <div class="col-sm-1">
-                          
-                    <div class="rating-detail">
-                      
-                     <!--  <h4>{{vm.company.point | number:1}}</h4> -->
-                       <div ng-repeat="point in [1, 2, 3, 4, 5]">
-                       <h4 style="margin-left:20px;color:#119e9e;font-size:18px;font-weight:bold">{{vm.count[point-1]}}</h4>
-                       </div>
-                    </div> 
-                       </div>
-                       <div class="col-sm-3" style="font-size:21px;margin-top:3px;margin-left:10px;color:green">
-                          <div class="row" >
-                               <span class="glyphicon glyphicon-star"></span> 
-                          </div>
-                           <div class="row">
-                               <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> 
-                          </div>
-                           <div class="row">
-                               <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> 
-                          </div>
-                           <div class="row">
-                               <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> 
-                          </div>
-                           <div class="row">
-                               <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> 
-                          </div>
-                       </div>
-                        <div class="col-sm-2">
-                            <p style="margin-top:20px;font-size:60px;color:red;font-weight:bold">4.0</p>
+               <div class="row ">
+                  <div class="list-picture-company" style="margin-left:20px;margin-bottom:190px">
+                     <div class="col-sm-12">
+                        <div>
+                           <img src="modules/companies/client/img/company1.jpg" class="list-picture-company1">
+                           <img src="modules/companies/client/img/company2.jpg" class="list-picture-company2">
+                           <img src="modules/companies/client/img/company3.jpg" class="list-picture-company3">
+                           <img src="modules/companies/client/img/company4.jpg" class="list-picture-company4">
+                           <img src="modules/companies/client/img/company5.jpg" class="list-picture-company5">
                         </div>
-                   </div>
-                     
+                     </div>
                   </div>
-                </div>
-              </div>
-         </div>
-       
-      
-      </div>
-   </div>
-   <div class="row label-picture">
-      <div class="row">
-         <h3 class="pull-left " style="margin-left:36px;color:green">Hình ảnh công ty {{ vm.company.name }} </h3>
-      </div>
-      <div class="row " >
-         <div class="list-picture-company">
-            <div class="col-sm-8" style=" margin-bottom: 20px;margin-left:40px">
-               <div style="display:block">
-                  <img src="modules/companies/client/img/company1.jpg" class="list-picture-company1">
-                  <img src="modules/companies/client/img/company2.jpg" class="list-picture-company2" >
-                  <img src="modules/companies/client/img/company3.jpg" class="list-picture-company3" >
-                  <img src="modules/companies/client/img/company4.jpg" class="list-picture-company4" >
-                  <img src="modules/companies/client/img/company5.jpg" class="list-picture-company5" >
                </div>
             </div>
-            <div class="col-sm-2">
+         </div>
+      </div>
+      <div class="row" style=" border:solid 1px;border-color:#b2b2b2;background-color:white;margin-top:10px;margin-bottom:10px">
+         <div class="row">
+            <h4 class="pull-left text-company-overview" style="color:#079696; font-weight:bold">Thông tin công ty:</h4>
+            <a class="pull-right fix-company" ng-show="(vm.authentication.user.roles.indexOf('admin')>0)" ng-click="vm.editCompany()">Sửa thông tin</a>
+         </div>
+         <div class="row text-company-overview-detail">
+            <div class="col-sm-5 text-company-overview-left">
+               <div class="row">
+                  <div class="col-sm-5">
+                     <h5 class="pull-left text-label">Tên: </h5>
+                  </div>
+                  <div class="col-sm-7">
+                     <h6 class="text-labels" data-ng-bind="vm.company.name"></h6>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-5">
+                     <h5 class="pull-left text-label">Tên gọi khác: </h5>
+                  </div>
+                  <div class="col-sm-7">
+                     <div ng-show="(vm.company.alias.length >0)">
+                        <h6>
+                           <div ng-repeat="name in vm.company.alias" style="color:#999999;"><span> {{name}}</span></div>
+                        </h6>
+                     </div>
+                     <div ng-hide="(vm.company.alias.length >0)"> Không có tên gọi nào khác</div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-5">
+                     <h5 class="pull-left text-label">Website: </h5>
+                  </div>
+                  <div class="col-sm-7">
+                     <a  href="http://{{vm.company.website}}">
+                        <h6 style="color:#107ce8" class="pull-left text-labels" data-ng-bind="vm.company.website"></h6>
+                     </a>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-5">
+                     <h5 class="pull-left text-label">Loại hình công ty: </h5>
+                  </div>
+                  <div class="col-sm-7">
+                     <h6 class="pull-left text-labels" data-ng-bind="vm.company.companyType"></h6>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-5">
+                     <h5 class="pull-left text-label">Trụ sở chính: </h5>
+                  </div>
+                  <div class="col-sm-7">
+                     <h6 class="text-labels" data-ng-bind="vm.company.hq"></h6>
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-7 text-company-overview-left">
+               <div class="row">
+                  <div class="col-sm-4">
+                     <h5 class="pull-left text-label">Thành lập: </h5>
+                  </div>
+                  <div class="col-sm-8">
+                     <h6 class="text-labels">{{vm.company.founded | date: 'yyyy'}}</h6>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-4">
+                     <h5 class="pull-left text-label">Quy mô nhân sự: </h5>
+                  </div>
+                  <div class="col-sm-8">
+                     <h6 class="text-labels" data-ng-bind="vm.company.personnelSize"></h6>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-4">
+                     <h5 class="pull-left text-label">Liên hệ: </h5>
+                  </div>
+                  <div class="col-sm-8">
+                     <h6 class="text-labels" data-ng-bind="vm.company.contact"></h6>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-4">
+                     <h5 class="pull-left text-label">Ngành nghề chính: </h5>
+                  </div>
+                  <div class="col-sm-8">
+                     <h6 class="text-labels" data-ng-bind="vm.company.industry"></h6>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-4">
+                     <h5 class="pull-left text-label">Giới thiệu, mô tả: </h5>
+                  </div>
+                  <div class="col-sm-8">
+                     <h6 class="text-labels" data-ng-bind="vm.company.description"></h6>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
-   </div>
-   <div class="row tabs-overview">
-      <div class="row">
-          <h3 class="pull-left text-company-overview" style="color:green">Thông tin công ty:</h3>
-       <a class="pull-right fix-company" ng-click="vm.editCompany()">Sửa thông tin</a>
-      </div>
-      <div class="row text-company-overview-detail" >
-         <div class="col-sm-3 text-company-overview-left">
+      <div class="row" style=" border:solid 1px;border-color:#b2b2b2;background-color:white;margin-top:10px;margin-bottom:10px">
+         <div class="" style="border-bottom:solid 1px;border-color:lightgrey">
             <div class="row">
-               <h4 class="pull-left text-label">Tên công ty: </h4>
+               <h4 class="pull-left text-company-overview-reivew" style="color:#079696; font-weight:bold">Đánh giá công ty</h4>
+            </div>
+            <div class=" col-sm-4 ">
+               <b style="font-size:12px;margin-left:20px">Hiển thị :</b>
+               <select ng-model="vm.itemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:black">
+                  <option style="color:black" value="5">5</option>
+                  <option style="color:black" value="10">10</option>
+                  <option style="color:black" value="20">20</option>
+               </select>
+            </div>
+            <div class="col-sm-3">
+               <!--    <div class="row" style="margin-top:3px">
+                  </div> -->
+            </div>
+            <div class="col-sm-5">
+               <b style="font-size:12px;margin-left:70px" >Tìm kiếm:</b>
+               <input type="search" ng-model="keyword" style="width:170px;margin-bottom:20px;border:solid 1px;border-color:lightgrey ;" placeholder=" Chủ đề...">
             </div>
             <div class="row">
-               <h4 class="pull-left text-label">Website: </h4>
-            </div>
-            <div class="row">
-               <h4 class="pull-left text-label">Tên gọi khác: </h4>
-            </div>
-            <div class="row">
-               <h4 class="pull-left text-label">Loại hình công ty: </h4>
-            </div>
-         </div>
-         <div class="col-sm-3">
-            <div class="row">
-               <h4 class="text-labels"  data-ng-bind="vm.company.name"></h4>
-            </div>
-            <div class="row">
-               <h4 class="pull-left text-labels" data-ng-bind="vm.company.website"></h4>
-            </div>
-            <div class="row">
-               <h4 class="pull-left text-labels" data-ng-bind="vm.company.industry"></h4>
-            </div>
-            <div class="row">
-               <h4 class="pull-left text-labels" data-ng-bind="vm.company.companyType"></h4>
+               <h4 class="pull-left review-sum" style="margin-bottom:15px">Có <b style="color:#079696; ">{{filteredReviews.length}}</b> bài đánh giá: </h4>
+               <h4 style="margin-left:530px;"> <b style="font-size:13px"> Sắp xếp theo:</b>
+                  <a style="color:#079696;margin-left:10px;font-size:13px" ng-click="vm.sort('overallRev.rating')" class="">Điểm đánh giá</a>
+                  <span class="glyphicon sort-icon" ng-show="vm.sortKey=='overallRev.rating'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" style=""></span>
+                  <a style="margin-left:15px;color:#079696;font-size:13px" ng-click="vm.sort('lastUpdated')" class="">Thời gian cập nhật
+                  <span class="glyphicon sort-icon" ng-show="vm.sortKey=='lastUpdated'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" ></span></a>
+               </h4>
             </div>
          </div>
-         <div class="col-sm-1">
-         </div>
-         <div class="col-sm-2 text-company-overview-right">
-            <div class="row">
-               <h4 class="pull-left text-label">Năm thành lập: </h4>
+         <div class="row">
+            <div ng-repeat="review in vm.company.reviews | filter: { state: 'approved' } | filter: keyword as filteredReviews">
             </div>
-            <div class="row">
-               <h4 class="pull-left text-label">Quy mô nhân sự: </h4>
-            </div>
-            <div class="row">
-               <h4 class="pull-left text-label">Trụ sở chính: </h4>
-            </div>
-         </div>
-         <div class="col-sm-3">
-            <div class="row">
-               <h4 class="text-labels">{{vm.company.founded | date: 'yyyy'}}</h4>
-            </div>
-            <div class="row">
-               <h4 class="text-labels"  data-ng-bind="vm.company.personnelSize"></h4>
-            </div>
-            <div class="row">
-               <h4 class="text-labels" data-ng-bind="vm.company.hq"></h4>
+            <div class="col-sm-12">
+               <div ng-repeat="review in vm.company.reviews | orderBy:'-lastUpdated' | filter: { state: 'approved', highlight: true }" ng-include="'modules/companies/client/views/panel-review.client.view.html'" ng-init="companyId=vm.company._id" class="list-review-all">
+               </div>
+               <div dir-paginate="review in vm.company.reviews | filter: { state: 'approved', highlight: false} | filter: keyword | orderBy:vm.sortKey:!vm.reverse | itemsPerPage:vm.itemsPerPage" ng-include="'modules/companies/client/views/panel-review.client.view.html'" ng-init="companyId=vm.company._id" class="list-review-all">></div>
+               <div class="row pull-right" style="font-size:10px;margin-right:10px">
+                  <dir-pagination-controls max-size="4" direction-links="true" boundary-links="true">
+                  </dir-pagination-controls>
+               </div>
             </div>
          </div>
       </div>
-    
-     
-    
+      <div class="col-sm-2">
+      </div>
    </div>
-   <div class="row">
-        <div class=" company-right" style=" margin-bottom: 20px;">
-             <div class="row">
-                <h3 class="pull-left text-company-overview-reivew" style="color:green">Đánh giá</h3>
-                <input type="text" name="search" class="pull-right" style="margin-top:20px;margin-right:40px;border:solid 1px; border-color:#1eb2b2 " placeholder=" Tìm kiếm....">
-             </div>
-             <div class="row">
-                <h4 class="review-sum">Có <b style="color:red">{{filteredReviews.length}}</b> bài đánh giá: </h4>
-             </div>
-             <div class="row">
-                <div class="col-sm-12" >
-             <!--    Editor's choices: -->
-                <div ng-repeat="review in vm.company.reviews | orderBy:'-lastUpdated' | filter: { state: 'approved', highlight: true }" ng-include="'modules/companies/client/views/panel-review.client.view.html'" class="list-review-all">
-                   </div>
-                   <div ng-repeat="review in vm.company.reviews | orderBy:'-lastUpdated' | filter: { state: 'approved' } as filteredReviews" ng-include="'modules/companies/client/views/panel-review.client.view.html'" class="list-review-all">
-                   </div>
-                </div>
-             </div>
-          </div>
-   </div>
-</div>
-<div class="col-sm-2">
-</div>
-</div>
- 
+   <div id='bttop'>TRỞ VỀ ĐẦU TRANG</div>
 </section>
-
 <script>
-$(document).ready(function() {
-    $('[data-toggle="tooltip"]').tooltip();
-});
+   $(document).ready(function() {
+       $('[data-toggle="tooltip"]').tooltip();
+   });
+</script>
+<style type='text/css'>
+   #bttop{
+   border:1px solid #4adcff;
+   background:#24bde2;
+   text-align:center;
+   padding:5px;
+   position:fixed;
+   bottom:35px;
+   right:10px;
+   cursor:pointer;
+   display:none;
+   color:#fff;
+   font-size:11px;
+   font-weight:900
+   }
+   #bttop:hover{
+   border:1px solid #ffa789;
+   background:#ff6734
+   }
+</style>
+<script >
+   $(function() {
+    $(window).scroll(function() {
+    if ($(this).scrollTop() != 0) {
+    $('#bttop').fadeIn();
+    } else {
+    $('#bttop').fadeOut();
+    }
+    });
+    $('#bttop').click(function() {
+    $('body,html').animate({
+    scrollTop: 0
+    }, 800);
+    });
+   });
 </script>
 <script>
-(function (factory) {
-    "use strict";
-    //noinspection JSUnresolvedVariable
-    if (typeof define === 'function' && define.amd) { // jshint ignore:line
-        // AMD. Register as an anonymous module.
-        define(['jquery'], factory); // jshint ignore:line
-    } else { // noinspection JSUnresolvedVariable
-        if (typeof module === 'object' && module.exports) { // jshint ignore:line
-            // Node/CommonJS
-            // noinspection JSUnresolvedVariable
-            module.exports = factory(require('jquery')); // jshint ignore:line
-        } else {
-            // Browser globals
-            factory(window.jQuery);
-        }
-    }
-}(function ($) {
-    "use strict";
-
-    $.fn.ratingLocales = {};
-    $.fn.ratingThemes = {};
-
-    var NAMESPACE, DEFAULT_MIN, DEFAULT_MAX, DEFAULT_STEP, isEmpty, getCss, addCss, getDecimalPlaces, applyPrecision,
-        handler, Rating;
-    NAMESPACE = '.rating';
-    DEFAULT_MIN = 0;
-    DEFAULT_MAX = 5;
-    DEFAULT_STEP = 0.5;
-    isEmpty = function (value, trim) {
-        return value === null || value === undefined || value.length === 0 || (trim && $.trim(value) === '');
-    };
-    getCss = function (condition, css) {
-        return condition ? ' ' + css : '';
-    };
-    addCss = function ($el, css) {
-        $el.removeClass(css).addClass(css);
-    };
-    getDecimalPlaces = function (num) {
-        var match = ('' + num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
-        return !match ? 0 : Math.max(0, (match[1] ? match[1].length : 0) - (match[2] ? +match[2] : 0));
-    };
-    applyPrecision = function (val, precision) {
-        return parseFloat(val.toFixed(precision));
-    };
-    handler = function ($el, event, callback, skipNS) {
-        var ev = skipNS ? event : event.split(' ').join(NAMESPACE + ' ') + NAMESPACE;
-        $el.off(ev).on(ev, callback);
-    };
-    Rating = function (element, options) {
-        var self = this;
-        self.$element = $(element);
-        self._init(options);
-    };
-    Rating.prototype = {
-        constructor: Rating,
-        _parseAttr: function (vattr, options) {
-            var self = this, $el = self.$element, elType = $el.attr('type'), finalVal, val, chk, out;
-            if (elType === 'range' || elType === 'number') {
-                val = options[vattr] || $el.data(vattr) || $el.attr(vattr);
-                switch (vattr) {
-                    case 'min':
-                        chk = DEFAULT_MIN;
-                        break;
-                    case 'max':
-                        chk = DEFAULT_MAX;
-                        break;
-                    default:
-                        chk = DEFAULT_STEP;
-                }
-                finalVal = isEmpty(val) ? chk : val;
-                out = parseFloat(finalVal);
-            } else {
-                out = parseFloat(options[vattr]);
-            }
-            return isNaN(out) ? chk : out;
-        },
-        _setDefault: function (key, val) {
-            var self = this;
-            if (isEmpty(self[key])) {
-                self[key] = val;
-            }
-        },
-        _listenClick: function (e, callback) {
-            e.stopPropagation();
-            e.preventDefault();
-            if (e.handled !== true) {
-                callback(e);
-                e.handled = true;
-            } else {
-                return false;
-            }
-        },
-        _starClick: function (e) {
-            var self = this, pos;
-            self._listenClick(e, function (ev) {
-                if (self.inactive) {
-                    return false;
-                }
-                pos = self._getTouchPosition(ev);
-                self._setStars(pos);
-                self.$element.trigger('change').trigger('rating.change', [self.$element.val(), self._getCaption()]);
-                self.starClicked = true;
-            });
-        },
-        _starMouseMove: function (e) {
-            var self = this, pos, out;
-            if (!self.hoverEnabled || self.inactive || (e && e.isDefaultPrevented())) {
-                return;
-            }
-            self.starClicked = false;
-            pos = self._getTouchPosition(e);
-            out = self.calculate(pos);
-            self._toggleHover(out);
-            self.$element.trigger('rating.hover', [out.val, out.caption, 'stars']);
-        },
-        _starMouseLeave: function (e) {
-            var self = this, out;
-            if (!self.hoverEnabled || self.inactive || self.starClicked || (e && e.isDefaultPrevented())) {
-                return;
-            }
-            out = self.cache;
-            self._toggleHover(out);
-            self.$element.trigger('rating.hoverleave', ['stars']);
-        },
-        _clearClick: function (e) {
-            var self = this;
-            self._listenClick(e, function () {
-                if (!self.inactive) {
-                    self.clear();
-                    self.clearClicked = true;
-                }
-            });
-        },
-        _clearMouseMove: function (e) {
-            var self = this, caption, val, width, out;
-            if (!self.hoverEnabled || self.inactive || !self.hoverOnClear || (e && e.isDefaultPrevented())) {
-                return;
-            }
-            self.clearClicked = false;
-            caption = '<span class="' + self.clearCaptionClass + '">' + self.clearCaption + '</span>';
-            val = self.clearValue;
-            width = self.getWidthFromValue(val) || 0;
-            out = {caption: caption, width: width, val: val};
-            self._toggleHover(out);
-            self.$element.trigger('rating.hover', [val, caption, 'clear']);
-        },
-        _clearMouseLeave: function (e) {
-            var self = this, out;
-            if (!self.hoverEnabled || self.inactive || self.clearClicked || !self.hoverOnClear || (e && e.isDefaultPrevented())) {
-                return;
-            }
-            out = self.cache;
-            self._toggleHover(out);
-            self.$element.trigger('rating.hoverleave', ['clear']);
-        },
-        _resetForm: function (e) {
-            var self = this;
-            if (e && e.isDefaultPrevented()) {
-                return;
-            }
-            if (!self.inactive) {
-                self.reset();
-            }
-        },
-        _setTouch: function (e, flag) {
-            //noinspection JSUnresolvedVariable
-            var self = this, ev, touches, pos, out, caption, w, width, isTouchCapable = 'ontouchstart' in window ||
-                (window.DocumentTouch && document instanceof window.DocumentTouch);
-            if (!isTouchCapable || self.inactive) {
-                return;
-            }
-            ev = e.originalEvent;
-            //noinspection JSUnresolvedVariable
-            touches = !isEmpty(ev.touches) ? ev.touches : ev.changedTouches;
-            pos = self._getTouchPosition(touches[0]);
-            if (flag) {
-                self._setStars(pos);
-                self.$element.trigger('change').trigger('rating.change', [self.$element.val(), self._getCaption()]);
-                self.starClicked = true;
-            } else {
-                out = self.calculate(pos);
-                caption = out.val <= self.clearValue ? self.fetchCaption(self.clearValue) : out.caption;
-                w = self.getWidthFromValue(self.clearValue);
-                width = out.val <= self.clearValue ? w + '%' : out.width;
-                self._setCaption(caption);
-                self.$filledStars.css('width', width);
-            }
-        },
-        _initTouch: function (e) {
-            var self = this, flag = (e.type === "touchend");
-            self._setTouch(e, flag);
-        },
-        _initSlider: function (options) {
-            var self = this;
-            if (isEmpty(self.$element.val())) {
-                self.$element.val(0);
-            }
-            self.initialValue = self.$element.val();
-            self._setDefault('min', self._parseAttr('min', options));
-            self._setDefault('max', self._parseAttr('max', options));
-            self._setDefault('step', self._parseAttr('step', options));
-            if (isNaN(self.min) || isEmpty(self.min)) {
-                self.min = DEFAULT_MIN;
-            }
-            if (isNaN(self.max) || isEmpty(self.max)) {
-                self.max = DEFAULT_MAX;
-            }
-            if (isNaN(self.step) || isEmpty(self.step) || self.step === 0) {
-                self.step = DEFAULT_STEP;
-            }
-            self.diff = self.max - self.min;
-        },
-        _initHighlight: function (v) {
-            var self = this, w, cap = self._getCaption();
-            if (!v) {
-                v = self.$element.val();
-            }
-            w = self.getWidthFromValue(v) + '%';
-            self.$filledStars.width(w);
-            self.cache = {caption: cap, width: w, val: v};
-        },
-        _getContainerCss: function () {
-            var self = this;
-            return 'rating-container' +
-                getCss(self.theme, 'theme-' + self.theme) +
-                getCss(self.rtl, 'rating-rtl') +
-                getCss(self.size, 'rating-' + self.size) +
-                getCss(self.animate, 'rating-animate') +
-                getCss(self.disabled || self.readonly, 'rating-disabled') +
-                getCss(self.containerClass, self.containerClass);
-        },
-        _checkDisabled: function () {
-            var self = this, $el = self.$element, opts = self.options;
-            self.disabled = opts.disabled === undefined ? $el.attr('disabled') || false : opts.disabled;
-            self.readonly = opts.readonly === undefined ? $el.attr('readonly') || false : opts.readonly;
-            self.inactive = (self.disabled || self.readonly);
-            $el.attr({disabled: self.disabled, readonly: self.readonly});
-        },
-        _addContent: function (type, content) {
-            var self = this, $container = self.$container, isClear = type === 'clear';
-            if (self.rtl) {
-                return isClear ? $container.append(content) : $container.prepend(content);
-            } else {
-                return isClear ? $container.prepend(content) : $container.append(content);
-            }
-        },
-        _generateRating: function () {
-            var self = this, $el = self.$element, $rating, $container, w;
-            $container = self.$container = $(document.createElement("div")).insertBefore($el);
-            addCss($container, self._getContainerCss());
-            self.$rating = $rating = $(document.createElement("div")).attr('class', 'rating').appendTo($container)
-                .append(self._getStars('empty')).append(self._getStars('filled'));
-            self.$emptyStars = $rating.find('.empty-stars');
-            self.$filledStars = $rating.find('.filled-stars');
-            self._renderCaption();
-            self._renderClear();
-            self._initHighlight();
-            $container.append($el);
-            if (self.rtl) {
-                w = Math.max(self.$emptyStars.outerWidth(), self.$filledStars.outerWidth());
-                self.$emptyStars.width(w);
-            }
-        },
-        _getCaption: function () {
-            var self = this;
-            return self.$caption && self.$caption.length ? self.$caption.html() : self.defaultCaption;
-        },
-        _setCaption: function (content) {
-            var self = this;
-            if (self.$caption && self.$caption.length) {
-                self.$caption.html(content);
-            }
-        },
-        _renderCaption: function () {
-            var self = this, val = self.$element.val(), html, $cap = self.captionElement ? $(self.captionElement) : '';
-            if (!self.showCaption) {
-                return;
-            }
-            html = self.fetchCaption(val);
-            if ($cap && $cap.length) {
-                addCss($cap, 'caption');
-                $cap.html(html);
-                self.$caption = $cap;
-                return;
-            }
-            self._addContent('caption', '<div class="caption">' + html + '</div>');
-            self.$caption = self.$container.find(".caption");
-        },
-        _renderClear: function () {
-            var self = this, css, $clr = self.clearElement ? $(self.clearElement) : '';
-            if (!self.showClear) {
-                return;
-            }
-            css = self._getClearClass();
-            if ($clr.length) {
-                addCss($clr, css);
-                $clr.attr({"title": self.clearButtonTitle}).html(self.clearButton);
-                self.$clear = $clr;
-                return;
-            }
-            self._addContent('clear',
-                '<div class="' + css + '" title="' + self.clearButtonTitle + '">' + self.clearButton + '</div>');
-            self.$clear = self.$container.find('.' + self.clearButtonBaseClass);
-        },
-        _getClearClass: function () {
-            return this.clearButtonBaseClass + ' ' + ((this.inactive) ? '' : this.clearButtonActiveClass);
-        },
-        _getTouchPosition: function (e) {
-            var pageX = isEmpty(e.pageX) ? e.originalEvent.touches[0].pageX : e.pageX;
-            return pageX - this.$rating.offset().left;
-        },
-        _toggleHover: function (out) {
-            var self = this, w, width, caption;
-            if (!out) {
-                return;
-            }
-            if (self.hoverChangeStars) {
-                w = self.getWidthFromValue(self.clearValue);
-                width = out.val <= self.clearValue ? w + '%' : out.width;
-                self.$filledStars.css('width', width);
-            }
-            if (self.hoverChangeCaption) {
-                caption = out.val <= self.clearValue ? self.fetchCaption(self.clearValue) : out.caption;
-                if (caption) {
-                    self._setCaption(caption + '');
-                }
-            }
-        },
-        _init: function (options) {
-            var self = this, $el = self.$element.addClass('hide');
-            self.options = options;
-            $.each(options, function (key, value) {
-                self[key] = value;
-            });
-            if (self.rtl || $el.attr('dir') === 'rtl') {
-                self.rtl = true;
-                $el.attr('dir', 'rtl');
-            }
-            self.starClicked = false;
-            self.clearClicked = false;
-            self._initSlider(options);
-            self._checkDisabled();
-            if (self.displayOnly) {
-                self.inactive = true;
-                self.showClear = false;
-                self.showCaption = false;
-            }
-            self._generateRating();
-            self._listen();
-            return $el.removeClass('rating-loading');
-        },
-        _listen: function () {
-            var self = this, $el = self.$element, $form = $el.closest('form'), $rating = self.$rating,
-                $clear = self.$clear;
-            handler($rating, 'touchstart touchmove touchend', $.proxy(self._initTouch, self));
-            handler($rating, 'click touchstart', $.proxy(self._starClick, self));
-            handler($rating, 'mousemove', $.proxy(self._starMouseMove, self));
-            handler($rating, 'mouseleave', $.proxy(self._starMouseLeave, self));
-            if (self.showClear && $clear.length) {
-                handler($clear, 'click touchstart', $.proxy(self._clearClick, self));
-                handler($clear, 'mousemove', $.proxy(self._clearMouseMove, self));
-                handler($clear, 'mouseleave', $.proxy(self._clearMouseLeave, self));
-            }
-            if ($form.length) {
-                handler($form, 'reset', $.proxy(self._resetForm, self));
-            }
-            return $el;
-        },
-        _getStars: function (type) {
-            var self = this, stars = '<span class="' + type + '-stars">', i;
-            for (i = 1; i <= self.stars; i++) {
-                stars += '<span class="star">' + self[type + 'Star'] + '</span>';
-            }
-            return stars + '</span>';
-        },
-        _setStars: function (pos) {
-            var self = this, out = arguments.length ? self.calculate(pos) : self.calculate(), $el = self.$element;
-            $el.val(out.val);
-            self.$filledStars.css('width', out.width);
-            self._setCaption(out.caption);
-            self.cache = out;
-            return $el;
-        },
-        showStars: function (val) {
-            var self = this, v = parseFloat(val);
-            self.$element.val(isNaN(v) ? self.clearValue : v);
-            return self._setStars();
-        },
-        calculate: function (pos) {
-            var self = this, defaultVal = isEmpty(self.$element.val()) ? 0 : self.$element.val(),
-                val = arguments.length ? self.getValueFromPosition(pos) : defaultVal,
-                caption = self.fetchCaption(val), width = self.getWidthFromValue(val);
-            width += '%';
-            return {caption: caption, width: width, val: val};
-        },
-        getValueFromPosition: function (pos) {
-            var self = this, precision = getDecimalPlaces(self.step), val, factor, maxWidth = self.$rating.width();
-            factor = (self.diff * pos) / (maxWidth * self.step);
-            factor = self.rtl ? Math.floor(factor) : Math.ceil(factor);
-            val = applyPrecision(parseFloat(self.min + factor * self.step), precision);
-            val = Math.max(Math.min(val, self.max), self.min);
-            return self.rtl ? (self.max - val) : val;
-        },
-        getWidthFromValue: function (val) {
-            var self = this, min = self.min, max = self.max, factor, $r = self.$emptyStars, w;
-            if (!val || val <= min || min === max) {
-                return 0;
-            }
-            w = $r.outerWidth();
-            factor = w ? $r.width() / w : 1;
-            if (val >= max) {
-                return 100;
-            }
-            return (val - min) * factor * 100 / (max - min);
-        },
-        fetchCaption: function (rating) {
-            var self = this, val = parseFloat(rating) || self.clearValue, css, cap, capVal, cssVal, caption,
-                vCap = self.starCaptions, vCss = self.starCaptionClasses;
-            if (val && val !== self.clearValue) {
-                val = applyPrecision(val, getDecimalPlaces(self.step));
-            }
-            cssVal = typeof vCss === "function" ? vCss(val) : vCss[val];
-            capVal = typeof vCap === "function" ? vCap(val) : vCap[val];
-            cap = isEmpty(capVal) ? self.defaultCaption.replace(/\{rating}/g, val) : capVal;
-            css = isEmpty(cssVal) ? self.clearCaptionClass : cssVal;
-            caption = (val === self.clearValue) ? self.clearCaption : cap;
-            return '<span class="' + css + '">' + caption + '</span>';
-        },
-        destroy: function () {
-            var self = this, $el = self.$element;
-            if (!isEmpty(self.$container)) {
-                self.$container.before($el).remove();
-            }
-            $.removeData($el.get(0));
-            return $el.off('rating').removeClass('hide');
-        },
-        create: function (options) {
-            var self = this, opts = options || self.options || {};
-            return self.destroy().rating(opts);
-        },
-        clear: function () {
-            var self = this, title = '<span class="' + self.clearCaptionClass + '">' + self.clearCaption + '</span>';
-            if (!self.inactive) {
-                self._setCaption(title);
-            }
-            return self.showStars(self.clearValue).trigger('change').trigger('rating.clear');
-        },
-        reset: function () {
-            var self = this;
-            return self.showStars(self.initialValue).trigger('rating.reset');
-        },
-        update: function (val) {
-            var self = this;
-            return arguments.length ? self.showStars(val) : self.$element;
-        },
-        refresh: function (options) {
-            var self = this, $el = self.$element;
-            if (!options) {
-                return $el;
-            }
-            return self.destroy().rating($.extend(true, self.options, options)).trigger('rating.refresh');
-        }
-    };
-
-    $.fn.rating = function (option) {
-        var args = Array.apply(null, arguments), retvals = [];
-        args.shift();
-        this.each(function () {
-            var self = $(this), data = self.data('rating'), options = typeof option === 'object' && option,
-                theme = options.theme || self.data('theme'), lang = options.language || self.data('language') || 'en',
-                thm = {}, loc = {}, opts;
-
-            if (!data) {
-                if (theme) {
-                    thm = $.fn.ratingThemes[theme] || {};
-                }
-                if (lang !== 'en' && !isEmpty($.fn.ratingLocales[lang])) {
-                    loc = $.fn.ratingLocales[lang];
-                }
-                opts = $.extend(true, {}, $.fn.rating.defaults, thm, $.fn.ratingLocales.en, loc, options, self.data());
-                data = new Rating(this, opts);
-                self.data('rating', data);
-            }
-
-            if (typeof option === 'string') {
-                retvals.push(data[option].apply(data, args));
-            }
-        });
-        switch (retvals.length) {
-            case 0:
-                return this;
-            case 1:
-                return retvals[0] === undefined ? this : retvals[0];
-            default:
-                return retvals;
-        }
-    };
-
-    $.fn.rating.defaults = {
-        theme: '',
-        language: 'en',
-        stars: 5,
-        filledStar: '<i class="glyphicon glyphicon-star"></i>',
-        emptyStar: '<i class="glyphicon glyphicon-star-empty"></i>',
-        containerClass: '',
-        size: 'md',
-        animate: true,
-        displayOnly: false,
-        rtl: false,
-        showClear: true,
-        showCaption: true,
-        starCaptionClasses: {
-            0.5: 'label label-danger',
-            1: 'label label-danger',
-            1.5: 'label label-warning',
-            2: 'label label-warning',
-            2.5: 'label label-info',
-            3: 'label label-info',
-            3.5: 'label label-primary',
-            4: 'label label-primary',
-            4.5: 'label label-success',
-            5: 'label label-success'
-        },
-        clearButton: '<i class="glyphicon glyphicon-minus-sign"></i>',
-        clearButtonBaseClass: 'clear-rating',
-        clearButtonActiveClass: 'clear-rating-active',
-        clearCaptionClass: 'label label-default',
-        clearValue: null,
-        captionElement: null,
-        clearElement: null,
-        hoverEnabled: true,
-        hoverChangeCaption: true,
-        hoverChangeStars: true,
-        hoverOnClear: true
-    };
-
-    $.fn.ratingLocales.en = {
-        defaultCaption: '{rating} Stars',
-        starCaptions: {
-            0.5: '0.5',
-            1: '1',
-            1.5: '1.5',
-            2: '2',
-            2.5: '2.5',
-            3: '3',
-            3.5: '3.5',
-            4: '4',
-            4.5: '4.5',
-            5: '5'
-        },
-        clearButtonTitle: 'Clear',
-        clearCaption: '0'
-    };
-
-    $.fn.rating.Constructor = Rating;
-
-    /**
-     * Convert automatically inputs with class 'rating' into Krajee's star rating control.
-     */
-    $(document).ready(function () {
-        var $input = $('input.rating');
-        if ($input.length) {
-            $input.removeClass('rating-loading').addClass('rating-loading').rating();
-        }
-    });
-}));
+   jQuery.ajax({
+   type: "POST",
+   dataType: "json",
+   success: function(msg) {
+       jQuery('.star').attr('disabled', true);
+   },
+   error: function(XMLHttpRequest, textStatus, errorThrown) {
+       displayError();
+   }
+   });
 </script>

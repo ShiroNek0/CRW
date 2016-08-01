@@ -1,32 +1,45 @@
-<section >
+<section ng-init="vm.initPanel(company)">
     <div class="col-sm-3" style=" text-shadow:0 1px 2px rgba(0, 0, 0, .0);">
         <div class="thumbnail-list" >
-            <div class="thumbnail">
+            <div class="thumbnail" style="background-color:white">
 
-            <div class="row">
-              <a ui-sref="companies.view({companyId: company._id})"><img src="{{company.avatar}}" alt="avatar" class="picture"  style="width:140px;height:140px;margin-left:21px;"></a>  
+            <div class="row" >
+              <a ui-sref="companies.view({companyId: company._id})"><img src="{{company.avatar}}" alt="avatar" class="picture"  style="width:115px;height:90px;margin-left:21px;"></a>  
             </div>
             <div class="row">
-               <h4 class="pull-left companyname" data-ng-bind="company.name"></h4>
+               <h5 class="pull-left companyname" data-ng-bind="company.name" style="color:grey" ></h5>
             </div>
             <div class=row>
-                   <p class="pull-left point">5</p>
-                   <div class="pull-right stars">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                    </div>
+                   <p class="pull-left point" style="color:red;margin-top:3px;">{{company.averageRating | number: 1}}</p>
+                    <fieldset class="rating" style="font-size:11px">
+                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="5" disabled="disabled" checked="checked"/>
+                            <label class="full" for="star5" title="Awesome - 5 stars"></label>
+                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="4.5" disabled="disabled" checked="checked"/>
+                            <label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="4" disabled="disabled" checked="checked"/>
+                            <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="3.5" disabled="disabled" checked="checked"/>
+                            <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="3" disabled="disabled" checked="checked" />
+                            <label class="full" for="star3" title="Meh - 3 stars"></label>
+                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="2.5" disabled="disabled" checked="checked"/>
+                            <label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="2" disabled="disabled" checked="checked"/>
+                            <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="1.5" disabled="disabled" checked="checked"/>
+                            <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="1" disabled="disabled" checked="checked"/>
+                            <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="0.5" disabled="disabled" checked="checked"/>
+                            <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                           
+                        </fieldset>
             </div>
             <div class="row">
                   <div class="pull-left btn-reviews">
-                            <div ng-repeat="review in company.reviews | filter:query as filtered">
-                            </div>
-                        <button class="btn btn-primary" type="button" ui-sref="companies.view({companyId: company._id})" style=" box-shadow: 0 3px 0 0 black;">
+                        <button class="btn btn-info" type="button" ui-sref="companies.view({companyId: company._id})" style=" box-shadow: 0 3px 0 0 black;font-size:12px;">
                             Bài đánh giá
-                            <span class="badge">{{filteredReviews.length}}</span>
-                        <div ng-repeat="review in company.reviews | filter: { state: 'approved' } as filteredReviews"></div>
+                            <span class="badge" style="color:blue">{{company.numOfReviews}}</span>
                         </button>
                    </div>
             </div>
@@ -59,3 +72,15 @@ moz-transform: scale(1.2) rotate(0deg);
 -webkit-transform: scale(1.2) rotate(0deg);
 position: relative;}
 </style>
+<script>
+    jQuery.ajax({
+    type: "POST",
+    dataType: "json",
+    success: function(msg) {
+        jQuery('.star').attr('disabled', true);
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+        displayError();
+    }
+});
+</script>

@@ -35,18 +35,17 @@
 
   function CompaniesRecentService($resource) {
     
-    return $resource('/api/companies/getRecent', {});
+    return $resource('/api/companies?newestReview=desc&&limit=4', {});
   }
 
   function SearchService($resource) {
 
-    return $resource('/api/companies/search/:keyword', {
+    return $resource('/api/companies?name=:keyword', {
       //keyword: '@keyword'
     });
   }
 
   function ReviewService($resource) {
-
     return $resource('/api/companies/:companyId/reviews/:reviewId', {
       companyId: '@_id',
       reviewId: '@reviews._id'

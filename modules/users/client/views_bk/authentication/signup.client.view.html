@@ -1,0 +1,63 @@
+<div ng-controller="AuthenticationController">
+ 
+  <div class="col-sm-3">
+    
+  </div>
+  <div class="col-sm-6" style="border:solid 1px; border-color:lightgrey;margin-top:40px;background-color:white">
+    <div class="row">
+      <h3 class="col-md-12 text-center" style="font-weight:bold">Đăng ký </h3>
+    </div>
+          <div class="row" style="border-color:solid 1px;color:white">
+              <h4 class="text-center" style="background-color:#3b5998;width:550px;margin-left:60px"><img ng-click="callOauthProvider('/api/auth/facebook')" ng-src="/modules/users/client/img/buttons/fb.png" style="height:40px;">
+            Đăng nhập với facebook</h4>
+          </div>
+          <div class="row">
+             <div class="text-center text-muted">Chúng tôi sẽ không đăng bất cứ gì lên Facebook mà không được sự cho phép của bạn.</div>
+          </div>
+          <div class="row" style="margin-left:45px;margin-top:20px;">
+                    <form style="width:550px" name="userForm" ng-submit="signup(userForm.$valid)" class="signup" novalidate autocomplete="off">
+                     <fieldset>
+        <div class="form-group" show-errors>
+          <input type="email" id="email" name="email" class="form-control" ng-model="credentials.email" placeholder="Email" lowercase required>
+          <div ng-messages="userForm.email.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Xin nhập địa chỉ email.</p>
+            <p class="help-block error-text" ng-message="email">Địa chỉ email không hợp lệ.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <input type="text" id="name" name="name" class="form-control" ng-model="credentials.name" placeholder="Tên hiển thị" required>
+          <div ng-messages="userForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Xin nhập tên hiển thị.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+            <input type="password" id="password" name="password" class="form-control" ng-model="credentials.password" placeholder="Mật khẩu" popover="{{popoverMsg}}" popover-trigger="focus" password-validator required>
+          <div ng-messages="userForm.password.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Xin nhập mật khẩu.</p>
+            <div ng-repeat="passwordError in passwordErrors">
+              <p class="help-block error-text" ng-show="userForm.password.$error.requirements">{{passwordError}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" ng-show="!userForm.password.$error.required">
+          <label>Password Requirements</label>
+          <progressbar value="requirementsProgress" type="{{requirementsColor}}"><span style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></progressbar>
+        </div>
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary">Đăng ký</button>
+          &nbsp; or&nbsp;
+          <a ui-sref="authentication.signin" class="show-signup">Đăng nhập</a>
+        </div>
+        <div ng-show="error" class="text-center text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </fieldset>
+                    </form>
+                 
+            </div>
+  </div>
+  <div class="col-sm-3">
+    
+  </div>
+
+</div>

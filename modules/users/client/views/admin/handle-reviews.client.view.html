@@ -1,40 +1,206 @@
-<section class="row" ng-init="vm.init()">
-    <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active">
-            <a href="#waitingReviews" role="tab" data-toggle="tab">Waiting Reviews</a>
+<style type="text/css">
+   @font-face {
+   font-family: 'Roboto-Regular';
+   src: url('/modules/companies/client/css/RobotoTTF/Roboto-Regular.ttf');
+   }
+</style>
+<section class="row" ng-init="vm.init()" style="font-family: Roboto-Regular;margin-left:20px;margin-right:20px" >
+ 
+  <div style="border:solid 1px;border-color:lightgrey;background-color:white">
+  <h5 style="color:grey;margin-top:20px;margin-left:20px;font-weight:bold;background-color:lightgrey;margin-right:20px;height:30px;padding-left:20px;padding-top:10px">Quản lý bài đăng vào báo cáo vi phạm</h5>
+         <ul class="nav nav-tabs" role="tablist" style="margin-top:20px;">
+        <li role="presentation" class="active" style="margin-left:20px">
+            <a href="#waitingReviews" role="tab" data-toggle="tab" style="font-weight:bold;color:#079696;">Bài đánh giá đang chờ</a>
         </li>
         <li role="presentation">
-            <a href="#reportedReviews" role="tab" data-toggle="tab">Reported Reviews</a>
+            <a href="#reportedReviews" role="tab" data-toggle="tab" style="font-weight:bold;color:#079696;">Báo cáo bài đánh giá</a>
         </li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="waitingReviews">
-            <div ng-repeat="data in reviews">
-                <a ng-click="vm.approveModal(data)">
-                    <div style="border: solid 1px black; margin-bottom: 10px">
-                        <p>Công ty:{{data.name}}</p>
-                        <p>title: {{data.reviews.title}}</p>
-                        <p>Điểm đánh giá: {{data.reviews.overallRev.rating}}</p>
-                        <p>Số comment: {{data.reviews.comments.length}}</p>
-                        <p>Lượt ủng hộ: {{data.reviews.upvoteUsers.length}}</p>
-                    </div>
-                </a>
+        </ul>
+
+        <div class="tab-content" style="margin-top:20px;margin-left:20px;margin-right:20px;margin-bottom:20px">
+        <div role="tabpanel" class="tab-pane active" id="waitingReviews" >
+            <div ng-repeat="data in reviews ">
+                <button style="width: 100%" data-toggle="collapse" data-target="#{{data.reviews._id}}">
+                  
+                 <div class="col-sm-3 pull-left">
+                 
+                    
+                 </div>
+                 <div class="col-sm-6">
+                  <h5 style="color:#079696;font-weight:bold;">Công ty: {{data.name}}</h5>
+                  <h6 style="color:grey;font-weight:bold">Tiêu đề: {{data.reviews.title}}</h6>
+                 </div>
+                </button>
+                <div id="{{data.reviews._id}}" class="collapse" style="border:solid 1px;border-color:lightgrey;background-color:white;margin-top:20px;margin-bottom:20px">
+                    <div class="row">
+                       <div class="col-sm-1">
+                             <img style="width: 120px;height:100px;border:solid 1px;border-color:lightgrey;margin:20px;margin-bottom:20px" ng-src="{{data.avatar}}" ></img>
+                       </div>
+                          
+                       <div class="col-sm-8 " >
+                             <h4 class="modal-title" style="margin-left:70px;margin-top:25px"><a ui-sref="companies.view({companyId: data._id})">{{data.name}}</a></h4>
+                            <div class="pull-right">
+                            <fieldset class="ratings" style="margin-left:50px;font-size:34px;">
+                                <input type="radio" name="{{data.reviews._id}}" ng-model="data.reviews.overallRev.rating" value="5" />
+                                <label class="full" for="star5" title="Awesome - 5 stars"></label>
+                                <input type="radio" name="{{data.reviews._id}}" ng-model="data.reviews.overallRev.rating" value="4" />
+                                <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                                <input type="radio" name="{{data.reviews._id}}" ng-model="data.reviews.overallRev.rating" value="3" />
+                                <label class="full" for="star3" title="Meh - 3 stars"></label>
+                                <input type="radio" name="{{data.reviews._id}}" ng-model="data.reviews.overallRev.rating" value="2" />
+                                <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                                <input type="radio" name="{{data.reviews._id}}" ng-model="data.reviews.overallRev.rating" value="1" />
+                                <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                                <b style="margin-right:20px;">{{data.reviews.overallRev.rating}}/5</b>
+                            </fieldset>
+                            </div>
+                       </div>
+                      
+                          
+                     </div> 
+
+                     <div class="row" style="margin-left:30px">
+                        <div class="col-sm-6" style="overflow:hidden;color:grey ">
+                         <h4 style="font-weight:bold">Chủ đề:<h5 data-ng-bind="data.reviews.title"></h5></h4>
+                      
+                        <h4 class="text-left " style="font-weight:bold">Nghề nghiệp:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.job"> </h5>
+                        <h4 class="text-left " style="font-weight:bold">Đang làm tại vị trí này:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.isJobCurrent"></h5>
+                        <h4 class="text-left " style="font-weight:bold">Thời gian làm việc vị trí trên:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.jobLength"></h5>
+                        <h4 class="text-left " style="font-weight:bold">Loại nhân viên:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.contract"></h5>
+                        <h4 class="text-left " style="font-weight:bold">Ưu điểm:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.overallRev.pros"></h5>
+                        <h4 class="text-left " style="font-weight:bold">Nhược điểm:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.overallRev.cons"></h5>
+                        <h4 class="text-left " style="font-weight:bold">Nội dung:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.overallRev.supplement"></h5>
+                      
+
+                        </div>
+                        <div class="col-sm-6" style="color:grey">
+                        <h4 class="text-left "  style="font-weight:bold">Lương cơ bản:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.basePay"></h5>
+                        <h4 class="text-left "  style="font-weight:bold">Mức tăng lương trung bình:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.payRaise"></h5>
+                        <h4 class="text-left "  style="font-weight:bold">Lương thưởng:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.cashBonus"></h5>
+                        <h4 class="text-left "  style="font-weight:bold">Tiền lương ngoài:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.profitSharing"></h5>
+                        <h4 class="text-left "  style="font-weight:bold">Bảo hiểm và các chế độ chăm sóc sức khỏe:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.healthRating"></h5>
+                        <h4 class="text-left "  style="font-weight:bold">Cơ hội thăng tiến:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.opportunityRating"></h5>
+                        <h4 class="text-left " style="font-weight:bold">Chế độ thai sản/ nghỉ vợ đẻ:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.parentalLeaveRating"></h5>
+                        <h4 class="text-left " style="font-weight:bold">Thời gian nghỉ lương thưởng:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.timeOffRating"></h5>
+                        <h4 class="text-left " style="font-weight:bold">Chế độ lương hưu:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.pensionRating"></h5>  
+                        </div>
+                     </div> 
+                     <div class="row">
+                           <button style="margin-left:700px;margin-top:20px;margin-bottom:20px" type="button" class=" btn btn-default" ng-click="vm.denieModal(data)">Bỏ duyệt</button>
+
+                    <button style="width:100px" type="button" class=" btn btn-info" ng-click="vm.approveModal(data)">Duyệt</button>
+                     </div>     
+                <!--    
+                    <div class="row">
+                        <h4 class="text-left ">Title:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.title"></h5>
+                        <h4 class="text-left ">job:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.job"></h5>
+                        <h4 class="text-left ">isJobCurrent:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.isJobCurrent"></h5>
+                        <h4 class="text-left ">jobLength:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.jobLength"></h5>
+                        <h4 class="text-left ">contract:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.contract"></h5>
+                        <h4 class="text-left ">pros:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.overallRev.pros"></h5>
+                        <h4 class="text-left ">cons:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.overallRev.cons"></h5>
+                        <h4 class="text-left ">supplement:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.overallRev.supplement"></h5>
+                        <h4 class="text-left ">rating:</h4>
+                   
+                        <h4 class="text-left ">basePay:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.basePay"></h5>
+                        <h4 class="text-left ">payRaise:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.payRaise"></h5>
+                        <h4 class="text-left ">cashBonus:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.cashBonus"></h5>
+                        <h4 class="text-left ">profitSharing:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.profitSharing"></h5>
+                        <h4 class="text-left ">healthRating:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.healthRating"></h5>
+                        <h4 class="text-left ">opportunityRating:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.opportunityRating"></h5>
+                        <h4 class="text-left ">parentalLeaveRating:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.parentalLeaveRating"></h5>
+                        <h4 class="text-left ">timeOffRating:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.timeOffRating"></h5>
+                        <h4 class="text-left ">pensionRating:</h4>
+                        <h5 class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.pensionRating"></h5>
+                    </div> -->
+                    
+                  
+                    
+                </div>
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="reportedReviews">
             <div ng-repeat="data in reportedReviews ">
-                <a ng-click="vm.reportModal(data)">
-                    <div style="border: solid 1px black; margin-bottom: 10px">
-                        <p>Công ty:{{data.name}}</p>
-                        <p>title: {{data.reviews.title}}</p>
-                        <p>Số comment: {{data.reviews.comments.length}}</p>
-                        <p>Lượt ủng hộ: {{data.reviews.upvoteUsers.length}}</p>
-                        <span class="badge">Chưa xử lý: {{filteredReport.length}}</span>
-                         <div ng-repeat="report in data.reviews.reports | filter: { isConsidered: false } as filteredReport"></div>
+                <div style="width: 100%;" data-toggle="collapse" data-target="#{{data.reviews._id}}" >
+                   <div class="" style="margin-left:10px;margin-right:10px;margin-top:10px;margin-bottom:10px">
+                        <p style="color:#079696;font-weight:bold;">Công ty:{{data.name}}</p>
+                    <p style="color:grey;font-weight:bold;">Chủ đề: {{data.reviews.title}}</p>
+                    <span class="badge" style="background-color:#ed7c12">Chưa xử lý: {{filteredReport.length}}</span>
+                    <div ng-repeat="report in data.reviews.reports | filter: { isConsidered: false } as filteredReport"></div>
+                   </div>
+                </div>
+            
+                <div class="" style="border:solid 1px; border-color:lightgrey;background-color:white;margin-bottom:10px">
+                <div id="{{data.reviews._id}}" class="collapse" style="margin-left:10px;margin-right:10px;margin-bottom:10px">
+                    <h4 style="font-weight:bold;color:#079696">Các lý do:</h4>
+                    <div class="row" style="margin-left:0px;border:solid 1px; border-color:lightgrey;background-color:lightgrey;margin-right:0px" >
+                        <div ng-repeat="report in data.reviews.reports | filter: {isConsidered: false}">
+                            <div >
+                                <p><a ui-sref="user({userId: report.user})" style="color:grey"><b>Người dùng</b>:{{report.user}}</a></p>
+                                <p style="color:grey"><b>Nội dung</b>:{{report.content}}</p>
+                            </div>
+                        </div>
                     </div>
-                </a>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <img style="width: 100px;border:solid 1px; border-color:lightgrey;margin-top:50px" ng-src="{{data.avatar}}">
+                        </div>
+                        <div class="col-sm-7">
+                            <h4 class="modal-title"><a ui-sref="companies.review({reviewId: data.reviews._id})" style="font-weight: bold;
+    color: grey;">{{data.reviews.title}}</a></h4>
+                        </div>
+                    </div>
+                   <div class="row" style="margin-left:0px;overflow:hidden;color:grey">
+                    <p><b>Chủ đề</b>: {{data.reviews.title}}</p>
+                    <p><b>Ưu điểm</b>: {{data.reviews.overallRev.pros}}</p>
+                    <p><b>Nhược điểm</b>: {{data.reviews.overallRev.cons}}</p>
+                    <p><b>Điểm đánh giá</b>: {{data.reviews.overallRev.rating}}</p>
+                    <p><b>Số comment</b>: {{data.reviews.comments.length}}</p>
+                    <p><b>Lượt ủng hộ</b>: {{data.reviews.upvoteUsers.length}}</p>
+                   </div>
+                    <button type="button" class="btn btn-default" style="color:grey" ng-click="vm.rejectModal(data)">Đánh dấu tất cả báo cáo là đã xử lý nhưng không khóa bài</button>
+                    
+                    <button type="button" class="btn btn-danger" ng-click="vm.acceptModal(data)" style="margin-left:20px">Khóa bài và báo cho người dùng và đánh dấu tất cả báo cáo là đã xử lý</button>
+                </div> 
+                </div>
             </div>
         </div>
     </div>
+  </div>
+ 
+ 
+    
 </section>

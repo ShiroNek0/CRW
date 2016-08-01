@@ -1,5 +1,5 @@
 .dropdown-menu{
-	position: relative;
+
 }
 .navbar-account{
 font-size:20px;
@@ -57,7 +57,7 @@ margin-top: 5px;
   
     font-size: 12px;
     margin-top: 26px;
-    border-left: solid 1px;
+
 
 }
 .navbar-company-home{
@@ -85,15 +85,16 @@ margin-top: 5px;
 }
 
 .navbar{
-	background-color: #222121; 
+	background-color: #079696; 
 	height: 70px;
 	border-bottom:solid 1px;
 	border-color: #cccccc;
+	position:absolute;
 }
 .navbar-rating{
 	color:white;
 	font-family: Monospace;
-	margin-left: 22px;
+	margin-left: 36px;
 
 }
 .navbar-logo{
@@ -127,25 +128,25 @@ a.navbar-company:active {
     color: white;
 }
 li a.signin:link {
-    background-color: #222121; 
+    background-color: #079696; 
 }
 
 /* visited link */
 li a.signin:visited {
 	 color: white;
-   background-color: #222121; 
+   background-color: #079696; 
 }
 
 /* mouse over link */
 li a.signin:hover {
 	 color: white;
-     background-color: #222121; 
+     background-color: #079696; 
 }
 
 /* selected link */
 li a.signin:active {
 	color: white;
-    background-color: #222121; 
+    background-color: #079696;
 }
 li a.signup:link {
     background-color: #3b5998; 

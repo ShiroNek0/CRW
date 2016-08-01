@@ -1,0 +1,86 @@
+<style type="text/css">
+   @font-face {
+   font-family: 'Roboto-Regular';
+   src: url('/modules/companies/client/css/RobotoTTF/Roboto-Regular.ttf');
+   }
+</style>
+<section style="font-family: Roboto-Regular;position:relative" >
+      <h5 style="color:grey;margin-top:20px;margin-left:20px;font-weight:bold;background-color:lightgrey;margin-right:20px;height:30px;padding-left:20px;padding-top:10px">Quản lý các công ty</h5>
+      <div class="row">
+         <div class="col-sm-1">
+         </div>
+         <div class="col-sm-3" style="margin-left:50px">
+            <div id="my-div">
+               <h4 style="padding-top:30px;padding-left:55px;color:white">CÔNG TY</h4>
+               <h3 style="padding-left:87px;color:white"><b>{{vm.companies.length}}</b></h3>
+            </div>
+         </div>
+         <div class="col-sm-3">
+            <div id="my-divs">
+               <h4 style="padding-top:30px;padding-left:35px;color:white">BÀI ĐÁNH GIÁ</h4>
+               <h3 style="padding-left:87px;color:white"><b>{{vm.totalreview}} </b></h3>
+            </div>
+         </div>
+         <div class="col-sm-3">
+            <div id="my-divss">
+               <h4 style="padding-top:30px;padding-left:28px;color:white">TỔNG TOÀN BỘ</h4>
+               <h3 style="padding-left:87px;color:white"><b></b></h3>
+            </div>
+         </div>
+         <div class="col-sm-2">
+         </div>
+      </div>
+       <div class="row" style="margin-left:20px;margin-right:20px;background-color:white;border:solid 1px;border-color:#423b3b">
+       <div class="row" style="background-color:#423b3b;margin-left:0px;margin-right:0px">
+          <h5 style="margin-left:20px;color:white">Danh sách công ty</h5>
+       </div>
+       <div class="row">
+          <div class="col-sm-8">
+              <b class="" style="color:white;font-weight:none;color:grey;margin-left:30px">Hiển thị</b>
+            <select ng-model="vm.ItemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:grey; margin-right:10px;margin-top:10px;">
+            <option style="color:grey" value="10">10</option>
+            <option style="color:grey" value="20">20</option>
+            <option style="color:grey" value="30">30</option>
+         </select>
+          </div>
+          <div class="col-sm-4 " style="margin-top:10px;">
+          <b style="color:grey;margin-right:10px">Tìm kiếm</b>
+                      <input type="search" ng-model="vm.keyword" style="" placeholder=" Tìm theo tên..." style="border:solid 1px;border-color:lightgrey;">
+          </div>
+
+       </div>
+       <div class="" style="margin-right:10px;margin-left:10px;border:solid 1px;margin-top:10px;margin-bottom:10px;border-color:lightgrey">
+                <table class="table table-striped" >
+         <thead style="margin-left:20px;margin-right:20px;">
+            <tr style="color:white;background-color:#1fbaba;" >
+               <th class="col-sm-2" ng-click="vm.sort('name')"><h6 style="font-weight:bold;overflow:hidden">Tên công ty</h6> <span class="glyphicon sort-icon" ng-show="vm.sortKey=='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+               <th class="col-sm-2" ng-click="vm.sort('alias')"><h6 style="font-weight:bold">Tên gọi khác </h6><span class="glyphicon sort-icon" ng-show="vm.sortKey=='alias'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+               <th class="col-sm-2" ng-click="vm.sort('numOfReviews')"><h6 style="font-weight:bold">Số bài đánh giá</h6> <span class="glyphicon sort-icon" ng-show="vm.sortKey=='numOfReviews'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+               <th class="col-sm-2  " ng-click="vm.sort('averageRating')"><h6 style="font-weight:bold">Điểm đánh giá trung bình</h6>  <span class="glyphicon sort-icon" ng-show="vm.sortKey=='averageRating'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+               <th class="col-sm-2" ng-click="vm.sort('overallRating')"><h6 style="font-weight:bold"> Điểm xếp hạng </h6><span class="glyphicon sort-icon" ng-show="vm.sortKey=='overallRating'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+               <th class="col-sm-2" ng-click="vm.sort('contact')"><h6 style="font-weight:bold">Liên Hệ </h6> <span class="glyphicon sort-icon" ng-show="vm.sortKey=='contact'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+            </tr>
+         </thead>
+      </table>
+      <div dir-paginate="company in vm.companies | orderBy:vm.sortKey:!vm.reverse | itemsPerPage:vm.ItemsPerPage | filter: {name: vm.keyword}">
+         <table class="table table-striped" style="">
+            <tbody style="word-wrap: break-word;">
+            
+                  <td class="col-sm-2" style="font-weight:bold;:solid 1px;border-color:lightgrey;color:grey"><a ui-sref="companies.view({companyId: company._id})" style="word-wrap:break-word" >{{company.name}}</a></td>
+                  <td class="col-sm-2" style=":solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word"> <span ng-repeat="alias in company.alias" class="badge" style="word-wrap: break-word"> {{alias}}</span></td>
+                  <td class="col-sm-2" style="font-weight:bold;:solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word;">{{company.numOfReviews}}</td>
+                  <td class="col-sm-2" style=":solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word;"> {{company.averageRating | number:2}}</td>
+                  <td class="col-sm-1" style=":solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word;"> {{company.overallRating | number:2}}</td>
+                  <td class="col-sm-1" style=":solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word;"> <a href="{{company.website}}"></td>
+                  <td class="col-sm-2" style=":solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word;"> {{company.contact}} </td>
+            
+            </tbody>
+         </table>
+      </div>
+       </div>
+      <div class="row pull-right" style="font-size:10px;margin-right:10px">
+         <dir-pagination-controls max-size="4" direction-links="true" boundary-links="true">
+         </dir-pagination-controls>
+      </div>
+   </div>
+</section>

@@ -1,48 +1,44 @@
 'use strict';
 
-angular.module('users').controller('UserController', ['$scope', '$state', 'Authentication', 'userResolve', 'PostedReviews',
-  function ($scope, $state, Authentication, user, PostedReviews) {
+angular.module('users').controller('UserProfileController', ['$http', '$scope', '$state', 'Authentication', 'userResolve', 'PostedReviews',
+  function ($http, $scope, $state, Authentication, user, PostedReviews) {
     var vm = this;
     vm.user = user;
-     
-    PostedReviews.query({ userId: vm.user._id }, function (data) {
-      vm.postedReviews = data;
-    });
+    vm.postedReviews = user.postedReviews;
+
+    vm.authentication = Authentication;
+
+    vm.active = function(){
+      vm.user.accState = 'active';
+      vm.update();
+    };
+
+    vm.deactive = function(){
+      vm.user.accState = 'deactive';
+      vm.update();
+    };
 
 
-    // $scope.authentication = Authentication;
-    // $scope.user = userResolve;
+    vm.promoteMod = function(){
+      vm.user.roles.push('mod');
+      vm.update();
+    };
 
-    // $scope.remove = function (user) {
-    //   if (confirm('Are you sure you want to delete this user?')) {
-    //     if (user) {
-    //       user.$remove();
+    vm.demoteMod = function(){
+      vm.user.roles=['user'];
+      vm.update();      
+    };
 
-    //       $scope.users.splice($scope.users.indexOf(user), 1);
-    //     } else {
-    //       $scope.user.$remove(function () {
-    //         $state.go('admin.users');
-    //       });
-    //     }
-    //   }
-    // };
+    vm.update = function(){
+      vm.user.$update(successCallback, errorCallback);
 
-    // $scope.update = function (isValid) {
-    //   if (!isValid) {
-    //     $scope.$broadcast('show-errors-check-validity', 'userForm');
+      function successCallback(res){
 
-    //     return false;
-    //   }
+      }
 
-    //   var user = $scope.user;
-
-    //   user.$update(function () {
-    //     $state.go('admin.user', {
-    //       userId: user._id
-    //     });
-    //   }, function (errorResponse) {
-    //     $scope.error = errorResponse.data.message;
-    //   });
-    // };
+      function errorCallback(res){
+        alert(res.data.message);
+      }
+    };
   }
 ]);

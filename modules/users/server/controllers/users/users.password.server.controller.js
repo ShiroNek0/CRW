@@ -74,7 +74,7 @@ exports.forgot = function (req, res, next) {
       var mailOptions = {
         to: user.email,
         from: config.mailer.from,
-        subject: 'Password Reset',
+        subject: 'Khởi tạo lại mật khẩu',
         html: emailHTML
       };
       smtpTransport.sendMail(mailOptions, function (err) {
@@ -210,7 +210,7 @@ exports.changePassword = function (req, res, next) {
 
   if (req.user) {
     if (passwordDetails.newPassword) {
-      User.findById(req.user.id, function (err, user) {
+      User.findById(req.user._id, function (err, user) {
         if (!err && user) {
           if (user.authenticate(passwordDetails.currentPassword)) {
             if (passwordDetails.newPassword === passwordDetails.verifyPassword) {

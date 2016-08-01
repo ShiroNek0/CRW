@@ -1,0 +1,21 @@
+<section class="row" ng-controller="AnnouncementController" style="overflow:hidden;max-height:800px">
+    <button ng-click="markAllRead()">Đánh dấu tất cả là đã đọc</button>
+    <div ng-repeat="notif in user.notification | orderBy:'-_id' ">
+        <div class="row" ng-class="{hasRead: notif.hasRead, notRead: !notif.hasRead}">
+            <div class="col-sm-9">
+                <p>{{notif.message}}</p>
+            </div>
+            <div class="col-sm-3"><a type="button" ng-click="toTargetLink(notif._id, notif.message, $index)">Đường đẫn đính kèm</a></div>
+        </div>
+    </div>
+</section>
+<style>
+.hasRead {
+    background-color: cyan;
+}
+
+.notRead {
+    background-color: red;
+    color: white;
+}
+</style>
