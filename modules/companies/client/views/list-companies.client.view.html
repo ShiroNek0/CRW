@@ -1,14 +1,9 @@
-<style type="text/css">
-   @font-face {
-   font-family: 'Roboto-Regular';
-   src: url('/modules/companies/client/css/RobotoTTF/Roboto-Regular.ttf');
-   }
-</style>
-
 <section style="font-family: Roboto-Regular" >
+ 
    <div class="container" style="overflow:hidden">
+
       <div class="row" style="margin-left:50px">
-         <div class="col-sm-7  "  style="margin-top:20px;border:solid 1px;border-color:grey;background-color:white; overflow:hidden;margin-bottom:30px;" >
+         <div class="col-sm-7  " style="margin-top:20px;border:solid 1px;border-color:grey;background-color:white; overflow:hidden;margin-bottom:30px;" >
             <div class="row" style="margin-bottom:20px;height:60px">
                <div class="col-sm-6" style="color:white;margin-top:10px">
                   <h5 style="color:black" ng-show="(vm.keyword)">Hiển thị kết quả cho từ khóa: {{vm.keyword}}</h5>
@@ -21,24 +16,24 @@
                </div>
             </div>
             <div class="row" style="margin-bottom:30px;margin-left:3px;">
-               <div class="col-sm-5">
-                  Hiển thị : 
-                  <select ng-model="vm.itemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:black">
-                     <option style="color:black" value="5">5</option>
-                     <option style="color:black" value="10">10</option>
-                     <option style="color:black" value="20">20</option>
+               <div class="col-sm-4">
+                  <b style="color:grey;font-size: 13px;" >Hiển thị :</b> 
+                  <select ng-model="vm.itemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:#079696;">
+                     <option style="color:black" value="8">8</option>
+                     <option style="color:black" value="16">16</option>
+                     <option style="color:black" value="32">32</option>
                   </select>
                </div>
-               <div class="col-sm-7" >
-                  Sort
+               <div class="col-sm-8" style="">
+                 <b style="color:grey;font-size: 13px;" >Sắp xếp:</b>
                   <span class="sep" style="width:2px;height:1.1em;border-right:1px solid;padding-left:5px;border-color:lightgrey"></span>
-                  <a style="padding-left:5px" ng-click="vm.sort('name')" class="name-company-filter" >Tên công ty </a>
-                  <span class="glyphicon sort-icon" ng-show="vm.sortKey=='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" style="color:greens"></span></a>
+                  <a style="padding-left:5px;font-size: 13px;color:#079696;" ng-click="vm.sort('name')" class="name-company-filter" >Tên công ty </a>
+                  <span class="glyphicon sort-icon" ng-show="vm.sortKey==='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" style="color:green"></span></a>
                   <span class="sep" style="width:2px;height:1.1em;border-right:1px solid;padding-left:5px;border-color:lightgrey"></span>
-                  <a style="padding-left:5px" ng-click="vm.sort('reviews.length')"  class="review-company-filter">Đánh giá
-                  <span class="glyphicon sort-icon" ng-show="vm.sortKey=='reviews.length'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" ></span></a>
+                  <a style="padding-left:5px;font-size: 13px;color:#079696;" ng-click="vm.sort('numOfReviews')"  class="review-company-filter">Đánh giá
+                  <span class="glyphicon sort-icon" ng-show="vm.sortKey==='numOfReviews'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" ></span></a>
                   <span class="sep" style="width:2px;height:1.1em;padding-left:5px;border-color:lightgrey"></span>
-                  <input type="search" ng-model="vm.keyword" style="width:100px;margin-left:20px;border:solid 1px;border-color:grey;color:black" placeholder=" Tìm kiếm..." ng-change='vm.onChange()'>
+                  <input type="search" ng-model="vm.keyword" style="width:100px;margin-left:20px;border:solid 1px;border-color:grey;color:grey" placeholder=" Tìm kiếm..." ng-change='vm.onChange()'>
                </div>
             </div>
             <div class="row">
@@ -61,13 +56,13 @@
                <h4 style="margin-left:20px;margin-top:20px;font-weight:bold">Top 10 công ty nổi bật</h4>
             </div>
             <div class="row" ng-repeat="company in vm.listTop10 | orderBy: '-overallRating' | limitTo: 10">
-               <div class="col-sm-12">
-                  <div class="col-sm-4">
+               <div class="col-sm-12 " >
+                  <div class="col-sm-4 " >
                      
-                     
+                      
                    
-                     <div class="row">
-                        <a ui-sref="companies.view({companyId: company._id})"><img src="{{company.avatar}}" alt="avatar" class="picture"  style="width:115px;height:90px;margin-bottom:20px"></a>
+                     <div class="row " >
+                        <a ui-sref="companies.view({companyId: company._id})"><img src="{{company.avatar}}" alt="avatar" class="picture "  style="width:115px;height:90px;margin-bottom:20px"></a>
                      </div>
                      
                   </div>
@@ -81,13 +76,16 @@
                <!--            <div class="col-sm-2">
                   </div> -->
             </div>
+            
          </div>
-
+      
       <div class="row">
          
       </div>
       </div>
+
    </div>
+    <div id='bttop'>TRỞ VỀ ĐẦU TRANG</div>
 </section>
 <script >
    $(function() {
@@ -99,6 +97,45 @@
     
     });
     $('.tesr').click(function() {
+    $('body,html').animate({
+    scrollTop: 0
+    }, 800);
+    });
+   });
+</script>
+<style type='text/css'>
+   a:hover {
+   text-decoration: none;
+    }
+   #bttop{
+   border:1px solid #4adcff;
+   background:#24bde2;
+   text-align:center;
+   padding:5px;
+   position:fixed;
+   bottom:35px;
+   right:10px;
+   cursor:pointer;
+   display:none;
+   color:#fff;
+   font-size:11px;
+   font-weight:900
+   }
+   #bttop:hover{
+   border:1px solid #ffa789;
+   background:#ff6734
+   }
+</style>
+<script >
+   $(function() {
+    $(window).scroll(function() {
+    if ($(this).scrollTop() != 0) {
+    $('#bttop').fadeIn();
+    } else {
+    $('#bttop').fadeOut();
+    }
+    });
+    $('#bttop').click(function() {
     $('body,html').animate({
     scrollTop: 0
     }, 800);

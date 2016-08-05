@@ -14,13 +14,11 @@ module.exports = function (io, socket) {
   // Gửi số lượng bài đánh giá chưa duyệt cho admin và mod
   if(user.roles.indexOf('mod') !== -1 || user.roles.indexOf('admin') !== -1) {
     companies.countWaitingReviews(function (result) {
-      console.log('Waiting review: ' + result);
-      socket.emit(result);
+      socket.emit('review waiting', result);
     });
 
     companies.countReportedReviews(function (result) {
-      console.log('Reported review: ' + result);
-      socket.emit(result);
+      socket.emit('review reported', result);
     });
 
     users.notiEventEmitter.on('review waiting', function() {
@@ -31,7 +29,7 @@ module.exports = function (io, socket) {
       });
     });
 
-    users.notiEventEmitter.on('review reported', function(data) {
+    users.notiEventEmitter.on('review reported', function() {
       // Cập nhật số lượng bài đánh giá có báo cáo chưa xử lý
       companies.countReportedReviews(function (result) {
         console.log('Reported review triggered: ' + result);

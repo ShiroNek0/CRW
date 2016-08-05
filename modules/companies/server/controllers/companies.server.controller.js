@@ -365,7 +365,6 @@ exports.createReview = function(req, res) {
 
   var company = req.company;
   var review = req.body.newReview;
-  console.log(review.state);
   if (req.user) {
     review.userID = req.user._id;
   }

@@ -1,8 +1,9 @@
-<section>
+<section style="font-family: Roboto-Regular">
     <div class="container" style="overflow:hidden">
       <div class="col-sm-2">
           
       </div>
+      
       <div class="col-sm-8">
        <h3 class="addcompany">Thêm công ty mới</h3>
             <h5 class="note-add-company" style="color:#0eaf5c">Bạn cần chắc chắn công ty bạn muốn thêm vào chưa có trong hệ thống chúng tôi.Hãy tìm kiếm lại công ty bạn đang cần đánh giá.</h5>
@@ -15,7 +16,7 @@
                     <div class="col-sm-10">
                         <div class="col-sm-5">
                             <div class="row">
-                                <div class="form-group" show-errors>
+                                <div class="form-group " show-errors>
                                     <h5 style="font-weight:bold;color:grey">Tên công ty(*):</h5 style="font-weight:bold;color:grey">
                                     <input type="text" class="form-control" ng-model="vm.company.name" name="name" placeholder="Tên công ty..." required>
                                     <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.name.$error" role="alert">
@@ -35,7 +36,7 @@
                                     <h5 style="font-weight:bold;color:grey">Liên hệ:</h5 style="font-weight:bold;color:grey">
                                     <input type="text" class="form-control" ng-model="vm.company.contact" placeholder="Liên hệ ..." name="contact">
                                 </div>
-                                <strong ng-bind="vm.error" class="error-company"></strong>
+                                
                             </div>
                             <div class="row">
                                 <div class="form-group" style="color:grey">
@@ -58,29 +59,41 @@
                             </div>
                             <div class="row">
                                 <div class="form-group" show-errors>
-                                    <h5 style="font-weight:bold;color:grey">Website công ty</h5 style="font-weight:bold;color:grey">
-                                    <input type="url" name="website" class="form-control" ng-model="vm.company.website" placeholder="Website..." http-prefix>
+                                    <h5 style="font-weight:bold;color:grey">Website công ty(*)</h5 style="font-weight:bold;color:grey">
+                                    <input type="url" name="website" class="form-control" ng-model="vm.company.website" placeholder="Website..." http-prefix required>
+                                    <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.website.$error" role="alert">
+                                        <p class="help-block error-text" ng-message="required">Hãy website công ty.</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group" show-errors>
-                                    <h5 style="font-weight:bold;color:grey">Link ảnh đại diện (*):</h5 style="font-weight:bold;color:grey">
-                                    <input type="text" name="avatar" class="form-control" ng-model="vm.company.avatar" placeholder="Ảnh đại diện..." name="avatar" required>
+                                    <h5 style="font-weight:bold;color:grey">Ảnh đại diện/logo công ty(*):</h5 style="font-weight:bold;color:grey">
+                                    <input type="text" name="avatar" class="form-control" ng-model="vm.company.avatar" placeholder="Đường dẫn tới ảnh đại diện/logo..." name="avatar" required>
                                     <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.avatar.$error" role="alert">
                                         <p class="help-block error-text" ng-message="required">Hãy nhập link ảnh đại diện.</p>
                                     </div>
                                 </div>
                                 <div ng-show="(vm.company.avatar)"><img src="{{vm.company.avatar}} " style="height:200px;width:200px"></div>
+
                             </div>
                             <div class="row">
-                            <h4 class="">Ảnh giới thiệu:</h4>
-                                Ban co the them nhieu ảnh giới thiệu
-                                <input type="text" placeholder="Nhập đường dẫn ảnh giới thiệu..." data-placement="bottom" ng-model="vm.introducePhoto">
-                                <button type="button" ng-click="vm.addPhoto()">Thêm ảnh</button>
+                                <div class="form-group" show-errors>
+                                    <h5 style="font-weight:bold;color:grey">Ảnh giới thiệu công ty:</h5 style="font-weight:bold;color:grey">
+                                    <h6 style="color:green">Bạn có thể thêm nhiều ảnh về công ty.</h6>
+                                      <input type="text" placeholder="Nhập đường dẫn ảnh..." data-placement="bottom" ng-model="vm.introducePhoto" style="border:solid 1px;border-color:lightgrey">
+                                <button style="background-color:#0eaf5c;color:white" type="button" ng-click="vm.addPhoto()">Thêm ảnh</button>
                                 <div ng-repeat="photo in vm.company.photo">
-                                <img ng-src="{{photo}}">
-                                <button type="button" ng-click="vm.deletePhoto($index)">delete</button>
+                                <img ng-src="{{photo}}" style="height:170px;width:200px">
+                                <br>
+                                 <button style="background-color:#f73131;color:white" type="button" ng-click="vm.deletePhoto($index)">Xóa</button>
                                 </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                      
+                     <!--            Ban co the them nhieu ảnh giới thiệu -->
+                              
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -93,9 +106,12 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group">
-                                    <h5 style="font-weight:bold;color:grey">Ngành nghề chính của công ty:</h5 style="font-weight:bold;color:grey">
-                                    <input type="text" class="form-control" ng-model="vm.company.industry" placeholder="Ngành nghề chính của công ty..." name="industry">
+                                <div class="form-group" show-errors>
+                                    <h5 style="font-weight:bold;color:grey">Ngành nghề chính của công ty(*):</h5 style="font-weight:bold;color:grey">
+                                    <input type="text" class="form-control" ng-model="vm.company.industry" placeholder="Ngành nghề chính của công ty..." name="industry" required>
+                                    <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.industry.$error" role="alert">
+                                        <p class="help-block error-text" ng-message="required">Hãy nhập ngành nghề chính của công ty.</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -141,6 +157,7 @@
                 </div>
                 <div class="row" style="margin-bottom:20px">
                     <div class="col-sm-8">
+                    <strong ng-bind="vm.error" class="error-company" style="color: red"></strong>
                     </div>
                     <div class="col-sm-4">
                         <div class="col-sm-12">
@@ -157,4 +174,21 @@
           
       </div>
     </div>
+    <div id='bttop'>TRỞ VỀ ĐẦU TRANG</div>
 </section>
+<script >
+   $(function() {
+    $(window).scroll(function() {
+    if ($(this).scrollTop() != 0) {
+    $('#bttop').fadeIn();
+    } else {
+    $('#bttop').fadeOut();
+    }
+    });
+    $('#bttop').click(function() {
+    $('body,html').animate({
+    scrollTop: 0
+    }, 800);
+    });
+   });
+</script>

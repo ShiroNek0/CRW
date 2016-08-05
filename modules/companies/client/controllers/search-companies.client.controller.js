@@ -11,14 +11,14 @@
     var vm = this;
     vm.onChange = onChange;
     vm.companies = companies;
-    vm.listTop10 = companies;
+    vm.listTop10 = SearchService.query();
 
     vm.keyword = $stateParams.keyword;
     vm.sort = sort;
-    vm.itemsPerPage = 10;
+    vm.itemsPerPage = 16;
 
     vm.initPanel = function(company){
-      company.pointDisplay =  Math.round(company.averageRating*2)/2;
+      company.pointDisplay = Math.round(company.averageRating*2)/2;
     };
 
     function sort(keyname){

@@ -37,10 +37,10 @@
   
 </head>
 
-<body class="ng-cloak" style="font-family: 'Roboto';background-color:#e5e5e5">
+<body class="ng-cloak" style="font-family: 'Ek Mukta';background-color:#e5e5e5">
   <header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top"></header>
   <section class="content" style="min-height: 600px;">
-    <section class="container-fluid" style="margin-top: 55px">
+    <section class="container-fluid" style="margin-top:40px">
       {% block content %}{% endblock %}
     </section>
   </section>
@@ -61,6 +61,7 @@
   <!--Livereload script rendered -->
   <script type="text/javascript" src="{{host}}:35729/livereload.js"></script>
   {% endif %}
+
 </body>
 
 </html>

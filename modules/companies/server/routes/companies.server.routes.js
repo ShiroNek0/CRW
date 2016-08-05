@@ -23,6 +23,8 @@ module.exports = function(app) {
   app.route('/api/companies/postedReviews').all(companiesPolicy.isAllowed)
     .get(companies.listUserReviews);
 
+  app.route('/api/companies/followedCompany').get(companies.listFollowed);
+
   app.route('/api/companies/:companyId').all(companiesPolicy.isAllowed)
     .get(companies.read)
     .put(companies.update)

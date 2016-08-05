@@ -77,6 +77,7 @@
       modalInstance.result.then(function (company) {
         if(company){
           vm.company = company;
+          vm.company.pointDisplay = Math.round(vm.company.averageRating*2)/2;
         }
       });
     }
@@ -89,14 +90,14 @@
 
         if (!isValid) {
           $scope.$broadcast('show-errors-check-validity', 'vm.form.companyForm');
-          vm.error = vm.form.companyForm.$error;
+          vm.error = 'Hãy kiểm tra lại các trường có dấu (*)';
           return false;
         }
       
         vm.company.$update(successCallback, errorCallback);
 
         function successCallback(res) {
-          $modalInstance.close(res.data);
+          $modalInstance.close(res);
         }
 
         function errorCallback(res) {
@@ -167,10 +168,10 @@
 
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.companyForm');
-        vm.error = 'Có cái gì đó sai sai';
+        vm.error = 'Hãy kiểm tra lại các trường có dấu (*)';
         return false;
       }
-    
+
       vm.company.$save(successCallback, errorCallback);
 
       function successCallback(res) {
@@ -181,7 +182,6 @@
       }
 
       function errorCallback(res) {
-
         vm.error = res.data.message;
       }
     }
@@ -189,7 +189,7 @@
     function addReview(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.reviewForm');
-        vm.error = 'Có cái gì đó sai sai';
+        vm.error = 'Hãy kiểm tra lại các trường có dấu (*)';
         return false;
       }
       // TODO: move create/update logic to service

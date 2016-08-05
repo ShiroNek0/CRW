@@ -1,9 +1,3 @@
-<style type="text/css">
-    @font-face {
-            font-family: 'Roboto-Regular';
-            src: url('/modules/companies/client/css/RobotoTTF/Roboto-Regular.ttf');
-        }
-</style>
 <div class="container" style="font-family: Roboto-Regular">
    <div class="row">
       <div class="col-sm-2">
@@ -16,7 +10,7 @@
              <div class="col-sm-2 content-avatar-detail-outside" style="margin-left:20px">
                 
                  <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar-detail" style="  max-height: 110px;max-width: 110px;">
-                 <h6 style="color:black;font-weight:bold">Số người theo dõi: {{ vm.company.followers.length }}</h6>
+                 <h6 style="color:black;font-weight:bold">Số người theo dõi: {{ vm.company.numOfFollowers }}</h6>
 
              </div>
              <div class="col-sm-4" >
@@ -90,14 +84,14 @@
                <div class="row" style="margin-top:5px">
                <img style="margin-top:50px" ng-src="{{vm.company.reviews.userID.profileImageURL? vm.company.reviews.userID.profileImageURL : 'modules/users/client/img/profile/default.png'}}" alt="avatar" class="content-avatar-review-detail">
                <a ui-sref="user({userId: vm.company.reviews.userID._id})" ng-show="vm.company.reviews.userID.name && !vm.company.reviews.stayAnonymous">
-                  <h5 style="margin-left:25px;font-weight:bold;color:#079696; " data-ng-bind="vm.company.reviews.userID.name"></h5>
+                  <h6 style="margin-left:25px;font-weight:bold;color:#079696; " data-ng-bind="vm.company.reviews.userID.name"></h6>
                   </a>
                   <h6 style="margin-left:18px;  font-weight: bold;
   color: #079696;" ng-hide="vm.company.reviews.userID.name && !vm.company.reviews.stayAnonymous">Anonymouse</h6>
-                 <!--   <img src="http://pabook2.libraries.psu.edu/palitmap/H4CLogo.jpg" style="width: 300px"> -->
+             
                </div>
             </div>
-            <div class="col-sm-10" style="margin-left:35px;">
+            <div class="col-sm-10" style="margin-left:15px;">
                
                <div class="pull-right row">
                 
@@ -127,8 +121,8 @@
                   <h5 class="pull-right" style="margin-top:25px;color:grey" >Ủng hộ (<b style="color:#079696; ">{{vm.company.reviews.upvoteUsers.length}}</b>) </h5>
                </div>
                <div class="row">
-                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                     <div class="panel panel-primary" style="border-color:lightgrey">
+                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="border:none">
+                     <div class="panel panel-primary" style="border-color:lightgrey;border:none">
                         <div class="panel-heading" role="tab" id="headingOne">
                            <h4 class="panel-title">
                               <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -139,35 +133,35 @@
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                            <div class="panel-body">
                                        <div class="row">
-                          <h5 class="text-left review-detail">Vị trí công việc:</h5>
-                          <h5 class="text-left review-details
-                             " data-ng-bind="vm.company.reviews.job"></h5>
+                          <h5 style="margin-left:-0px" class="text-left review-detail">Vị trí công việc:</h5>
+                          <h5 style="margin-left:-0px" class="text-left review-details">- <span ng-repeat="job in vm.company.reviews.job">{{job}} - </span> </h5>
                        </div>
                        <div class="row">
-                          <h5 class="text-left review-detail">Thời gian làm việc tại vị trí trên::</h5>
-                          <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.jobLength"></h5>
+                         <h5 style="margin-left:-0px" class="text-left review-detail" ng-show="(vm.company.reviews.isJobCurrent)">Hiện đang làm việc:</h5>
+                         <h5 style="margin-left:-0px" class="text-left review-detail" ng-hide="(vm.company.reviews.isJobCurrent)">Đã từng làm việc:</h5>
+                         <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.jobLength"></h5>                         
                        </div>
                        <div class="row">
-                          <h5 class="text-left review-detail">Kiểu hợp đồng:</h5>
-                          <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.contract"></h5>
+                         <h5 style="margin-left:-0px" class="text-left review-detail">Kiểu nhân viên:</h5>
+                          <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.contract"></h5>
                        </div>
                        <div class="row">
-                          <h5 class="text-left review-detail">Ưu điểm: </h5>
-                          <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.overallRev.pros"></h5>
+                          <h5 style="margin-left:-0px" class="text-left review-detail">Ưu điểm: </h5>
+                          <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.overallRev.pros"></h5>
                        </div>
                        <div class="row">
-                          <h5 class="text-left review-detail">Nhược điểm:</h5>
-                          <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.overallRev.cons"></h5>
+                          <h5 style="margin-left:-0px" class="text-left review-detail">Nhược điểm:</h5>
+                          <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.overallRev.cons"></h5>
                        </div>
                        <div class="row">
-                          <h5 class="text-left review-detail">Nội dung:</h5>
-                          <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.overallRev.supplement"></h5>
+                          <h5 style="margin-left:-0px" class="text-left review-detail">Nội dung:</h5>
+                          <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.overallRev.supplement"></h5>
                        </div>
                               
                            </div>
                         </div>
                      </div>
-                     <div class="panel panel-default"  >
+                     <div class="panel panel-default"  style="border:none">
                         <div class="panel-heading" role="tab" id="headingTwo" >
                            <h4 class="panel-title" >
                               <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -179,46 +173,46 @@
                            <div class="panel-body">
                           
                                <div class="row">
-                                 <h5 class="text-left review-detail">Lương cơ bản:</h5>
-                                 <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.basePay"></h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-detail">Lương cơ bản:</h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.basePay"></h5>
                               </div>
                               <div class="row">
-                                 <h5 class="text-left review-detail">Mức tăng lương trung bình: </h5>
-                                 <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.payRaise"></h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-detail">Mức tăng lương trung bình: </h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.payRaise"></h5>
                               </div>
                               <div class="row">
-                                 <h5 class="text-left review-detail">Lương thưởng:</h5>
-                                 <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.cashBonus"></h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-detail">Lương thưởng:</h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.cashBonus"></h5>
                               </div>
                               <div class="row">
-                                 <h5 class="text-left review-detail">Tiền lương ngoài: </h4>
-                                 <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.profitSharing"></h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-detail">Tiền lương ngoài: </h4>
+                                 <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.profitSharing"></h5>
                               </div>
                               <div class="row">
-                                 <h5 class="text-left review-detail">Cơ hội thăng tiến: </h5>
-                                 <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.opportunityRating"></h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-detail">Cơ hội thăng tiến: </h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.opportunityRating"></h5>
                               </div>
                               <div class="row">
-                                 <h5 class="text-left review-detail">Bảo hiểm và các chế độ chăm sóc sức khỏe: </h5>
-                                 <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.healthRating"></h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-detail">Bảo hiểm và các chế độ chăm sóc sức khỏe: </h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.healthRating"></h5>
                               </div>
                               <div class="row">
-                                 <h5 class="text-left review-detail">Thời gian nghỉ lương thưởng: </h5>
-                                 <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.timeOffRating"></h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-detail">Thời gian nghỉ lương thưởng: </h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.timeOffRating"></h5>
                               </div>
                               <div class="row">
-                                 <h5 class="text-left review-detail">Chế độ lương hưu: </h5>
-                                 <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.pensionRating"></h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-detail">Chế độ lương hưu: </h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.pensionRating"></h5>
                               </div>
                               <div class="row">
-                                 <h5 class="text-left review-detail">Chế độ thai sản/ nghỉ vợ đẻ: </h5>
-                                 <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.parentalLeaveRating"></h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-detail">Chế độ thai sản/ nghỉ vợ đẻ: </h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.salaryAndBenefit.parentalLeaveRating"></h5>
                               </div>
 
                            </div>
                         </div>
                      </div>
-                     <div class="panel panel-default">
+                     <div class="panel panel-default" style="border:none">
                         <div class="panel-heading" role="tab" id="headingThree">
                            <h4 class="panel-title">
                               <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -229,16 +223,16 @@
                         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                            <div class="panel-body">
                               <div class="row">
-                                 <h5 class="text-left review-detail">Bạn có đang làm việc tại vị trí này? </h5>
-                                 <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.isJobCurrent"></h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-detail">Bạn có đang làm việc tại vị trí này? </h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.isJobCurrent"></h5>
                               </div>
                               <div class="row">
-                                 <h5 class="text-left review-detail">Thời gian làm việc tại vị trí trên: </h5>
-                                 <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.jobLength"></h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-detail">Thời gian làm việc tại vị trí trên: </h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.jobLength"></h5>
                               </div>
                               <div class="row">
-                                 <h5 class="text-left review-detail">Loại nhân viên: </h5>
-                                 <h5 class="text-left review-details" data-ng-bind="vm.company.reviews.contract"></h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-detail">Loại nhân viên: </h5>
+                                 <h5 style="margin-left:-0px" class="text-left review-details" data-ng-bind="vm.company.reviews.contract"></h5>
                               </div>
                            </div>
                         </div>
@@ -248,6 +242,8 @@
       
                <div class="row">
                   <div class="row">
+                    <button type="button" ng-show="vm.authentication.user && (vm.authentication.user._id === vm.company.reviews.userID._id)" ui-sref="companies.editReview({companyId: vm.company._id, reviewId: vm.company.reviews._id, message: 'Lưu ý: Bài sửa xong sẽ phải duyệt lại'})">Sửa bài</button>
+
                      <button type="button" ng-show="vm.authentication.user" class="button-vote" data-toggle="modal" data-target="#modalUpvote"><span class="glyphicon glyphicon-pushpin" style="font-size:12px"></span><span ng-hide="vm.checkIfUpvoted()"> <b style="font-size:12px">Ủng Hộ</b></span><span ng-show="vm.checkIfUpvoted()"> <b style="font-size:12px">Bỏ ủng Hộ</b></span></button>
                      <button type="button" ng-show="(vm.authentication.user.roles.indexOf('mod')>0)" class="button-votes" ng-click="vm.highlight()"><span class="glyphicon glyphicon-tower" style="font-size:12px"></span><span ng-hide="vm.company.reviews.highlight"> <b style="font-size:12px">Đánh giá nổi bật</b></span><span ng-show="vm.company.reviews.highlight"> <b style="font-size:12px">Bỏ đánh giá nổi bật</b</span></button>
                      <button type="button" ng-show="vm.authentication.user && (vm.authentication.user._id != vm.company.reviews.userID._id)" class="button-bookmark" ng-click="vm.bookmark()"><span class="glyphicon glyphicon-bookmark" style="font-size:12px"></span><span ng-hide="vm.checkIfBookmarked()"> <b style="font-size:12px">Dấu trang</b></span><span ng-show="vm.checkIfBookmarked()">  <b style="font-size:12px">Bỏ lưu dấu trang</b></span></button>

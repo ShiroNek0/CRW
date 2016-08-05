@@ -45,7 +45,6 @@ exports.update = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-
     users.trimInfoUser(user, function(result) {
       res.jsonp(result);
     });

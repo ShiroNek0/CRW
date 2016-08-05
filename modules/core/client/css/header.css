@@ -1,17 +1,28 @@
+@font-face {
+   font-family: 'Roboto-Regular';
+   src: url('/modules/companies/client/css/RobotoTTF/Roboto-Regular.ttf');
+}
+
 .dropdown-menu{
 
 }
 .navbar-account{
 font-size:20px;
-margin-top: 5px;
+
 }
 
 .important-navbar{
-	margin-top: 27px;
+	margin-top: 20px;
 	color: white;
-	
+	font-size: 15px;	
 	font-weight: none;
+	margin-left: 47px;
 
+
+}
+.nav > li > a{
+	height: 45px;
+	margin-top: 2px;
 }
 @-webkit-keyframes shine {
     0% {
@@ -21,6 +32,13 @@ margin-top: 5px;
         background-position: top right;
     }
 }
+.badge-notify{
+   
+   position:absolute;
+   top:10px;
+   margin-left: 8px;
+   font-size: 7px;
+  }
 .navbar-name{
 	color: white;
 
@@ -55,22 +73,23 @@ margin-top: 5px;
 .navbar-company-link{
 	list-style: none;
   
-    font-size: 12px;
-    margin-top: 26px;
+    font-size: 11px;
+    margin-top: 21px;
 
 
 }
 .navbar-company-home{
 	list-style: none;
     font-family: Arial ;
-    font-size: 12px;
-    margin-top: 26px;
+    font-size: 11px;
+    margin-top: 21px;
     margin-left: 25px;
     width: 100px;
 }
 
 .b-company{
 	color: white;
+
 
 }
 .b-home{
@@ -86,27 +105,27 @@ margin-top: 5px;
 
 .navbar{
 	background-color: #079696; 
-	height: 70px;
-	border-bottom:solid 1px;
-	border-color: #cccccc;
+	height: 50px;
+
+	
 	position:absolute;
 }
 .navbar-rating{
 	color:white;
-	font-family: Monospace;
-	margin-left: 36px;
+	font-size: 13px;	
+	margin-left: 10px;
 
 }
 .navbar-logo{
-	margin-left: 25px;
+	margin-left: 20px;
 	line-height: 10px;
-	margin-top: 15px;
+	margin-top: 8px;
 }
 .navbar-company{
 	color: white;
-    font-size: 31px;
-    font-family: Verdana;
-    margin-left: 21px;
+    font-size: 27px;
+
+    
 
 }
 a.navbar-company:link {
@@ -173,7 +192,7 @@ li a.signup:active {
     font-size: 12px;
   
     margin-top: 9px;
-    border-left: solid 1px;
+
 }
 
 
@@ -211,6 +230,8 @@ li a.signup:active {
 .header-profile-image{
 	width: 30px;
 	height: 32px;
+	margin-top:-7px; 
+	
 	
 }
 

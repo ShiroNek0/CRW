@@ -5,15 +5,26 @@ angular.module('core').controller('HeaderController', ['$http', '$rootScope', '$
     // Expose view variables
     $scope.$state = $state;
     $scope.authentication = Authentication;
-    // if (!Socket.socket) {
-    //   Socket.connect();
-    // }
-    // $scope.test =0;
-    // Socket.on('notification', function (notif) {
-    //   $scope.test = 1;
-    // });
+
+    if (!Socket.socket) {
+      Socket.connect();
+    }
+
+    Socket.on('review waiting', function (res) {
+      $rootScope.wtgrvNotif = res;
+    });
+
+    Socket.on('review reported', function (res) {
+      $rootScope.rptrvNotif = res;
+    });
+
+    Socket.on('notification', function (res) {
+      $rootScope.unseenAnnouce ++;
+    });
 
     $scope.$on('$destroy', function () {
+      Socket.removeListener('review waiting');
+      Socket.removeListener('review reported');
       Socket.removeListener('notification');
     });
 
@@ -40,28 +51,24 @@ angular.module('core').controller('HeaderController', ['$http', '$rootScope', '$
     function userInit(){
 
       if($scope.authentication.user){
-        if($scope.authentication.user.roles.indexOf('mod')>=0){
-          $http.get('/api/companies/waitingReviews').then(successCallback, errorCallback);
+        $rootScope.unseenAnnouce = 0;
+        $scope.authentication.user.notification.forEach(function(notif) {
+          if(!notif.hasRead)
+            $rootScope.unseenAnnouce ++;
+        });
 
-        }
+        // if($scope.authentication.user.roles.indexOf('mod')>=0){
+        //   $http.get('/api/companies/waitingReviews').then(successCallback, errorCallback);
+        //   function successCallback(res) {
+        //     //$rootScope.waitingReviews = res.data.length;
+            
+        //     return true;
+        //   }
 
-        else{
-          $rootScope.unseenAnnouce = 0;
-          $scope.authentication.user.notification.forEach(function(notif) {
-            if(!notif.hasRead)
-              $rootScope.unseenAnnouce ++;
-          });
-        }
-      }
-
-      function successCallback(res) {
-        $rootScope.waitingReviews = res.data.length;
-        
-        return true;
-      }
-
-      function errorCallback(res) {
-        alert(res.data.message);
+        //   function errorCallback(res) {
+        //     alert(res.data.message);
+        //   }
+        // }
       }
     }
   }

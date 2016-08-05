@@ -136,12 +136,12 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   overflow: hidden;
 }
 .content-avatar-review-detail{
-   height: 70px;
-   width: 70px;
-   border:solid 2px;
+   height: 50px;
+   width: 50px;
+   border:solid 1px;
    border-color: #b2b2b2;
    margin-left: 20px;
-   margin-top: 20px;
+   
 }
 .button-report{
  margin-right: 15px;

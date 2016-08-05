@@ -14,6 +14,7 @@ angular.module('users').controller('AnnouncementController', ['$rootScope', '$wi
     $scope.toTargetLink = function(notifId, message, index){
       $http.put('/api/users/noti/'+notifId).then(function(res){
         $rootScope.unseenAnnouce -= 1;
+        
         if(res.data.indexOf('editReview') !== -1)
           $window.location.href = res.data + '/' +message;
         else

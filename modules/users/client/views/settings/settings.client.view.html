@@ -1,75 +1,114 @@
-<style type="text/css">
-   @font-face {
-   font-family: 'Roboto-Regular';
-   src: url('/modules/companies/client/css/RobotoTTF/Roboto-Regular.ttf');
-   }
-</style>
 <section ng-controller="SettingsController" style="font-family: Roboto-Regular;">
-<div class="row" style="" >
+   <div class="row" style="" >
       <div class="control-left" style="display:block;">
-               
-                <nav class="col-sm-2 admin-control-left" >
-                 
-                <div class="row" style="display:block;">
-                       <span class="glyphicon glyphicon-off" style="background-color:white"></span>
-                       <h4 style="color:white;margin-top:60px;font-weight:bold;margin-left:40px;margin-bottom:10px"> Quản trị tài khoản </h4>
-                       <h5 style="margin-bottom:50px" class="text-center">Administrator</h5>
-                  <ul class="nav nav-pills nav-stacked" >
-
-                  
-                        <li ui-sref-active="active" ng-show="(user.roles.indexOf('admin')>0)" style="border-top:solid 1px;border-color:black">
-                     <a  class="abc" ui-sref="settings.users" style="color:white"> <p style="margin-left:0px;font-size:12px"><span class="glyphicon glyphicon-tasks"></span> Quản lý người dùng</p></a>
-                    </li>
-
-
-
-                    <li ui-sref-active="active" style="border-bottom:solid 1px;border-color:black">
-
-                         <a class="abc" ui-sref="settings.announcement" ng-show="(isUser)"  style="color:white"><p style="margin-left:0px;margin-top:20px;font-size:12px"><span class="glyphicon glyphicon-globe"></span> Thông báo  <span class="badge"> {{unseenAnnouce}} chưa xem </span></p></a>
-
-                    </li>
-
-                    <li ui-sref-active="active" ng-show="(isMod)" style="border-bottom:solid 1px;border-color:black">
-                     <a  class="abc" ui-sref="settings.reviews" style="color:white"> <p style="margin-left:0px;font-size:12px"><span class="glyphicon glyphicon-tasks"></span> Xử lý bài đăng <span class="badge"> {{waitingReviews}} bài chờ </span></p></a>
-                    </li>
-
-                    <li ui-sref-active="active" ng-show="(isMod)" style="border-color:black">
-                     <a class="abc" ui-sref="settings.companies" style="color:white"> <p style="margin-left:0px;font-size:12px"><span class="glyphicon glyphicon-tasks"></span> Quản lý các công ty</p></a>
-                    </li>
-
-                  
-                         <li ui-sref-active="active"  style="border-bottom:solid 1px;border-top:solid 1px;border-color:black">
-                         <a class="abc"  ui-sref="settings.archivedReviews" style="color:white"><p  style="margin-left:0px;font-size:12px"><span class="glyphicon glyphicon-save"></span>  Lưu trữ</p></a>
-                    </li>
-
-
-
-
-                    <li ui-sref-active="active" style="border-bottom:solid 1px;border-color:black">
-                     <a  class="abc" ui-sref="settings.profile" style="color:white"><p style="margin-left:0px;font-size:12px"><span class="glyphicon glyphicon-certificate"></span> Chỉnh sửa tài khoản</p></a>
-                     
-                    </li>
-                    <li ui-sref-active="active" style="border-bottom:solid 1px;border-color:black">
-                      <a  class="abc" ui-sref="settings.picture"  style="color:white"><p style="margin-left:0px;font-size:12px"><span class="glyphicon glyphicon-picture"></span> Chỉnh sửa ảnh đại diện</p></a>
-                    </li>
-                    <li ui-sref-active="active" ng-show="user.provider === 'local'" style="border-bottom:solid 1px;border-color:black">
-                               <a class="abc" ui-sref="settings.password"  style="color:white"><p style="margin-left:0px;font-size:12px"><span class="glyphicon glyphicon-lock"></span> Thay đổi mật khẩu</p></a>
-                  
-                    </li>
-                    <li ui-sref-active="active" style="border-bottom:solid 1px;border-color:black">
-                    <a  class="abc" ui-sref="settings.accounts"  style="color:white"><p style="margin-left:0px;font-size:12px"><span class="glyphicon glyphicon-record"></span> Quản lý tài khoản mạng xã hội</p></a>
-                  
-                      
-                    </li>
-                  </ul>
-                      
-                    </div>
-                </nav>
-                <div class="col-sm-10 settings-view" >
-                  <div ui-view style="margin-top:30px;margin-left:10px;margin-right:10px"></div>
-                </div>
-     
-        </div>
-    </div>
-
+         <div class="col-sm-3 col-md-2 sidebar admin-control-left" >
+            <ul class="nav nav-sidebar" style="margin-top:20px" >
+               <li style=" width: 80%; text-align: center; margin: auto;" >
+                  <!--  <img ng-src="{{authentication.user.profileImageURL}}" alt="{{authentication.user.name}}" class="header-profile-image  img-circle"  /> -->
+                  <div style="margin: 10px 10px; font-size: 13px;"><i class="glyphicon glyphicon-wrench"></i> Đăng nhập với</div>
+                  <div style="margin: 10px 10px; font-size: 20px;">Administrator</div>
+               </li>
+               <li class="divider"></li>
+               <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424" ng-show="(user.roles.indexOf('mod')>=0)">
+                  <a class="setting" ui-sref="settings.announcement" style="color:white">
+                     <h6>Thông báo  <span class="badge"> {{unseenAnnouce}} chưa xem </span></h6>
+                  </a>
+               </li>
+               <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424" ng-show="(user.roles.indexOf('mod')>=0)">
+                  <a class="setting" ui-sref="settings.reviews" style="color:white">
+                     <h6>Xử lý bài đăng <span class="badge"> {{wtgrvNotif + rptrvNotif}} đang chờ </span></h6>
+                  </a>
+               </li>
+             
+               <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424" ng-show="(user.roles.indexOf('mod')>=0)">
+                  <a class="setting" data-toggle="collapse" href="#collapse1" style="color:white">
+                     <h6>Quản lý <span class="pull-right"><span class="caret"></span>
+                     </span> 
+                     </h6>
+                  </a>
+                  <div id="collapse1" class="panel-collapse collapse" >
+                     <ul class="list-group" >
+                        <li class="list-group-item" style="background-color:#423b3b">
+                           <a class="setting" ui-sref="settings.users" style="color:white">
+                              <h6>Quản lý người dùng</h6>
+                           </a>
+                        </li>
+                        <li class="list-group-item" style="background-color:#423b3b">
+                           <a class="setting" ui-sref="settings.companies"  style="color:white">
+                              <h6>Quản lý các công ty</h6>
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+               </li>
+               <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424">
+                  <a class="setting" ui-sref="settings.postedReviews" style="color:white">
+                     <h6>Bài đánh giá đã đăng</h6>
+                  </a>
+               </li>
+               <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424">
+                  <a class="setting"  ui-sref="settings.followedCompany" style="color:white">
+                     <h6>Công ty đang theo dõi</h6>
+                  </a>
+               </li>
+               <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424">
+                  <a class="setting" ui-sref="settings.bookmarkedReviews" style="color:white">
+                     <h6>Bài đánh giá đã đánh dấu</h6>
+                  </a>
+               </li>
+                 <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424">
+                  <a class="setting" data-toggle="collapse" href="#collapse2" style="color:white">
+                     <h6>Thông tin tài khoản <span class="pull-right"><span class="caret"></span></h6>
+                     </span> 
+                  </a>
+                  <div id="collapse2" class="panel-collapse collapse" >
+                     <ul class="list-group" >
+                        <li class="list-group-item" style="background-color:#423b3b">
+                           <a class="setting" ui-sref="settings.profile" style="color:white">
+                              <h6>Chỉnh sửa tài khoản</h6>
+                           </a>
+                        </li>
+                        <li class="list-group-item" style="background-color:#423b3b">
+                           <a  ui-sref="settings.picture"  style="color:white">
+                              <h6>Chỉnh sửa ảnh đại diện</h6>
+                           </a>
+                        </li>
+                        <li class="list-group-item " style="background-color:#423b3b">
+                           <a class="setting" ui-sref="settings.password"  style="color:white">
+                              <h6>Thay đổi mật khẩu</h6>
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+               </li>
+               <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424;border-bottom:solid 1px #262424;">
+                  <a class="setting" ui-sref="settings.accounts" style="color:white">
+                     <h6>Quản lý mạng xã hội</h6>
+                  </a>
+               </li>
+            </ul>
+         </div>
+         <div class="col-sm-10 settings-view" >
+            <div ui-view style="margin-top:30px;margin-left:10px;margin-right:10px"></div>
+         </div>
+      </div>
+   </div>
+   <div id='bttop'>TRỞ VỀ ĐẦU TRANG</div>
 </section>
+<script type="text/javascript">
+   $(function() {
+    $(window).scroll(function() {
+    if ($(this).scrollTop() != 0) {
+    $('#bttop').fadeIn();
+    } else {
+    $('#bttop').fadeOut();
+    }
+    });
+    $('#bttop').click(function() {
+    $('body,html').animate({
+    scrollTop: 0
+    }, 800);
+    });
+   });
+</script>
+</script>

@@ -26,13 +26,31 @@ angular.module('users').config(['$stateProvider',
           title: 'Bảng điều khiển'
         }
       })
-      .state('settings.archivedReviews', {
-        url: '/archivedReviews',
-        templateUrl: 'modules/users/client/views/settings/archived-reviews.client.view.html',
-        controller: 'ArchivedReviewsController',
+      .state('settings.postedReviews', {
+        url: '/postedReviews',
+        templateUrl: 'modules/users/client/views/settings/posted-reviews.client.view.html',
+        controller: 'PostedReviewsController',
         controllerAs: 'vm',
         data:{
-          title: 'Lưu trữ bài đánh giá'
+          title: 'Bài đánh giá đã đăng'
+        }
+      })
+      .state('settings.bookmarkedReviews', {
+        url: '/bookmarkedReviews',
+        templateUrl: 'modules/users/client/views/settings/bookmarked-reviews.client.view.html',
+        controller: 'BookmarkedReviewsController',
+        controllerAs: 'vm',
+        data:{
+          title: 'Bài đánh giá đã đánh dấu'
+        }
+      })
+      .state('settings.followedCompany', {
+        url: '/followedCompany',
+        templateUrl: 'modules/users/client/views/settings/followed-company.client.view.html',
+        controller: 'FollowedCompaniesController',
+        controllerAs: 'vm',
+        data:{
+          title: 'Công ty đang theo dõi'
         }
       })
       .state('settings.announcement', {

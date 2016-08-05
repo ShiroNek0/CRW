@@ -43,7 +43,6 @@ exports.trimInfoUser = function(item, parentCallback) {
   newUser.roles = item.roles;
   newUser.accState = item.accState;
   newUser.postedReviews = item.postedReviews;
-
   if (parentCallback) parentCallback(newUser);
   return newUser;
 };
@@ -73,6 +72,7 @@ exports.trimInfoUserList = function(list, parentCallback) {
 
 exports.update = function (req, res) {
   // Init Variables
+
   var user = req.user;
 
   // For security measurement we remove the roles from the req.body object
@@ -92,7 +92,8 @@ exports.update = function (req, res) {
           if (err) {
             res.status(400).send(err);
           } else {
-            res.json(this.trimInfoUser(user));
+            // res.json(user);
+            res.json(exports.trimInfoUser(user));
           }
         });
       }
@@ -187,6 +188,7 @@ exports.markAllNoti = function(req, res) {
 };
 
 exports.changeBookmark = function(req, res) {
+  console.log(req.user._id);
   if (req.body.bookmarked === 'undefined' || (typeof req.body.bookmarked !== 'boolean')) {
     return res.status(400).json({
       message: 'request body không đúng định dạng {"bookmarked": [giá trị boolean], "reviewId": "[ID bài đánh giá]"}'

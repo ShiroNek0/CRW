@@ -1,63 +1,26 @@
 <section class="row" ng-controller="SocialAccountsController" style="margin-left:20px">
-<div class="col-sm-2">
-  
+<h4 style="color:grey;font-weight:bold;">Company rating website</h4>
+<div style="border:solid 2px;border-color:lightgrey;background-color:white" class="col-sm-12">
+       <h5 style="margin-left:40px;font-weight:bold;margin-bottom:50px;margin-top:20px">Quản lý các trang xã hội</h5>
+        
+           
+            <div class="social-account-container" ng-hide="isConnectedSocialAccount('facebook')" style="margin-left:30px;margin-bottom:50px;margin-top:20px;">
+              <img ng-src="/modules/users/client/img/buttons/facebook.png" style="height:80px;width:80px;">
+              <a href="/api/auth/facebook" target="_self">
+               
+              </a>
+            </div>
+            <div class="social-account-container" ng-hide="isConnectedSocialAccount('google')" style="margin-left:10px">
+              <img ng-src="/modules/users/client/img/buttons/google.png"  style="height:80px;width:80px;">
+              <a href="/api/auth/google" target="_self">
+               
+              </a>
+            </div>
+              
+      
+
+
+        
+
 </div>
-<h3 style="color:green">Quản lý các trang xã hội</h3>
-<div class="col-sm-8" style="background-color:white;border:solid 2px;border-color:lightgrey">
-
-    <h3 class="col-md-12 text-center" ng-show="hasConnectedAdditionalSocialAccounts()">Connected social accounts:</h3>
-  <div class="col-md-12">
-    <div ng-repeat="(providerName, providerData) in user.additionalProvidersData" class="social-account-container">
-      <img ng-src="/modules/users/client/img/buttons/{{providerName}}.png">
-      <a class="btn btn-danger btn-remove-account" ng-click="removeUserSocialAccount(providerName)">
-        <i class="glyphicon glyphicon-trash"></i>
-      </a>
-    </div>
-  </div>
-
-  <h3 class="col-md-4 " ng-show="hasConnectedAdditionalSocialAccounts()">Unconnected social accounts:</h3>
-  <div class="col-md-4" style="margin-top:10px">
-    <div class="social-account-container" ng-hide="isConnectedSocialAccount('facebook')">
-      <img ng-src="/modules/users/client/img/buttons/facebook.png" style="height:80px;width:80px;">
-      <a class="btn btn-success btn-remove-account" href="/api/auth/facebook" target="_self">
-        <i class="glyphicon glyphicon-plus"></i>
-      </a>
-    </div>
-    <h4>Quản lý bằng Facebook</h4>
-    <div class="social-account-container" ng-hide="isConnectedSocialAccount('twitter')">
-      <img ng-src="/modules/users/client/img/buttons/twitter.png"  style="height:80px;width:80px;">
-      <a class="btn btn-success btn-remove-account" href="/api/auth/twitter" target="_self">
-        <i class="glyphicon glyphicon-plus"></i>
-      </a>
-    </div>
-       <h4>Quản lý bằng Twitter</h4>
-    <div class="social-account-container" ng-hide="isConnectedSocialAccount('google')">
-      <img ng-src="/modules/users/client/img/buttons/google.png"  style="height:80px;width:80px;">
-      <a class="btn btn-success btn-remove-account" href="/api/auth/google" target="_self">
-        <i class="glyphicon glyphicon-plus"></i>
-      </a>
-    </div>
-       <h4>Quản lý bằng Google</h4>
-   
-  </div>
-  <div class="col-md-6" style="margin-top:10px">
-    
-    <div class="social-account-container" ng-hide="isConnectedSocialAccount('linkedin')">
-      <img ng-src="/modules/users/client/img/buttons/linkedin.png"  style="height:80px;width:80px;">
-      <a class="btn btn-success btn-remove-account" href="/api/auth/linkedin" target="_self">
-        <i class="glyphicon glyphicon-plus"></i>
-      </a>
-    </div>
-       <h4>Quản lý bằng Linkedin</h4>
-    <div class="social-account-container" ng-hide="isConnectedSocialAccount('github')">
-      <img ng-src="/modules/users/client/img/buttons/github.png"  style="height:80px;width:80px;">
-      <a class="btn btn-success btn-remove-account" href="/api/auth/github" target="_self">
-        <i class="glyphicon glyphicon-plus"></i>
-      </a>
-    </div>
-       <h4>Quản lý bằng Github</h4>
-  </div>
-</div>
-
-
 </section>

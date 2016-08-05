@@ -35,7 +35,7 @@
           reviewResolve: newReview
         },
         data: {
-          title: 'Đăng bài đánh giá {{ reviewResolve.name }}'
+          title: 'Đăng bài đánh giá'
         }
       })
       .state('companies.editReview', {

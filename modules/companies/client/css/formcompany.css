@@ -1,16 +1,18 @@
+.editCompany-modal-window .tencongty{
+	font-weight: bold;
+}
 .editCompany-modal-window .modal-dialog{
 	width: auto;
-	padding-left:75px; 
+	padding-left:125px; 
 	margin: 30px auto;
-	padding-right:75px; 
+	padding-right:125px; 
 	padding-bottom: 30px;
+	color: grey;
+	
 }
-.editCompany-modal-window .modal-dialog{
-	/*width: auto;
-	margin: 30px auto;*/
+.editCompany-modal-window .congty{
+	font-weight: bold;
 }
-
-
 .add-company-new{
 	margin-top: 20px;
 	margin-left: 180px;
@@ -29,105 +31,3 @@
 .textarea-supplement{
 	color: white;
 }
-/*
-.label-company-name{
-	font-weight: bold;
-	color:#099999;
-}	
-.label-company-othername{
-	font-weight: bold;
-	color:#099999;
-}	
-.label-company-link{
-	font-weight: bold;
-	color:#099999;
-}	
-.label-company-website{
-	font-weight: bold;
-	color:#099999;
-}	
-.label-company-size{
-	font-weight: bold;
-	color:#099999;
-}	
-.label-company-othername{
-	font-weight: bold;
-	color:#099999;
-}	
-.radio-unknow{
-	font-weight: bold;
-	color:#7f7f7f;
-}
-.radio-50{
-	font-weight: bold;
-	color:#7f7f7f;
-	margin-left:78px;
-}
-.radio-50200{
-	font-weight: bold;
-	color:#7f7f7f;
-}
-.radio-200{
-	font-weight: bold;
-	color:#7f7f7f;
-	margin-left:20px;
-}
-.label-company-type{
-	font-weight: bold;
-	color:#099999;
-}
-.radio-ctnn{
-	font-weight: bold;
-	color:#7f7f7f;
-}
-.radio-dntn{
-	font-weight: bold;
-	color:#7f7f7f;
-	margin-left:20px;
-}
-.radio-tdqg{
-	font-weight: bold;
-	color:#7f7f7f;
-}
-.label-company-address{
-	font-weight: bold;
-	color:#099999;
-}
-.label-company-date{
-	font-weight: bold;
-	color:#099999;
-}
-.label-company-job{
-	font-weight: bold;
-	color:#099999;
-}
-.label-company-contact{
-	font-weight: bold;
-	color:#099999;
-}
-.error-company{
-	color: red;
-}
-.cross-company{
-	margin-right:550px;
-	color:#7f7f7f;
-	border:solid 1px;
-}
-.creatcompany{
-	margin-bottom:100px;
-}
-.button-cancelcompany{
-	font-weight:bold;
-	height:31px;
-	border:none;
-	color: white;
-}
-.button-sendcompany{
-	padding-right:90px;
-	margin-right:1250px;
-	border:none;width:90px;
-	color:white;
-	font-weight:bold;
-	margin-left: 20px;
-}
-*/
