@@ -39,6 +39,14 @@
             </div>
           </div>
         </div>
+        <div class="form-group" show-errors>
+          <label for="verifyPassword" >Xác nhận lại mật khẩu mới</label>
+          <input type="password" id="verifyPassword" name="verifyPassword" class="form-control" ng-model="credentials.verifyPassword" placeholder="Nhập lại mật khẩu mới..." password-verify="credentials.password" required>
+          <div ng-messages="userForm.verifyPassword.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Xác nhận lại mật khẩu mới của bạn</p>
+            <p class="help-block error-text" ng-show="userForm.verifyPassword.$error.passwordVerify">Mật khẩu không khớp.</p>
+          </div>
+        </div>
         <div class="form-group" ng-show="!userForm.password.$error.required">
           <label>Password Requirements</label>
           <progressbar value="requirementsProgress" type="{{requirementsColor}}"><span style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></progressbar>

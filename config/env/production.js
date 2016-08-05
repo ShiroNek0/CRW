@@ -36,8 +36,8 @@ module.exports = {
     }
   },
   facebook: {
-    clientID: process.env.FACEBOOK_ID || 'APP_ID',
-    clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+    clientID: process.env.FACEBOOK_ID || '1720640538176128',
+    clientSecret: process.env.FACEBOOK_SECRET || '7d566d96fd457d419268849c2313fc10',
     callbackURL: '/api/auth/facebook/callback'
   },
   twitter: {
@@ -46,8 +46,8 @@ module.exports = {
     callbackURL: '/api/auth/twitter/callback'
   },
   google: {
-    clientID: process.env.GOOGLE_ID || 'APP_ID',
-    clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
+    clientID: process.env.GOOGLE_ID || ' 923811663002-j5gqjnnsbfcm5ombainked3u00076eba.apps.googleusercontent.com',
+    clientSecret: process.env.GOOGLE_SECRET || 'Lkx4nbbfPQ0ZM71OvDFo3zB6',
     callbackURL: '/api/auth/google/callback'
   },
   linkedin: {

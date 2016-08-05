@@ -4,6 +4,10 @@ var defaultEnvConfig = require('./default');
 
 module.exports = {
   db: {
+    // uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/local',
+    // options: {
+    //   user: '',
+    //   pass: ''
     uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://AdminCRW_remote:maiwaifu@52.77.188.220:27017/CRW',
     options: {
       user: '',
@@ -32,11 +36,11 @@ module.exports = {
     }
   },
   app: {
-    title: defaultEnvConfig.app.title + ' - Development Environment'
+    title: defaultEnvConfig.app.title + ' - Đang phát triển'
   },
   facebook: {
-    clientID: process.env.FACEBOOK_ID || '1720643758175806',
-    clientSecret: process.env.FACEBOOK_SECRET || '82544080ebbf1716afe6442bfb3ee08e',
+    clientID: process.env.FACEBOOK_ID || '1720640538176128',
+    clientSecret: process.env.FACEBOOK_SECRET || '7d566d96fd457d419268849c2313fc10',
     callbackURL: '/api/auth/facebook/callback'
   },
   twitter: {
@@ -45,8 +49,8 @@ module.exports = {
     callbackURL: '/api/auth/twitter/callback'
   },
   google: {
-    clientID: process.env.GOOGLE_ID || 'APP_ID',
-    clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
+    clientID: process.env.GOOGLE_ID || ' 923811663002-j5gqjnnsbfcm5ombainked3u00076eba.apps.googleusercontent.com',
+    clientSecret: process.env.GOOGLE_SECRET || 'Lkx4nbbfPQ0ZM71OvDFo3zB6',
     callbackURL: '/api/auth/google/callback'
   },
   linkedin: {
