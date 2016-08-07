@@ -13,7 +13,7 @@ angular.module('users').config(['$stateProvider',
         resolve: {
           userResolve: getUser
         },
-        data:{
+        data: {
           title: 'Thông tin người dùng'
         }
       })
@@ -31,7 +31,7 @@ angular.module('users').config(['$stateProvider',
         templateUrl: 'modules/users/client/views/settings/posted-reviews.client.view.html',
         controller: 'PostedReviewsController',
         controllerAs: 'vm',
-        data:{
+        data: {
           title: 'Bài đánh giá đã đăng'
         }
       })
@@ -40,7 +40,7 @@ angular.module('users').config(['$stateProvider',
         templateUrl: 'modules/users/client/views/settings/bookmarked-reviews.client.view.html',
         controller: 'BookmarkedReviewsController',
         controllerAs: 'vm',
-        data:{
+        data: {
           title: 'Bài đánh giá đã đánh dấu'
         }
       })
@@ -49,42 +49,42 @@ angular.module('users').config(['$stateProvider',
         templateUrl: 'modules/users/client/views/settings/followed-company.client.view.html',
         controller: 'FollowedCompaniesController',
         controllerAs: 'vm',
-        data:{
+        data: {
           title: 'Công ty đang theo dõi'
         }
       })
       .state('settings.announcement', {
         url: '/announcement',
         templateUrl: 'modules/users/client/views/settings/announcement.client.view.html',
-        data:{
+        data: {
           title: 'Thông báo'
         }
       })
       .state('settings.profile', {
         url: '/profile',
         templateUrl: 'modules/users/client/views/settings/edit-profile.client.view.html',
-        data:{
+        data: {
           title: 'Thông tin cá nhân'
         }
       })
       .state('settings.password', {
         url: '/password',
         templateUrl: 'modules/users/client/views/settings/change-password.client.view.html',
-        data:{
+        data: {
           title: 'Đổi mật khẩu'
         }
       })
       .state('settings.accounts', {
         url: '/accounts',
         templateUrl: 'modules/users/client/views/settings/manage-social-accounts.client.view.html',
-        data:{
+        data: {
           title: 'Tài khoản mạng xã hội'
         }
       })
       .state('settings.picture', {
         url: '/picture',
         templateUrl: 'modules/users/client/views/settings/change-profile-picture.client.view.html',
-        data:{
+        data: {
           title: 'Đổi ảnh đại diện'
         }
       })
@@ -96,14 +96,14 @@ angular.module('users').config(['$stateProvider',
       .state('authentication.signup', {
         url: '/signup',
         templateUrl: 'modules/users/client/views/authentication/signup.client.view.html',
-        data:{
+        data: {
           title: 'Đăng ký'
         }
       })
       .state('authentication.signin', {
         url: '/signin?err',
         templateUrl: 'modules/users/client/views/authentication/signin.client.view.html',
-        data:{
+        data: {
           title: 'Đăng nhập'
         }
       })
@@ -115,7 +115,7 @@ angular.module('users').config(['$stateProvider',
       .state('password.forgot', {
         url: '/forgot',
         templateUrl: 'modules/users/client/views/password/forgot-password.client.view.html',
-        data:{
+        data: {
           title: 'Quên mật khẩu'
         }
       })

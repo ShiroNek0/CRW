@@ -9,12 +9,12 @@ angular.module('users.admin').controller('UserListController', ['$scope', '$filt
 
     vm.sort = sort;
     vm.ItemsPerPage = 10;
-    
-    function sort(keyname){
+
+    function sort(keyname) {
       vm.sortKey = keyname;
       vm.reverse = !vm.reverse;
     }
 
-   
+
   }
 ]);

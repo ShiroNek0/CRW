@@ -12,4 +12,4 @@
 
     vm.companies = CompaniesService.query();
   }
-})();
+}());

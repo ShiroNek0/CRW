@@ -35,7 +35,7 @@ exports.trimInfoUser = function(item, parentCallback) {
   newUser.email = item.email;
   newUser.provider = item.provider;
   newUser.providerData = item.providerData;
-  if(newUser.providerData && newUser.providerData.accessToken) {
+  if (newUser.providerData && newUser.providerData.accessToken) {
     delete newUser.providerData.accessToken;
   }
   newUser.profileImageURL = item.profileImageURL;
@@ -54,7 +54,7 @@ exports.trimInfoUserList = function(list, parentCallback) {
     newList.push(controller.trimInfoUser(element));
     callback();
   }, function (err) {
-    if(err) return null;
+    if (err) return null;
     if (parentCallback) parentCallback(newList);
     return newList;
   });
@@ -113,13 +113,13 @@ exports.changeProfilePicture = function (req, res) {
   var message = null;
   var upload = multer(config.uploads.profileUpload).single('newProfilePicture');
   var profileUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
-  
+
   // Filtering to upload only images
   upload.fileFilter = profileUploadFileFilter;
 
   if (user) {
     upload(req, res, function (uploadError) {
-      if(uploadError) {
+      if (uploadError) {
         return res.status(400).send({
           message: 'Lỗi khi upload ảnh đại diện'
         });
@@ -177,7 +177,7 @@ exports.markAllNoti = function(req, res) {
     item.hasRead = true;
     callback();
   }, function(err) {
-    req.user.save(function(err){
+    req.user.save(function(err) {
       if (err) {
         return res.status(500).send(err);
       } else {
@@ -202,17 +202,17 @@ exports.changeBookmark = function(req, res) {
     return item.toHexString() === reviewId;
   });
 
-  if (!req.body.bookmarked) {  
-    if(arrayFound.length === 0) {
+  if (!req.body.bookmarked) {
+    if (arrayFound.length === 0) {
       bookmark.push(reviewId);
     }
   } else {
-    if(arrayFound.length > 0) {
+    if (arrayFound.length > 0) {
       bookmark.pull(reviewId);
     }
   }
 
-  user.save(function (err, result){
+  user.save(function (err, result) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -248,7 +248,7 @@ exports.createNotification = function (userId, notification, parentCallback) {
         serverEmitter.emit('notification', newNoti);
       });
     }
-    if(parentCallback) parentCallback();
+    if (parentCallback) parentCallback();
   });
 };
 
@@ -264,18 +264,18 @@ exports.changeFollow = function(companyId, userId, isFollowed) {
       return item.equals(companyId);
     });
 
-    if (!isFollowed) {  
-      if(arrayFound.length === 0) {
+    if (!isFollowed) {
+      if (arrayFound.length === 0) {
         follow.push(companyId);
       }
     } else {
-      if(arrayFound.length > 0) {
+      if (arrayFound.length > 0) {
         follow.pull(companyId);
       }
     }
 
-    user.save(function (err, result){
-      if(err) return err;
+    user.save(function (err, result) {
+      if (err) return err;
       else return;
     });
   });

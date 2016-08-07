@@ -9,7 +9,7 @@ angular.module('users.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/users/client/views/admin/handle-reviews.client.view.html',
         controller: 'HandleReviewsController',
         controllerAs: 'vm',
-        data:{
+        data: {
           title: 'Xử lý bài đánh giá'
         }
       })
@@ -18,7 +18,7 @@ angular.module('users.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/users/client/views/admin/list-users.client.view.html',
         controller: 'UserListController',
         controllerAs: 'vm',
-        data:{
+        data: {
           title: 'Danh dách người dùng'
         }
       })
@@ -27,7 +27,7 @@ angular.module('users.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/users/client/views/admin/list-companies.client.view.html',
         controller: 'CompaniesListController',
         controllerAs: 'vm',
-        data:{
+        data: {
           title: 'Danh dách công ty'
         }
       })

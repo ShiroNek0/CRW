@@ -33,7 +33,7 @@ var UserSchema = new Schema({
     default: '',
     required: 'Xin nhập tên người dùng',
     trim: true
-  }, 
+  },
   email: {
     type: String,
     unique: 'Địa chỉ email đã tồn tại trong hệ thống',
@@ -44,7 +44,7 @@ var UserSchema = new Schema({
   },
   password: {
     type: String,
-    default: '',
+    default: ''
   },
   salt: {
     type: String
@@ -82,8 +82,8 @@ var UserSchema = new Schema({
   },
   accState: {
     type: String,
-    enum: ['unverified','active', 'deactive'],
-    default: 'unverified',
+    enum: ['unverified', 'active', 'deactive'],
+    default: 'unverified'
   },
   notification: [{
     message: String,
@@ -175,7 +175,7 @@ UserSchema.statics.generateRandomPassphrase = function () {
     var password = '';
     var repeatingCharacters = new RegExp('(.)\\1{2,}', 'g');
 
-    // iterate until the we have a valid passphrase. 
+    // iterate until the we have a valid passphrase.
     // NOTE: Should rarely iterate more than once, but we need this to ensure no repeating characters are present.
     while (password.length < 20 || repeatingCharacters.test(password)) {
       // build the random password
@@ -184,7 +184,7 @@ UserSchema.statics.generateRandomPassphrase = function () {
         numbers: true,
         symbols: false,
         uppercase: true,
-        excludeSimilarCharacters: true,
+        excludeSimilarCharacters: true
       });
 
       // check if we need to remove any repeating characters.

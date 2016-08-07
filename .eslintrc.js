@@ -1,6 +1,6 @@
 module.exports = {
   extends: [
-    'airbnb/legacy'
+    './node_modules/eslint-config-airbnb/legacy.js'
   ],
   rules: {
     camelcase: 0,
@@ -16,7 +16,7 @@ module.exports = {
     'key-spacing': [2, { beforeColon: false, afterColon: true }],
     'keyword-spacing': [2, { before: true, after: true }],
     'max-len': 0,
-    'new-cap': [2, { newIsCapExceptions: ['acl.memoryBackend', 'acl'] }],
+    'new-cap': [2, { newIsCapExceptions: ['acl.memoryBackend', 'acl'], capIsNewExceptions: ['mongoose.Types.ObjectId'] }],
     'no-bitwise': 0,
     'no-caller': 2,
     'no-console': 0,

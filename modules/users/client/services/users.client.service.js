@@ -25,7 +25,7 @@ angular.module('users').factory('BookmarkedReviews', ['$resource',
   }
 ]);
 
-//TODO this should be Users service
+// TODO this should be Users service
 angular.module('users.admin').factory('Admin', ['$resource',
   function ($resource) {
     return $resource('api/users/:userId', {

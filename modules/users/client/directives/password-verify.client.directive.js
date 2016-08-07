@@ -19,7 +19,7 @@ angular.module('users')
           if (value) {
             ngModel.$validators.passwordVerify = function (password) {
               var origin = scope.passwordVerify;
-              return (origin !== password) ? false : true;
+              return (origin === password);
             };
           }
         });

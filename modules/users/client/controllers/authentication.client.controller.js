@@ -47,10 +47,10 @@ angular.module('users').controller('AuthenticationController', ['$rootScope', '$
         $scope.authentication.user = response;
         $rootScope.unseenAnnouce = 0;
         $scope.authentication.user.notification.forEach(function(notif) {
-          if(!notif.hasRead)
+          if (!notif.hasRead)
             $rootScope.unseenAnnouce ++;
         });
-        
+
         // And redirect to the previous or home page
         $state.go($state.previous.state.name || 'home', $state.previous.params);
       }).error(function (response) {

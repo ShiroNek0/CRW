@@ -4,18 +4,18 @@ angular.module('users').controller('FollowedCompaniesController', ['$http', '$lo
   function ($http, $location, Authentication) {
     var vm = this;
     vm.user = Authentication.user;
-    //alert(JSON.stringify(Authentication.user));
-    $http.get('/api/companies/followedCompany').then(function(res){
+    // alert(JSON.stringify(Authentication.user));
+    $http.get('/api/companies/followedCompany').then(function(res) {
       vm.followedCompany = res.data;
     });
 
     vm.sort = sort;
     vm.itemsPerPage = 5;
-    
-    function sort(keyname){
+
+    function sort(keyname) {
       vm.sortKey = keyname;
       vm.reverse = !vm.reverse;
     }
-    
+
   }
 ]);

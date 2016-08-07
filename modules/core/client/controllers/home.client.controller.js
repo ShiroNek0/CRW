@@ -8,7 +8,7 @@ angular.module('core').controller('HomeController', ['$state', '$scope', 'Authen
 
     $scope.enterToSearch = function(keyEvent) {
       if (keyEvent.which === 13)
-        $state.go('companies.search',{ keyword: $scope.keyword });
+        $state.go('companies.search', { keyword: $scope.keyword });
     };
   }
 ]);

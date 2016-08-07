@@ -12,7 +12,7 @@ module.exports = function (io, socket) {
   var user = socket.request.user;
 
   // Gửi số lượng bài đánh giá chưa duyệt cho admin và mod
-  if(user.roles.indexOf('mod') !== -1 || user.roles.indexOf('admin') !== -1) {
+  if (user.roles.indexOf('mod') !== -1 || user.roles.indexOf('admin') !== -1) {
     companies.countWaitingReviews(function (result) {
       socket.emit('review waiting', result);
     });
@@ -41,7 +41,7 @@ module.exports = function (io, socket) {
   // Gửi thông báo cho client khi có noti
   users.notiEventEmitter.on('notification', function (data) {
     // Gửi thông báo nếu client là đối tượng của noti
-    if(user._id.equals(data.userId)) {
+    if (user._id.equals(data.userId)) {
       socket.emit(data);
     }
   });

@@ -11,12 +11,12 @@ angular.module('users').controller('BookmarkedReviewsController', ['$scope', '$h
 
     vm.sort = sort;
     vm.bookmarkedReviewsItemsPerPage = 5;
-    
-    function sort(keyname){
+
+    function sort(keyname) {
       vm.sortKey = keyname;
       vm.reverse = !vm.reverse;
     }
-    
-    
+
+
   }
 ]);

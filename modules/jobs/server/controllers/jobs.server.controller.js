@@ -41,7 +41,7 @@ exports.read = function(req, res) {
 exports.update = function(req, res) {
   var job = req.job;
 
-  job = _.extend(job , req.body);
+  job = _.extend(job, req.body);
 
   job.save(function(err) {
     if (err) {
@@ -68,7 +68,7 @@ exports.delete = function(req, res) {
   });
 };
 
-exports.list = function(req, res) { 
+exports.list = function(req, res) {
   Job.find().exec(function(err, jobs) {
     if (err) {
       return res.status(400).send({

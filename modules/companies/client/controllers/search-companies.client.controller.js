@@ -1,4 +1,4 @@
-(function () {  
+(function () {
   'use strict';
 
   angular
@@ -17,19 +17,19 @@
     vm.sort = sort;
     vm.itemsPerPage = 16;
 
-    vm.initPanel = function(company){
-      company.pointDisplay = Math.round(company.averageRating*2)/2;
+    vm.initPanel = function(company) {
+      company.pointDisplay = Math.round(company.averageRating * 2) / 2;
     };
 
-    function sort(keyname){
+    function sort(keyname) {
       vm.sortKey = keyname;
       vm.reverse = !vm.reverse;
     }
 
-    function onChange(){
+    function onChange() {
       vm.companies = SearchService.query({ keyword: vm.keyword });
-      
+
     }
 
   }
-})();
+}());

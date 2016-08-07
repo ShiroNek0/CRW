@@ -1,4 +1,4 @@
-//Jobs service used to communicate Jobs REST endpoints
+// Jobs service used to communicate Jobs REST endpoints
 (function () {
   'use strict';
 
@@ -17,4 +17,4 @@
       }
     });
   }
-})();
+}());

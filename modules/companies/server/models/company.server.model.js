@@ -44,32 +44,32 @@ var CompanySchema = new Schema({
     trim: true,
     required: 'Xin nhập kiểu công ty'
   },
-  hq:{
+  hq: {
     type: String,
     required: 'Xin nhập địa chỉ trụ sở chính',
     trim: true
   },
-  founded:{
+  founded: {
     type: String,
     default: 'Chưa có năm thành lập',
-    trim: true 
+    trim: true
   },
-  industry:{
+  industry: {
     type: String,
     required: 'Xin nhập ngành nghề chính của công ty',
     trim: true
   },
-  contact:{
+  contact: {
     type: String,
     default: 'Chưa có địa chỉ liên hệ',
     trim: true
   },
-  photo:[String],
-  video:[String],
-  state:{
+  photo: [String],
+  video: [String],
+  state: {
     type: String,
     enum: ['denied', 'approved'],
-    default: 'approved',
+    default: 'approved'
   },
   followers: [{
     type: Schema.Types.ObjectId,
@@ -82,15 +82,15 @@ var CompanySchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'User'
     },
-    stayAnonymous:{
+    stayAnonymous: {
       type: Boolean,
       default: false
     },
-    highlight:{
+    highlight: {
       type: Boolean,
       default: false
     },
-    title:{
+    title: {
       type: String,
       trim: true,
       required: 'Xin nhập tiêu đề bài đánh giá'
@@ -102,7 +102,7 @@ var CompanySchema = new Schema({
     /* Hiện tại người viết bài còn làm ỏ vị trí đánh giá hay không */
     isJobCurrent: {
       type: Boolean,
-      default: true,
+      default: true
     },
     jobLength: String,
     contract: {
@@ -125,7 +125,7 @@ var CompanySchema = new Schema({
       rating: {
         type: Number,
         required: 'Xin nhập điểm đánh giá tổng thể'
-      }            
+      }
     },
     salaryAndBenefit: {
       /* Chế độ lương */
@@ -139,7 +139,7 @@ var CompanySchema = new Schema({
       parentalLeaveRating: Number,
       timeOffRating: Number,
       pensionRating: Number,
-      supplement: String,
+      supplement: String
     },
     upvoteCount: {
       type: Number,
@@ -154,7 +154,7 @@ var CompanySchema = new Schema({
       default: '',
       trim: true
     },
-    state:{
+    state: {
       type: String,
       enum: ['waiting', 'approved', 'denied', 'trusted'],
       default: 'waiting'
@@ -165,7 +165,7 @@ var CompanySchema = new Schema({
     },
     comments: [{
       userID: {
-        type: Schema.Types.ObjectId, 
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: 'Thiếu ID người bình luận'
       },
@@ -173,11 +173,11 @@ var CompanySchema = new Schema({
         type: String,
         required: 'Xin nhập nội dung bình luận',
         trim: true
-      },
+      }
     }],
     reports: [{
       user: {
-        type: Schema.Types.ObjectId, 
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: 'Thiếu ID người gửi báo cáo'
       },
@@ -199,18 +199,20 @@ CompanySchema.index({ name: 'text', alias: 'text' });
 CompanySchema.methods.calculateRating = function(callback) {
   // Đếm các điểm số khác nhau và số lượng của chúng
   var counter = this.reviews.reduce(function (counter, item) {
-    if(['approved', 'trusted'].indexOf(item.state) === -1) return counter; // Bỏ qua các bài đánh giá chưa chấp nhận
+    if (['approved', 'trusted'].indexOf(item.state) === -1) return counter; // Bỏ qua các bài đánh giá chưa chấp nhận
     var rate = Math.round(parseFloat(item.overallRev.rating) * 10) / 5; // Nhân đôi để dễ tính
     counter[rate] = counter.hasOwnProperty(rate) ? counter[rate] + 1 : 1;
     return counter;
   }, {});
-  
+
   // Tính toán điểm trung bình theo Baynesia
   // Xem thêm ở http://www.evanmiller.org/ranking-items-with-star-ratings.html
-  var firstPart = 0, secondPart = 0;
+  var firstPart = 0;
+  var secondPart = 0;
   var quantile = 1.96; // Mức độ chính xác thông thường
   var score = 0;
-  var K = 9, N = 0; // K = 9 vì người dùng không thể bình chọn 0 sao được.
+  var K = 9; // K = 9 vì người dùng không thể bình chọn 0 sao được.
+  var N = 0;
   var company = this;
 
   // Tính toán điểm trung bình đơn giản
@@ -222,7 +224,7 @@ CompanySchema.methods.calculateRating = function(callback) {
         N += counter[key];
         callback();
       }, function(err) {
-        if(err) return seriesCallback(err);
+        if (err) return seriesCallback(err);
         else return seriesCallback(null);
       });
     },
@@ -251,12 +253,12 @@ CompanySchema.methods.calculateRating = function(callback) {
     // Lưu kết quả vào DB
     company.overallRating = score;
     company.averageRating = avgScore;
-    company.save(function(err, result){
+    company.save(function(err, result) {
       if (err) {
-        if(callback) return callback(err);
+        if (callback) return callback(err);
         else console.log(err);
       } else {
-        if(callback) return callback(null, score);
+        if (callback) return callback(null, score);
       }
     });
   });

@@ -44,16 +44,16 @@ angular.module('core').controller('HeaderController', ['$http', '$rootScope', '$
 
     $scope.enterToSearch = function(keyEvent) {
       if (keyEvent.which === 13)
-        $state.go('companies.search',{ keyword: $scope.keyword });
+        $state.go('companies.search', { keyword: $scope.keyword });
     };
     $scope.userInit = userInit;
 
-    function userInit(){
+    function userInit() {
 
-      if($scope.authentication.user){
+      if ($scope.authentication.user) {
         $rootScope.unseenAnnouce = 0;
         $scope.authentication.user.notification.forEach(function(notif) {
-          if(!notif.hasRead)
+          if (!notif.hasRead)
             $rootScope.unseenAnnouce ++;
         });
 
@@ -61,7 +61,7 @@ angular.module('core').controller('HeaderController', ['$http', '$rootScope', '$
         //   $http.get('/api/companies/waitingReviews').then(successCallback, errorCallback);
         //   function successCallback(res) {
         //     //$rootScope.waitingReviews = res.data.length;
-            
+
         //     return true;
         //   }
 

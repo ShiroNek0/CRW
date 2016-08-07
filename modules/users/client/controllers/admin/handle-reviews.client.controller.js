@@ -8,11 +8,11 @@ angular.module('users').controller('HandleReviewsController', ['$modal', '$rootS
     vm.approveModal = approveModal;
 
     vm.rejectModal = rejectModal;
-    vm.acceptModal = acceptModal;    
+    vm.acceptModal = acceptModal;
 
     vm.init = init;
 
-    function init(){
+    function init() {
       $http.get('/api/companies/waitingReviews')
       .then(function (res) {
         $rootScope.waitingReviews = res.data.length;
@@ -25,7 +25,7 @@ angular.module('users').controller('HandleReviewsController', ['$modal', '$rootS
       $http.get('/api/companies/reportedReviews')
       .then(function (res) {
         $scope.reportedReviews = res.data;
-        //alert(JSON.stringify($scope.reportedReviews));
+        // alert(JSON.stringify($scope.reportedReviews));
         return true;
       }, function errorCallback(res) {
         alert(res.data.message);
@@ -38,14 +38,14 @@ angular.module('users').controller('HandleReviewsController', ['$modal', '$rootS
         scope: $scope,
         controller: AcceptModalController,
         resolve: {
-          data: function(){
+          data: function() {
             return data;
           }
         }
       });
 
       modalInstance.result.then(function (result) {
-        if(result){
+        if (result) {
           $scope.reportedReviews = result;
         }
       });
@@ -53,18 +53,18 @@ angular.module('users').controller('HandleReviewsController', ['$modal', '$rootS
 
     var AcceptModalController = function ($scope, $modalInstance, data) {
       $scope.data = data;
-      $scope.message ='Bài đánh giá của bạn đã bị khóa vì lý do: ';
-      $scope.data.reviews.reports.forEach(function(report){
+      $scope.message = 'Bài đánh giá của bạn đã bị khóa vì lý do: ';
+      $scope.data.reviews.reports.forEach(function(report) {
         $scope.message += report.content + ', ';
       });
       $scope.message += 'bấm vào đường dẫn đính kèm để sửa bài.';
 
-      $scope.accept = function(){
-        var req={
-          deniedReason:  $scope.message
+      $scope.accept = function() {
+        var req = {
+          deniedReason: $scope.message
         };
 
-        $http.post('/api/companies/'+data._id+'/reviews/'+data.reviews._id+'/reports/accept', req).then(successCallback, errorCallback);
+        $http.post('/api/companies/' + data._id + '/reviews/' + data.reviews._id + '/reports/accept', req).then(successCallback, errorCallback);
 
         function successCallback(res) {
           $http.get('api/companies/reportedReviews')
@@ -80,10 +80,9 @@ angular.module('users').controller('HandleReviewsController', ['$modal', '$rootS
           alert(res.data.message);
         }
       };
-      
-      
 
-      $scope.close = function(){$modalInstance.close();};
+
+      $scope.close = function() {$modalInstance.close();};
     };
 
     function rejectModal(data) {
@@ -92,14 +91,14 @@ angular.module('users').controller('HandleReviewsController', ['$modal', '$rootS
         scope: $scope,
         controller: RejectModalController,
         resolve: {
-          data: function(){
+          data: function() {
             return data;
           }
         }
       });
 
       modalInstance.result.then(function (result) {
-        if(result){
+        if (result) {
           $scope.reportedReviews = result;
         }
       });
@@ -107,15 +106,15 @@ angular.module('users').controller('HandleReviewsController', ['$modal', '$rootS
 
     var RejectModalController = function ($scope, $modalInstance, data) {
       $scope.data = data;
-      $scope.message ='Bài đánh giá của bạn đã bị khóa vì lý do: ';
-      $scope.data.reviews.reports.forEach(function(report){
+      $scope.message = 'Bài đánh giá của bạn đã bị khóa vì lý do: ';
+      $scope.data.reviews.reports.forEach(function(report) {
         $scope.message += report.content + ', ';
       });
       $scope.message += 'bấm vào đường dẫn đính kèm để sửa bài.';
-      $scope.close = function(){$modalInstance.close();};
+      $scope.close = function() {$modalInstance.close();};
 
-      $scope.reject = function(){
-        $http.post('/api/companies/'+data._id+'/reviews/'+data.reviews._id+'/reports/reject').then(successCallback, errorCallback);
+      $scope.reject = function() {
+        $http.post('/api/companies/' + data._id + '/reviews/' + data.reviews._id + '/reports/reject').then(successCallback, errorCallback);
 
         function successCallback(res) {
           $http.get('api/companies/reportedReviews')
@@ -139,14 +138,14 @@ angular.module('users').controller('HandleReviewsController', ['$modal', '$rootS
         scope: $scope,
         controller: DenieModalController,
         resolve: {
-          data: function(){
+          data: function() {
             return data;
           }
         }
       });
 
       modalInstance.result.then(function (result) {
-        if(result){
+        if (result) {
           $rootScope.waitingReviews = result.waitingReviews;
           $scope.reviews = result.reviews;
         }
@@ -156,16 +155,16 @@ angular.module('users').controller('HandleReviewsController', ['$modal', '$rootS
     var DenieModalController = function ($scope, $modalInstance, data) {
       $scope.data = data;
 
-      $scope.message ='Bài đánh giá mang tên ' + data.reviews.title + ' của bạn đã bị từ chối. Bấm vào đường dẫn đính kèm để sửa bài. Lý do: ';
-      $scope.denie = function(){
-        data.reviews.state="denied";
+      $scope.message = 'Bài đánh giá mang tên ' + data.reviews.title + ' của bạn đã bị từ chối. Bấm vào đường dẫn đính kèm để sửa bài. Lý do: ';
+      $scope.denie = function() {
+        data.reviews.state = 'denied';
         data.deniedReason = $scope.message;
         updateReview();
       };
-      $scope.close = function(){$modalInstance.close();};
+      $scope.close = function() {$modalInstance.close();};
 
-      var updateReview = function(){
-        $http.put('/api/companies/'+data._id+'/reviews/'+data.reviews._id, data).then(successCallback, errorCallback);
+      var updateReview = function() {
+        $http.put('/api/companies/' + data._id + '/reviews/' + data.reviews._id, data).then(successCallback, errorCallback);
 
         function successCallback(res) {
 
@@ -174,7 +173,7 @@ angular.module('users').controller('HandleReviewsController', ['$modal', '$rootS
               waitingReviews: res.data.length,
               reviews: res.data
             };
-            
+
             $modalInstance.close(result);
             return true;
           });
@@ -193,14 +192,14 @@ angular.module('users').controller('HandleReviewsController', ['$modal', '$rootS
         scope: $scope,
         controller: ApproveModalController,
         resolve: {
-          data: function(){
+          data: function() {
             return data;
           }
         }
       });
 
       modalInstance.result.then(function (result) {
-        if(result){
+        if (result) {
           $rootScope.waitingReviews = result.waitingReviews;
           $scope.reviews = result.reviews;
         }
@@ -209,14 +208,14 @@ angular.module('users').controller('HandleReviewsController', ['$modal', '$rootS
 
     var ApproveModalController = function ($scope, $modalInstance, data) {
       $scope.data = data;
-      $scope.approve = function(){
-        data.reviews.state="approved";
+      $scope.approve = function() {
+        data.reviews.state = 'approved';
         updateReview();
       };
-      $scope.close = function(){$modalInstance.close();};
+      $scope.close = function() {$modalInstance.close();};
 
-      var updateReview = function(){
-        $http.put('/api/companies/'+data._id+'/reviews/'+data.reviews._id, data).then(successCallback, errorCallback);
+      var updateReview = function() {
+        $http.put('/api/companies/' + data._id + '/reviews/' + data.reviews._id, data).then(successCallback, errorCallback);
 
         function successCallback(res) {
 
@@ -225,7 +224,7 @@ angular.module('users').controller('HandleReviewsController', ['$modal', '$rootS
               waitingReviews: res.data.length,
               reviews: res.data
             };
-            
+
             $modalInstance.close(result);
             return true;
           });

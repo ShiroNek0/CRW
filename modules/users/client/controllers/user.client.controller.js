@@ -8,35 +8,35 @@ angular.module('users').controller('UserProfileController', ['$http', '$scope', 
 
     vm.authentication = Authentication;
 
-    vm.active = function(){
+    vm.active = function() {
       vm.user.accState = 'active';
       vm.update();
     };
 
-    vm.deactive = function(){
+    vm.deactive = function() {
       vm.user.accState = 'deactive';
       vm.update();
     };
 
 
-    vm.promoteMod = function(){
+    vm.promoteMod = function() {
       vm.user.roles.push('mod');
       vm.update();
     };
 
-    vm.demoteMod = function(){
-      vm.user.roles=['user'];
-      vm.update();      
+    vm.demoteMod = function() {
+      vm.user.roles = ['user'];
+      vm.update();
     };
 
-    vm.update = function(){
+    vm.update = function() {
       vm.user.$update(successCallback, errorCallback);
 
-      function successCallback(res){
+      function successCallback(res) {
 
       }
 
-      function errorCallback(res){
+      function errorCallback(res) {
         alert(res.data.message);
       }
     };

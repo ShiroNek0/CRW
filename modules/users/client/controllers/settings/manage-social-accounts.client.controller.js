@@ -6,11 +6,7 @@ angular.module('users').controller('SocialAccountsController', ['$scope', '$http
 
     // Check if there are additional accounts
     $scope.hasConnectedAdditionalSocialAccounts = function (provider) {
-      for (var i in $scope.user.additionalProvidersData) {
-        return true;
-      }
-
-      return false;
+      return ($scope.user.additionalProvidersData && Object.keys($scope.user.additionalProvidersData).length);
     };
 
     // Check if provider is already in use with current user

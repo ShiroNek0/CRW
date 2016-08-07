@@ -12,4 +12,4 @@
 
     vm.jobs = JobsService.query();
   }
-})();
+}());

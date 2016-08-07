@@ -14,7 +14,7 @@ var JobSchema = new Schema({
     type: String,
     required: 'Xin nhập tên nghề nghiệp',
     unique: 'Nghề nghiệp đã tồn tại trong hệ thống',
-    trim: true,
+    trim: true
   }
 });
 

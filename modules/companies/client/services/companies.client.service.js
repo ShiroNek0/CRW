@@ -1,4 +1,4 @@
-//Companies service used to communicate Companies REST endpoints
+// Companies service used to communicate Companies REST endpoints
 (function () {
   'use strict';
 
@@ -9,7 +9,7 @@
     .factory('DetailReviewService', DetailReviewService)
     .factory('SearchService', SearchService)
     .factory('ReviewService', ReviewService);
-    
+
 
   CompaniesService.$inject = ['$resource'];
   CompaniesRecentService.$inject = ['$resource'];
@@ -34,14 +34,14 @@
   }
 
   function CompaniesRecentService($resource) {
-    
+
     return $resource('/api/companies?newestReview=desc&&limit=4', {});
   }
 
   function SearchService($resource) {
 
     return $resource('/api/companies?name=:keyword', {
-      //keyword: '@keyword'
+      // keyword: '@keyword'
     });
   }
 
@@ -56,4 +56,4 @@
     });
   }
 
-})();
+}());

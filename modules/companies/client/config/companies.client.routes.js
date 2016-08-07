@@ -52,7 +52,7 @@
       })
       .state('companies.view', {
         url: '/:companyId',
-        data:{
+        data: {
           title: 'Chi tiết công ty'
         },
         views: {
@@ -79,7 +79,7 @@
         resolve: {
           reviewResolve: getReview
         },
-        data:{
+        data: {
           title: 'Chi tiết đánh giá'
         }
       })
@@ -91,7 +91,7 @@
         resolve: {
           companyResolve: getSearchResult
         },
-        data:{
+        data: {
           title: 'Danh sách công ty'
         }
       });
@@ -145,4 +145,4 @@
   }
 
 
-})();
+}());

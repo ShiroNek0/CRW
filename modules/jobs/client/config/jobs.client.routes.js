@@ -33,7 +33,7 @@
         },
         data: {
           roles: ['user', 'admin'],
-          pageTitle : 'Jobs Create'
+          pageTitle: 'Jobs Create'
         }
       })
       .state('jobs.edit', {
@@ -57,7 +57,7 @@
         resolve: {
           jobResolve: getJob
         },
-        data:{
+        data: {
           pageTitle: 'Job {{ articleResolve.name }}'
         }
       });
@@ -76,4 +76,4 @@
   function newJob(JobsService) {
     return new JobsService();
   }
-})();
+}());
