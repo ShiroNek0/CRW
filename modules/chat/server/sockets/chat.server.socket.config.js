@@ -11,7 +11,7 @@ var path = require('path'),
 module.exports = function (io, socket) {
   var user = socket.request.user;
 
-  // Gửi số lượng bài đánh giá chưa duyệt cho admin và mod
+  // Gửi số lượng bài đánh giá chưa duyệt và số lượng bài bị báo cáo cho admin và mod lúc bắt đầu load profile
   if (user.roles.indexOf('mod') !== -1 || user.roles.indexOf('admin') !== -1) {
     companies.countWaitingReviews(function (result) {
       socket.emit('review waiting', result);
@@ -25,7 +25,7 @@ module.exports = function (io, socket) {
       // Cập nhật số lượng bài đánh giá đang chờ duyệt
       companies.countWaitingReviews(function (result) {
         console.log('Waiting review triggered: ' + result);
-        socket.emit(result);
+        socket.emit('review waiting', result);
       });
     });
 
@@ -33,7 +33,7 @@ module.exports = function (io, socket) {
       // Cập nhật số lượng bài đánh giá có báo cáo chưa xử lý
       companies.countReportedReviews(function (result) {
         console.log('Reported review triggered: ' + result);
-        socket.emit(result);
+        socket.emit('review reported', result);
       });
     });
   }
@@ -42,7 +42,7 @@ module.exports = function (io, socket) {
   users.notiEventEmitter.on('notification', function (data) {
     // Gửi thông báo nếu client là đối tượng của noti
     if (user._id.equals(data.userId)) {
-      socket.emit(data);
+      socket.emit('notification', data);
     }
   });
 };

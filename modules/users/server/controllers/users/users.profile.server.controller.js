@@ -44,19 +44,18 @@ exports.trimInfoUser = function(item, parentCallback) {
   newUser.accState = item.accState;
   newUser.postedReviews = item.postedReviews;
   if (parentCallback) parentCallback(newUser);
-  return newUser;
 };
 
 exports.trimInfoUserList = function(list, parentCallback) {
   var newList = [];
-  var controller = this;
   async.forEachOf(list, function(element, key, callback) {
-    newList.push(controller.trimInfoUser(element));
-    callback();
+    exports.trimInfoUser(element, function(result) {
+      newList.push(result);
+      callback();
+    });
   }, function (err) {
     if (err) return null;
     if (parentCallback) parentCallback(newList);
-    return newList;
   });
 };
 
@@ -92,8 +91,9 @@ exports.update = function (req, res) {
           if (err) {
             res.status(400).send(err);
           } else {
-            // res.json(user);
-            res.json(exports.trimInfoUser(user));
+            exports.trimInfoUser(user, function(result) {
+              res.jsonp(result);
+            });
           }
         });
       }
@@ -136,7 +136,9 @@ exports.changeProfilePicture = function (req, res) {
               if (err) {
                 res.status(400).send(err);
               } else {
-                res.json(this.trimInfoUser(user));
+                exports.trimInfoUser(user, function(result) {
+                  res.jsonp(result);
+                });
               }
             });
           }
@@ -188,7 +190,6 @@ exports.markAllNoti = function(req, res) {
 };
 
 exports.changeBookmark = function(req, res) {
-  console.log(req.user._id);
   if (req.body.bookmarked === 'undefined' || (typeof req.body.bookmarked !== 'boolean')) {
     return res.status(400).json({
       message: 'request body không đúng định dạng {"bookmarked": [giá trị boolean], "reviewId": "[ID bài đánh giá]"}'

@@ -95,7 +95,7 @@ function list(req, res, findCriteria, projectCriteria, sortCriteria, limitCriter
 
   Company.find(findCondition).select(projectionCondition).sort(sortCondition).limit(limitCondition).lean().exec(function(err, result) {
     if (err) {
-      return res.status(500).send({
+      return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
@@ -302,7 +302,7 @@ exports.create = function(req, res) {
   var company = new Company(req.body);
   company.save(function(err) {
     if (err) {
-      return res.status(500).send({
+      return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
@@ -522,6 +522,7 @@ exports.updateReview = function(req, res) {
       (req.user.roles.indexOf('mod') !== -1 || req.user.roles.indexOf('admin') !== -1)) {
       // Là mod hoặc admin, chỉ được thay đổi trạng thái bài
       review.state = req.body.reviews.state;
+      review.highlight = req.body.reviews.highlight;
     } else {
       return res.status(403).json({
         message: 'Bạn không có quyền hạn truy cập trang này'
@@ -531,7 +532,9 @@ exports.updateReview = function(req, res) {
     // Là người sở hữu bài
     if (!(req.user.roles && Array.isArray(req.user.roles) &&
       (req.user.roles.indexOf('mod') !== -1 || req.user.roles.indexOf('admin') !== -1))) {
-      req.body.reviews.state = 'waiting'; // Chờ duyệt lại nếu không phải admin hoặc mod
+      // Người sở hữu bài là người dùng bình thường
+      req.body.reviews.state = 'waiting'; // Chờ duyệt lại
+      delete req.body.reviews.highlight;
     }
     // Bỏ các trường không cần thiết
     delete req.body.reviews.upvoteCount;
@@ -624,7 +627,7 @@ exports.listUserReviews = function (req, res) {
   } else return res.send();
   exports.listPostedReviews(id, req.user._id, function (err, result) {
     if (err) {
-      return res.status(500).send({
+      return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
