@@ -4,11 +4,7 @@ var defaultEnvConfig = require('./default');
 
 module.exports = {
   db: {
-    // uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/local',
-    // options: {
-    //   user: '',
-    //   pass: ''
-    uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://AdminCRW_remote:maiwaifu@52.77.188.220:27017/CRW',
+    uri: 'mongodb://AdminCRW_remote:maiwaifu@52.77.188.220:27017/CRW',
     options: {
       user: '',
       pass: ''
@@ -27,7 +23,7 @@ module.exports = {
       //  directoryPath: process.cwd(),
       //  fileName: 'access.log',
       //  rotatingLogs: { // for more info on rotating logs - https://github.com/holidayextras/file-stream-rotator#usage
-      //    active: false, // activate to use rotating logs
+      //    active: false, // activate to use rotating logs 
       //    fileName: 'access-%DATE%.log', // if rotating logs are active, this fileName setting will be used
       //    frequency: 'daily',
       //    verbose: false
@@ -39,8 +35,8 @@ module.exports = {
     title: defaultEnvConfig.app.title + ' - Đang phát triển'
   },
   facebook: {
-    clientID: process.env.FACEBOOK_ID || '1720640538176128',
-    clientSecret: process.env.FACEBOOK_SECRET || '7d566d96fd457d419268849c2313fc10',
+    clientID: '1720640538176128',
+    clientSecret: '7d566d96fd457d419268849c2313fc10',
     callbackURL: '/api/auth/facebook/callback'
   },
   twitter: {
@@ -49,8 +45,8 @@ module.exports = {
     callbackURL: '/api/auth/twitter/callback'
   },
   google: {
-    clientID: process.env.GOOGLE_ID || ' 923811663002-j5gqjnnsbfcm5ombainked3u00076eba.apps.googleusercontent.com',
-    clientSecret: process.env.GOOGLE_SECRET || 'Lkx4nbbfPQ0ZM71OvDFo3zB6',
+    clientID: '923811663002-j5gqjnnsbfcm5ombainked3u00076eba.apps.googleusercontent.com',
+    clientSecret: 'Lkx4nbbfPQ0ZM71OvDFo3zB6',
     callbackURL: '/api/auth/google/callback'
   },
   linkedin: {

@@ -196,14 +196,17 @@ var CompanySchema = new Schema({
 
 CompanySchema.index({ name: 'text', alias: 'text' });
 
+// Nhớ gọi hàm calculateRating khi thay đổi số lượng review approved/trusted trong hệ thống
 CompanySchema.methods.calculateRating = function(callback) {
   // Đếm các điểm số khác nhau và số lượng của chúng
-  var counter = this.reviews.reduce(function (counter, item) {
-    if (['approved', 'trusted'].indexOf(item.state) === -1) return counter; // Bỏ qua các bài đánh giá chưa chấp nhận
+  if(this.reviews.length <= 0) return;
+  var counter = {};
+  this.reviews.reduce(function (prevItem, item) {
+    if (['approved', 'trusted'].indexOf(item.state) === -1) return; // Bỏ qua các bài đánh giá chưa chấp nhận
     var rate = Math.round(parseFloat(item.overallRev.rating) * 10) / 5; // Nhân đôi để dễ tính
     counter[rate] = counter.hasOwnProperty(rate) ? counter[rate] + 1 : 1;
-    return counter;
-  }, {});
+    return;
+  }, 0); // Nếu không có giá trị đầu vào item sẽ bắt đầu từ index 1 và gây lỗi
 
   // Tính toán điểm trung bình theo Baynesia
   // Xem thêm ở http://www.evanmiller.org/ranking-items-with-star-ratings.html
@@ -224,8 +227,7 @@ CompanySchema.methods.calculateRating = function(callback) {
         N += counter[key];
         callback();
       }, function(err) {
-        if (err) return seriesCallback(err);
-        else return seriesCallback(null);
+        seriesCallback(err);
       });
     },
     // Tính 2 điểm theo công thức
@@ -244,7 +246,7 @@ CompanySchema.methods.calculateRating = function(callback) {
         score /= 2;
 
         avgScore /= (N * 2.0); // Cần 1.0 để kết quả là phân số thập phân thay vì số nguyên
-        return seriesCallback(null);
+        seriesCallback(null);
       });
     }
   ],
@@ -253,15 +255,17 @@ CompanySchema.methods.calculateRating = function(callback) {
     // Lưu kết quả vào DB
     company.overallRating = score;
     company.averageRating = avgScore;
-    company.save(function(err, result) {
-      if (err) {
+    mongoose.model('Company').update({ _id: company._id }, { $set: { overallRating: score, averageRating: avgScore } }, null, function (err, raw) {
+      if (err) 
         if (callback) return callback(err);
         else console.log(err);
-      } else {
-        if (callback) return callback(null, score);
-      }
+      if (callback) return callback(null, score);
     });
   });
 };
+
+CompanySchema.post('save', function(doc) {
+  doc.calculateRating();
+});
 
 module.exports = mongoose.model('Company', CompanySchema);

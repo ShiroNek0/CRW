@@ -4,7 +4,7 @@ var defaultEnvConfig = require('./default');
 
 module.exports = {
   db: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-test',
+    uri: 'mongodb://AdminCRW_remote:maiwaifu@52.77.188.220:27017/CRW',
     options: {
       user: '',
       pass: ''
@@ -23,7 +23,7 @@ module.exports = {
         directoryPath: process.cwd(),
         fileName: 'access.log',
         rotatingLogs: { // for more info on rotating logs - https://github.com/holidayextras/file-stream-rotator#usage
-          active: false, // activate to use rotating logs
+          active: false, // activate to use rotating logs 
           fileName: 'access-%DATE%.log', // if rotating logs are active, this fileName setting will be used
           frequency: 'daily',
           verbose: false
@@ -36,8 +36,8 @@ module.exports = {
     title: defaultEnvConfig.app.title + ' - Test Environment'
   },
   facebook: {
-    clientID: process.env.FACEBOOK_ID || 'APP_ID',
-    clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+    clientID: '1720640538176128',
+    clientSecret: '7d566d96fd457d419268849c2313fc10',
     callbackURL: '/api/auth/facebook/callback'
   },
   twitter: {
@@ -46,8 +46,8 @@ module.exports = {
     callbackURL: '/api/auth/twitter/callback'
   },
   google: {
-    clientID: process.env.GOOGLE_ID || 'APP_ID',
-    clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
+    clientID: '923811663002-j5gqjnnsbfcm5ombainked3u00076eba.apps.googleusercontent.com',
+    clientSecret: 'Lkx4nbbfPQ0ZM71OvDFo3zB6',
     callbackURL: '/api/auth/google/callback'
   },
   linkedin: {
@@ -77,9 +77,9 @@ module.exports = {
     }
   },
   seedDB: {
-    seed: process.env.MONGO_SEED === 'true',
+    seed: process.env.MONGO_SEED === 'true' ? true : false,
     options: {
-      logResults: process.env.MONGO_SEED_LOG_RESULTS !== 'false',
+      logResults: process.env.MONGO_SEED_LOG_RESULTS === 'false' ? false : true,
       seedUser: {
         username: process.env.MONGO_SEED_USER_USERNAME || 'user',
         provider: 'local',

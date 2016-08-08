@@ -10,32 +10,43 @@ MEAN.JS is a full-stack JavaScript open-source solution, which provides a solid 
 ## Before You Begin
 Before you begin we recommend you read about the basic building blocks that assemble a MEAN.JS application:
 * MongoDB - Go through [MongoDB Official Website](http://mongodb.org/) and proceed to their [Official Manual](http://docs.mongodb.org/manual/), which should help you understand NoSQL and MongoDB better.
-* Express - The best way to understand express is through its [Official Website](http://expressjs.com/), which has a [Getting Started](http://expressjs.com/starter/installing.html) guide, as well as an [ExpressJS](http://expressjs.com/en/guide/routing.html) guide for general express topics. You can also go through this [StackOverflow Thread](http://stackoverflow.com/questions/8144214/learning-express-for-node-js) for more resources.
-* AngularJS - Angular's [Official Website](http://angularjs.org/) is a great starting point. You can also use [Thinkster Popular Guide](http://www.thinkster.io/), and [Egghead Videos](https://egghead.io/).
+* Express - The best way to understand express is through its [Official Website](http://expressjs.com/), which has a [Getting Started](http://expressjs.com/starter/installing.html) guide, as well as an [ExpressJS Guide](http://expressjs.com/guide/error-handling.html) guide for general express topics. You can also go through this [StackOverflow Thread](http://stackoverflow.com/questions/8144214/learning-express-for-node-js) for more resources.
+* AngularJS - Angular's [Official Website](http://angularjs.org/) is a great starting point. You can also use [Thinkster Popular Guide](http://www.thinkster.io/), and the [Egghead Videos](https://egghead.io/).
 * Node.js - Start by going through [Node.js Official Website](http://nodejs.org/) and this [StackOverflow Thread](http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js), which should get you going with the Node.js platform in no time.
 
 
 ## Prerequisites
 Make sure you have installed all of the following prerequisites on your development machine:
-* Git - [Download & Install Git](https://git-scm.com/downloads). OSX and Linux machines typically have this already installed.
 * Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager. If you encounter any problems, you can also use this [GitHub Gist](https://gist.github.com/isaacs/579814) to install Node.js.
+  * Node v5 IS NOT SUPPORTED AT THIS TIME! 
 * MongoDB - [Download & Install MongoDB](http://www.mongodb.org/downloads), and make sure it's running on the default port (27017).
+* Ruby - [Download & Install Ruby](https://www.ruby-lang.org/en/documentation/installation/)
 * Bower - You're going to use the [Bower Package Manager](http://bower.io/) to manage your front-end packages. Make sure you've installed Node.js and npm first, then install bower globally using npm:
 
 ```bash
 $ npm install -g bower
 ```
 
-* Gulp - Gulp is used to build the project and automate project tasks.
-
-```bash
-$ npm install gulp -g
-```
-
-* Grunt - (Optional) You're going to use the [Grunt Task Runner](http://gruntjs.com/) to automate your development process.
+* Grunt - You're going to use the [Grunt Task Runner](http://gruntjs.com/) to automate your development process. Make sure you've installed Node.js and npm first, then install grunt globally using npm:
 
 ```bash
 $ npm install -g grunt-cli
+```
+
+* Sass - You're going to use [Sass](http://sass-lang.com/) to compile CSS during your grunt task. Make sure you have ruby installed, and then install Sass using gem install:
+
+```bash
+$ gem install sass
+```
+
+```bash
+$ npm install -g grunt-cli
+```
+
+* Gulp - (Optional) You may use Gulp for Live Reload, Linting, and SASS or LESS.
+
+```bash
+$ npm install gulp -g
 ```
 
 ## Downloading MEAN.JS
@@ -51,7 +62,7 @@ $ git clone https://github.com/meanjs/mean.git meanjs
 This will clone the latest version of the MEAN.JS repository to a **meanjs** folder.
 
 ### Downloading The Repository Zip File
-Another way to use the MEAN.JS boilerplate is to download a zip copy from the [master branch on GitHub](https://github.com/meanjs/mean/archive/master.zip). You can also do this using the `wget` command:
+Another way to use the MEAN.JS boilerplate is to download a zip copy from the [master branch on GitHub](https://github.com/meanjs/mean/archive/master.zip). You can also do this using `wget` command:
 
 ```bash
 $ wget https://github.com/meanjs/mean/archive/master.zip -O meanjs.zip; unzip meanjs.zip; rm meanjs.zip
@@ -65,7 +76,7 @@ Another way would be to use the [Official Yo Generator](http://meanjs.org/genera
 ## Quick Install
 Once you've downloaded the boilerplate and installed all the prerequisites, you're just a few steps away from starting to develop your MEAN application.
 
-The first thing you should do is install the Node.js dependencies. The boilerplate comes pre-bundled with a package.json file that contains the list of modules you need to start your application. To learn more about the modules installed visit the npm & Package.json section.
+The first thing you should do is install the Node.js dependencies. The boilerplate comes pre-bundled with a package.json file that contains the list of modules you need to start your application. To learn more about the modules installed visit the NPM & Package.json section.
 
 To install Node.js dependencies you're going to use npm again. In the application folder run this in the command-line:
 
@@ -79,14 +90,10 @@ This command does a few things:
 * Finally, when the install process is over, npm will initiate a bower install command to install all the front-end modules needed for the application
 
 ## Running Your Application
+After the install process is over, you'll be able to run your application using Grunt, just run grunt default task:
 
-The MEAN.JS project integrates both Grunt and Gulp as build tools and task automation, but Grunt will be deprecated in favor of Gulp.
-While you are free to use both of them directly, we have wrapped Gulp tasks with npm scripts so that regardless of the build tool running the project is transparent to you.
-
-Run your application using npm:
-
-```bash
-$ npm start
+```
+$ grunt
 ```
 
 Your application should run on port 3000 with the *development* environment configuration, so in your browser just go to [http://localhost:3000](http://localhost:3000)
@@ -95,13 +102,12 @@ That's it! Your application should be running. To proceed with your development,
 If you encounter any problems, try the Troubleshooting section.
 
 * explore `config/env/development.js` for development environment configuration options
-* it is possible to run any gulp tasks using npm's run command, for example: `npm run gulp test:server:watch`
 
 ### Running in Production mode
 To run your application with *production* environment configuration, execute grunt as follows:
 
 ```bash
-$ npm start:prod
+$ grunt prod
 ```
 
 * explore `config/env/production.js` for production environment configuration options
@@ -111,13 +117,13 @@ To have default account(s) seeded at runtime:
 
 In Development:
 ```bash
-MONGO_SEED=true npm start
+MONGO_SEED=true grunt
 ```
 It will try to seed the users 'user' and 'admin'. If one of the user already exists, it will display an error message on the console. Just grab the passwords from the console.
 
 In Production:
 ```bash
-MONGO_SEED=true npm start:prod
+MONGO_SEED=true grunt prod
 ```
 This will seed the admin user one time if the user does not already exist. You have to copy the password from the console and save it.
 
@@ -132,7 +138,7 @@ $ sh ./scripts/generate-ssl-certs.sh
 Windows users can follow instructions found [here](http://www.websense.com/support/article/kbarticle/How-to-use-OpenSSL-and-Microsoft-Certification-Authority).
 After you've generated the key and certificate, place them in the *config/sslcerts* folder.
 
-Finally, execute grunt's prod task `npm start:prod`
+Finally, execute grunt's prod task `grunt prod`
 * enable/disable SSL mode in production environment change the `secure` option in `config/env/production.js`
 
 
@@ -140,37 +146,44 @@ Finally, execute grunt's prod task `npm start:prod`
 You can run the full test suite included with MEAN.JS with the test task:
 
 ```bash
-$ npm test
+$ grunt test
 ```
-This will run both the server-side tests (located in the `app/tests/` directory) and the client-side tests (located in the `public/modules/*/tests/`).
+
+This will run both the server-side tests (located in the app/tests/ directory) and the client-side tests (located in the public/modules/*/tests/).
 
 To execute only the server tests, run the test:server task:
 
 ```bash
-$ npm test:server
+$ grunt test:server
 ```
 
 And to run only the client tests, run the test:client task:
 
 ```bash
-$ npm test:client
+$ grunt test:client
 ```
 
-## Running your application with Grunt
+## Running your application with Gulp
 
 After the install process, you can easily run your project with:
 
 ```bash
-$ grunt
+$ gulp
 ```
-The server is now running on http://localhost:3000 if you are using the default settings.
+or
 
-### Running your application with Gulp
+```bash
+$ gulp default
+```
+
+The server is now running on http://localhost:3000 if you are using the default settings. 
+
+### Running Gulp Development Environment
 
 Start the development environment with:
 
 ```bash
-$ gulp
+$ gulp dev
 ```
 
 ### Running in Production mode
@@ -178,6 +191,29 @@ To run your application with *production* environment configuration, execute gul
 
 ```bash
 $ gulp prod
+```
+
+### Testing Your Application with Gulp
+Using the full test suite included with MEAN.JS with the test task:
+
+### Run all tests
+```bash
+$ gulp test
+```
+
+### Run server tests
+```bash
+gulp test:server
+```
+
+### Run client tests
+```bash
+gulp test:client
+```
+
+### Run e2e tests
+```bash
+gulp test:e2e
 ```
 
 ## Development and deployment With Docker
@@ -230,7 +266,7 @@ for hosting applications in the cloud.  After you have an account follow the bel
   *  If you are using Pivotal Web Services run `$ cf login -a api.run.pivotal.io`.
   *  If you are using IBM Bluemix run `$ cf login -a api.ng.bluemix.net`.
 * Create a Mongo DB service.
-+  *  If you are using Pivotal Web Services run `$ cf create-service mlab sandbox mean-mongo`
++  *  If you are using Pivotal Web Services run `$ cf create-service mongolab sandbox mean-mongo`
 +  *  If you are using IBM Bluemix run `$ cf create-service mongodb 100 mean-mongo`
 * Clone the GitHub repo for MEANJS if you have not already done so
   * `$ git clone https://github.com/meanjs/mean.git && cd mean`
@@ -240,7 +276,7 @@ for hosting applications in the cloud.  After you have an account follow the bel
 * Deploy MEANJS to Cloud Foundry
   * `$ cf push`
 
-After `cf push` completes you will see the URL to your running MEANJS application
+After `cf push` completes you will see the URL to your running MEANJS application 
 (your URL will be different).
 
     requested state: started

@@ -28,7 +28,6 @@
     "commit": "98e9242ea60f0cfeeeae27f34a47e61d19ba3997"
   },
   "_source": "https://github.com/akempes/angular-rateit.git",
-  "_target": "^3.0.2",
-  "_originalSource": "angular-rateit",
-  "_direct": true
+  "_target": "~3.0.0",
+  "_originalSource": "angular-rateit"
 }

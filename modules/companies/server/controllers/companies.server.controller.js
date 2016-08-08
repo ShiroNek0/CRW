@@ -442,7 +442,6 @@ exports.changeFollow = function(req, res) {
 
 exports.createReview = function(req, res) {
   // Ngăn cản sửa đổi các trường không đủ quyền hạn
-  console.log(req.body.newReview.state);
   if (!req.user ||
     (req.user && Array.isArray(req.user.roles) && req.user.roles.indexOf('mod') === -1 && req.user.roles.indexOf('admin') === -1)) {
     delete req.body.newReview.state;
@@ -552,7 +551,6 @@ exports.updateReview = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      company.calculateRating(); // Tính toán lại điểm số của công ty
       // Bài đăng được chấp nhận: đổi trạng thái sang approved hoặc trusted
       if (!_.contains(['approved', 'trusted'], oldState) && _.contains(['approved', 'trusted'], review.state)) {
         // Cập nhật nghề mới
@@ -612,7 +610,6 @@ exports.deleteReview = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      company.calculateRating(); // Tính toán lại điểm số của công ty
       res.send('Đã xóa bài đánh giá ' + review.title);
     }
   });

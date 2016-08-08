@@ -3,7 +3,7 @@
 module.exports = {
   app: {
     title: 'CRW',
-    description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
+    description: 'Company Rating Website - Trang web đánh giá công ty',
     keywords: 'mongodb, express, angularjs, node.js, mongoose, passport',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
