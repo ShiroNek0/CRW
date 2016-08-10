@@ -17,5 +17,21 @@ angular.module('users').controller('FollowedCompaniesController', ['$http', '$lo
       vm.reverse = !vm.reverse;
     }
 
+    vm.unfollow = function(companyId, index){
+
+      var data = {};
+      data.followed = true;
+
+      $http.post('/api/companies/' + companyId + '/follow', data).then(successCallback, errorCallback);
+
+      function successCallback(res) {
+        vm.followedCompany.splice(index, 1);
+        return true;
+      }
+
+      function errorCallback(res) {
+        alert(JSON.stringify(res));
+      }
+    }
   }
 ]);

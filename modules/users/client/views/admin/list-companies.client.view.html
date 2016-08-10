@@ -3,36 +3,14 @@
    
       <div class="" style="border:solid 1px ; border-color:lightgrey;background-color:white;">
            <div class="row">
-        <!--  <div class="col-sm-1">
-         </div>
-         <div class="col-sm-3" style="margin-left:50px">
-            <div id="my-div">
-               <h5 style="padding-top:30px;padding-left:65px;color:white">CÔNG TY</h5>
-               <h5 style="padding-left:83px;color:white"><b>{{vm.companies.length}}</b></h5>
-            </div>
-         </div>
-         <div class="col-sm-3">
-            <div id="my-divs">
-               <h5 style="padding-top:30px;padding-left:45px;color:white">BÀI ĐÁNH GIÁ</h5>
-               <h5 style="padding-left:80px;color:white"><b>{{vm.totalreview}} </b></h5>
-            </div>
-         </div>
-         <div class="col-sm-3">
-            <div id="my-divss">
-               <h5 style="padding-top:30px;padding-left:42px;color:white">TỔNG TOÀN BỘ</h5>
-               <h5 style="padding-left:80px;color:white"><b></b></h5>
-            </div>
-         </div>
-         <div class="col-sm-2">
-         </div> -->
           <div class="col-sm-3">
-         <div  class="hero-widget well well-sm"  style="margin-top:10px;margin-left:20px;">
+         <div class="hero-widget well well-sm"  style="margin-top:10px;margin-left:20px;">
                 <div class="icon">
                      <i class="glyphicon glyphicon-briefcase" style="color:#ffcc00"></i>
                 </div>
                 <div class="text">
-                    <var>{{vm.users.length}}</var>
-                    <label class="text-muted">TỔNG TÀI KHOẢN</label>
+                    <var>{{vm.totalCompanies}}</var>
+                    <label class="text-muted">CÔNG TY</label>
                 </div>
                
             </div>
@@ -43,8 +21,8 @@
                      <i class="glyphicon glyphicon-briefcase" style="color:#ef4747"></i>
                 </div>
                 <div class="text">
-                    <var>{{vm.users.length}}</var>
-                    <label class="text-muted">TỔNG TÀI KHOẢN</label>
+                    <var>{{vm.totalReviews}}</var>
+                    <label class="text-muted">BÀI ĐÁNH GIÁ</label>
                 </div>
                
             </div>
@@ -56,8 +34,8 @@
                      <i class="glyphicon glyphicon-plus" style="color:#efe5bd"></i>
                 </div>
                 <div class="text">
-                    <var>{{vm.companies.length}}</var>
-                    <label class="text-muted">TỔNG BÀI ĐÁNH GIÁ</label>
+                    <var>{{vm.totalComments}}</var>
+                    <label class="text-muted">LƯỢT BÌNH LUẬN</label>
                 </div>
                
             </div>  
@@ -69,8 +47,8 @@
                      <i class="glyphicon glyphicon-briefcase" style="color:#079696"></i>
                 </div>
                 <div class="text">
-                    <var>{{vm.totalreview}}</var>
-                    <label class="text-muted">TỔNG CÁC CÔNG TY</label>
+                    <var>{{vm.totalReports}}</var>
+                    <label class="text-muted">BÁO CÁO VI PHẠM</label>
                 </div>
                
             </div>  

@@ -11,6 +11,7 @@ module.exports = function(app) {
     .get(companies.listNormal)
     .post(companies.create);
 
+
   app.route('/api/companies/waitingReviews').all(companiesPolicy.isAllowed)
     .get(companies.listWaitingReviews);
 
@@ -24,6 +25,10 @@ module.exports = function(app) {
     .get(companies.listUserReviews);
 
   app.route('/api/companies/followedCompany').get(companies.listFollowed);
+
+  app.route('/api/companies/getCompanyStatistics').get(companies.getCompanyStatistics);
+
+  app.route('/api/companies/:companyId/getReviewStatistics').get(companies.getReviewStatistics);
 
   app.route('/api/companies/:companyId').all(companiesPolicy.isAllowed)
     .get(companies.read)

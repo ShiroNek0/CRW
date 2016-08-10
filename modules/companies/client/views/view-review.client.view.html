@@ -63,13 +63,9 @@
       </div>
      
     <div class="row review-detail-center">
-           <div class="row">
-           <!--   <img class="pull-right" src="modules/companies/client/img/highline.png" ng-show="vm.company.reviews.highlight" style="width: 30px;height:30px;margin-right:20px">  -->
-             <b  style="color:grey;margin-left:40px;font-size:13px; ">Bạn có thể bình luận khi đăng nhập tài khoản.</b>
-           <p class="pull-right highline" ng-show="vm.company.reviews.highlight" data-toggle="tooltip" data-placement="bottom" title="Nổi bật"></p>
-
-           </div>
-
+        <div class="row">
+          <p class="pull-right highline" ng-show="vm.company.reviews.highlight" data-toggle="tooltip" data-placement="bottom" title="Nổi bật"></p>
+        </div>
             <div class="col-sm-1">
                <div class="row" style="margin-top:5px">
                <img style="margin-top:43px" ng-src="{{vm.company.reviews.userID.profileImageURL? vm.company.reviews.userID.profileImageURL : 'modules/users/client/img/profile/default.png'}}" alt="avatar" class="content-avatar-review-detail">
@@ -308,9 +304,13 @@
                   <div class="row">
                   
                      <button type="button" ng-show="vm.authentication.user" class="button-vote" data-toggle="modal" data-target="#modalUpvote"><span ng-hide="vm.checkIfUpvoted()"> <b style="font-size:12px">Ủng hộ</b></span><span ng-show="vm.checkIfUpvoted()"> <b style="font-size:12px">Bỏ ủng Hộ</b></span></button>
+
                      <button type="button" ng-show="(vm.authentication.user.roles.indexOf('mod')>0)" class="button-votes" ng-click="vm.highlight()"><span ng-hide="vm.company.reviews.highlight"> <b style="font-size:12px">Đánh giá nổi bật</b></span><span ng-show="vm.company.reviews.highlight"> <b style="font-size:12px">Bỏ đánh giá nổi bật</b</span></button>
+
                      <button type="button" ng-show="vm.authentication.user && (vm.authentication.user._id != vm.company.reviews.userID._id)" class="button-bookmark" ng-click="vm.bookmark()"><span class="glyphicon glyphicon-bookmark" style="font-size:12px"></span><span ng-hide="vm.checkIfBookmarked()"> <b style="font-size:12px">Dấu trang</b></span><span ng-show="vm.checkIfBookmarked()">  <b style="font-size:12px">Bỏ lưu dấu trang</b></span></button>
+
                      <button  class="pull-right button-report " style="margin-bottom:13px" type="button" data-toggle="modal" data-target="#baocaoModal"><span class="glyphicon glyphicon-flag" data-toggle="tooltip" data-placement="left" title="Báo cáo vi phạm"></span> </button>
+
                      <div id="baocaoModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                            <div class="modal-content">
@@ -342,9 +342,13 @@
          <div class="row star-overall-review">
             <div class="col-sm-12">
                <h4 for="comment" class="text-left" style="color:grey">Bình luận về bài đánh giá này:</h4>
-               <h5 style="color:#079696;">Xin vui lòng hãy dùng từ ngữ lịch sự khi sử dụng tính năng bình luận.</h5>
+               
                <div class="review-detail-comment">
+                  <div class="row" ng-hide="vm.authentication.user">
+                     <b style="color:grey;margin-left:40px;font-size:13px;">Hãy đăng nhập để tham gia bình luận</b>
+                   </div>
                   <div ng-show="vm.authentication.user">
+                  <h5 style="color:#079696;">Xin vui lòng hãy dùng từ ngữ lịch sự khi sử dụng tính năng bình luận.</h5>
                      <div id=cmtSection>
                         <form>
                            <div class="form-group textarea-cmt">
@@ -358,10 +362,10 @@
                      </div>
                   </div>
                </div>
-               <h4 class="comment-show" style="color:grey">Danh sách bình luận:</h4>
-               <div class="comment-list" ng-init="vm.initCmt()">
+               <div class="comment-list" ng-show="vm.company.reviews.comments.length > 0" ng-init="vm.initCmt()">
                   <div ng-repeat="comment in vm.company.reviews.comments | orderBy:'-postTime'" ng-include="'modules/companies/client/views/panel-comment.client.view.html'"></div>
                </div>
+               <div ng-hide="vm.company.reviews.comments.length > 0">Chưa có lượt bình luận nào</div>
             </div>
          </div>
       </div>
@@ -383,27 +387,27 @@
 
         setTimeout(function(){ 
           if($('#opportunityRating').length){
-            $('#opportunityRating').barrating('set', angular.element('#setting-ui-view').scope().vm.company.reviews.salaryAndBenefit.opportunityRating);
+            $('#opportunityRating').barrating('set', angular.element('#ui-view').scope().vm.company.reviews.salaryAndBenefit.opportunityRating);
             $('#opportunityRating').barrating('readonly', true);
           }
 
           if($('#healthRating').length){
-            $('#healthRating').barrating('set', angular.element('#setting-ui-view').scope().vm.company.reviews.salaryAndBenefit.healthRating);
+            $('#healthRating').barrating('set', angular.element('#ui-view').scope().vm.company.reviews.salaryAndBenefit.healthRating);
             $('#healthRating').barrating('readonly', true);
           }
 
           if($('#timeOffRating').length){
-            $('#timeOffRating').barrating('set', angular.element('#setting-ui-view').scope().vm.company.reviews.salaryAndBenefit.timeOffRating);
+            $('#timeOffRating').barrating('set', angular.element('#ui-view').scope().vm.company.reviews.salaryAndBenefit.timeOffRating);
             $('#timeOffRating').barrating('readonly', true);
           }
 
           if($('#pensionRating').length){
-            $('#pensionRating').barrating('set', angular.element('#setting-ui-view').scope().vm.company.reviews.salaryAndBenefit.pensionRating);
+            $('#pensionRating').barrating('set', angular.element('#ui-view').scope().vm.company.reviews.salaryAndBenefit.pensionRating);
             $('#pensionRating').barrating('readonly', true);
           }
 
           if($('#parentalLeaveRating').length){
-            $('#parentalLeaveRating').barrating('set', angular.element('#setting-ui-view').scope().vm.company.reviews.salaryAndBenefit.parentalLeaveRating);
+            $('#parentalLeaveRating').barrating('set', angular.element('#ui-view').scope().vm.company.reviews.salaryAndBenefit.parentalLeaveRating);
             $('#parentalLeaveRating').barrating('readonly', true);
           }
 
