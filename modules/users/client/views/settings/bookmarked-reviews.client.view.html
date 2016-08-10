@@ -1,5 +1,5 @@
 <section style="font-family: Roboto-Regular;" >
-  <h5 style="color:black;margin-top:20px;margin-left:20px;font-weight:bold;background-color:lightgrey;margin-right:20px;height:30px;padding-left:20px;padding-top:10px">Bài đánh giá đã đánh dấu</h5>
+  <h5 style="color:black;margin-top:20px;margin-left:20px;font-weight:bold;background-color:lightgrey;margin-right:20px;height:30px;padding-left:20px;padding-top:10px"><span class="glyphicon glyphicon-bookmark"></span> Bài đánh giá đã đánh dấu</h5>
 
    <div class="" style="border:solid 2px;border-color:lightgrey;background-color:white;margin-left:20px;margin-right:20px" >
      
@@ -32,7 +32,7 @@
                 </thead>
       </table>
           </div>
-                    <div dir-paginate="data in vm.bookmarkedReviews | orderBy:vm.sortKey:!vm.reverse | itemsPerPage:vm.bookmarkedReviewsItemsPerPage">
+                    <div dir-paginate="data in vm.bookmarkedReviews | orderBy:vm.sortKey:!vm.reverse | itemsPerPage:vm.bookmarkedReviewsItemsPerPage  | filter: vm.keyword">
                 <table class="table table-striped">
 
         <div class="table-responsive">

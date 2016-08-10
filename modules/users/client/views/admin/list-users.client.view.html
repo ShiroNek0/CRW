@@ -1,5 +1,5 @@
 <section>
- <h5 style="color:black;margin-top:20px;font-weight:bold;background-color:lightgrey;height:40px;padding-left:20px;padding-top:10px">Quản lý các người dùng</h5>
+ <h5 style="color:black;margin-top:20px;font-weight:bold;background-color:lightgrey;height:40px;padding-left:20px;padding-top:10px"><span class="glyphicon glyphicon-user"></span> Quản lý các người dùng</h5>
 
 
 <div class="" style="background-color:white;border:solid 1px; border-color:lightgrey">
@@ -8,58 +8,84 @@
      
    <div class="row">
      <div class="col-sm-3">
-         <div id="my-div-user">
-       <h6 style="padding-top:50px;padding-left:35px;color:white">TÀI KHOẢN ADMIN</h6>
-       <h3 style="padding-left:87px;color:white"><b></b></h3>
-    </div>
+           <div  class="hero-widget well well-sm"  style="margin-left:20px;margin-top:10px;">
+                <div class="icon">
+                     <i class="glyphicon glyphicon-user" style="color:#ffcc00"></i>
+                </div>
+                <div class="text">
+                    <var>{{vm.adminTotal}}</var>
+                    <label class="text-muted">ADMIN</label>
+                </div>
+               
+            </div>
      </div>
      <div class="col-sm-3">
-         <div id="my-div-user" style="background-color:#e57a16">
-       <h6 style="padding-top:50px;padding-left:45px;color:white">TÀI KHOẢN MOD</h6>
-       <h3 style="padding-left:87px;color:white"><b></b></h3>
-    </div>
+         <div  class="hero-widget well well-sm"  style="margin-top:10px;">
+                <div class="icon">
+                     <i class="glyphicon glyphicon-user" style="color:#ef4747"></i>
+                </div>
+                <div class="text">
+                    <var>{{vm.modTotal - vm.adminTotal}}</var>
+                    <label class="text-muted">MOD</label>
+                </div>
+               
+            </div>
      </div>
      <div class="col-sm-3">
-         <div id="my-div-user" style="background-color:#ab65f7">
-       <h6 style="padding-top:50px;padding-left:25px;color:white">TÀI KHOẢN NGƯỜI DÙNG</h6>
-       <h3 style="padding-left:87px;color:white"><b></b></h3>
-    </div>
+        <div  class="hero-widget well well-sm"  style="margin-top:10px;">
+                <div class="icon">
+                     <i class="glyphicon glyphicon-user" style="color:#efe5bd"></i>
+                </div>
+                <div class="text">
+                    <var>{{vm.users.length - vm.modTotal}}</var>
+                    <label class="text-muted">USER</label>
+                </div>
+               
+            </div>
 
      </div>
      <div class="col-sm-3">
-         <div id="my-div-user" style="background-color:#4c4444">
-       <h6 style="padding-top:50px;padding-left:40px;color:white">TỔNG TÀI KHOẢN</h6>
-       <h3 style="padding-left:87px;color:white"><b>{{vm.users.length}}</b></h3>
-    </div>
+         <div  class="hero-widget well well-sm"  style="margin-right:20px;margin-top:10px;">
+                <div class="icon">
+                     <i class="glyphicon glyphicon-user" style="color:#079696"></i>
+                </div>
+                <div class="text">
+                    <var>{{vm.users.length}}</var>
+                    <label class="text-muted">TỔNG TÀI KHOẢN</label>
+                </div>
+               
+            </div>  
 
      </div>
 
    </div>
   <div class="row" style="margin-left:20px;margin-right:20px;background-color:white;border:solid 2px;border-color:lightgrey;margin-bottom:20px">
      
-       <div class="row" ">
+       <div class="row" >
           <div class="col-sm-8">
-              <b class="" style="color:white;font-weight:none;color:grey;margin-left:30px">Hiển thị</b>
-            <select ng-model="vm.ItemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:black; margin-right:10px;margin-top:10px;">
+              <span style="margin-left:10px">Hiển thị</span>
+            <select ng-model="vm.ItemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:black; margin-right:10px;margin-top:10px;border:solid 1px;border-color:grey">
             <option style="color:black" value="10">10</option>
             <option style="color:black" value="20">20</option>
             <option style="color:black" value="30">30</option>
          </select>
           </div>
           <div class="col-sm-4 " style="margin-top:10px;">
-          <b style="color:grey;margin-right:10px">Tìm kiếm</b>
-                      <input type="search" ng-model="vm.keyword" style="" placeholder=" Tìm theo tên hiển thị..." style="border:solid 1px;border-color:lightgrey;">
+            <div class="" style="margin-left:50px">
+               <span style="margin-left:10px" >Tìm kiếm</span>
+                      <input style="border:solid 1px;border-color:grey" type="search" ng-model="vm.keyword" style="" placeholder=" Tìm theo tên hiển thị..." >
+            </div>
           </div>
 
        </div>
-       <div class="table-responsive" style="margin-right:10px;margin-left:10px;border:solid 1px;margin-top:10px;margin-bottom:10px;border-color:lightgrey">
+       <div class="table-responsive" style="margin-right:10px;margin-left:10px;border:solid 1px;margin-top:10px;margin-bottom:10px;border-color:#1fbaba">
                 <table class="table table-striped table-bordered table-condensed" >
          <thead>
             <tr style="color:white;font-weight:bold;background-color:#1fbaba">
-                <th class="col-sm-4" ng-click="vm.sort('email')">Email <span class="glyphicon sort-icon" ng-show="vm.sortKey=='email'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
-                <th class="col-sm-4" ng-click="vm.sort('name')">Tên hiển thị <span class="glyphicon sort-icon" ng-show="vm.sortKey=='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
-                <th class="col-sm-2" ng-click="vm.sort('accState')">Trạng thái tài khoản <span class="glyphicon sort-icon" ng-show="vm.sortKey=='accState'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
-                <th class="col-sm-2" ng-click="vm.sort('roles')">Quyền hạn <span class="glyphicon sort-icon" ng-show="vm.sortKey=='roles'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                <th style="font-size:13px" class="col-sm-4" ng-click="vm.sort('email')">Email <span class="glyphicon sort-icon" ng-show="vm.sortKey=='email'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                <th   style="font-size:13px" class="col-sm-4" ng-click="vm.sort('name')">Tên hiển thị <span class="glyphicon sort-icon" ng-show="vm.sortKey=='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                <th  style="font-size:13px" class="col-sm-2" ng-click="vm.sort('accState')">Trạng thái tài khoản <span class="glyphicon sort-icon" ng-show="vm.sortKey=='accState'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                <th style="font-size:13px"  class="col-sm-2" ng-click="vm.sort('roles')">Quyền hạn <span class="glyphicon sort-icon" ng-show="vm.sortKey=='roles'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
             </tr>
         </thead>
       </table>
@@ -67,10 +93,10 @@
          <table class="table table-striped table-bordered table-condensed" style="">
            <tbody>
                 <tr style="color:black">
-                    <td class="col-sm-4" style="font-weight:bold;border-right:solid 1px;border-color:lightgrey"><a style="color:grey">{{user.email}}</a></td>
-                    <td class="col-sm-4" style="font-weight:bold;border-right:solid 1px;border-color:lightgrey"><a style="color:#1672ce" ui-sref="user({userId: user._id})">{{user.name}}</a></td>
-                    <td class="col-sm-2" style="border-right:solid 1px;border-color:lightgrey"> {{user.accState}}</td>
-                    <td class="col-sm-2" style="border-right:solid 1px;border-color:lightgrey"> <span ng-repeat="role in user.roles" class="badge"> {{role}}</span></td>
+                    <td class="col-sm-4" style="font-weight:bold;border-right:solid 1px;border-color:lightgrey;font-size:12px"><a style="color:grey">{{user.email}}</a></td>
+                    <td class="col-sm-4" style="font-weight:bold;border-right:solid 1px;border-color:lightgrey;font-size:12px"><a style="color:#1672ce" ui-sref="user({userId: user._id})">{{user.name}}</a></td>
+                    <td class="col-sm-2" style="border-right:solid 1px;border-color:lightgrey;font-size:12px"> {{user.accState}}</td>
+                    <td class="col-sm-2" style="border-right:solid 1px;border-color:lightgrey;font-size:12px"> <span ng-repeat="role in user.roles" class="badge" style="background-color:#079696"> {{role}}</span></td>
                 </tr>
             </tbody>
          </table>

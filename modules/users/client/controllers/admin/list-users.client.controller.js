@@ -5,6 +5,12 @@ angular.module('users.admin').controller('UserListController', ['$scope', '$filt
     var vm = this;
     Admin.query(function (data) {
       vm.users = data;
+      vm.users.forEach(function(user){
+        if(user.roles.indexOf('admin')>=0)
+          vm.adminTotal++;
+        if(user.roles.indexOf('mod')>=0)
+          vm.modTotal++;
+      });
     });
 
     vm.sort = sort;
@@ -15,6 +21,7 @@ angular.module('users.admin').controller('UserListController', ['$scope', '$filt
       vm.reverse = !vm.reverse;
     }
 
-
+    vm.adminTotal=0;
+    vm.modTotal=0;
   }
 ]);

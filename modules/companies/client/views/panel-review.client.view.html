@@ -5,11 +5,11 @@
                 <h6 class=" date-review" data-ng-bind="review.lastUpdated | date:'mediumDate'"></h6>
             </div>
             <div class="row">
-                <img ng-src="{{review.userID.profileImageURL? review.userID.profileImageURL : 'modules/users/client/img/profile/default.png'}}" class="content-avatar-review">
+                <img ng-src="{{review.userID.profileImageURL? review.userID.profileImageURL : 'modules/users/client/img/profile/default.png'}}" class="content-avatar-review" style=" border-radius: 5px;">
             </div>
             <div class="row">
-                <h5 ng-show="review.userID.name && !review.stayAnonymous" data-ng-bind="review.userID.name" class="review-user"></h5>
-                <h5 ng-hide="review.userID.name && !review.stayAnonymous" class="review-user">Anonymouse</h5>
+                <h6 style="font-size:10px" ng-show="review.userID.name && !review.stayAnonymous" data-ng-bind="review.userID.name" class="review-user"></h6>
+                <h6 style="font-size:10px" ng-hide="review.userID.name && !review.stayAnonymous" class="review-user">Anonymouse</h6>
             </div>
         </div>
         <div class="col-sm-6 review-detail-right">
@@ -18,34 +18,34 @@
     width: 25em;
     overflow: hidden;
      text-overflow: ellipsis;"><span data-ng-bind="review.overallRev.pros"></span> </h5>
-            <h5 style="color:grey;font-weight:bold">Vị trí công việc:</h5>
-            <h5 style="color:grey;" class="text-left ">- <span ng-repeat="job in review.job">{{job}} - </span> </h5>
-            <h5 style="color:grey;font-weight:bold">Hiện đang làm việc:</h5>
-            <h5 class="text-left" style="color:grey"><span ng-hide="(review.isJobCurrent)" > Đã từng làm việc </span><span ng-show="(review.isJobCurrent)"> </span>- <span data-ng-bind="review.jobLength"></span></h5>
+            <h6 style="color:grey;font-weight:bold">Vị trí công việc:</h6>
+            <h6 style="color:grey;" class="text-left "><span ng-repeat="job in review.job">{{job}} - </span> </h6>
+            <h6 style="color:grey;font-weight:bold">Hiện đang làm việc:</h6>
+            <h6 class="text-left" style="color:grey"><span ng-hide="(review.isJobCurrent)" > Đã từng làm việc </span><span ng-show="(review.isJobCurrent)"> </span><span data-ng-bind="review.jobLength"></span></h6>
         </div>
         <div class="col-sm-4">
             <div class="text-center">
                 <div class="row">
-                    <fieldset class="rating" style="margin-left:50px;margin-top:30px;font-size:32px">
+                    <fieldset class="rating" style="margin-left:50px;margin-top:30px;font-size:26px">
                         <input type="radio" name="{{review._id}}" ng-model="review.overallRev.rating" value="5" />
-                        <label class="full" for="star5" title="Tốt"></label>
+                        <label class="full" for="star5" title="Xuất sắc"></label>
                         
                         <input type="radio" name="{{review._id}}" ng-model="review.overallRev.rating" value="4" />
-                        <label class="full" for="star4" title="Khá tốt"></label>
+                        <label class="full" for="star4" title="Rất tốt"></label>
                         
                         <input type="radio" name="{{review._id}}" ng-model="review.overallRev.rating" value="3" />
-                        <label class="full" for="star3" title="Bình thường"></label>
+                        <label class="full" for="star3" title="Tốt"></label>
                         
                         <input type="radio" name="{{review._id}}" ng-model="review.overallRev.rating" value="2" />
-                        <label class="full" for="star2" title="kém"></label>
+                        <label class="full" for="star2" title="Bình thường"></label>
                         
                         <input type="radio" name="{{review._id}}" ng-model="review.overallRev.rating" value="1" />
-                        <label class="full" for="star1" title="Tệ hại"></label>
+                        <label class="full" for="star1" title="Kém"></label>
                         
-                        <c style="color:#079696;margin-left:45px">{{review.overallRev.rating}}/5</c>
+                        <c style="color:#079696;margin-left:65px">{{review.overallRev.rating}}/5</c>
                     </fieldset>
                 </div>
-                <h5 style="margin-left:100px;color:grey"><b style="color:red; font-weight: bold; ">{{review.upvoteUsers.length}}</b> Lượt ủng hộ</h5>
+                <h5 style="margin-left:110px;color:grey"><b style="color:red; font-weight: bold; ">{{review.upvoteUsers.length}}</b> Lượt ủng hộ</h5>
             </div>
         </div>
     </div>

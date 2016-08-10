@@ -3,10 +3,13 @@
       <div class="control-left" style="display:block;">
          <div class="col-sm-3 col-md-2 sidebar admin-control-left" >
             <ul class="nav nav-sidebar" style="margin-top:20px" >
+                <li>
+                  <span class=" glyphicon glyphicon-cog" style="font-size:70px;margin-left:55px"></span>
+                </li>
                <li style=" width: 80%; text-align: center; margin: auto;" >
                   <!--  <img ng-src="{{authentication.user.profileImageURL}}" alt="{{authentication.user.name}}" class="header-profile-image  img-circle"  /> -->
-                  <div style="margin: 10px 10px; font-size: 13px;"><i class="glyphicon glyphicon-wrench"></i> Đăng nhập với</div>
-                  <div style="margin: 10px 10px; font-size: 20px;">Administrator</div>
+                  <div style="margin-left:-10px;margin-top:10px;font-size: 11px;margin-bottom:20px"><i class="glyphicon glyphicon-wrench"></i> Quản trị hệ thống</div>
+                
                </li>
                <li class="divider"></li>
                <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424" ng-show="(user.roles.indexOf('mod')>=0)">
@@ -89,7 +92,7 @@
             </ul>
          </div>
          <div class="col-sm-10 settings-view" >
-            <div ui-view style="margin-top:30px;margin-left:10px;margin-right:10px"></div>
+            <div ui-view style="margin-top:30px;margin-left:10px;margin-right:10px" id="setting-ui-view"></div>
          </div>
       </div>
    </div>

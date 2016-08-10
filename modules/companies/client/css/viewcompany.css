@@ -90,15 +90,7 @@
     -o-border-radius: 1px;
     border-radius: 1px;
 }
-.btn-followss{
-  border: solid 1px;
-  border-color: lightgrey;
-  width: 115px;
-  height: 42px;
-  color: black;
-  font-weight: bold;
-  margin-top: 110px;
-}
+
 .tab-contents-avatar{
   margin-top: 20px;
 }
@@ -125,7 +117,7 @@
   color: black;
   font-weight: bold;
   box-shadow: 1px 3px 1px 1px grey;
-  margin-left: 55px;
+  margin-left: 60px;
 }
 
 .btn-review{
@@ -148,7 +140,7 @@
   color:black;
   margin-left: 140px;
   margin-top: 90px;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: bold;
   text-transform: uppercase;
 }

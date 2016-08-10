@@ -1,23 +1,23 @@
 <div class="container" style="word-spacing:normal;font-family: Roboto-Regular" ng-controller="HeaderController" >
 <div class="row">
 
-  <div class="col-sm-1" style="padding-right: 0px;margin-left:50px;">
-    <div class="navbar-logo">
-        <a ui-sref="home" class="navbar-company" style="    background: #00b506 -webkit-gradient(linear, left top, right top,
+  <div class="col-sm-3" style="padding-right: 0px;margin-left:50px;">
+    <div class="navbar-logo"> 
+      <a ui-sref="home" class="navbar-company" style="    background: #00b506 -webkit-gradient(linear, left top, right top,
          from(white), to(#00b506), color-stop(0.5, white)) 0 0 no-repeat;
          color: rgba(255, 255, 255, 0.1);
         position: relative;
  
          -webkit-animation: shine 2s infinite;
         -webkit-background-clip: text;
-         -webkit-background-size: 300px;">Company<h5 class="navbar-rating">RatingWebsite</h5></a>
+         -webkit-background-size: 300px;">
+      <img src="modules/users/client/img/logo2.png" style="width:54px;height:44px">
+     <b style="padding-right:10px">Company rating website</b></a>
        
     </div>
   </div>
-  <div class="col-sm-4">
-    <h4 class="important-navbar">Kết nối nghề nghiệp</h4>
-  </div>
-  <div class="col-sm-6">
+
+  <div class="col-sm-8">
    
     <div class="pull-right">
           <ul class="nav navbar-nav" ng-hide="authentication.user">
@@ -56,12 +56,12 @@
     </div> 
      
      <div class="pull-right">
-       <h6 style="margin-top:30px;color: #079696; " >....</h6>
+       <h6 style="margin-top:30px;color: #079696" >....</h6>
      </div>
    
         <div class="pull-right" ng-show="authentication.user.roles.indexOf('mod')>=0">
-         <a a ui-sref="settings.reviews"><span class="glyphicon glyphicon-globe" style="font-size:17px;margin-top:17px;color:white"></span></a>
-            <span class="badge badge-notify" style="background-color:red">{{wtgrvNotif + rptrvNotif}}</span>
+         <a a ui-sref="settings.reviews" ><span class="glyphicon glyphicon-time" style="font-size:17px;margin-top:17px;color:white" data-toggle="tooltip" data-placement="bottom" title="Bài đăng chờ/Báo cáo vi phạm"></span></a>
+            <span ng-show="(wtgrvNotif+rptrvNotif)>0" class="badge badge-notify" style="background-color:red" >{{wtgrvNotif + rptrvNotif}}</span>
       </div>
     <div class="pull-right">
        <h6 style="margin-top:30px;color: #079696;">.....</h6>
@@ -69,8 +69,8 @@
     
    <div class="pull-right" ng-show="authentication.user">
           
-            <a a ui-sref="settings.announcement"><span class="glyphicon glyphicon-bell" style="font-size:17px;margin-top:18px;color:white"></span></a>
-            <span class="badge badge-notify" style="background-color:red">{{unseenAnnouce}}</span>
+            <a a ui-sref="settings.announcement"><span class="glyphicon glyphicon-bell" style="font-size:17px;margin-top:18px;color:white" data-toggle="tooltip" data-placement="bottom" title="Thông báo"></span></a>
+            <span ng-show="(unseenAnnouce)>0" class="badge badge-notify" style="background-color:red" >{{unseenAnnouce}}</span>
 
            
       </div>
@@ -85,6 +85,22 @@
       </a></li>
 
     </div>
+    <div class="pull-right">
+      <div id="searchs" style="margin-right:20px;">
+
+      <form method="GET">
+
+        <fieldset class="clearfix">
+
+          <input class="input-search" type="search" name="search" value="Nhập công ty..." onBlur="if(this.value=='')this.value='Nhập công ty...'" onFocus="if(this.value=='Nhập công ty...')this.value='' " style="margin-top:5px;font-size:12px;" ng-keypress="enterToSearch($event)" ng-model="keyword" required placeholder="Nhập công ty..."> <!-- JS because of IE support; better: placeholder="What are you looking for?" -->
+          <input type="submit" value="Tìm kiếm" class="button" style="margin-top:5px;font-size:11px;" ui-sref="companies.search({keyword: keyword})">
+
+        </fieldset>
+
+      </form>
+
+    </div> <!-- end search -->
+    </div>
 
     
    
@@ -93,3 +109,8 @@
 </div>
 
 </div>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>

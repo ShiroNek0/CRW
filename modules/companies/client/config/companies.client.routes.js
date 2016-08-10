@@ -12,7 +12,7 @@
       .state('companies', {
         abstract: true,
         url: '/companies',
-        template: '<ui-view/>'
+        template: '<ui-view id="ui-view"/>'
       })
       .state('companies.create', {
         url: '/create',

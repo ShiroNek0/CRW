@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('AuthenticationController', ['$rootScope', '$scope', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator',
-  function ($rootScope, $scope, $state, $http, $location, $window, Authentication, PasswordValidator) {
+angular.module('users').controller('AuthenticationController', ['$rootScope', '$scope', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator', 'Socket',
+  function ($rootScope, $scope, $state, $http, $location, $window, Authentication, PasswordValidator, Socket) {
     $scope.authentication = Authentication;
     $scope.popoverMsg = PasswordValidator.getPopoverMsg();
 
@@ -49,6 +49,17 @@ angular.module('users').controller('AuthenticationController', ['$rootScope', '$
         $scope.authentication.user.notification.forEach(function(notif) {
           if (!notif.hasRead)
             $rootScope.unseenAnnouce ++;
+        });
+        if (!Socket.socket) {
+          Socket.connect();
+        }
+
+        Socket.on('review waiting', function (res) {
+          $rootScope.wtgrvNotif = res;
+        });
+
+        Socket.on('review reported', function (res) {
+          $rootScope.rptrvNotif = res;
         });
 
         // And redirect to the previous or home page

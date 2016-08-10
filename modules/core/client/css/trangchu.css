@@ -2,14 +2,14 @@
 	
 	}/*/* /*navbar*/
 div.search{
-	 background: rgba(2,33,34, 0.5);
+	 background: rgba(59,89,152, 0.5);
 }
  .search{
  	 width: 660px;
  	 height: 250px;
- 	 margin-bottom: 150px;
+ 	 margin-bottom: 170px;
  	 margin-left: 80px;
-     background-color: rgb(	2,33,34);
+     background-color: rgb(	59,89,152);
     -moz-border-radius-topleft:10px;
     -webkit-border-top-left-radius:10px;
     -moz-border-radius-bottomleft:10px;
@@ -19,6 +19,9 @@ div.search{
 	-moz-border-radius-bottomright:10px;
 	-webkit-border-bottom-right-radius:10px;
 
+ }
+ div.tab-contents-avatar{
+ 	background: rgba(59,89,152, 0.5)
  }
 .search-job{
 

@@ -6,8 +6,8 @@
          <div class="col-sm-7  " style="margin-top:20px;border:solid 1px;border-color:grey;background-color:white; overflow:hidden;margin-bottom:30px;" >
             <div class="row" style="margin-bottom:20px;height:60px">
                <div class="col-sm-6" style="color:white;margin-top:10px">
-                  <h5 style="color:black" ng-show="(vm.keyword)">Hiển thị kết quả cho từ khóa: {{vm.keyword}}</h5>
-                  <h4 style="color:black;font-weight:bold" ng-hide="(vm.keyword)">Danh sách tất cả công ty:</h4>
+                  <h5 style="color:grey" ng-show="(vm.keyword)">Hiển thị kết quả cho từ khóa: {{vm.keyword}}</h5>
+                  <h5 style="color:black;font-weight:bold" ng-hide="(vm.keyword)"><span class="glyphicon glyphicon-th-list" style="font-size:13px;margin-left:12px;color:grey"></span> Danh sách tất cả công ty:</h5>
                </div>
                <div class="col-sm-6">
                   <!--  PHẦN NÀY LÀ FORM COMPANY--START -->
@@ -33,7 +33,7 @@
                   <a style="padding-left:5px;font-size: 13px;color:#079696;" ng-click="vm.sort('numOfReviews')"  class="review-company-filter">Đánh giá
                   <span class="glyphicon sort-icon" ng-show="vm.sortKey==='numOfReviews'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" ></span></a>
                   <span class="sep" style="width:2px;height:1.1em;padding-left:5px;border-color:lightgrey"></span>
-                  <input type="search" ng-model="vm.keyword" style="width:100px;margin-left:20px;border:solid 1px;border-color:grey;color:grey" placeholder=" Tìm kiếm..." ng-change='vm.onChange()'>
+                  <input type="search" ng-model="vm.keyword" style="width:140px;margin-left:20px;border:solid 1px;border-color:grey;color:grey" placeholder=" Tìm kiếm..." ng-change='vm.onChange()'>
                </div>
             </div>
             <div class="row">
@@ -53,7 +53,7 @@
 
          <div class="pull-right col-sm-4  " style="margin-top:20px;border:solid 1px;border-color:grey;background-color:white; overflow:hidden;margin-bottom:30px;margin-right:50px;">
             <div class="row">
-               <h4 style="margin-left:20px;margin-top:20px;font-weight:bold">Top 10 công ty nổi bật</h4>
+               <h5 style="margin-left:11px;margin-top:20px;font-weight:bold"><span style="font-size:13px;color:grey" class="glyphicon glyphicon-star"></span> Top 10 công ty nổi bật</h5>
             </div>
             <div class="row" ng-repeat="company in vm.listTop10 | orderBy: '-overallRating' | limitTo: 10">
                <div class="col-sm-12 " >
@@ -85,6 +85,7 @@
       </div>
 
    </div>
+   
     <div id='bttop'>TRỞ VỀ ĐẦU TRANG</div>
 </section>
 <script >

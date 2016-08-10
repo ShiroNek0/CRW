@@ -106,7 +106,7 @@ h1 { font-size: 1.5em; margin: 10px; }*/
     overflow: hidden;
 }
 .review-detail-companyrating{
-    border: solid 1px;
+  border: solid 1px;
   border-color: lightgrey;
    background-color: white;
    margin-left: 0px;
@@ -136,18 +136,18 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   overflow: hidden;
 }
 .content-avatar-review-detail{
-   height: 50px;
-   width: 50px;
+   height: 60px;
+   width: 60px;
    border:solid 1px;
    border-color: #b2b2b2;
-   margin-left: 20px;
+   margin-left: 10px;
    
 }
 .button-report{
  margin-right: 15px;
  margin-top: 15px;
- background-color: #079696;
- color: white;
+ background-color: white;
+ color:grey;
  height: 30px;
  width: 40px;
 }
@@ -174,7 +174,7 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   margin-bottom: 20px;
   margin-left: 15px;
   font-weight: bold;
-  background-color:#0ccece;
+  background-color:#079696;
   border-color: lightgrey;
   color: white;
   height: 30px;
@@ -185,7 +185,7 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   margin-bottom: 20px;
   margin-left: 15px;
   font-weight: bold;
-  background-color:#cccccc;
+  background-color:#f1f1f1;
   border-color: lightgrey;
   color:#4c4c4c;
   height: 30px;
@@ -262,169 +262,11 @@ h1 { font-size: 1.5em; margin: 10px; }*/
 .review-cmt-note{
     color: red;
 }
-
-/*
-.review-detail-company{
-  margin-top:20px;
-  border: solid 1px;
-  border-color: #cccccc;
+.date-review{
+  font-size: 10px;
+  margin-left: 10px;
 }
-.date-review-detail{
-  color: black;
+.review-user{
+  margin-left: 10px;
+  font-size: 12px;
 }
-
-
-.review-detail-user{
-  color: #7f7f7f;
-  margin-left:15px; 
-
-}
-.review-detail-detail{
-  margin-left: 160px;
-}
-.review-detail-compaanyname{
-  margin-left: 175px;
-  color: #7f7f7f;
-}
-.review-detail-contract{
-   font-weight:bold;
-   font-family:normal;
-}
-.review-detail-pros{
-   font-weight:bold;
-   font-family:normal;
-}
-.review-detail-cons{
-   font-weight:bold;
-   font-family:normal;
-}
-.review-detail-lk{
-   font-weight:bold;
-   font-family:normal;
-}
-
-.review-detail-time{
-    font-weight:bold;
-   font-family:normal;
-}
-.review-detail-supplement{
-  font-weight:bold;
-   font-family:normal;
-}
-.review-detail-salary{
-    font-weight:bold;
-   font-family:normal;
-   color: #0eb760;
-}
-.review-detail-salarybasic{
-  font-weight:bold;
-   font-family:normal;
-}
-.review-detail-grow{
-   font-weight:bold;
-   font-family:normal;
-}
-
-.review-detail-year{
-   font-weight:bold;
-   font-family:normal;
-}
-
-.review-detail-ln{
-   font-weight:bold;
-   font-family:normal;
-}
-
-
-.review-detail-contracts{
-   font-family:normal;
-   color: #7f7f7f;
-}
-.review-detail-pross{
-   font-family:normal;
-   color: #7f7f7f;
-}
-.review-detail-conss{
-   font-family:normal;
-   color: #7f7f7f;
-}.review-detail-lks{
-   font-family:normal;
-   color: #7f7f7f;
-   padding-bottom: 20px;
-}
-.review-detail-locations{
-     font-family:normal;
-   color: #7f7f7f;
-}
-.review-detail-times{
-      font-family:normal;
-   color: #7f7f7f;
-}
-.review-detail-supplements{
-     font-family:normal;
-   color: #7f7f7f;
-}
-.review-detail-salarybasics{
-     font-family:normal;
-   color: #7f7f7f;
-}
-.review-detail-salarybasics{
-    font-family:normal;
-   color: #7f7f7f;
-}
-.review-detail-grows{
-      font-family:normal;
-   color: #7f7f7f;
-}
-
-.review-detail-years{
-      font-family:normal;
-   color: #7f7f7f;
-}
-
-.review-detail-lns{
-     font-family:normal;
-   color: #7f7f7f;
-}
-
-.report{
-}
-.review-detail-comment{
-  border: solid 1px;
-  border-color: #cccccc;
-  margin-top: 20px;
-  background-color: #e5e5e5;
-}
-.textarea-cmt-inside{
-  width: 1125px;
-  margin-left: 20px;
-}
-.textarea-cmt{
-  margin-top: 15px;
-  height: 160px;
-}
-
-
-.hr{
-  margin-right: 5px;
-}
-.review-detail-showall{
-
-  color: red;
-}
-.button-star{
-  height: 22px;
-  width: 22px;
-  padding-left: 1px;
-  padding-top: 1px;
-  padding-right: 1px;
-  margin-bottom: 5px;
-  color: #0eb760;
-
-}
-.collapse{
-  color: #1ec970;
-}
-.caret{
-  font-size: 20px;
-}*/

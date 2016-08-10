@@ -1,5 +1,5 @@
 <section style="font-family: Roboto-Regular;" >
-  <h5 style="color:black;margin-top:20px;margin-left:20px;font-weight:bold;background-color:lightgrey;margin-right:20px;height:30px;padding-left:20px;padding-top:10px">Bài đánh giá đã theo dõi</h5>
+  <h5 style="color:black;margin-top:20px;margin-left:20px;font-weight:bold;background-color:lightgrey;margin-right:20px;height:30px;padding-left:20px;padding-top:10px"><span class="glyphicon glyphicon-signal"></span> Bài đánh giá đã theo dõi</h5>
 
    
       <div class="" style="border:solid 2px;border-color:lightgrey;background-color:white;margin-left:20px;margin-right:20px">
@@ -15,7 +15,7 @@
           </div>
           <div class="col-sm-4 " style="margin-top:10px;">
           <b style="color:grey;margin-right:10px">Tìm kiếm</b>
-                      <input type="search" ng-model="vm.keyword" style="" placeholder=" Tìm theo tên hiển thị..." style="border:solid 1px;border-color:lightgrey;">
+                      <input type="search" ng-model="vm.keyword" style="" placeholder=" Tìm kiếm..." style="border:solid 1px;border-color:lightgrey;">
           </div>
 
        </div>
@@ -30,7 +30,7 @@
                     </tr>
                 </thead>
       </table>
-                    <div dir-paginate="company in vm.followedCompany | orderBy:vm.sortKey:!vm.reverse | itemsPerPage:vm.itemsPerPage">
+                    <div dir-paginate="company in vm.followedCompany | orderBy:vm.sortKey:!vm.reverse | itemsPerPage:vm.itemsPerPage | filter: vm.keyword">
              
          <table class="table table-striped table-bordered table-condensed" style="">
           <tbody>
