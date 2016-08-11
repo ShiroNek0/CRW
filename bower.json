@@ -14,6 +14,7 @@
     "angular-messages": "~1.3.17",
     "angular-fcsa-number": "~1.5.3",
     "angular-rateit": "~3.0.0",
+    "jquery-bar-rating": "~1.2.1",
     "angular-utils-pagination": "~0.11.1",
     "owasp-password-strength-test": "~1.3.0"
   },
