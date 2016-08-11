@@ -21,7 +21,7 @@ module.exports = {
         'public/lib/angular-file-upload/angular-file-upload.js',
         'public/lib/angular-fcsa-number-master/src/fcsaNumber.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
-        'public/lib/jquery-bar-rating-master/dist/jquery.barrating.min.js',
+        'public/lib/jquery-bar-rating/dist/jquery.barrating.min.js',
 
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
