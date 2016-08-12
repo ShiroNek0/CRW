@@ -18,6 +18,10 @@ li a.setting:visited {
    background-color: #079696; 
 }
 
+li.active {
+   background-color: #079696; 
+}
+
 /* mouse over link */
 li a.setting:hover {
  
