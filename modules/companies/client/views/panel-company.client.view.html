@@ -1,82 +1,90 @@
-
-<section ng-init="vm.initPanel(company)" style="font-family: Roboto-Regular"
->
+<section ng-init="vm.initPanel(company)" style="font-family: Roboto-Regular">
     <div class="col-sm-3" style=" text-shadow:0 1px 2px rgba(0, 0, 0, .0);">
         <div class="hovergallery">
             <div class="thumbnail" style="background-color:white;">
-
-            <div class="row" >
-              <a ui-sref="companies.view({companyId: company._id})"><img src="{{company.avatar}}" alt="avatar" class="picture"  style="width:115px;height:90px;margin-left:21px;border:solid 1px;border-color:white"> 
-            </div>
-            <div class="row">
-               <h5 class="pull-left companyname" data-ng-bind="company.name" style="color:black" ></h5>
-            </div>
-            <div class=row>
-                   <p class="pull-left point" style="color:red;margin-top:3px;">{{company.averageRating | number: 1}}</p>
+                <div class="row">
+                    <a ui-sref="companies.view({companyId: company._id})"><img src="{{company.avatar}}" alt="avatar" class="picture" style="width:115px;height:90px;margin-left:21px;border:solid 1px;border-color:white">
+                </div>
+                <div class="row">
+                    <h5 class="pull-left companyname" data-ng-bind="company.name" style="color:black"></h5>
+                </div>
+                <div class=row>
+                    <p class="pull-left point" style="color:red;margin-top:3px;">{{company.averageRating | number: 1}}</p>
                     <fieldset class="rating" style="font-size:11px">
-                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="5" disabled="disabled" checked="checked"/>
-                            <label class="full" for="star5" title="Xuất sắc - 5 stars"></label>
-                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="4.5" disabled="disabled" checked="checked"/>
-                            <label class="half" for="star4half" title="Rất tốt - 4.5 stars"></label>
-                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="4" disabled="disabled" checked="checked"/>
-                            <label class="full" for="star4" title="Tốt - 4 stars"></label>
-                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="3.5" disabled="disabled" checked="checked"/>
-                            <label class="half" for="star3half" title="Khá - 3.5 stars"></label>
-                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="3" disabled="disabled" checked="checked" />
-                            <label class="full" for="star3" title="Khá tốt - 3 stars"></label>
-                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="2.5" disabled="disabled" checked="checked"/>
-                            <label class="half" for="star2half" title="Bình thường - 2.5 stars"></label>
-                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="2" disabled="disabled" checked="checked"/>
-                            <label class="full" for="star2" title="Hơi kém - 2 stars"></label>
-                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="1.5" disabled="disabled" checked="checked"/>
-                            <label class="half" for="star1half" title="Kém - 1.5 stars"></label>
-                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="1" disabled="disabled" checked="checked"/>
-                            <label class="full" for="star1" title="Tệ - 1 star"></label>
-                            <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="0.5" disabled="disabled" checked="checked"/>
-                            <label class="half" for="starhalf" title="Tệ hại - 0.5 stars"></label>
-                           
-                        </fieldset>
-            </div>
-            </a> 
-            <div class="row">
-                  <div class="pull-left btn-reviews">
+                        <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="5" disabled="disabled" checked="checked" />
+                        <label class="full" for="star5" title="Xuất sắc - 5 stars"></label>
+                        <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="4.5" disabled="disabled" checked="checked" />
+                        <label class="half" for="star4half" title="Rất tốt - 4.5 stars"></label>
+                        <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="4" disabled="disabled" checked="checked" />
+                        <label class="full" for="star4" title="Tốt - 4 stars"></label>
+                        <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="3.5" disabled="disabled" checked="checked" />
+                        <label class="half" for="star3half" title="Khá - 3.5 stars"></label>
+                        <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="3" disabled="disabled" checked="checked" />
+                        <label class="full" for="star3" title="Khá tốt - 3 stars"></label>
+                        <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="2.5" disabled="disabled" checked="checked" />
+                        <label class="half" for="star2half" title="Bình thường - 2.5 stars"></label>
+                        <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="2" disabled="disabled" checked="checked" />
+                        <label class="full" for="star2" title="Hơi kém - 2 stars"></label>
+                        <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="1.5" disabled="disabled" checked="checked" />
+                        <label class="half" for="star1half" title="Kém - 1.5 stars"></label>
+                        <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="1" disabled="disabled" checked="checked" />
+                        <label class="full" for="star1" title="Tệ - 1 star"></label>
+                        <input type="radio" name="{{company._id}}" ng-model="company.pointDisplay" value="0.5" disabled="disabled" checked="checked" />
+                        <label class="half" for="starhalf" title="Tệ hại - 0.5 stars"></label>
+                    </fieldset>
+                </div>
+                </a>
+                <div class="row">
+                    <div class="pull-left btn-reviews">
                         <button class="btn btn-info" type="button" ui-sref="companies.view({companyId: company._id})" style=" box-shadow: 0 3px 0 0 black;font-size:11px;">
                             Bài đánh giá
                             <span class="badge" style="color:blue">{{company.numOfReviews}}</span>
                         </button>
-                   </div>
-            </div>
-           <!--  <div class="row">
+                    </div>
+                </div>
+                <!--  <div class="row">
                 <div class="pull-left progress" style="margin-left:26px;margin-top:10px;width:120px;height:20px;">
                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
                             </div>
                 </div>
             </div> -->
-         </div>
+            </div>
         </div>
-        
     </div>
 </section>
 <script type="text/javascript">
 //<=!=[=C=D=A=T=A=[
-if (top.location != self.location)
-{top.location = self.location}
-var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-18506635-11"]);_gaq.push(["_setDomainName",".nl-mus.blogspot.com"]);_gaq.push(["_trackPageview"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();
+if (top.location != self.location) {
+    top.location = self.location
+}
+var _gaq = _gaq || [];
+_gaq.push(["_setAccount", "UA-18506635-11"]);
+_gaq.push(["_setDomainName", ".nl-mus.blogspot.com"]);
+_gaq.push(["_trackPageview"]);
+(function() {
+    var a = document.createElement("script");
+    a.type = "text/javascript";
+    a.async = true;
+    a.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+    var b = document.getElementsByTagName("script")[0];
+    b.parentNode.insertBefore(a, b)
+})();
 //]=]=>
 </script>
-
 <style>
-.demo1{
--moz-transition: all .5s ease-in-out;
--webkit-transition: all .5s ease-in-out;
+.demo1 {
+    -moz-transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
 }
-.demo1:hover{
-moz-transform: scale(1.2) rotate(0deg);
--webkit-transform: scale(1.2) rotate(0deg);
-position: relative;}
+
+.demo1:hover {
+    moz-transform: scale(1.2) rotate(0deg);
+    -webkit-transform: scale(1.2) rotate(0deg);
+    position: relative;
+}
 </style>
 <script>
-    jQuery.ajax({
+jQuery.ajax({
     type: "POST",
     dataType: "json",
     success: function(msg) {

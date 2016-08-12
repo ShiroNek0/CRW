@@ -4,15 +4,17 @@
 .hero-widget label { font-size: 10px; }
 
 .seenNotif{
-    font-size:12px;
-    color: gray
+    color: black
 }
 
 .unSeenNotif{
-    font-size:12px
+    color: blue
 }
 
 /* visited link */
+li.active {
+   background-color: #079696; 
+}
 
 li a.settings:link{
    

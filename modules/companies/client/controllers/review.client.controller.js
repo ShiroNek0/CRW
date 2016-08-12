@@ -72,20 +72,31 @@
       var rs = $http.put('/api/companies/' + vm.company._id + '/reviews/' + vm.company.reviews._id, vm.company).then(successCallback, errorCallback);
 
       function successCallback(res) {
-        alert('Ghim bài viết thành công');
+        if(vm.company.reviews.highlight)
+          angular.element('#alertModal').find('.modal-body p').text('Ghim bài viết thành công');
+        else
+          angular.element('#alertModal').find('.modal-body p').text('Bỏ ghim bài viết thành công');
+        angular.element('#alertModal').modal('show');
         return true;
       }
 
       function errorCallback(res) {
         vm.company.reviews.highlight = !vm.company.reviews.highlight;
-        alert(res.data.message);
+        angular.element('#alertModal').find('.modal-body p').text('Lỗi');
+        angular.element('#alertModal').modal('show');
       }
     }
 
     function sendReport() {
       vm.report.user = vm.authentication.user._id;
       $http.post('/api/companies/' + vm.company._id + '/reviews/' + vm.company.reviews._id + '/reports', vm.report)
-      .then(function (res) { alert('Gửi báo cáo thành công'); }, function (res) { alert(res.data.message); });
+      .then(function (res) {
+        angular.element('#alertModal').find('.modal-body p').text('Gửi báo cáo thành công');
+        angular.element('#alertModal').modal('show');
+      }, function (res) {
+        angular.element('#alertModal').find('.modal-body p').text(res.data.message);
+        angular.element('#alertModal').modal('show');
+      });
     }
 
     function checkIfBookmarked() {
@@ -199,9 +210,12 @@
       vm.company.$save(successCallback, errorCallback);
 
       function successCallback(res) {
-        alert('Đăng bài đánh giá thành công, chúng tôi sẽ xem xét và thông tin cho bạn sau');
-        $state.go('companies.view', {
-          companyId: res._id
+        angular.element('#alertModal').find('.modal-body p').text('Đăng bài đánh giá thành công, chúng tôi sẽ xem xét và thông tin cho bạn sau');
+        angular.element('#alertModal').modal('show');
+        angular.element('#alertModal').on('hidden.bs.modal', function () {
+          $state.go('companies.view', {
+            companyId: res._id
+          });  
         });
       }
 
@@ -214,7 +228,7 @@
     vm.edit = function(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.reviewForm');
-        vm.error = 'Có cái gì đó sai sai';
+        vm.error = 'Hãy kiểm tra lại các trường có đánh dấu (*)';
         return false;
       }
       if (vm.authentication.user.roles.indexOf('mod') >= 0)
@@ -225,9 +239,12 @@
       vm.company.$update(successCallback, errorCallback);
 
       function successCallback(res) {
-        alert('Sửa bài thành công, chúng tôi sẽ xem xét và thông tin cho bạn sau');
-        $state.go('companies.view', {
-          companyId: bkId
+        angular.element('#alertModal').find('.modal-body p').text('Sửa bài thành công, chúng tôi sẽ xem xét và thông tin cho bạn sau');
+        angular.element('#alertModal').modal('show');
+        angular.element('#alertModal').on('hidden.bs.modal', function () {
+          $state.go('companies.view', {
+            companyId: bkId
+          });  
         });
       }
 

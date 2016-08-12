@@ -20,16 +20,16 @@
 
             <table class="table table-striped  table-bordered table-condensed" >
                <tbody>
-                  <tr style="color:grey" ng-repeat="notif in user.notification | orderBy:'-_id' ">
-                  <div class="row" >
+                  <tr ng-repeat="notif in user.notification | orderBy:'-_id' ">
+                  <div class="row">
                    <td class="" style="font-weight:bold"></td>
                      <td class="col-sm-9" style="font-weight:bold;font-size:12px">
                      	
-                       <p style="color:black"> {{notif.message}}</p>
+                       <p ng-class="{seenNotif: notif.hasRead, unSeenNotif: !notif.hasRead}"> {{notif.message}}</p>
                      </td>
                      <td class="col-sm-3" style="font-weight:bold">
                      	
-                  <p><a ng-class="{seenNotif: notif.hasRead, unSeenNotif: !notif.hasRead}" type="button" ng-click="toTargetLink(notif._id, notif.message, $index)"><span class="glyphicon glyphicon-link"></span> Tới đường dẫn đính kèm</a></p>
+                  <p><a type="button" ng-click="toTargetLink(notif._id, notif.message, $index)"><span class="glyphicon glyphicon-link"></span> Tới đường dẫn đính kèm</a></p>
                      </td>
                    </div>
                   </tr>

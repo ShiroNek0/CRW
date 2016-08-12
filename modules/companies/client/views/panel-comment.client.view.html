@@ -1,21 +1,19 @@
-
-<div class="row" style="font-family: Roboto-Regular"
->
-        <div class="col-sm-1">
-            <img src="{{comment.userID.profileImageURL}}" alt="avatar" class="img-circle  rotate360">
-        </div>
-        <div class="col-sm-11">
-            <div class="comment-text" style="overflow:hidden">
+<div class="row" style="font-family: Roboto-Regular">
+    <div class="col-sm-1">
+        <img src="{{comment.userID.profileImageURL}}" alt="avatar" class="img-circle  rotate360">
+    </div>
+    <div class="col-sm-11">
+        <div class="comment-text" style="overflow:hidden">
             <div class="col-sm-10">
-                   <div class="comment-info" style="border-bottom:solid 1px; border-color:lightgrey">
+                <div class="comment-info" style="border-bottom:solid 1px; border-color:lightgrey">
                     <h5 class=" text-left comment-username" data-ng-bind="comment.userID.name">
                     </h5>
                     <h6 class="comment-date" data-ng-bind="comment.postTime | date:'mediumDate'"></h6>
                 </div>
-                 <h5 data-ng-bind="comment.content"></h5>
+                <h5 data-ng-bind="comment.content"></h5>
             </div>
-            <div class="col-sm-1" ng-show="(vm.authentication.user.roles.indexOf('mod')>0)">
-                  <div class=>
+            <div class="col-sm-1" ng-show="(vm.authentication.user.roles.indexOf('mod')>0 || vm.authentication.user._id === comment.userID._id)">
+                <div class=>
                     <div class="dropdown drop-caret">
                         <a data-toggle="dropdown" href="#"><span class="caret" style="width:10px;height:10px;  color: black;"></span></a>
                         <ul class="dropdown-menu">
@@ -25,9 +23,7 @@
                     </div>
                 </div>
             </div>
-             
-              
-            </div>
         </div>
+    </div>
 </div>
 <br>

@@ -1,16 +1,13 @@
-<a ui-sref="companies.review({companyId: companyId, reviewId: review._id})" style="font-family: Roboto-Regular"
->
-    <div class="row" >
+<a ui-sref="companies.review({companyId: companyId, reviewId: review._id})" style="font-family: Roboto-Regular">
+    <div class="row">
         <div class="col-sm-1 review-detail-left">
-           <div class="row">
-              
-           </div>
+            <div class="row">
+            </div>
             <div class="row">
                 <h6 class=" date-review" data-ng-bind="review.lastUpdated | date:'mediumDate'"></h6>
             </div>
             <div class="row">
                 <img ng-src="{{review.userID.profileImageURL? review.userID.profileImageURL : 'modules/users/client/img/profile/default.png'}}" class="content-avatar-review" style=" border-radius: 5px;">
-
             </div>
             <div class="row">
                 <h6 style="font-size:10px" ng-show="review.userID.name && !review.stayAnonymous" data-ng-bind="review.userID.name" class="review-user"></h6>
@@ -34,19 +31,14 @@
                     <fieldset class="rating" style="margin-left:50px;margin-top:30px;font-size:25px">
                         <input type="radio" name="{{review._id}}" ng-model="review.overallRev.rating" value="5" />
                         <label class="full" for="star5" title="Xuất sắc"></label>
-                        
                         <input type="radio" name="{{review._id}}" ng-model="review.overallRev.rating" value="4" />
                         <label class="full" for="star4" title="Rất tốt"></label>
-                        
                         <input type="radio" name="{{review._id}}" ng-model="review.overallRev.rating" value="3" />
                         <label class="full" for="star3" title="Tốt"></label>
-                        
                         <input type="radio" name="{{review._id}}" ng-model="review.overallRev.rating" value="2" />
                         <label class="full" for="star2" title="Bình thường"></label>
-                        
                         <input type="radio" name="{{review._id}}" ng-model="review.overallRev.rating" value="1" />
                         <label class="full" for="star1" title="Kém"></label>
-                        
                         <c style="color:#f24141;margin-left:65px">{{review.overallRev.rating}}.0</c>
                     </fieldset>
                 </div>
