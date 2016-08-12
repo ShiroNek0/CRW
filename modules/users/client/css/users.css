@@ -13,20 +13,47 @@
 }
 
 /* visited link */
-li a.setting:visited {
+
+li a.settings:link{
+   
+   background-color: #423b3b; 
+}
+li a.settings:hover{
+   
+   background-color: #079696; 
+}
+li a.settings:visited{
+    background-color: #079696; 
+}
+
+li a.settings:active{
    
    background-color: #079696; 
 }
 
-li.active {
+div li a.settings:hover{
+   
    background-color: #079696; 
 }
 
-/* mouse over link */
-li a.setting:hover {
- 
-     background-color: #079696; 
+
+li a.setting:hover{
+   
+   background-color: #079696; 
 }
+li a.setting:active{
+   
+   background-color: #079696; 
+}
+li a.setting:visited{
+   
+   background-color: #079696; 
+}
+table{
+    padding-bottom: 0px;
+}
+/* mouse over link */
+s
 
 /* selected link */
 
@@ -350,10 +377,7 @@ li a.setting:hover {
 
 
 }
-.settings-view{
 
-
-}
 
 #my-div-user{
     width: 180px;

@@ -33,7 +33,7 @@
                                        
                                         <div class="row">
                                              <div class="form-group" show-errors style="margin-left:0px;margin-right:0px">
-                                                <h5 class="label-review-title" >Tiêu đề(*):</h5>
+                                                <h5 class="label-review-title" >Tiêu đề<span style="color:#f24141">(*)</span>:</h5>
                                                 <input type="text" class="form-control input-review-title" ng-model="vm.company.newReview.title" placeholder="Điền tiêu đề cho bài đánh giá..." name="title" required data-toggle="tooltip" data-placement="bottom" title="Tiêu đề bài đánh giá mô tả tổng quát nội dung bài đánh giá!" >
                                                 <div ng-messages="vm.form.reviewForm.$submitted && vm.form.reviewForm.title.$error" role="alert">
                                                     <p class="help-block error-text" ng-message="required">Hãy nhập tiêu đề cho bài đánh giá.</p>
@@ -42,7 +42,7 @@
                                         </div>
                                         <div class="row">
                                              <div>
-                                                <h5 class="label-review-title">Vị trí công việc(*):</h5>
+                                                <h5 class="label-review-title">Vị trí công việc<span style="color:#f24141">(*)</span>:</h5>
                                                 <h6><b style="color:grey">(Bạn có thể thêm nhiều vị trí công việc)</b></h6>
                                                 <div style="color:grey;margin-bottom:5px;margin-top:5px;" ng-repeat="job in vm.company.newReview.job">
                                                 {{job}}
@@ -106,7 +106,7 @@
                                            </div>
                                         <div class="row">
                                              <div class="form-group" show-errors style="margin-left:0px;margin-right:0px">
-                                                <h5 class="label-review-pros">Ưu điểm(*):</h5>
+                                                <h5 class="label-review-pros">Ưu điểm<span style="color:#f24141">(*)</span>:</h5>
                                                 <textarea style="line-height:1.4em;color:grey" class="form-control textarea-pros" rows="5" ng-model="vm.company.newReview.overallRev.pros" name="pros" placeholder="Ưu điểm..." required data-toggle="tooltip" data-placement="bottom" title="Ưu điểm của công ty là những lợi thế của công ty này!"></textarea>
                                                 <div ng-messages="vm.form.reviewForm.$submitted && vm.form.reviewForm.pros.$error" role="alert">
                                                     <p class="help-block error-text" ng-message="required">Hãy nhập ưu điểm.</p>
@@ -116,7 +116,7 @@
                                         </div>
                                         <div class="row"  data-toggle="collapse" data-target="#ND">
                                                <div class="form-group" show-errors style="margin-left:0px;margin-right:0px">
-                                                <h5 class="label-review-cons">Nhược điểm(*):</h5>
+                                                <h5 class="label-review-cons">Nhược điểm<span style="color:#f24141">(*)</span>:</h5>
                                                 <textarea style="line-height:1.4em;color:grey" class="form-control textarea-cons" rows="5" ng-model="vm.company.newReview.overallRev.cons" name="cons" placeholder="Nhược điểm..." required data-toggle="tooltip" data-placement="bottom" title="Nhược điểm của công ty là những bất lợi của công ty này!"></textarea>
                                                 <div ng-messages="vm.form.reviewForm.$submitted && vm.form.reviewForm.cons.$error" role="alert">
                                                     <p class="help-block error-text" ng-message="required">Hãy nhập nhược điểm.</p>
@@ -246,7 +246,7 @@
                                         
 
                                            <div class="row">
-                                               <h5 style="background-color:#2683e0;border:solid 1px;border-color:#e5e5e5;padding-left:5px;padding-top:5px;;padding-bottom:5px;color:white">Đánh giá sao tổng quan (*)</h5> 
+                                               <h5 style="background-color:#2683e0;border:solid 1px;border-color:#e5e5e5;padding-left:5px;padding-top:5px;;padding-bottom:5px;color:white">Đánh giá sao tổng quan <span style="color:#f24141">(*)</span></h5> 
                                            </div>
                                            <div class="row">
                                            <h6 style="color:grey">(Điểm đánh giá sao tổng quan là điểm tổng quát về công ty)</h6>

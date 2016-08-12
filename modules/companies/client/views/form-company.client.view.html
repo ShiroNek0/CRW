@@ -1,3 +1,9 @@
+<style type="text/css">
+   @font-face {
+   font-family: 'Roboto-Regular';
+   src: url('/modules/companies/client/css/RobotoTTF/Roboto-Regular.ttf');
+   }
+</style>
 <section style="font-family: Roboto-Regular">
     <div class="container" style="overflow:hidden">
       <div class="col-sm-2">
@@ -5,7 +11,7 @@
       </div>
       
       <div class="col-sm-8">
-       <h3 class="addcompany">Thêm công ty mới</h3>
+       <h4 class="addcompany">Thêm công ty mới</h4>
             <h5 class="note-add-company" style="color:#0eaf5c">Bạn cần chắc chắn công ty bạn muốn thêm vào chưa có trong hệ thống chúng tôi.Hãy tìm kiếm lại công ty bạn đang cần đánh giá.</h5>
           <div class="abc" style="background-color:white;margin-bottom:20px">
         <form name="vm.form.companyForm" class="form-horizontal" ng-submit="vm.save(vm.form.companyForm.$valid)" novalidate>
@@ -17,7 +23,7 @@
                         <div class="col-sm-5">
                             <div class="row">
                                 <div class="form-group " show-errors>
-                                    <h5 style="font-weight:bold;color:grey">Tên công ty(*):</h5 style="font-weight:bold;color:grey">
+                                    <h5 style="font-weight:bold;color:black">Tên công ty<span style="color:#f24141">(*)</span>:</h5 style="font-weight:bold;color:grey">
                                     <input type="text" class="form-control" ng-model="vm.company.name" name="name" placeholder="Tên công ty..." required>
                                     <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.name.$error" role="alert">
                                         <p class="help-block error-text" ng-message="required">Hãy nhập tên công ty.</p>
@@ -26,21 +32,21 @@
                             </div>
                             <div class="row">
                                 <div class="form-group">
-                                    <h5 style="font-weight:bold;color:grey">Tên gọi khác (Mỗi tên ngăn cách bởi dấu ','):</h5 style="font-weight:bold;color:grey">
+                                    <h5 style="font-weight:bold;color:black">Tên gọi khác (Mỗi tên ngăn cách bởi dấu ','):</h5 style="font-weight:bold;color:grey">
                                     <input name="alias" class="form-control" ng-model="vm.company.alias" ng-list ng-change="vm.displayAlias()" placeholder="Tên gọi khác...">
                                     <div ng-repeat="alias in vm.alias">{{alias}} </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group">
-                                    <h5 style="font-weight:bold;color:grey">Liên hệ:</h5 style="font-weight:bold;color:grey">
+                                    <h5 style="font-weight:bold;color:black">Liên hệ:</h5 style="font-weight:bold;color:grey">
                                     <input type="text" class="form-control" ng-model="vm.company.contact" placeholder="Liên hệ ..." name="contact">
                                 </div>
                                 
                             </div>
                             <div class="row">
                                 <div class="form-group" style="color:grey">
-                                    <h5 style="font-weight:bold;color:grey">Quy mô nhân sự:</h5 style="font-weight:bold;color:grey">
+                                    <h5 style="font-weight:bold;color:black">Quy mô nhân sự:</h5 style="font-weight:bold;color:grey">
                                     <label class="">
                                         <input type="radio" ng-model="vm.company.personnelSize" value="Chưa rõ" name="personnelSize" ng-checked="true"> Chưa rõ</label>
                                     <label class="">
@@ -59,7 +65,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group" show-errors>
-                                    <h5 style="font-weight:bold;color:grey">Website công ty(*)</h5 style="font-weight:bold;color:grey">
+                                    <h5 style="font-weight:bold;color:black">Website công ty<span style="color:#f24141">(*)</span>:</h5 style="font-weight:bold;color:grey">
                                     <input type="url" name="website" class="form-control" ng-model="vm.company.website" placeholder="Website..." http-prefix required>
                                     <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.website.$error" role="alert">
                                         <p class="help-block error-text" ng-message="required">Hãy website công ty.</p>
@@ -68,7 +74,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group" show-errors>
-                                    <h5 style="font-weight:bold;color:grey">Ảnh đại diện/logo công ty(*):</h5 style="font-weight:bold;color:grey">
+                                    <h5 style="font-weight:bold;color:black">Ảnh đại diện/logo công ty<span style="color:#f24141">(*)</span>:</h5 style="font-weight:bold;color:grey">
                                     <input type="text" name="avatar" class="form-control" ng-model="vm.company.avatar" placeholder="Đường dẫn tới ảnh đại diện/logo..." name="avatar" required>
                                     <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.avatar.$error" role="alert">
                                         <p class="help-block error-text" ng-message="required">Hãy nhập link ảnh đại diện.</p>
@@ -79,7 +85,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group" show-errors>
-                                    <h5 style="font-weight:bold;color:grey">Ảnh giới thiệu công ty:</h5 style="font-weight:bold;color:grey">
+                                    <h5 style="font-weight:bold;color:black">Ảnh giới thiệu công ty:</h5 style="font-weight:bold;color:grey">
                                     <h6 style="color:green">Bạn có thể thêm nhiều ảnh về công ty.</h6>
                                       <input type="text" placeholder="Nhập đường dẫn ảnh..." data-placement="bottom" ng-model="vm.introducePhoto" style="border:solid 1px;border-color:lightgrey">
                                 <button style="background-color:#0eaf5c;color:white" type="button" ng-click="vm.addPhoto()">Thêm ảnh</button>
@@ -101,13 +107,13 @@
                         <div class="col-sm-5">
                             <div class="row">
                                 <div class="form-group">
-                                    <h5 style="font-weight:bold;color:grey">Năm thành lập:</h5 style="font-weight:bold;color:grey">
+                                    <h5 style="font-weight:bold;color:black">Năm thành lập:</h5 style="font-weight:bold;color:grey">
                                     <input style="background-color:white" type="text" class="form-control" datepicker-popup="yyyy" ng-model="vm.company.founded" is-open="vm.pickerOpened" datepicker-options="vm.dateOptions" ng-readonly="true" ng-focus="vm.openYearPicker($event)" ng-click="vm.openYearPicker($event)" show-button-bar="false" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group" show-errors>
-                                    <h5 style="font-weight:bold;color:grey">Ngành nghề chính của công ty(*):</h5 style="font-weight:bold;color:grey">
+                                    <h5 style="font-weight:bold;color:black">Ngành nghề chính của công ty<span style="color:#f24141">(*)</span>:</h5 style="font-weight:bold;color:grey">
                                     <input type="text" class="form-control" ng-model="vm.company.industry" placeholder="Ngành nghề chính của công ty..." name="industry" required>
                                     <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.industry.$error" role="alert">
                                         <p class="help-block error-text" ng-message="required">Hãy nhập ngành nghề chính của công ty.</p>
@@ -116,7 +122,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group" show-errors>
-                                    <h5 style="font-weight:bold;color:grey">Trụ sở chính(*):</h5 style="font-weight:bold;color:grey">
+                                    <h5 style="font-weight:bold;color:black">Trụ sở chính<span style="color:#f24141">(*)</span>:</h5 style="font-weight:bold;color:grey">
                                     <input type="text" name="hq" class="form-control" ng-model="vm.company.hq" placeholder="Trụ sở chính của công ty..." required="">
                                     <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.hq.$error" role="alert">
                                         <p class="help-block error-text" ng-message="required">Hãy nhập trụ sở công ty.</p>
@@ -125,7 +131,7 @@
                             </div>
                             <div class="row" style="color:#7f7f7f;">
                                 <div class="form-group">
-                                    <h5 style="font-weight:bold;color:grey">Loại hình công ty:</h5 style="font-weight:bold;color:grey">
+                                    <h5 style="font-weight:bold;color:black">Loại hình công ty:</h5 style="font-weight:bold;color:grey">
                                     <label class="">
                                         <input type="radio" ng-model="vm.company.companyType" value="Công ty TNHH" name="companyType" ng-checked="true"> Công ty TNHH </label>
                                     <label class="">
@@ -142,7 +148,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group">
-                                    <h5 style="font-weight:bold;color:grey">Giới thiệu - mô tả về công ty:</h5 style="font-weight:bold;color:grey">
+                                    <h5 style="font-weight:bold;color:black">Giới thiệu - mô tả về công ty:</h5 style="font-weight:bold;color:grey">
                                     <textarea class="form-control textarea-supplement" rows="4" ng-model="vm.company.description" name="description" placeholder="Mô tả..." style="background-color:white;overflow:hidden;color:black"></textarea>
                                 </div>
                             </div>

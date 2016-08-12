@@ -18,7 +18,7 @@
      <div class="col-sm-3">
         <div  class="hero-widget well well-sm"  style="margin-top:10px;">
                 <div class="icon">
-                     <i class="glyphicon glyphicon-briefcase" style="color:#ef4747"></i>
+                     <i class="glyphicon glyphicon-plus" style="color:#ef4747"></i>
                 </div>
                 <div class="text">
                     <var>{{vm.totalReviews}}</var>
@@ -31,7 +31,7 @@
      <div class="col-sm-3">
          <div  class="hero-widget well well-sm"  style="margin-right:20px;margin-top:10px;">
                 <div class="icon">
-                     <i class="glyphicon glyphicon-plus" style="color:#efe5bd"></i>
+                     <i class="glyphicon glyphicon-comment" style="color:#efe5bd"></i>
                 </div>
                 <div class="text">
                     <var>{{vm.totalComments}}</var>
@@ -44,7 +44,7 @@
       <div class="col-sm-3">
          <div  class="hero-widget well well-sm"  style="margin-right:20px;margin-top:10px;">
                 <div class="icon">
-                     <i class="glyphicon glyphicon-briefcase" style="color:#079696"></i>
+                     <i class="glyphicon glyphicon-flag" style="color:#079696"></i>
                 </div>
                 <div class="text">
                     <var>{{vm.totalReports}}</var>
@@ -91,13 +91,13 @@
          <table class="table table-striped table-bordered table-condensed" style="">
             <tbody style="word-wrap: break-word;">
             
-                  <td class="col-sm-3" style="font-weight:bold;:solid 1px;border-color:lightgrey;color:grey"><a ui-sref="companies.view({companyId: company._id})" style="word-wrap:break-word" >{{company.name}}</a></td>
-                  <td class="col-sm-2" style=":solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word"> <span  ng-repeat="alias in company.alias" class="badge" style="word-wrap: break-word;background-color:#079696"> {{alias}}</span></td>
-                  <td class="col-sm-2" style="font-weight:bold;:solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word;">{{company.numOfReviews}}</td>
-                  <td class="col-sm-1" style=":solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word;"> {{company.averageRating | number:2}}</td>
-                  <td class="col-sm-1" style=":solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word;"> {{company.overallRating | number:2}}</td>
-                  <td class="col-sm-1" style=":solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word;"> <a href="{{company.website}}"></td>
-                  <td class="col-sm-2" style=":solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word;"> {{company.contact}} </td>
+                  <td class="col-sm-3" ><a ui-sref="companies.view({companyId: company._id})" style="word-wrap:break-word" >{{company.name}}</a></td>
+                  <td class="col-sm-2" style="word-wrap: break-word"> <span  ng-repeat="alias in company.alias" class="badge" style="word-wrap: break-word;background-color:#079696"> {{alias}}</span></td>
+                  <td class="col-sm-2" style="word-wrap: break-word;">{{company.numOfReviews}}</td>
+                  <td class="col-sm-1" style="word-wrap: break-word;"> {{company.averageRating | number:2}}</td>
+                  <td class="col-sm-1" style="word-wrap: break-word;"> {{company.overallRating | number:2}}</td>
+                  <td class="col-sm-1" style="word-wrap: break-word;"> <a href="{{company.website}}"></td>
+                  <td class="col-sm-2" style=":solid 1px;word-wrap: break-word;"> {{company.contact}} </td>
             
             </tbody>
          </table>

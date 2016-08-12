@@ -1,86 +1,81 @@
-<div class="container" style="font-family: Roboto-Regular">
+<div style="font-family: Roboto-Regular">
    <div class="row">
-      <div class="col-sm-2">
+      <div class="col-sm-1">
       </div>
       <div class="col-sm-8 " style="margin-top:30px" >
-       <!--   <h3 style="font-weight:bold;margin-left:-15px">Chi tiết đánh giá</h3> -->
-      <div class="row">
-        <div class="review-detail-companyrating">
-          <div class="row">
-            <div class="col-sm-2">
-           <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar-detail" style="  height: 130px;max-width: 130px;margin-left:5px">
-        </div>
-        <div class="col-sm-10">
-           <div class="row" style="margin-left:6px">
-                  <div class="pull-left">
-             <h4 class="" style="color:black;font-weight:bold;margin-top:20px">{{ vm.company.name }}</h4>
-              <h6 class=" text-label" style="line-height:1.4em; color:#999999;">Ngành nghề chính: <b style="line-height:1.4em" class=" text-labels" data-ng-bind="vm.company.industry"></b></h6> 
-              <h6 class=" text-label" style="line-height:1.4em; color:#999999;" >Website: <a  href="#"><b style="color:#3b5998;line-height:1.4em" class=" text-labels" data-ng-bind="vm.company.website"></b></a> </h6>
-              <h6 class=" text-label" style="line-height:1.4em; color:#999999;">Số người theo dõi: <b style="color:#f24141">{{ vm.company.numOfFollowers }}</b></h6>
-          </div>
-          <div class="pull-right" >
-             <fieldset class="pull-right rating" style="font-size:26px;margin-top:15px;padding-right:30px">
-                            <input type="radio" id="star5" name="rating" ng-model="vm.company.pointDisplay" value="5" disabled="disabled" checked="checked" />
-                            <label class="full" for="star5" title="Xuất sắc - 5 stars"></label>
-                            <input type="radio" id="star4half" name="rating" ng-model="vm.company.pointDisplay" value="4.5" disabled="disabled" checked="checked"/>
-                            <label class="half" for="star4half" title="Rất tốt - 4.5 stars"></label>
-                        
-                            <input type="radio" id="star4" name="rating" ng-model="vm.company.pointDisplay" value="4"  disabled="disabled" checked="checked"/>
-                            <label class="full" for="star4" title="Tốt - 4 stars"></label>
-                            <input type="radio" id="star3half" name="rating" ng-model="vm.company.pointDisplay" value="3.5"  disabled="disabled" checked="checked" />
-                            <label class="half" for="star3half" title="Khá - 3.5 stars"></label>
-                            <input type="radio" id="star3" name="rating" ng-model="vm.company.pointDisplay" value="3"  disabled="disabled" checked="checked" />
-                            <label class="full" for="star3" title="Khá tốt - 3 stars"></label>
-                            <input type="radio" id="star2half" name="rating" ng-model="vm.company.pointDisplay" value="2.5"  disabled="disabled" checked="checked" />
-                            <label class="half" for="star2half" title="Bình thường - 2.5 stars"></label>
-                            <input type="radio" id="star2" name="rating" ng-model="vm.company.pointDisplay" value="2"  disabled="disabled" checked="checked" />
-                            <label class="full" for="star2" title="Hơi kém - 2 stars"></label>
-                            <input type="radio" id="star1half" name="rating" ng-model="vm.company.pointDisplay" value="1.5"  disabled="disabled" checked="checked" />
-                            <label class="half" for="star1half" title="Kém - 1.5 stars"></label>
-                            <input type="radio" id="star1" name="rating" ng-model="vm.company.pointDisplay" value="1"  disabled="disabled" checked="checked" />
-                            <label class="full" for="star1" title="Tệ - 1 star"></label>
-                            <input type="radio" id="starhalf" name="rating" ng-model="vm.company.pointDisplay" value="0.5"  disabled="disabled" checked="checked" />
-                            <label class="half" for="starhalf" title="Tệ hại - 0.5 stars"></label>
-                           
-                        </fieldset>
-                           <h6 class=" review-sum">(<b style="color:#f24141;">{{vm.company.numOfReviews}}</b> bài đánh giá )</h6>    
-                              
+      
+         <div class="row">
+            <div class="review-detail-companyrating">
+               <div class="row">
+               
+                  <div class="col-sm-2">
+                     <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar-detail" style="  height: 130px;max-width: 130px;margin-left:5px">
                   </div>
-                  
-
-           </div>
-           <div class="row" style="margin-left:5px;color:grey">
-                    <h5>Bạn là nhân viên của công ty <b style="color:grey;line-height:1.4em">{{ vm.company.name }}</b>?.Xin vui lòng chia sẽ những kinh nghiệm của bạn.<a ui-sref="companies.createReview({companyId: vm.company._id})"> <b style="color:#079696">Đánh giá ngay!!!</b> </a>   
-                    </h5>
+                  <div class="col-sm-10">
+                   
+                     <div class="row" style="margin-left:6px">
+                        <div class="pull-left">
+                           <h4 class="" style="color:black;font-weight:bold;margin-top:20px">{{ vm.company.name }}</h4>
+                           <h6 class=" text-label" style="line-height:1.4em; color:black;">Ngành nghề chính: <b style="line-height:1.4em"  data-ng-bind="vm.company.industry"></b></h6>
+                           <h6 class=" text-label" style="line-height:1.4em; color:black" >Website: <a  href="#"><b style="color:black;line-height:1.4em;color:#3b5998;" class=" text-labels" data-ng-bind="vm.company.website"></b></a> </h6>
+                           <h6 class=" text-label" style="line-height:1.4em; color:black">Số người theo dõi: <b style="color:#f2c40e">{{ vm.company.numOfFollowers }}</b></h6>
+                        </div>
+                        <div class="pull-right" >
+                           <fieldset class="pull-right rating" style="font-size:26px;margin-top:15px;padding-right:30px">
+                              <input type="radio" id="star5" name="rating" ng-model="vm.company.pointDisplay" value="5" disabled="disabled" checked="checked" />
+                              <label class="full" for="star5" title="Xuất sắc - 5 stars"></label>
+                              <input type="radio" id="star4half" name="rating" ng-model="vm.company.pointDisplay" value="4.5" disabled="disabled" checked="checked"/>
+                              <label class="half" for="star4half" title="Rất tốt - 4.5 stars"></label>
+                              <input type="radio" id="star4" name="rating" ng-model="vm.company.pointDisplay" value="4"  disabled="disabled" checked="checked"/>
+                              <label class="full" for="star4" title="Tốt - 4 stars"></label>
+                              <input type="radio" id="star3half" name="rating" ng-model="vm.company.pointDisplay" value="3.5"  disabled="disabled" checked="checked" />
+                              <label class="half" for="star3half" title="Khá - 3.5 stars"></label>
+                              <input type="radio" id="star3" name="rating" ng-model="vm.company.pointDisplay" value="3"  disabled="disabled" checked="checked" />
+                              <label class="full" for="star3" title="Khá tốt - 3 stars"></label>
+                              <input type="radio" id="star2half" name="rating" ng-model="vm.company.pointDisplay" value="2.5"  disabled="disabled" checked="checked" />
+                              <label class="half" for="star2half" title="Bình thường - 2.5 stars"></label>
+                              <input type="radio" id="star2" name="rating" ng-model="vm.company.pointDisplay" value="2"  disabled="disabled" checked="checked" />
+                              <label class="full" for="star2" title="Hơi kém - 2 stars"></label>
+                              <input type="radio" id="star1half" name="rating" ng-model="vm.company.pointDisplay" value="1.5"  disabled="disabled" checked="checked" />
+                              <label class="half" for="star1half" title="Kém - 1.5 stars"></label>
+                              <input type="radio" id="star1" name="rating" ng-model="vm.company.pointDisplay" value="1"  disabled="disabled" checked="checked" />
+                              <label class="full" for="star1" title="Tệ - 1 star"></label>
+                              <input type="radio" id="starhalf" name="rating" ng-model="vm.company.pointDisplay" value="0.5"  disabled="disabled" checked="checked" />
+                              <label class="half" for="starhalf" title="Tệ hại - 0.5 stars"></label>
+                           </fieldset>
+                           <h6 class=" review-sum" style="color:black">(<b style="color:#f2c40e;">{{vm.company.numOfReviews}}</b> bài đánh giá )</h6>
+                        </div>
+                     </div>
+                     <div class="row" style="margin-left:5px;color:grey">
+                        <h5>Bạn là nhân viên của công ty <b style="color:grey;line-height:1.4em">{{ vm.company.name }}</b>?.Xin vui lòng chia sẽ những kinh nghiệm của bạn.<a ui-sref="companies.createReview({companyId: vm.company._id})" class="reviewnow">Đánh giá ngay!</a>   
+                        </h5>
+                     </div>
                   </div>
-       
-        </div>
-
-
-       
-          </div>
-        </div>
-      </div>
-     
-    <div class="row review-detail-center">
-        <div class="row">
-          <p class="pull-right highline" ng-show="vm.company.reviews.highlight" data-toggle="tooltip" data-placement="bottom" title="Nổi bật"></p>
-        </div>
+               </div>
+            </div>
+         </div>
+         <div class="row review-detail-center">
+          <div class="row" style="background-color:#079696">
+                        <h5 style="color:white;font-weight:bold;margin-left:30px;"><span class="glyphicon glyphicon-plus"></span> Đánh giá chi tiết</h5>
+                     </div>
+                     <h6 class="pull-right" style="margin-top:15px;padding-right:10px;color:grey" >Ủng hộ (<b style="color:#079696; ">{{vm.company.reviews.upvoteUsers.length}}</b>) </h6>
+             
+            <div class="row" style="margin-top:10px ;margin-left:10px">
+             <span ng-show="vm.company.reviews.highlight" style="color:#dbb500;background-color:#fcfae0;border:1px solid #dbb500;border-radius:8px;padding:7px;font-size:10px;"   ng-class="{highlightReview: review.highlight}">Đánh giá nổi bật</span>
+             <!--   <p class="pull-right highline"  data-toggle="tooltip" data-placement="bottom" title="Nổi bật"></p> -->
+            </div>
             <div class="col-sm-1">
                <div class="row" style="margin-top:5px">
-               <img style="margin-top:43px" ng-src="{{vm.company.reviews.userID.profileImageURL? vm.company.reviews.userID.profileImageURL : 'modules/users/client/img/profile/default.png'}}" alt="avatar" class="content-avatar-review-detail">
-              <a ui-sref="user({userId: vm.company.reviews.userID._id})" ng-show="vm.company.reviews.userID.name && !vm.company.reviews.stayAnonymous">
-                  <h6 style="margin-left:10px;font-weight:bold;color:#079696; " data-ng-bind="vm.company.reviews.userID.name"></h6>
+                  <img style="margin-top:35px" ng-src="{{vm.company.reviews.userID.profileImageURL? vm.company.reviews.userID.profileImageURL : 'modules/users/client/img/profile/default.png'}}" alt="avatar" class="content-avatar-review-detail">
+                  <a ui-sref="user({userId: vm.company.reviews.userID._id})" ng-show="vm.company.reviews.userID.name && !vm.company.reviews.stayAnonymous">
+                     <h6 style="margin-left:10px;font-weight:bold;color:#079696; " data-ng-bind="vm.company.reviews.userID.name"></h6>
                   </a>
                   <h6 style="margin-left:8px;  font-weight: bold;
-  color: #079696;" ng-hide="vm.company.reviews.userID.name && !vm.company.reviews.stayAnonymous">Anonymouse</h6>
-             
+                     color: #079696;" ng-hide="vm.company.reviews.userID.name && !vm.company.reviews.stayAnonymous">Anonymouse</h6>
                </div>
             </div>
             <div class="col-sm-10" style="margin-left:15px;">
-               
                <div class="pull-right row">
-                
                   <div id="modalUpvote" ng-show="vm.authentication.user" class="modal fade" role="dialog">
                      <div class="modal-dialog">
                         <!-- Modal content-->
@@ -104,7 +99,7 @@
                </div>
                <div class="row">
                   <h4 class="pull-left" style="color:#079696;font-weight:bold" class="review-detail-title" data-ng-bind="vm.company.reviews.title"></h4>
-                  <h6 class="pull-right" style="margin-top:25px;color:grey" >Ủng hộ (<b style="color:#284c79; ">{{vm.company.reviews.upvoteUsers.length}}</b>) </h6>
+                  
                </div>
                <div class="row">
                   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="border:none">
@@ -118,40 +113,41 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                            <div class="panel-body" >
-                                       <div class="row">
-                          <h5 style="margin-left:5px" class="text-left review-detail">Vị trí công việc:</h5>
-                          <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details">- <span ng-repeat="job in vm.company.reviews.job">{{job}} - </span> </h5>
-                       </div>
-                       <div class="row">
-                         <h5 style="margin-left:5px" class="text-left review-detail" ng-show="(vm.company.reviews.isJobCurrent)">Hiện đang làm việc:</h5>
-                         <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-detail" ng-hide="(vm.company.reviews.isJobCurrent)">Đã từng làm việc:</h5>
-                         <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details" data-ng-bind="vm.company.reviews.jobLength"></h5>                         
-                       </div>
-                       <div class="row">
-                         <h5 style="margin-left:5px" class="text-left review-detail">Kiểu nhân viên:</h5>
-                          <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details" data-ng-bind="vm.company.reviews.contract"></h5>
-                       </div>
-                       <div class="row">
-                          <h5 style="margin-left:5px" class="text-left review-detail">Ưu điểm: </h5>
-                          <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details" data-ng-bind="vm.company.reviews.overallRev.pros"></h5>
-                       </div>
-                       <div class="row">
-                          <h5 style="margin-left:5px" class="text-left review-detail">Nhược điểm:</h5>
-                          <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details" data-ng-bind="vm.company.reviews.overallRev.cons"></h5>
-                       </div>
-                       <div class="row">
-                          <h5 style="margin-left:5px" class="text-left review-detail">Nội dung:</h5>
-                          <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details" data-ng-bind="vm.company.reviews.overallRev.supplement"></h5>
-                       </div>
-                       <div class="row pull-right">
-                           <a class="fix-review" ng-show="vm.authentication.user && (vm.authentication.user._id === vm.company.reviews.userID._id)" ui-sref="companies.editReview({companyId: vm.company._id, reviewId: vm.company.reviews._id, message: 'Lưu ý: Bài sửa xong sẽ phải duyệt lại'})"><h6><b>Sửa bài đánh giá</b></h6></a>
-                           <style type="text/css">
-                             a.fix-review:hover{
-                               text-decoration:underline;
-                             }
-                           </style>
-                       </div>
-                              
+                              <div class="row">
+                                 <h5 style="margin-left:5px" class="text-left review-detail">Vị trí công việc:</h5>
+                                 <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details">- <span ng-repeat="job in vm.company.reviews.job">{{job}} - </span> </h5>
+                              </div>
+                              <div class="row">
+                                 <h5 style="margin-left:5px" class="text-left review-detail" ng-show="(vm.company.reviews.isJobCurrent)">Hiện đang làm việc:</h5>
+                                 <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-detail" ng-hide="(vm.company.reviews.isJobCurrent)">Đã từng làm việc:</h5>
+                                 <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details" data-ng-bind="vm.company.reviews.jobLength"></h5>
+                              </div>
+                              <div class="row">
+                                 <h5 style="margin-left:5px" class="text-left review-detail">Kiểu nhân viên:</h5>
+                                 <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details" data-ng-bind="vm.company.reviews.contract"></h5>
+                              </div>
+                              <div class="row">
+                                 <h5 style="margin-left:5px" class="text-left review-detail">Ưu điểm: </h5>
+                                 <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details" data-ng-bind="vm.company.reviews.overallRev.pros"></h5>
+                              </div>
+                              <div class="row">
+                                 <h5 style="margin-left:5px" class="text-left review-detail">Nhược điểm:</h5>
+                                 <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details" data-ng-bind="vm.company.reviews.overallRev.cons"></h5>
+                              </div>
+                              <div class="row">
+                                 <h5 style="margin-left:5px" class="text-left review-detail">Nội dung:</h5>
+                                 <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details" data-ng-bind="vm.company.reviews.overallRev.supplement"></h5>
+                              </div>
+                              <div class="row pull-right">
+                                 <a class="fix-review" ng-show="vm.authentication.user && (vm.authentication.user._id === vm.company.reviews.userID._id)" ui-sref="companies.editReview({companyId: vm.company._id, reviewId: vm.company.reviews._id, message: 'Lưu ý: Bài sửa xong sẽ phải duyệt lại'})">
+                                    <h6><b>Sửa bài đánh giá</b></h6>
+                                 </a>
+                                 <style type="text/css">
+                                    a.fix-review:hover{
+                                    text-decoration:underline;
+                                    }
+                                 </style>
+                              </div>
                            </div>
                         </div>
                      </div>
@@ -165,110 +161,105 @@
                         </div>
                         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                            <div class="panel-body">
-                          
-                                 <div class="col-sm-4">
-                                    <div class="row">
-                                 <h5 style="margin-left:5px" class="text-left review-detail">Lương cơ bản:</h5>
-                                 <h5 style="margin-left:5px" class="text-left review-details" ng-show="vm.company.reviews.salaryAndBenefit.basePay">{{vm.company.reviews.salaryAndBenefit.basePay | number}} VND / Tháng</h5>
-                                 <h5 style="margin-left:5px" class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.basePay">Chưa có thông tin về lương cơ bản</h5>
-                              </div>
-                              <div class="row">
-                                 <h5 style="margin-left:5px" class="text-left review-detail">Mức tăng lương trung bình: </h5>
-                                 <h5 style="margin-left:5px" class="text-left review-details" ng-show="vm.company.reviews.salaryAndBenefit.payRaise">{{vm.company.reviews.salaryAndBenefit.payRaise | number}} VND / Tháng</h5>
-                                 <h5 style="margin-left:5px" class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.payRaise">Chưa có thông tin về mức tăng lương trung bình</h5>
-                              </div>
-                              <div class="row">
-                                 <h5 style="margin-left:5px" class="text-left review-detail">Lương thưởng:</h5>
-                                 <h5 style="margin-left:5px" class="text-left review-details" ng-show="vm.company.reviews.salaryAndBenefit.cashBonus">{{vm.company.reviews.salaryAndBenefit.cashBonus | number}} VND / Năm</h5>
-                                 <h5 style="margin-left:5px" class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.cashBonus">Chưa có thông tin về lương thưởng</h5>
-                              </div>
-                              <div class="row">
-                                 <h5 style="margin-left:5px" class="text-left review-detail">Tiền lương ngoài: </h4>
-                                 <h5 style="margin-left:5px" class="text-left review-details" ng-show="vm.company.reviews.salaryAndBenefit.profitSharing">{{vm.company.reviews.salaryAndBenefit.profitSharing | number}} VND / Tháng</h5>
-                                 <h5 style="margin-left:5px" class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.profitSharing">Chưa có thông tin về lương ngoài</h5>
-                              </div>
+                              <div class="col-sm-4">
+                                 <div class="row">
+                                    <h5 style="margin-left:5px" class="text-left review-detail">Lương cơ bản:</h5>
+                                    <h5 data-toggle="tooltip" data-placement="bottom" title="Lương mỗi tháng khi mới ký hợp đồng gia nhập công ty!" style="margin-left:5px" class="text-left review-details" ng-show="vm.company.reviews.salaryAndBenefit.basePay">{{vm.company.reviews.salaryAndBenefit.basePay | number}} VND / Tháng</h5>
+                                    <h5 style="margin-left:5px" class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.basePay">Chưa có thông tin về lương cơ bản</h5>
                                  </div>
-                                 <div class="col-sm-8" style="border-left:solid 1px;border-color:lightgrey">
-                                   <div class="row" style="margin-left:20px">
-                                   <h5 style="margin-left:5px" class="text-left review-detail">Cơ hội thăng tiến: </h5>
-                                   <div style="margin-left:-15px" ng-show="vm.company.reviews.salaryAndBenefit.opportunityRating">
-                                   <select id="opportunityRating" >
-                                      <option value="1">Kém</option>
-                                      <option value="2">Bình thường</option>
-                                      <option value="3">Tốt</option>
-                                      <option value="4">Rất tốt</option>
-                                      <option value="5">Xuất sắc</option>
-                                    </select>
+                                 <div class="row">
+                                    <h5 style="margin-left:5px" class="text-left review-detail">Mức tăng lương trung bình: </h5>
+                                    <h5 data-toggle="tooltip" data-placement="bottom" title="Mỗi tháng lương của bạn tăng khoảng bao nhiêu !" style="margin-left:5px" class="text-left review-details" ng-show="vm.company.reviews.salaryAndBenefit.payRaise">{{vm.company.reviews.salaryAndBenefit.payRaise | number}} VND / Tháng</h5>
+                                    <h5 style="margin-left:5px" class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.payRaise">Chưa có thông tin về mức tăng lương trung bình</h5>
+                                 </div>
+                                 <div class="row">
+                                    <h5 style="margin-left:5px" class="text-left review-detail">Lương thưởng:</h5>
+                                    <h5 data-toggle="tooltip" data-placement="bottom" title="Hàng năm công ty thưởng trung bình bạn bao nhiêu tiền!" style="margin-left:5px" class="text-left review-details" ng-show="vm.company.reviews.salaryAndBenefit.cashBonus">{{vm.company.reviews.salaryAndBenefit.cashBonus | number}} VND / Năm</h5>
+                                    <h5  style="margin-left:5px" class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.cashBonus">Chưa có thông tin về lương thưởng</h5>
+                                 </div>
+                                 <div class="row">
+                                    <h5 style="margin-left:5px" class="text-left review-detail">Tiền lương ngoài: </h5>
+                                    <h5 data-toggle="tooltip" data-placement="bottom" title="Ngoài tiền lương thưởng công ty, bạn có thêm khoản thu nhập hàng tháng như thế nào!" style="margin-left:5px" class="text-left review-details" ng-show="vm.company.reviews.salaryAndBenefit.profitSharing">{{vm.company.reviews.salaryAndBenefit.profitSharing | number}} VND / Tháng</h5>
+                                    <h5  style="margin-left:5px" class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.profitSharing">Chưa có thông tin về lương ngoài</h5>
+                                 </div>
+                              </div>
+                              <div class="col-sm-8" style="border-left:solid 1px;border-color:lightgrey">
+                                 <div class="row" style="margin-left:20px">
+                                    <h5 style="margin-left:5px" class="text-left review-detail">Cơ hội thăng tiến: </h5>
+                                    <div style="margin-left:-15px" ng-show="vm.company.reviews.salaryAndBenefit.opportunityRating">
+                                       <select id="opportunityRating" >
+                                          <option value="1">Kém</option>
+                                          <option value="2">Bình thường</option>
+                                          <option value="3">Tốt</option>
+                                          <option value="4">Rất tốt</option>
+                                          <option value="5">Xuất sắc</option>
+                                       </select>
                                     </div>
                                     <div ng-hide="vm.company.reviews.salaryAndBenefit.opportunityRating">
-                                    Chưa có đánh giá về cơ hội thăng tiến
+                                       Chưa có đánh giá về cơ hội thăng tiến
                                     </div>
-                                </div>
-                                <div class="row" style="margin-left:20px">
-                                   <h5 style="margin-left:5px;" class="text-left review-detail">Bảo hiểm và các chế độ chăm sóc sức khỏe: </h5>
-                                   <div style="margin-left:-15px" ng-show="vm.company.reviews.salaryAndBenefit.healthRating">
-                                   <select id="healthRating">
-                                      <option value="1">Kém</option>
-                                      <option value="2">Bình thường</option>
-                                      <option value="3">Tốt</option>
-                                      <option value="4">Rất tốt</option>
-                                      <option value="5">Xuất sắc</option>
-                                    </select>
+                                 </div>
+                                 <div class="row" style="margin-left:20px">
+                                    <h5 style="margin-left:5px;" class="text-left review-detail">Bảo hiểm và các chế độ chăm sóc sức khỏe: </h5>
+                                    <div style="margin-left:-15px" ng-show="vm.company.reviews.salaryAndBenefit.healthRating">
+                                       <select id="healthRating">
+                                          <option value="1">Kém</option>
+                                          <option value="2">Bình thường</option>
+                                          <option value="3">Tốt</option>
+                                          <option value="4">Rất tốt</option>
+                                          <option value="5">Xuất sắc</option>
+                                       </select>
                                     </div>
                                     <div ng-hide="vm.company.reviews.salaryAndBenefit.healthRating">
-                                    Chưa có đánh giá về bảo hiểm và các chế độ chăm sóc sức khỏe
+                                       Chưa có đánh giá về bảo hiểm và các chế độ chăm sóc sức khỏe
                                     </div>
-                                </div>
-                                <div class="row" style="margin-left:20px">
-                                   <h5 style="margin-left:2px" class="text-left review-detail">Thời gian nghỉ lương thưởng: </h5>
-                                   <div style="margin-left:-15px" ng-show="vm.company.reviews.salaryAndBenefit.timeOffRating">
-                                   <select id="timeOffRating">
-                                      <option value="1">Kém</option>
-                                      <option value="2">Bình thường</option>
-                                      <option value="3">Tốt</option>
-                                      <option value="4">Rất tốt</option>
-                                      <option value="5">Xuất sắc</option>
-                                    </select>
+                                 </div>
+                                 <div class="row" style="margin-left:20px">
+                                    <h5 style="margin-left:2px" class="text-left review-detail">Thời gian nghỉ lương thưởng: </h5>
+                                    <div style="margin-left:-15px" ng-show="vm.company.reviews.salaryAndBenefit.timeOffRating">
+                                       <select id="timeOffRating">
+                                          <option value="1">Kém</option>
+                                          <option value="2">Bình thường</option>
+                                          <option value="3">Tốt</option>
+                                          <option value="4">Rất tốt</option>
+                                          <option value="5">Xuất sắc</option>
+                                       </select>
                                     </div>
                                     <div ng-hide="vm.company.reviews.salaryAndBenefit.timeOffRating">
-                                    Chưa có đánh giá về thời gian nghỉ lương thưởng
+                                       Chưa có đánh giá về thời gian nghỉ lương thưởng
                                     </div>
-                                </div>
-                                <div class="row" style="margin-left:20px">
-                                   <h5 style="margin-left:5px" class="text-left review-detail">Chế độ lương hưu: </h5>
-                                   
-                                   <div style="margin-left:-15px" ng-show="vm.company.reviews.salaryAndBenefit.pensionRating">
-                                   <select id="pensionRating">
-                                      <option value="1">Kém</option>
-                                      <option value="2">Bình thường</option>
-                                      <option value="3">Tốt</option>
-                                      <option value="4">Rất tốt</option>
-                                      <option value="5">Xuất sắc</option>
-                                    </select>
+                                 </div>
+                                 <div class="row" style="margin-left:20px">
+                                    <h5 style="margin-left:5px" class="text-left review-detail">Chế độ lương hưu: </h5>
+                                    <div style="margin-left:-15px" ng-show="vm.company.reviews.salaryAndBenefit.pensionRating">
+                                       <select id="pensionRating">
+                                          <option value="1">Kém</option>
+                                          <option value="2">Bình thường</option>
+                                          <option value="3">Tốt</option>
+                                          <option value="4">Rất tốt</option>
+                                          <option value="5">Xuất sắc</option>
+                                       </select>
                                     </div>
                                     <div  ng-hide="vm.company.reviews.salaryAndBenefit.pensionRating">
-                                    Chưa có đánh giá về chế độ lương hưu
+                                       Chưa có đánh giá về chế độ lương hưu
                                     </div>
-                                </div>
-                                <div class="row" style="margin-left:20px">
-                                   <h5 style="margin-left:5px" class="text-left review-detail">Chế độ thai sản/ nghỉ vợ đẻ: </h5>
-                                   <div style="margin-left:-15px" ng-show="vm.company.reviews.salaryAndBenefit.parentalLeaveRating">
-                                   <select id="parentalLeaveRating">
-                                      <option value="1">Kém</option>
-                                      <option value="2">Bình thường</option>
-                                      <option value="3">Tốt</option>
-                                      <option value="4">Rất tốt</option>
-                                      <option value="5">Xuất sắc</option>
-                                    </select>
+                                 </div>
+                                 <div class="row" style="margin-left:20px">
+                                    <h5 style="margin-left:5px" class="text-left review-detail">Chế độ thai sản/ nghỉ vợ đẻ: </h5>
+                                    <div style="margin-left:-15px" ng-show="vm.company.reviews.salaryAndBenefit.parentalLeaveRating">
+                                       <select id="parentalLeaveRating">
+                                          <option value="1">Kém</option>
+                                          <option value="2">Bình thường</option>
+                                          <option value="3">Tốt</option>
+                                          <option value="4">Rất tốt</option>
+                                          <option value="5">Xuất sắc</option>
+                                       </select>
                                     </div>
                                     <div ng-hide="vm.company.reviews.salaryAndBenefit.parentalLeaveRating">
-                                    Chưa có đánh giá về chế độ thai sản
+                                       Chưa có đánh giá về chế độ thai sản
                                     </div>
-                                </div>
                                  </div>
-
-                                
-
+                              </div>
                            </div>
                         </div>
                      </div>
@@ -296,21 +287,15 @@
                               </div>
                            </div>
                         </div>
-                     </div> -->
+                        </div> -->
                   </div>
                </div>
-      
                <div class="row">
                   <div class="row">
-                  
-                     <button type="button" ng-show="vm.authentication.user" class="button-vote" data-toggle="modal" data-target="#modalUpvote"><span ng-hide="vm.checkIfUpvoted()"> <b style="font-size:12px">Ủng hộ</b></span><span ng-show="vm.checkIfUpvoted()"> <b style="font-size:12px">Bỏ ủng Hộ</b></span></button>
-
-                     <button type="button" ng-show="(vm.authentication.user.roles.indexOf('mod')>0)" class="button-votes" ng-click="vm.highlight()"><span ng-hide="vm.company.reviews.highlight"> <b style="font-size:12px">Đánh giá nổi bật</b></span><span ng-show="vm.company.reviews.highlight"> <b style="font-size:12px">Bỏ đánh giá nổi bật</b</span></button>
-
-                     <button type="button" ng-show="vm.authentication.user && (vm.authentication.user._id != vm.company.reviews.userID._id)" class="button-bookmark" ng-click="vm.bookmark()"><span class="glyphicon glyphicon-bookmark" style="font-size:12px"></span><span ng-hide="vm.checkIfBookmarked()"> <b style="font-size:12px">Dấu trang</b></span><span ng-show="vm.checkIfBookmarked()">  <b style="font-size:12px">Bỏ lưu dấu trang</b></span></button>
-
+                     <button type="button" ng-show="vm.authentication.user" class="button-vote" data-toggle="modal" data-target="#modalUpvote"><span ng-hide="vm.checkIfUpvoted()"> <span style="font-size:12px">Ủng hộ</span></span><span ng-show="vm.checkIfUpvoted()"> <b style="font-size:12px">Bỏ ủng Hộ</b></span></button>
+                     <button type="button" ng-show="(vm.authentication.user.roles.indexOf('mod')>0)" class="button-votes" ng-click="vm.highlight()"><span ng-hide="vm.company.reviews.highlight"> <span>Đánh giá nổi bật</span></span><span ng-show="vm.company.reviews.highlight"> <span style="font-size:12px">Bỏ đánh giá nổi bật</span></span></button>
+                     <button type="button" ng-show="vm.authentication.user && (vm.authentication.user._id != vm.company.reviews.userID._id)" class="button-bookmark" ng-click="vm.bookmark()"><span ng-hide="vm.checkIfBookmarked()"> <span style="font-size:12px">Dấu trang</span></span><span ng-show="vm.checkIfBookmarked()">  <b style="font-size:12px">Bỏ lưu dấu trang</b></span></button>
                      <button  class="pull-right button-report " style="margin-bottom:13px" type="button" data-toggle="modal" data-target="#baocaoModal"><span class="glyphicon glyphicon-flag" data-toggle="tooltip" data-placement="left" title="Báo cáo vi phạm"></span> </button>
-
                      <div id="baocaoModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                            <div class="modal-content">
@@ -341,14 +326,13 @@
          </div>
          <div class="row star-overall-review">
             <div class="col-sm-12">
-               <h4 for="comment" class="text-left" style="color:grey">Bình luận về bài đánh giá này:</h4>
-               
+               <h4 for="comment" class="text-left" style="color:black">Bình luận về bài đánh giá này:</h4>
                <div class="review-detail-comment">
                   <div class="row" ng-hide="vm.authentication.user">
                      <b style="color:grey;margin-left:40px;font-size:13px;">Hãy đăng nhập để tham gia bình luận</b>
-                   </div>
+                  </div>
                   <div ng-show="vm.authentication.user">
-                  <h5 style="color:#079696;">Xin vui lòng hãy dùng từ ngữ lịch sự khi sử dụng tính năng bình luận.</h5>
+                     <h5 style="color:#079696;">Xin vui lòng hãy dùng từ ngữ lịch sự khi sử dụng tính năng bình luận.</h5>
                      <div id=cmtSection>
                         <form>
                            <div class="form-group textarea-cmt">
@@ -369,71 +353,110 @@
             </div>
          </div>
       </div>
-      <div class="col-sm-3 " style="margin-left:20px">
-         <div class="row">
+
+      <div class="col-sm-2" style="margin-top:30px">
+         <div class="row" style="background-color:#079696;margin-left:2px;">
+            <h5 style="color:white;font-weight:bold;margin-left:15px;"><span class="glyphicon glyphicon-user"></span> Nói sự thật</h5>
+         </div>
+         <div class="row" style="margin-left:2px;background-color:white;">
+            <div class="col-sm-12" style="line-height:1.4em;padding-top:10px;margin-bottom:10px">
+               Cảm ơn bạn đã đóng góp cho cộng đồng. Ý kiến của bạn sẽ giúp ích cho những người khác đưa ra quyết định cho công việc tương lai của họ và công ty mà họ mong muốn.
+            </div>
+         </div>
+         <div class="row" style="margin-left:2px;background-color:#079696;margin-top:20px;color:white">
+            <div class="col-sm-12" style="line-height:1.4em;padding-top:10px;margin-bottom:10px">
+               Vui lòng xem <a data-toggle="modal" data-target="#myModalPolicy"><b style="color:#FFD700;line-height:1.4em"
+                  >Chính sách bảo mật</b></a> và không đăng những điều sau: Ngôn ngữ thù địch hoặc phân biệt đối xử. Bí mật thương mại/ thông tin bí mật của công ty.
+                  <div class="modal fade" id="myModalPolicy" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="color:black">Chính sách bảo mật công ty</h4>
+        </div>
+        <div class="modal-body" style="color:grey">
+         
+          <h5 style="color:black">Chấp Thuận Điều Khoản & Điều Kiện</h5>
+          <p style="line-height:1.4em">Vui lòng đọc kỹ các Điều Khoản & Điều Kiện này trước khi truy nhập và sử dụng dịch vụ trên website companyrating.xyz. Bằng việc chấp thuận Điều Khoản & Điều Kiện này, bạn đồng ý bị ràng buộc bởi các quy định về sử dụng Dịch vụ trên Company Rating Website (CRW). Nếu bạn có bất kỳ câu hỏi nào về bản thỏa thuận này, vui lòng liên hệ chúng tôi qua email info@companyrating.xyz.</p>
+          <h5  style="color:black">Dịch Vụ Của CRW</h5>
+          <p>Companyrating.xyz là một trang Web trên mạng Internet được thiết kế cho phép những người sử dụng đăng thông tin doanh nghiệp và/hoặc xem thông tin doanh nghiệp, đánh giá, chia sẻ những trải nghiệm ở các doanh nghiệp do những doanh nghiệp thứ ba đăng lên, hoặc tương tác với những người sử dụng khác. CRW chứa và có thể chứa các thông tin, tin tức, các ý kiến, văn bản, đồ hoạ, các liên kết, sản phẩm nghệ thuật điện tử, hình ảnh động, âm thanh, video, phần mềm, tranh ảnh, âm nhạc, tiếng động và các nội dung, dữ liệu khác (gọi chung là “nội dung”) được định dạng, tổ chức và thu thập dưới nhiều hình thức khác nhau mà người sử dụng có thể truy nhập tới được, gồm các thư mục, cơ sở dữ liệu và các vùng trên website của Companyrating.xyz mà người sử dụng có thể thay đổi được, chẳng hạn như đăng quảng cáo tuyển dụng, tải lên các tệp đa phương tiện, đăng ký các hồ sơ người sử dụng và tạo các hồ sơ tự thông báo (“vùng tương tác”).
+Để có thể sử dụng đầy đủ tiện ích dịch vụ trên CRW, bạn cần phải đăng ký tạo lập một tài khoản sử dụng và cung cấp CRW một số thông tin cá nhân nhất định để phục vụ cho việc liên lạc giao tiếp giữa bạn và CRW cũng như những người sử dụng khác sau này. Bằng việc đăng ký này, bạn đồng ý nhận các thư thông báo, các thư điện tử hoặc các hình thức truyền thông khác về các sản phẩm và dịch vụ của CRW. Bất cứ khi nào bạn không mong muốn nhận các thư điện tử này nữa, thì bạn hãy thông báo cho CRW bằng cách chọn chức năng hủy đăng ký có sẵn trên CRW hoặc gửi thư điện tử yêu cầu hủy đăng ký cho CRW. Các thông tin cá nhân của bạn sẽ được bảo quản và xử lý một cách bảo mật theo chính sách bảo mật của CRW.
+</p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" >Thoát</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+            </div>
          </div>
       </div>
    </div>
 </div>
- <div id='bttop'>TRỞ VỀ ĐẦU TRANG</div>
+<div id='bttop'>TRỞ VỀ ĐẦU TRANG</div>
 <!-- <%- include('components/commentSection.html', {review: reviews}); %> -->
 <script>
    $(document).ready(function() {
        $('[data-toggle="tooltip"]').tooltip();
-
+   
         $('#opportunityRating, #healthRating, #timeOffRating, #pensionRating, #parentalLeaveRating').barrating({
         theme: 'bars-movie'
           });
-
+   
         setTimeout(function(){ 
           if($('#opportunityRating').length){
             $('#opportunityRating').barrating('set', angular.element('#ui-view').scope().vm.company.reviews.salaryAndBenefit.opportunityRating);
             $('#opportunityRating').barrating('readonly', true);
           }
-
+   
           if($('#healthRating').length){
             $('#healthRating').barrating('set', angular.element('#ui-view').scope().vm.company.reviews.salaryAndBenefit.healthRating);
             $('#healthRating').barrating('readonly', true);
           }
-
+   
           if($('#timeOffRating').length){
             $('#timeOffRating').barrating('set', angular.element('#ui-view').scope().vm.company.reviews.salaryAndBenefit.timeOffRating);
             $('#timeOffRating').barrating('readonly', true);
           }
-
+   
           if($('#pensionRating').length){
             $('#pensionRating').barrating('set', angular.element('#ui-view').scope().vm.company.reviews.salaryAndBenefit.pensionRating);
             $('#pensionRating').barrating('readonly', true);
           }
-
+   
           if($('#parentalLeaveRating').length){
             $('#parentalLeaveRating').barrating('set', angular.element('#ui-view').scope().vm.company.reviews.salaryAndBenefit.parentalLeaveRating);
             $('#parentalLeaveRating').barrating('readonly', true);
           }
-
+   
         }, 0);
-
-
+   
+   
    });
 </script>
 <script >
-$(function() {
- $(window).scroll(function() {
- if ($(this).scrollTop() != 0) {
- $('#bttop').fadeIn();
- } else {
- $('#bttop').fadeOut();
- }
- });
- $('#bttop').click(function() {
- $('body,html').animate({
- scrollTop: 0
- }, 800);
- });
-});
+   $(function() {
+    $(window).scroll(function() {
+    if ($(this).scrollTop() != 0) {
+    $('#bttop').fadeIn();
+    } else {
+    $('#bttop').fadeOut();
+    }
+    });
+    $('#bttop').click(function() {
+    $('body,html').animate({
+    scrollTop: 0
+    }, 800);
+    });
+   });
 </script>
-  <style type="text/css">
-                           .br-theme-bars-movie .br-widget .br-current-rating{
-                              font-size: 12px;
-                           }
-                        </style>
+<style type="text/css">
+   .br-theme-bars-movie .br-widget .br-current-rating{
+   font-size: 12px;
+   }
+</style>

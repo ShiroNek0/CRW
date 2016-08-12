@@ -21,7 +21,22 @@
    position: fixed;
  
 }
-
+a h4.text-reason:link {
+  text-decoration: underline; 
+  color: white;
+}
+a.text-reason:hover{
+ text-decoration: underline; 
+  color: white;
+}
+a.text-reason:visited{
+ text-decoration: underline; 
+  color: white;
+}
+a.text-reason:active{
+ text-decoration: underline; 
+  color: white;
+}
 .rotate360 {
   -webkit-animation-name: rotate360;
   -moz-animation-name: rotate360;
@@ -92,10 +107,11 @@
 }
 
 .tab-contents-avatar{
-  margin-top: 20px;
+  
+  
 }
 .fix-company{
- margin-top: 20px;
+ margin-top: 10px;
  margin-right: 30px;
  font-weight: bold;
 }
@@ -111,12 +127,11 @@
 .btn-follow{
   border: solid 1px;
   border-color: lightgrey;
-  width: 120px;
+  width: 110px;
   margin-top: 100px;
   height: 35px;
   color: black;
   font-weight: bold;
-  box-shadow: 1px 3px 1px 1px grey;
   margin-left: 60px;
 }
 
@@ -126,9 +141,10 @@
   width: 135px;
   margin-top: 100px;
   height: 35px;
-  color: black;
+  color: white;
   font-weight: bold;
-  box-shadow: 1px 3px 1px 1px grey;
+  background-color: #3b5998;
+
 }
 .glyphicon-pencil{
   font-size: 11px;
@@ -158,7 +174,7 @@
 }
 
 .text-company-overview{
-  margin-left: 30px;
+  margin-left: 15px;
 
 }
 .text-company-overview-detail{
@@ -548,4 +564,19 @@ margin-top:50px;
     .rating-container .clear-rating {
         display: none;
     }
+}
+.congty{
+  color:black;
+}
+button.btn-follow:hover{
+  background-color:#cccccc;
+}
+button.btn-review:hover{
+  background-color: #334f87;
+}
+a.name-company-filter:hover{
+  text-decoration: underline;
+}
+a.review-company-filter:hover{
+   text-decoration: underline;
 }

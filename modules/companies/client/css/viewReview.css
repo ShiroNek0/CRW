@@ -159,23 +159,19 @@ h1 { font-size: 1.5em; margin: 10px; }*/
 }
 .button-bookmark{
   margin-top: 15px;
-  font-size: 15px;
   margin-bottom: 20px;
   margin-left: 15px;
-  font-weight: bold;
   background-color:#1173d6;
-  border-color: lightgrey;
   color: white;
   height: 30px;
 }
 .button-votes{
   margin-top: 15px;
-  font-size: 15px;
+  font-size: 12px;
   margin-bottom: 20px;
   margin-left: 15px;
-  font-weight: bold;
   background-color:#079696;
-  border-color: lightgrey;
+ 
   color: white;
   height: 30px;
 }
@@ -184,9 +180,8 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   font-size: 15px;
   margin-bottom: 20px;
   margin-left: 15px;
-  font-weight: bold;
+
   background-color:#f1f1f1;
-  border-color: lightgrey;
   color:#4c4c4c;
   height: 30px;
 }
@@ -269,4 +264,27 @@ h1 { font-size: 1.5em; margin: 10px; }*/
 .review-user{
   margin-left: 10px;
   font-size: 12px;
+}
+a.reviewnow:hover{
+  text-decoration: underline;
+}
+a.reviewnow{
+  color: #079696;
+  font-weight: bold;
+}
+button.button-vote:hover{
+  background-color: #b2b2b2;
+  color: white;
+}
+button.button-votes:hover{
+  background-color: #058282;
+
+}
+
+button.button-bookmark:hover{
+  background-color: #0766c4;
+
+}
+button.button-report:hover{
+  background-color: #e5e5e5;
 }

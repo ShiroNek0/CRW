@@ -55,12 +55,12 @@ font-size:20px;
 
 /* visited link */
 .navbar-name:visited {
-    color:#3b5998;
+    color:#079696;
 
 }
 /* mouse over link */
 .navbar-name:hover {
-    color: #3b5998;
+    color: #079696;
 
 }
 
@@ -87,16 +87,7 @@ font-size:20px;
     width: 100px;
 }
 
-.b-company{
-	color: white;
-
-
-}
-.b-home{
-	color: white;
-	
-}
-
+s
 /* selected link */
 .navbar-name:active {
     color: #3b5998;
@@ -320,9 +311,28 @@ li a.signup:active {
 }
 
 #searchs input[type="submit"]:hover {
-	background: #189e83;
+	background: #067c7c;
 }
 
 #searchs input[type="search"]::-webkit-input-placeholder { color: #42454e; }
 #searchs input[type="search"]:-moz-placeholder { color: #42454e; }
 #searchs input[type="search"]:-ms-input-placeholder { color: #42454e; }
+
+a.link-company:hover{
+  color: red;
+
+}
+
+
+
+div.navbar-account{
+	background-color: #079696;
+}
+div.navbar-account:hover{
+	background-color: #079696;
+}
+div.navbar-account:link{
+	background-color: #079696;
+}ZZXXCr-account:active{
+	background-color: #079696;
+}

@@ -32,6 +32,6 @@ angular.module('users').controller('FollowedCompaniesController', ['$http', '$lo
       function errorCallback(res) {
         alert(JSON.stringify(res));
       }
-    };
+    }
   }
 ]);

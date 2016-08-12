@@ -9,12 +9,12 @@
                     </div>
                     <div class="col-sm-8 " style="padding-right:120px">
                       <div class="row">
-                          <h4 style="font-weight:bold">Chỉnh sửa công ty</h4>
+                          <h4 style="font-weight:bold;color:black">Chỉnh sửa công ty</h4>
                       </div>
                         <div class="col-sm-5">
                             <div class="row">
                                 <div class="form-group" show-errors>
-                                    <h5 class="congty" class="tencongty">Tên công ty(*):</h5 class="congty">
+                                    <h5 class="congty">Tên công ty<span style="color:#f24141">(*)</span>:</h5 class="congty">
                                     <input type="text" class="form-control" ng-model="vm.company.name" name="name" placeholder="Tên công ty..." required>
                                     <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.name.$error" role="alert">
                                         <p class="help-block error-text" ng-message="required">Hãy nhập tên công ty.</p>
@@ -62,7 +62,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group" show-errors>
-                                    <h5 class="congty">Link ảnh đại diện (*):</h5 class="congty">
+                                    <h5 class="congty">Link ảnh đại diện<span style="color:#f24141">(*)</span>:</h5 class="congty">
                                     <input type="text" name="avatar" class="form-control" ng-model="vm.company.avatar" placeholder="Ảnh đại diện..." name="avatar" required>
                                     <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.avatar.$error" role="alert">
                                         <p class="help-block error-text" ng-message="required">Hãy nhập link ảnh đại diện.</p>
@@ -71,7 +71,7 @@
                                 <div ng-show="(vm.company.avatar)"><img src="{{vm.company.avatar}} " style="height:200px;width:200px"></div>
                             </div>
                             <div class="row" style="margin-left:-35px;margin-right:-35px">
-                            <h5 class="congty" >Ảnh giới thiệu công ty(*):</h5 >
+                            <h5 class="congty" >Ảnh giới thiệu công ty<span style="color:#f24141">(*)</span>:</h5 >
                              <h6 style="color:green">Bạn có thể thêm ảnh về công ty</h6> 
                                 <input type="text" placeholder="Nhập đường dẫn ảnh giới thiệu..." data-placement="bottom" ng-model="vm.introducePhoto">
                                 <button type="button" ng-click="vm.addPhoto()" style="background-color:#0cb20c;color:white">Thêm ảnh</button>
@@ -101,7 +101,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group" show-errors>
-                                    <h5 class="congty">Trụ sở chính(*):</h5 class="congty">
+                                    <h5 class="congty">Trụ sở chính<span style="color:#f24141">(*)</span>:</h5 class="congty">
                                     <input type="text" name="hq" class="form-control" ng-model="vm.company.hq" placeholder="Trụ sở chính của công ty..." required="">
                                     <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.hq.$error" role="alert">
                                         <p class="help-block error-text" ng-message="required">Hãy nhập trụ sở công ty.</p>

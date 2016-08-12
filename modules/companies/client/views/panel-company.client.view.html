@@ -1,14 +1,15 @@
 
-<section ng-init="vm.initPanel(company)">
+<section ng-init="vm.initPanel(company)" style="font-family: Roboto-Regular"
+>
     <div class="col-sm-3" style=" text-shadow:0 1px 2px rgba(0, 0, 0, .0);">
         <div class="hovergallery">
             <div class="thumbnail" style="background-color:white;">
 
             <div class="row" >
-              <a ui-sref="companies.view({companyId: company._id})"><img src="{{company.avatar}}" alt="avatar" class="picture"  style="width:115px;height:90px;margin-left:21px;border:solid 1px;border-color:white"></a>  
+              <a ui-sref="companies.view({companyId: company._id})"><img src="{{company.avatar}}" alt="avatar" class="picture"  style="width:115px;height:90px;margin-left:21px;border:solid 1px;border-color:white"> 
             </div>
             <div class="row">
-               <h5 class="pull-left companyname" data-ng-bind="company.name" style="color:grey" ></h5>
+               <h5 class="pull-left companyname" data-ng-bind="company.name" style="color:black" ></h5>
             </div>
             <div class=row>
                    <p class="pull-left point" style="color:red;margin-top:3px;">{{company.averageRating | number: 1}}</p>
@@ -36,6 +37,7 @@
                            
                         </fieldset>
             </div>
+            </a> 
             <div class="row">
                   <div class="pull-left btn-reviews">
                         <button class="btn btn-info" type="button" ui-sref="companies.view({companyId: company._id})" style=" box-shadow: 0 3px 0 0 black;font-size:11px;">

@@ -39,12 +39,12 @@
 
 <body class="ng-cloak" style="font-family: 'Ek Mukta';background-color:#e5e5e5">
   <header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top"></header>
-  <section class="content" style="min-height: 600px;">
+  <section class="content" style="min-height:581px;">
     <section class="container-fluid" style="margin-top:40px">
       {% block content %}{% endblock %}
     </section>
   </section>
-  <footer ng-include="'/modules/core/client/views/footer.client.view.html'" class="footer footer-fixed-bottom"></footer>
+  <footer style="float:bottom" ng-include="'/modules/core/client/views/footer.client.view.html'" class="footer footer-fixed-bottom"></footer>
 
   <!--Embedding The User Object-->
   <script type="text/javascript">
@@ -61,7 +61,26 @@
   <!--Livereload script rendered -->
   <script type="text/javascript" src="{{host}}:35729/livereload.js"></script>
   {% endif %}
-
+  <style type="text/css">
+    a{
+   
+    cursor: pointer;
+  
+    }
+    
+  </style>
+  <style type="text/css">
+    .table{
+      margin-bottom: 0px;
+      background-color: white;
+    }
+  </style>
+  <style type="text/css">
+   @font-face {
+   font-family: 'Roboto-Regular';
+   src: url('/modules/companies/client/css/RobotoTTF/Roboto-Regular.ttf');
+   }
+</style>
 </body>
 
 </html>

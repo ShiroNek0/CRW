@@ -26,15 +26,6 @@ angular.module('users').config(['$stateProvider',
           title: 'Bảng điều khiển'
         }
       })
-      .state('settings.accountInfo', {
-        url: '/accountInfo',
-        templateUrl: 'modules/users/client/views/account-info.client.view.html',
-        controller: 'AccountInfoController',
-        controllerAs: 'vm',
-        data: {
-          title: 'Thông tin tài khoản'
-        }
-      })
       .state('settings.postedReviews', {
         url: '/postedReviews',
         templateUrl: 'modules/users/client/views/settings/posted-reviews.client.view.html',

@@ -26,6 +26,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .label-review{
 	font-weight:bold;
+	color:black;
 }
 .note-review{
 	color:#999999;
@@ -38,19 +39,19 @@ input[type=number]::-webkit-outer-spin-button {
 	
 }
 .label-review-company{
-	font-weight: bold;color:#079696;
+	font-weight: bold;color:black;
 }
 .input-review-company{
 	background-color:white;
 }
 .label-review-location{
-   font-weight: bold;color:#079696;
+   font-weight: bold;color:black;
 }
 .input-review-location{
 	background-color:white;
 }
 .label-review-work{
-	font-weight: bold;color:#079696;
+	font-weight: bold;color:black;
 }
 .label-radio-yes{
 	font-weight: bold;
@@ -63,7 +64,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .label-review-time{
 	font-weight: bold;
-	color:#079696;
+	color:black;
 }
 .label-radio-year{
 	font-weight: bold;
@@ -74,7 +75,7 @@ input[type=number]::-webkit-outer-spin-button {
 	font-weight: bold;color:#7f7f7f;
 }
 .label-review-contract{
-	font-weight: bold;color:#079696;
+	font-weight: bold;color:black;
 }
 .label-radio-fulltime{
 	font-weight: bold;
@@ -87,7 +88,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .label-review-all{
 	font-weight: bold;
-	color:#079696;
+	color:black;
 }
 .star-all{
 	margin-right:90px;
@@ -96,14 +97,14 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .label-review-title{
 	font-weight: bold;
-	color:#079696;
+	color:black;
 }
 .input-review-title{
 	background-color:white;
 }
 .label-review-pros{
 	font-weight: bold;
-	color:#079696;
+	color:black;
 }
 .textarea-pros{
 	background-color:white; 
@@ -111,7 +112,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .label-review-cons{
 	font-weight: bold;
-	color:#079696;
+	color:black;
 }
 .textarea-cons{
 	background-color:white; 
@@ -119,7 +120,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .label-review-supplement{
 	font-weight: bold;
-	color:#079696;
+	color:black;
 }
 .textarea-supplement{
 	background-color:white; 
@@ -135,35 +136,35 @@ input[type=number]::-webkit-outer-spin-button {
 /*//*/
 .label-review-salary{
 	font-weight: bold;
-	color:#079696;
+	color:black;
 }
 .input-review-salary{
 	background-color:white;
 }
 .label-review-grow{
 	font-weight: bold;
-	color:#079696;
+	color:black;
 }
 .input-review-grow{
 	background-color:white;
 }
 .label-review-salary-year{
 	font-weight: bold;
-	color:#079696;
+	color:black;
 }
 .input-review-salary-year{
 	background-color:white;
 }
 .label-review-salary-ln{
 	font-weight: bold;
-	color:#079696;
+	color:black;
 }
 .input-review-salary-ln{
 	background-color:white;
 }
 .label-review-chance{
 	font-weight: bold;
-	color:#079696;
+	color:black;
 }
 .star-chance{
 	margin-right:90px;
@@ -173,7 +174,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .label-review-insurrance{
 	font-weight: bold;
-	color:#079696;
+	color:black;
 }
 .star-insurrance{
 	margin-right:90px;
@@ -183,7 +184,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .label-review-wife{
 	font-weight: bold;
-	color:#079696;
+	color:black;
 }
 .star-wife{
 	margin-right:90px;
@@ -192,7 +193,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .label-review-resttime{
 	font-weight: bold;
-	color:#079696;
+	color:black;
 }
 .star-resttime{
 	margin-right:90px;
@@ -201,7 +202,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .label-review-pension{
 	font-weight: bold;
-	color:#079696;
+	color:black;
 }
 .star-pension{
 	margin-right:90px;
@@ -210,7 +211,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .label-review-additional{
 	font-weight: bold;
-	color:#079696;
+	color:black;
 }
 .textarea-additional{
 	background-color:#e5e5e5;

@@ -38,7 +38,7 @@
                             <td class="col-sm-4" style="font-weight:bold;:solid 1px;border-color:lightgrey;color:grey"><a ui-sref="companies.view({companyId: company._id})" style="word-wrap:break-word" >{{company.name}}</a></td>
                         <td class="col-sm-4" style=":solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word"> <span ng-repeat="alias in company.alias" class="badge" style="word-wrap: break-word"> {{alias}}</span></td>
                         <td class="col-sm-2" style="font-weight:bold;:solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word;">{{company.numOfReviews}}</td>
-                        <td class="col-sm-2" style=":solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word;"> <button type="button" ng-click="vm.unfollow(company._id, $index)">Bỏ theo dõi</button></td>
+                        <td class="col-sm-2" style=":solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word;"> <button style="margin-left:30px" type="button" class="btn btn-danger" ng-click="vm.unfollow(company._id, $index)">Bỏ theo dõi</button></td>
                         </tr>
                     </tbody>
          </table>

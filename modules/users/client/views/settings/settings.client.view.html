@@ -12,84 +12,91 @@
                 
                </li>
                <li class="divider"></li>
-               <li ui-sref-active="active" style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424" ng-show="(user.roles.indexOf('mod')>=0)">
+               <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424" ng-show="(user.roles.indexOf('mod')>=0)">
                   <a class="setting" ui-sref="settings.announcement" style="color:white">
                      <h6>Thông báo  <span class="badge"> {{unseenAnnouce}} chưa xem </span></h6>
                   </a>
                </li>
-               <li ui-sref-active="active" style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424" ng-show="(user.roles.indexOf('mod')>=0)">
+               <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424" ng-show="(user.roles.indexOf('mod')>=0)">
                   <a class="setting" ui-sref="settings.reviews" style="color:white">
                      <h6>Xử lý bài đăng <span class="badge"> {{wtgrvNotif + rptrvNotif}} đang chờ </span></h6>
                   </a>
                </li>
              
-               <li ui-sref-active="active" style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424" ng-show="(user.roles.indexOf('mod')>=0)">
-                  <a class="setting" data-toggle="collapse" href="#collapse1" style="color:white">
+               <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424" ng-show="(user.roles.indexOf('mod')>=0)">
+                  <a class="settings" data-toggle="collapse" href="#collapse1" style="color:white">
                      <h6>Quản lý/Thống kê <span class="pull-right"><span class="caret"></span>
                      </span> 
                      </h6>
                   </a>
-                  <div id="collapse1" class="panel-collapse collapse" >
-                     <ul class="list-group" >
-                        <li class="list-group-item" style="background-color:#423b3b">
-                           <a class="setting" ui-sref="settings.users" style="color:white">
-                              <h6>Người dùng</h6>
+                  <div id="collapse1" class="panel-collapse collapse">
+                     <ul class="list-group" style="margin-bottom:0px">
+                        
+                           <div class="row" style="border:solid 1px;border-color:#262424;margin-right:0px">
+                             <a class="setting" ui-sref="settings.users" style="color:white;">
+                              <h6 style="margin-left:30px;color:#0bc1c1">Người dùng</h6>
                            </a>
-                        </li>
-                        <li class="list-group-item" style="background-color:#423b3b">
-                           <a class="setting" ui-sref="settings.companies"  style="color:white">
-                              <h6>Các công ty</h6>
+                        
+                           </div>
+                        
+                          <div class="row" style="border:solid 1px;border-color:#262424;margin-right:0px;border-top:none;border-bottom:none">
+                             <a class="setting" ui-sref="settings.companies"  style="color:white;">
+                              <h6 style="margin-left:30px;color:#0bc1c1">Các công ty</h6>
                            </a>
-                        </li>
+                          </div>
+                        
                      </ul>
                   </div>
                </li>
-               <li ui-sref-active="active" style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424">
+               <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424">
                   <a class="setting" ui-sref="settings.postedReviews" style="color:white">
                      <h6>Bài đánh giá đã đăng</h6>
                   </a>
                </li>
-               <li ui-sref-active="active" style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424">
+               <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424">
                   <a class="setting"  ui-sref="settings.followedCompany" style="color:white">
                      <h6>Công ty đang theo dõi</h6>
                   </a>
                </li>
-               <li ui-sref-active="active" style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424">
+               <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424">
                   <a class="setting" ui-sref="settings.bookmarkedReviews" style="color:white">
                      <h6>Bài đánh giá đã đánh dấu</h6>
                   </a>
                </li>
-               <li ui-sref-active="active" style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424">
-                  <a class="setting" ui-sref="settings.accountInfo" style="color:white">
-                     <h6>Thông tin tài khoản</h6>
-                  </a>
-               </li>
-                 <li ui-sref-active="active" style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424">
-                  <a class="setting" data-toggle="collapse" href="#collapse2" style="color:white">
-                     <h6>Chỉnh sửa tài khoản <span class="pull-right"><span class="caret"></span></h6>
+                 <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424">
+                  <a class="settings" data-toggle="collapse" href="#collapse2" style="color:white">
+                     <h6>Thông tin tài khoản <span class="pull-right"><span class="caret"></span></h6>
                      </span> 
                   </a>
                   <div id="collapse2" class="panel-collapse collapse" >
-                     <ul class="list-group" >
-                        <li class="list-group-item" style="background-color:#423b3b">
-                           <a class="setting" ui-sref="settings.profile" style="color:white">
-                              <h6>Chỉnh sửa thông tin</h6>
+                     <ul class="list-group"  style="margin-bottom:0px">
+                       
+                           
+                           <div class="row" style="border:solid 1px;border-color:#262424;margin-right:0px">
+                             <a class="setting" ui-sref="settings.profile" style="color:white">
+                              <h6 style="margin-left:30px;color:#0bc1c1">Chỉnh sửa tài khoản</h6>
                            </a>
-                        </li>
-                        <li class="list-group-item" style="background-color:#423b3b">
-                           <a  ui-sref="settings.picture"  style="color:white">
-                              <h6>Chỉnh sửa ảnh đại diện</h6>
+                           </div>
+                           <div class="row" style="border:solid 1px;border-color:#262424;margin-right:0px">
+                              <a  ui-sref="settings.picture"  style="color:white">
+                              <h6 style="margin-left:30px;color:#0bc1c1">Chỉnh sửa ảnh đại diện</h6>
                            </a>
-                        </li>
-                        <li class="list-group-item " style="background-color:#423b3b">
-                           <a class="setting" ui-sref="settings.password"  style="color:white">
-                              <h6>Thay đổi mật khẩu</h6>
+                           </div>
+                           <div class="row" style="border:solid 1px;border-color:#262424;margin-right:0px">
+                              <a class="setting" ui-sref="settings.password"  style="color:white">
+                              <h6 style="margin-left:30px;color:#0bc1c1">Thay đổi mật khẩu</h6>
                            </a>
-                        </li>
+                           </div>
+                      
+                          
+                       
+                     
+                          
+                       
                      </ul>
                   </div>
                </li>
-               <li ui-sref-active="active" style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424;border-bottom:solid 1px #262424;">
+               <li style="margin-left:-15px;margin-right:-15px;border-top:solid 2px;border-color:#262424;border-bottom:solid 1px #262424;">
                   <a class="setting" ui-sref="settings.accounts" style="color:white">
                      <h6>Quản lý mạng xã hội</h6>
                   </a>
