@@ -199,7 +199,7 @@ CompanySchema.index({ name: 'text', alias: 'text' });
 // Nhớ gọi hàm calculateRating khi thay đổi số lượng review approved/trusted trong hệ thống
 CompanySchema.methods.calculateRating = function(callback) {
   // Đếm các điểm số khác nhau và số lượng của chúng
-  if(this.reviews.length <= 0) return;
+  if(this.reviews.length < 0) return;
   var counter = {};
   this.reviews.reduce(function (prevItem, item) {
     if (['approved', 'trusted'].indexOf(item.state) === -1) return; // Bỏ qua các bài đánh giá chưa chấp nhận
@@ -245,7 +245,7 @@ CompanySchema.methods.calculateRating = function(callback) {
         score = firstPart - quantile * Math.sqrt((secondPart - firstPart * firstPart) / (N + K + 1));
         score /= 2;
 
-        avgScore /= (N * 2.0); // Cần 1.0 để kết quả là phân số thập phân thay vì số nguyên
+        if(N !== 0) avgScore /= (N * 2.0); // Cần 1.0 để kết quả là phân số thập phân thay vì số nguyên
         seriesCallback(null);
       });
     }

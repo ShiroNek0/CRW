@@ -187,6 +187,23 @@
       }
     }
 
+    vm.deleteReview = function(){
+      $http.delete('/api/companies/' + vm.company._id + '/reviews/' + vm.company.reviews._id).then(successCallback, errorCallback);
+      function successCallback(res) {
+        angular.element('#alertModal').find('.modal-body p').text(res.data);
+        angular.element('#alertModal').modal('show');
+        angular.element('#alertModal').on('hidden.bs.modal', function () {
+          $state.go('companies.view', {
+            companyId: vm.company._id
+          });  
+        });
+      }
+
+      function errorCallback(res) {
+        alert(res.data.message);
+      }
+    };
+
     vm.save = function(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.reviewForm');

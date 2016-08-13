@@ -113,6 +113,24 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="modalDelete" ng-show="vm.authentication.user && (vm.authentication.user.roles.indexOf('mod')>=0 || vm.authentication.user._id===vm.company.reviews.userID._id)" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header" style="background-color:#079696;">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title" style="color:white">Xóa bài đánh giá</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p style="color:grey">Bạn có muốn <b style="color:#079696">xóa</b> bài đánh giá này?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default cancel-follow" data-dismiss="modal">Hủy</button>
+                                        <button type="button" class="btn btn-primary accept-follow" data-dismiss="modal" ng-click="vm.deleteReview()">Xác nhận</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <h4 class="pull-left" style="color:#079696;font-weight:bold" class="review-detail-title" data-ng-bind="vm.company.reviews.title"></h4>
@@ -154,8 +172,8 @@
                                             <h5 style="margin-left:5px" class="text-left review-detail">Nội dung:</h5>
                                             <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details" data-ng-bind="vm.company.reviews.overallRev.supplement"></h5>
                                         </div>
-                                        <div class="row pull-right">
-                                            <a class="fix-review" ng-show="vm.authentication.user && (vm.authentication.user._id === vm.company.reviews.userID._id)" ui-sref="companies.editReview({companyId: vm.company._id, reviewId: vm.company.reviews._id, message: 'Lưu ý: Bài sửa xong sẽ phải duyệt lại'})">
+                                        <div class="row pull-right" ng-show="vm.authentication.user && (vm.authentication.user._id === vm.company.reviews.userID._id)">
+                                            <a class="fix-review" ui-sref="companies.editReview({companyId: vm.company._id, reviewId: vm.company.reviews._id, message: 'Lưu ý: Bài sửa xong sẽ phải duyệt lại'})">
                                                 <h6><b>Sửa bài đánh giá</b></h6>
                                             </a>
                                             <style type="text/css">
@@ -312,7 +330,9 @@
                             <button type="button" ng-show="(vm.authentication.user.roles.indexOf('mod')>0)" class="btn btn-default  button-votes" ng-click="vm.highlight()"><span ng-hide="vm.company.reviews.highlight"> <span>Đánh giá nổi bật</span></span><span ng-show="vm.company.reviews.highlight"> <span style="font-size:12px">Bỏ đánh giá nổi bật</span></span>
                             </button>
                             <button type="button" ng-show="vm.authentication.user && (vm.authentication.user._id != vm.company.reviews.userID._id)" class="btn btn-default  button-bookmark" ng-click="vm.bookmark()"><span ng-hide="vm.checkIfBookmarked()"> <span style="font-size:12px">Dấu trang</span></span><span ng-show="vm.checkIfBookmarked()">  <b style="font-size:12px">Bỏ lưu dấu trang</b></span></button>
-                            <button class="pull-right button-report " style="margin-bottom:13px" type="button" data-toggle="modal" data-target="#baocaoModal"><span class="glyphicon glyphicon-flag" data-toggle="tooltip" data-placement="left" title="Báo cáo vi phạm"></span> </button>
+                            <button class="pull-right button-report" ng-show="vm.authentication.user" style="margin-bottom:13px" type="button" data-toggle="modal" data-target="#baocaoModal"><span class="glyphicon glyphicon-flag" data-toggle="tooltip" data-placement="left" title="Báo cáo vi phạm"></span> </button>
+
+                            <button type="button" class="btn btn-default" ng-show="vm.authentication.user && (vm.authentication.user.roles.indexOf('mod')>=0 || vm.authentication.user._id===vm.company.reviews.userID._id)" data-toggle="modal" data-target="#modalDelete">Xóa bài đánh giá</button>
                             <div id="baocaoModal" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
