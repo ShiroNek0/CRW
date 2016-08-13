@@ -161,19 +161,23 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   margin-top: 15px;
   margin-bottom: 20px;
   margin-left: 15px;
-  background-color:#1173d6;
-  color: white;
+  
+  color: black;
   height: 30px;
+  padding-bottom: 10px;
+  font-weight: bold;
 }
 .button-votes{
   margin-top: 15px;
   font-size: 12px;
   margin-bottom: 20px;
   margin-left: 15px;
-  background-color:#079696;
+  font-weight: bold;
  
-  color: white;
+  color: black;
   height: 30px;
+  padding-top: 8px;
+
 }
 .button-vote{
   margin-top: 15px;
@@ -182,8 +186,10 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   margin-left: 15px;
 
   background-color:#f1f1f1;
-  color:#4c4c4c;
+  color:black;
   height: 30px;
+  font-weight: bold;
+  
 }
 
 .button-vote.active, .button-vote.active {
@@ -262,7 +268,6 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   margin-left: 10px;
 }
 .review-user{
-  margin-left: 10px;
   font-size: 12px;
 }
 a.reviewnow:hover{
@@ -271,20 +276,4 @@ a.reviewnow:hover{
 a.reviewnow{
   color: #079696;
   font-weight: bold;
-}
-button.button-vote:hover{
-  background-color: #b2b2b2;
-  color: white;
-}
-button.button-votes:hover{
-  background-color: #058282;
-
-}
-
-button.button-bookmark:hover{
-  background-color: #0766c4;
-
-}
-button.button-report:hover{
-  background-color: #e5e5e5;
 }

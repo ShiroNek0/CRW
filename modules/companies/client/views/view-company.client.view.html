@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-1">
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-8" style="margin-left:30px">
             <!--  //open top -->
             <div class="row" style="background-image:url('modules/core/client/img/demo3.jpg');height:180px;margin-top:20px;border:solid 2px;border-color:lightgrey; ">
                 <div style="margin-top: 20px;">
@@ -10,7 +10,7 @@
                         <div class="col-sm-7">
                             <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar">
                             <a style="text-decoration: none; "><h4 class="text-reason" style="color:white;">{{ vm.company.name }}</h4></a>
-                            <p style="margin-left:10px;color:black;font-weight:bold;color:white">Có <b style="color:#FFD700; } ">({{ vm.company.followers.length }}) người </b>theo dõi</p>
+                            <p style="margin-left:10px;color:black;font-weight:bold;color:white">Có <span style="color:white">({{ vm.company.followers.length }}) người </span>theo dõi</p>
                         </div>
                         <div class="col-sm-5">
                             <button type="button" ng-show="vm.authentication.user" class="  btn-follow" data-toggle="modal" data-target="#modalFollow"><span class="glyphicon glyphicon-signal"></span><span ng-hide="vm.checkIfFollowed()"> Theo dõi</span><span ng-show="vm.checkIfFollowed()"> Bỏ theo dõi</span></button>
@@ -176,7 +176,7 @@
                     <div class="col-sm-5">
                     </div>
                     <div class="row" style="margin-bottom:10px;">
-                        <h5 style="margin-left:560px;"> <b style="font-size:12px;color:white"> Sắp xếp theo :</b>
+                        <h5 style="margin-left:470px;"> <b style="font-size:12px;color:white"> Sắp xếp theo :</b>
                   <a style="color:white;margin-left:10px;font-size:12px" ng-click="vm.sort('overallRev.rating')" class="">Điểm đánh giá</a>
                   <span class="glyphicon sort-icon" ng-show="vm.sortKey=='overallRev.rating'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" style="color:white;font-size:10px"></span>
                   <a style="margin-left:15px;color:white;font-size:12px" ng-click="vm.sort('lastUpdated')" class="">Thời gian cập nhật
@@ -229,7 +229,7 @@
                            <div ng-repeat="name in vm.company.alias" style="color:#999999;"><span> {{name}}</span></div>
                         </h6>
                                 </div>
-                                <div ng-hide="(vm.company.alias.length >0)"> Không có tên gọi nào khác</div>
+                                <h6><div ng-hide="(vm.company.alias.length >0)" style="color:grey"> Không có tên gọi nào khác</div></h6>
                             </div>
                         </div>
                         <div class="row">
@@ -312,7 +312,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-2" style="margin-top:20px">
+        <div class="col-sm-2" style="margin-top:20px;margin-right:30px">
             <!--   <div class=" Tops" style="border:solid 2px; border-color:lightgrey;background-color:white;margin-top:20px"  >
           <div class="">
               <div class="row" style="background-color:#079696;margin-left:0px;margin-right:0px">
@@ -363,6 +363,7 @@
                 </div>
             </div>
         </div>
+        
         <div id='bttop'>TRỞ VỀ ĐẦU TRANG</div>
 </section>
 <script>

@@ -1,8 +1,6 @@
 <section style="font-family: Roboto-Regular" >
- 
-   <div class="container" style="overflow:hidden">
-
-      <div class="row" style="margin-left:50px">
+   <div class="container" style="overflow:hidden;">
+      <div class="row" style="margin-left:40px">
          <div class="col-sm-7  " style="margin-top:20px;border:solid 1px;border-color:grey;background-color:white; overflow:hidden;margin-bottom:30px;" >
             <div class="row" style="margin-bottom:20px;height:60px">
                <div class="col-sm-6" style="color:white;margin-top:10px">
@@ -25,7 +23,7 @@
                   </select>
                </div>
                <div class="col-sm-8" style="">
-                 <span style="color:grey;font-size: 13px;" >Sắp xếp :</span>
+                  <span style="color:grey;font-size: 13px;" >Sắp xếp :</span>
                   <span class="sep" style="width:2px;height:1.1em;border-right:1px solid;padding-left:5px;border-color:lightgrey"></span>
                   <a style="padding-left:5px;font-size: 13px;color:#079696;" ng-click="vm.sort('name')" class="name-company-filter" >Tên công ty </a>
                   <span class="glyphicon sort-icon" ng-show="vm.sortKey==='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" style="color:green"></span></a>
@@ -49,45 +47,36 @@
                </dir-pagination-controls>
             </div>
          </div>
-
-
-         <div class="pull-right col-sm-4  " style="margin-top:20px;border:solid 1px;border-color:grey;background-color:white; overflow:hidden;margin-bottom:30px;margin-right:50px;">
+         <div class="pull-right col-sm-4  " style="margin-top:20px;border:solid 1px;border-color:grey;background-color:white; overflow:hidden;margin-bottom:30px;margin-right:65px;">
             <div class="row">
                <h5 style="margin-left:11px;margin-top:20px;font-weight:bold"><span style="font-size:13px;color:grey" class="glyphicon glyphicon-star"></span> Top 10 công ty nổi bật :</h5>
             </div>
             <div class="row" ng-repeat="company in vm.listTop10 | orderBy: '-overallRating' | limitTo: 10">
                <div class="col-sm-12 " >
                   <div class="col-sm-4 " >
-                     
-                      
-                   
                      <div class="row " >
-                        <a ui-sref="companies.view({companyId: company._id})"><img src="{{company.avatar}}" alt="avatar" class="picture "  style="width:115px;height:90px;margin-bottom:20px">
+                        <a ui-sref="companies.view({companyId: company._id})">
+                           <img src="{{company.avatar}}" alt="avatar" class="picture "  style="width:115px;height:90px;margin-bottom:20px">
                      </div>
-                     
                   </div>
                   <div class="col-sm-8">
-                     <h5 style="color:black;font-weight:bold;text-transform: uppercase;">{{company.name}}</h5>
-                     <h5 style="color:grey">Điểm trung bình :<b style="color:red"> {{company.averageRating | number: 2}} </b>của <b style="color: #079696; "> {{company.numOfReviews}}</b>  bài đánh giá</h5>
+                  <h5 style="color:black;font-weight:bold;text-transform: uppercase;">{{company.name}}</h5>
+                  <h5 style="color:grey">Điểm trung bình :<b style="color:red"> {{company.averageRating | number: 2}} </b>của <b style="color: #079696; "> {{company.numOfReviews}}</b>  bài đánh giá</h5>
                   </div>
                   </a>
                </div>
-
-
                <!--            <div class="col-sm-2">
                   </div> -->
             </div>
-            
          </div>
-      
-      <div class="row">
-         
+         <a  ui-sref="authentication.signup" >
+            <div class="circles">
+               <span class="glyphicon glyphicon-plus" style="font-size:11px;color:#03a9f4"></span><span class="glyphicon glyphicon-user" style="color:#03a9f4;padding-top:20px"></span>
+            </div>
+         </a>
       </div>
-      </div>
-
    </div>
-   
-    <div id='bttop'>TRỞ VỀ ĐẦU TRANG</div>
+   <div id='bttop'>TRỞ VỀ ĐẦU TRANG</div>
 </section>
 <script >
    $(function() {
@@ -95,7 +84,7 @@
     if ($(this).scrollTop() != 0) {
     $('.tesr').fadeIn();
     } 
- 
+   
     
     });
     $('.tesr').click(function() {
@@ -108,7 +97,7 @@
 <style type='text/css'>
    a:hover {
    text-decoration: none;
-    }
+   }
    #bttop{
    border:1px solid #4adcff;
    background:#24bde2;

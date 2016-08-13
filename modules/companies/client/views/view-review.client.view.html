@@ -22,7 +22,7 @@
         <!-- /.modal -->
         <div class="col-sm-1">
         </div>
-        <div class="col-sm-8 " style="margin-top:30px">
+        <div class="col-sm-8 " style="margin-top:30px;margin-left:30px">
             <div class="row">
                 <div class="review-detail-companyrating">
                     <div class="row">
@@ -32,10 +32,10 @@
                         <div class="col-sm-10">
                             <div class="row" style="margin-left:6px">
                                 <div class="pull-left">
-                                    <a ui-sref="companies.view({companyId: vm.company._id})"><h4 class="" style="color:black;font-weight:bold;margin-top:20px">{{ vm.company.name }}</h4></a>
+                                    <h6 class=" text-label" style="margin-top:20px;color:black">Công ty:<a style="font-size:20px" ui-sref="companies.view({companyId: vm.company._id})"> {{ vm.company.name }}</a></h6>
                                     <h6 class=" text-label" style="line-height:1.4em; color:black;">Ngành nghề chính: <b style="line-height:1.4em"  data-ng-bind="vm.company.industry"></b></h6>
                                     <h6 class=" text-label" style="line-height:1.4em; color:black">Website: <a  href="#"><b style="color:black;line-height:1.4em;color:#3b5998;" class=" text-labels" data-ng-bind="vm.company.website"></b></a> </h6>
-                                    <h6 class=" text-label" style="line-height:1.4em; color:black">Số người theo dõi: <b style="color:#f2c40e">{{ vm.company.numOfFollowers }}</b></h6>
+                                    <h6 class=" text-label" style="line-height:1.4em; color:black">Số người theo dõi: <b style="color:red">{{ vm.company.numOfFollowers }}</b></h6>
                                 </div>
                                 <div class="pull-right">
                                     <fieldset class="pull-right rating" style="font-size:26px;margin-top:15px;padding-right:30px">
@@ -82,8 +82,9 @@
                 </div>
                 <div class="col-sm-1">
                     <div class="row" style="margin-top:5px">
+                       <a ui-sref="user({userId: vm.company.reviews.userID._id})" ng-show="vm.company.reviews.userID.name && !vm.company.reviews.stayAnonymous">
                         <img style="margin-top:35px" ng-src="{{vm.company.reviews.userID.profileImageURL? vm.company.reviews.userID.profileImageURL : 'modules/users/client/img/profile/default.png'}}" alt="avatar" class="content-avatar-review-detail">
-                        <a ui-sref="user({userId: vm.company.reviews.userID._id})" ng-show="vm.company.reviews.userID.name && !vm.company.reviews.stayAnonymous">
+                     
                             <h6 style="margin-left:10px;font-weight:bold;color:#079696; " data-ng-bind="vm.company.reviews.userID.name"></h6>
                         </a>
                         <h6 style="margin-left:8px;  font-weight: bold;
@@ -307,10 +308,10 @@
                     </div>
                     <div class="row">
                         <div class="row">
-                            <button type="button" ng-show="vm.authentication.user" class="button-vote" data-toggle="modal" data-target="#modalUpvote"><span ng-hide="vm.checkIfUpvoted()"> <span style="font-size:12px">Ủng hộ</span></span><span ng-show="vm.checkIfUpvoted()"> <b style="font-size:12px">Bỏ ủng Hộ</b></span></button>
-                            <button type="button" ng-show="(vm.authentication.user.roles.indexOf('mod')>0)" class="button-votes" ng-click="vm.highlight()"><span ng-hide="vm.company.reviews.highlight"> <span>Đánh giá nổi bật</span></span><span ng-show="vm.company.reviews.highlight"> <span style="font-size:12px">Bỏ đánh giá nổi bật</span></span>
+                            <button type="button"  ng-show="vm.authentication.user" class="btn btn-default button-vote" data-toggle="modal" data-target="#modalUpvote"><span ng-hide="vm.checkIfUpvoted()"> <span style="font-size:12px">Ủng hộ</span></span><span ng-show="vm.checkIfUpvoted()"> <b style="font-size:12px">Bỏ ủng Hộ</b></span></button>
+                            <button type="button" ng-show="(vm.authentication.user.roles.indexOf('mod')>0)" class="btn btn-default  button-votes" ng-click="vm.highlight()"><span ng-hide="vm.company.reviews.highlight"> <span>Đánh giá nổi bật</span></span><span ng-show="vm.company.reviews.highlight"> <span style="font-size:12px">Bỏ đánh giá nổi bật</span></span>
                             </button>
-                            <button type="button" ng-show="vm.authentication.user && (vm.authentication.user._id != vm.company.reviews.userID._id)" class="button-bookmark" ng-click="vm.bookmark()"><span ng-hide="vm.checkIfBookmarked()"> <span style="font-size:12px">Dấu trang</span></span><span ng-show="vm.checkIfBookmarked()">  <b style="font-size:12px">Bỏ lưu dấu trang</b></span></button>
+                            <button type="button" ng-show="vm.authentication.user && (vm.authentication.user._id != vm.company.reviews.userID._id)" class="btn btn-default  button-bookmark" ng-click="vm.bookmark()"><span ng-hide="vm.checkIfBookmarked()"> <span style="font-size:12px">Dấu trang</span></span><span ng-show="vm.checkIfBookmarked()">  <b style="font-size:12px">Bỏ lưu dấu trang</b></span></button>
                             <button class="pull-right button-report " style="margin-bottom:13px" type="button" data-toggle="modal" data-target="#baocaoModal"><span class="glyphicon glyphicon-flag" data-toggle="tooltip" data-placement="left" title="Báo cáo vi phạm"></span> </button>
                             <div id="baocaoModal" class="modal fade" role="dialog">
                                 <div class="modal-dialog">

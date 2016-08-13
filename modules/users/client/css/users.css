@@ -675,3 +675,19 @@ li a.abc:hover {
     float:left;
     width:300px;
 }
+.circles {
+         margin-top: 550px;
+          margin-left: 1060px;
+      width: 55px;
+      height: 55px;
+      background: white;
+      text-align: center;
+      color: #fff;
+      -moz-border-radius: 55px;
+      -webkit-border-radius: 55px;
+      border-radius: 50px;
+      border: solid 1px;
+      border-color: lightgrey;
+      position: fixed;
+      box-shadow: 1px 1px 1px 1px grey;
+    }
