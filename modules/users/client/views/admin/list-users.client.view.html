@@ -95,7 +95,7 @@
                 <tr style="color:black">
                     <td class="col-sm-4" style="font-size:13px"><a style="color:black">{{user.email}}</a></td>
                     <td class="col-sm-4" style="font-size:13px"><a style="color:#1672ce" ui-sref="user({userId: user._id})">{{user.name}}</a></td>
-                    <td class="col-sm-2" style="font-size:13px"> {{user.accState}}</td>
+                    <td class="col-sm-2" style="font-size:13px"><span ng-show="user.accState==='active'">Hoạt động</span><span ng-show="user.accState==='deactive'">Bị khóa</span><span ng-show="user.accState==='unverified'">Chưa kích hoạt</span></td>
                     <td class="col-sm-2" style="font-size:13px"> <span ng-repeat="role in user.roles" class="badge" style="background-color:#079696"> {{role}}</span></td>
                 </tr>
             </tbody>
