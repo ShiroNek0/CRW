@@ -34,7 +34,7 @@
                                 <div class="pull-left">
                                     <h6 class=" text-label" style="margin-top:20px;color:black">Công ty:<a style="font-size:20px" ui-sref="companies.view({companyId: vm.company._id})"> {{ vm.company.name }}</a></h6>
                                     <h6 class=" text-label" style="line-height:1.4em; color:black;">Ngành nghề chính: <b style="line-height:1.4em"  data-ng-bind="vm.company.industry"></b></h6>
-                                    <h6 class=" text-label" style="line-height:1.4em; color:black">Website: <a  href="#"><b style="color:black;line-height:1.4em;color:#3b5998;" class=" text-labels" data-ng-bind="vm.company.website"></b></a> </h6>
+                                    <h6 class=" text-label" style="line-height:1.4em; color:black">Website: <a href="{{vm.company.website}}"><b style="color:black;line-height:1.4em;color:#3b5998;" class=" text-labels" data-ng-bind="vm.company.website"></b></a> </h6>
                                     <h6 class=" text-label" style="line-height:1.4em; color:black">Số người theo dõi: <b style="color:red">{{ vm.company.numOfFollowers }}</b></h6>
                                 </div>
                                 <div class="pull-right">

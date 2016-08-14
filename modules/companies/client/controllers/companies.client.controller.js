@@ -6,9 +6,9 @@
     .module('companies')
     .controller('CompaniesController', CompaniesController);
 
-  CompaniesController.$inject = ['$modal', '$http', '$window', '$scope', '$state', 'Authentication', 'companyResolve'];
+  CompaniesController.$inject = ['$modal', '$http', '$scope', '$state', 'Authentication', 'companyResolve', '$timeout', '$window', 'FileUploader'];
 
-  function CompaniesController ($modal, $http, $window, $scope, $state, Authentication, company) {
+  function CompaniesController ($modal, $http, $scope, $state, Authentication, company, $timeout, $window, FileUploader) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -27,6 +27,7 @@
     vm.viewInit = viewInit;
     vm.addPhoto = addPhoto;
     vm.deletePhoto = deletePhoto;
+    vm.uploadPicture = uploadPicture;
 
     function deletePhoto(index) {
       vm.company.photo.splice(index, 1);
@@ -84,7 +85,9 @@
 
     var EditModalController = function ($scope, $modalInstance, company) {
 
-      vm.company.founded = new Date(vm.company.founded);
+      if(vm.company.founded && vm.company.founded !== 'Chưa có năm thành lập') 
+        vm.company.founded = new Date(vm.company.founded);
+      else vm.company.founded = null;
 
       $scope.edit = function(isValid) {
 
@@ -172,6 +175,11 @@
         return false;
       }
 
+      if (!vm.company.avatar) {
+        vm.error = 'Hãy thêm ảnh đại diện cho công ty';
+        return false;
+      }
+
       vm.company.$save(successCallback, errorCallback);
 
       function successCallback(res) {
@@ -205,8 +213,130 @@
       function errorCallback(res) {
         vm.error = res.data.message;
       }
-
-
     }
+
+
+    // Create file uploader instance
+    vm.uploader = new FileUploader({
+      url: 'api/companies/uploadPicture',
+      alias: 'newCompanyPicture'
+    });
+
+    // Set file uploader image filter
+    vm.uploader.filters.push({
+      name: 'imageFilter',
+      fn: function (item, options) {
+        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+      }
+    });
+
+    // Called after the user selected a new picture file
+    vm.uploader.onAfterAddingFile = function (fileItem) {
+      if ($window.FileReader) {
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(fileItem._file);
+
+        fileReader.onload = function (fileReaderEvent) {
+          $timeout(function () {
+            vm.photoTemp = fileReaderEvent.target.result;
+          }, 0);
+        };
+      }
+    };
+
+    // Called after the user has successfully uploaded a new picture
+    vm.uploader.onSuccessItem = function (fileItem, response, status, headers) {
+      // Show success message
+      vm.progress = 'Upload ảnh thành công';
+
+      // Populate user object
+      vm.company.avatar = response.url;
+
+      // Clear upload buttons
+      vm.cancelUpload();
+    };
+
+    // Called after the user has failed to uploaded a new picture
+    vm.uploader.onErrorItem = function (fileItem, response, status, headers) {
+      // Clear upload buttons
+      vm.cancelUpload();
+
+      // Show error message
+      vm.error = response.message;
+    };
+
+
+    function uploadPicture() {
+      vm.progress = vm.error = null;
+      vm.uploader.uploadAll();
+    }
+
+    vm.cancelUpload = function() {
+      vm.uploader.clearQueue();
+      vm.photoTemp = null;
+    };
+
+    // Photo Upload
+    vm.photoUploader = new FileUploader({
+      url: 'api/companies/uploadPicture',
+      alias: 'newCompanyPicture'
+    });
+
+    // Set file uploader image filter
+    vm.photoUploader.filters.push({
+      name: 'imageFilter',
+      fn: function (item, options) {
+        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+      }
+    });
+
+    // Called after the user selected a new picture file
+    vm.photoUploader.onAfterAddingFile = function (fileItem) {
+      if ($window.FileReader) {
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(fileItem._file);
+
+        fileReader.onload = function (fileReaderEvent) {
+          $timeout(function () {
+            vm.photoTemp = fileReaderEvent.target.result;
+          }, 0);
+        };
+      }
+    };
+
+    // Called after the user has successfully uploaded a new picture
+    vm.photoUploader.onSuccessItem = function (fileItem, response, status, headers) {
+      // Show success message
+      vm.progress = 'Upload ảnh thành công';
+
+      // Populate user object
+      //vm.company.avatar = response.url;
+      vm.company.photo.push(response.url);
+
+      // Clear upload buttons
+      vm.cancelPhotoUploader();
+    };
+
+    // Called after the user has failed to uploaded a new picture
+    vm.photoUploader.onErrorItem = function (fileItem, response, status, headers) {
+      // Clear upload buttons
+      vm.cancelPhotoUploader();
+
+      // Show error message
+      vm.error = response.message;
+    };
+
+
+    vm.uploadPhoto = function() {
+      vm.progress = vm.error = null;
+      vm.photoUploader.uploadAll();
+    };
+
+    vm.cancelPhotoUploader = function() {
+      vm.photoUploader.clearQueue();
+      vm.photoTemp = null;
+    };
   }
 }());

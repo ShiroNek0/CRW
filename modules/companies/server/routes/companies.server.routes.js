@@ -11,7 +11,8 @@ module.exports = function(app) {
     .get(companies.listNormal)
     .post(companies.create);
 
-
+  app.route('/api/companies/uploadPicture').post(companies.uploadPicture);
+  
   app.route('/api/companies/waitingReviews').all(companiesPolicy.isAllowed)
     .get(companies.listWaitingReviews);
 

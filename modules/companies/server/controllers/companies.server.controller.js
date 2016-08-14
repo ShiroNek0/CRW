@@ -5,6 +5,8 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
+  multer = require('multer'),
+  config = require(path.resolve('./config/config')),
   Company = mongoose.model('Company'),
   User = mongoose.model('User'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
@@ -954,6 +956,25 @@ exports.commentById = function(req, res, next, id) {
       return res.status(404).send({
         message: 'Không tìm thấy bình luận với ID tương ứng'
       });
+    }
+  });
+};
+
+exports.uploadPicture = function (req, res) {
+  
+  var message = null;
+  var upload = multer(config.uploads.companyPictureUpload).single('newCompanyPicture');
+  var profileUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
+
+  // Filtering to upload only images
+  upload.fileFilter = profileUploadFileFilter;
+  upload(req, res, function (uploadError) {
+    if (uploadError) {
+      return res.status(400).send({
+        message: 'Lỗi khi upload (Ảnh up lên phải có dung lượng < 1MB)'
+      });
+    } else {
+      res.send({ url: config.uploads.companyPictureUpload.dest + req.file.filename });
     }
   });
 };
