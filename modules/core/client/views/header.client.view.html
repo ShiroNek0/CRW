@@ -24,7 +24,7 @@
             <li ui-sref-active="active">
               <a ui-sref="authentication.signin" class="signin">
                 <span class="glyphicon glyphicon-log-in"></span>
-                <b id="c-name"> ĐĂNG NHẬP</b>
+                <b id="c-name" style="font-size:10px"> ĐĂNG NHẬP</b>
               </a>
             </li>
           </ul>
@@ -56,7 +56,7 @@
     </div> 
      
      <div class="pull-right">
-       <h6 style="margin-top:30px;color: #079696" >....</h6>
+       <h6 style="margin-top:30px;color: #079696;margin-right:10px;" ></h6>
      </div>
    
         <div class="pull-right" ng-show="authentication.user.roles.indexOf('mod')>=0">
@@ -64,7 +64,7 @@
             <span ng-show="(wtgrvNotif+rptrvNotif)>0" class="badge badge-notify" style="background-color:red" >{{wtgrvNotif + rptrvNotif}}</span>
       </div>
     <div class="pull-right">
-       <h6 style="margin-top:30px;color: #079696;">.....</h6>
+       <h6 style="margin-top:30px;color: #079696;margin-right:15px;"></h6>
      </div>
     
    <div class="pull-right" ng-show="authentication.user">
