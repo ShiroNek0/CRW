@@ -85,7 +85,7 @@ exports.invokeRolesPolicies = function () {
       permissions: '*'
     }, {
       resources: '/api/companies/:companyId/reviews/:reviewId/reports',
-      permissions: '*'
+      permissions: ['post']
     }, {
       resources: '/api/companies/:companyId/reviews/:reviewId/upvote',
       permissions: '*'

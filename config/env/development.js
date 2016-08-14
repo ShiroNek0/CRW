@@ -1,6 +1,7 @@
 'use strict';
 
 var defaultEnvConfig = require('./default');
+var SITE_URL = 'http://companyrating.xyz';
 
 module.exports = {
   db: {
@@ -37,7 +38,7 @@ module.exports = {
   facebook: {
     clientID: '1720640538176128',
     clientSecret: '7d566d96fd457d419268849c2313fc10',
-    callbackURL: '/api/auth/facebook/callback'
+    callbackURL: SITE_URL + '/api/auth/facebook/callback'
   },
   twitter: {
     clientID: process.env.TWITTER_KEY || 'CONSUMER_KEY',
@@ -47,7 +48,7 @@ module.exports = {
   google: {
     clientID: '923811663002-j5gqjnnsbfcm5ombainked3u00076eba.apps.googleusercontent.com',
     clientSecret: 'Lkx4nbbfPQ0ZM71OvDFo3zB6',
-    callbackURL: '/api/auth/google/callback'
+    callbackURL: SITE_URL + '/api/auth/google/callback'
   },
   linkedin: {
     clientID: process.env.LINKEDIN_ID || 'APP_ID',
@@ -66,12 +67,12 @@ module.exports = {
     sandbox: true
   },
   mailer: {
-    from: process.env.MAILER_FROM || 'MAILER_FROM',
+    from: process.env.MAILER_FROM || 'CRW',
     options: {
-      service: process.env.MAILER_SERVICE_PROVIDER || 'MAILER_SERVICE_PROVIDER',
+      service: process.env.MAILER_SERVICE_PROVIDER || 'Gmail',
       auth: {
-        user: process.env.MAILER_EMAIL_ID || 'MAILER_EMAIL_ID',
-        pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD'
+        user: process.env.MAILER_EMAIL_ID || 'sakamoto170152',
+        pass: process.env.MAILER_PASSWORD || 'FDc3ZSC%ckDl'
       }
     }
   },

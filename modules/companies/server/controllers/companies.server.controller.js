@@ -140,7 +140,7 @@ function listReport(req, res, findCriteria) {
  */
 
 exports.listPostedReviews = function (id, userId, callback) {
-  var matchCondition = { $match: { 'reviews.userID': id, 'reviews.stayAnonymous': false } };
+  var matchCondition = { $match: { 'reviews.userID': id, 'reviews.stayAnonymous': false, 'reviews.state': { $in: ['approved', 'trusted'] } } };
   if (userId.equals(id))
     matchCondition = { $match: { 'reviews.userID': id } };
 
@@ -377,7 +377,7 @@ exports.delete = function(req, res) {
 };
 
 exports.listNormal = function(req, res) {
-  var findCondition = { 'state': { $in: ['approved', 'trusted'] } };
+  var findCondition = { 'state': 'approved' };
   list(req, res, findCondition);
 };
 
@@ -470,7 +470,9 @@ exports.createReview = function(req, res) {
       });
     } else {
       jobs.createList(review.job);
-      users.notiEventEmitter.emit('review waiting');
+      if (review.state === 'waiting') {
+        users.notiEventEmitter.emit('review waiting');
+      }
       // Nếu người gửi bài là admin hoặc mod
       if (req.user && Array.isArray(req.user.roles) &&
         (req.user.roles.indexOf('mod') >= 0 || req.user.roles.indexOf('admin') >= 0)) {
@@ -580,7 +582,7 @@ exports.updateReview = function(req, res) {
       }
 
       // Gửi thông báo tới admin và mod khi một bài ra khỏi trạng thái chờ
-      if (oldState === 'waiting' && review.state !== 'waiting') {
+      if ((oldState === 'waiting' && review.state !== 'waiting') || (oldState !== 'waiting' && review.state === 'waiting')) {
         users.notiEventEmitter.emit('review waiting');
       }
 
@@ -663,15 +665,31 @@ exports.listReportedReviews = function(req, res) {
   Company.aggregate([{ $unwind: '$reviews' }, { $match: { 'reviews.state': { $in: ['approved', 'trusted'] } } }])
   .exec(function (err, result) {
     var reportedReviews = [];
-    async.forEachOf(result, function(company, index, callback) {
-      if (company.reviews.reports && company.reviews.reports.length > 0) {
-        async.detect(company.reviews.reports, function(report, callback) {
-          return callback(!report.isConsidered);
-        }, function(result) {
-          if (result) reportedReviews.push(company);
-        });
-      }
-      callback();
+    async.forEachOf(result, function (company, index, callback) {
+      // Bài đánh giá này có báo cáo nào chưa xử lý không
+      async.detect(company.reviews.reports, function(report, detectCallback) {
+        return detectCallback(!report.isConsidered);
+      }, function(result) {
+        if (result) {
+          console.log(result);
+          // Có ít nhất một báo cáo chưa xử lý
+          // Populate thông tin người viết báo cáo
+          async.forEachOf(company.reviews.reports, function (elem, reportIndex, reportCallback) {
+            User.findById(elem.user).exec(function (err, result) {
+              var reporter = {
+                '_id': result._id,
+                'name': result.name,
+                'profileImageURL': result.profileImageURL
+              };
+              company.reviews.reports[reportIndex].user = reporter;
+              reportCallback();
+            });
+          }, function (err) {
+            reportedReviews.push(company);
+            callback();
+          });
+        } else callback();
+      });
     }, function (err) {
       if (err) {
         return res.status(400).send({
@@ -844,7 +862,7 @@ exports.createComment = function(req, res) {
 
 exports.deleteComment = function(req, res) {
   // Ngăn cản xóa bình luận nếu không đủ quyền hạn
-  if (!req.user || !req.user._id.equals(req.review.userID._id)) {
+  if (!req.user || !req.user._id.equals(req.comment.userID._id)) {
     // Là người dùng nhưng không phải người sở hữu bình luận
     if (Array.isArray(req.user.roles) && (req.user.roles.indexOf('mod') !== -1 || req.user.roles.indexOf('admin') !== -1)) {
       // Là mod hoặc admin

@@ -82,8 +82,8 @@ var UserSchema = new Schema({
   },
   accState: {
     type: String,
-    enum: ['unverified', 'active', 'deactive'],
-    default: 'unverified'
+    enum: ['active', 'deactive'],
+    default: 'active'
   },
   notification: [{
     message: String,
