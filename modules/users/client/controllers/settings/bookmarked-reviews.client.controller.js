@@ -17,25 +17,6 @@ angular.module('users').controller('BookmarkedReviewsController', ['$scope', '$h
       vm.reverse = !vm.reverse;
     }
 
-    vm.unBookmark = function(reviewId, index){
-      var data = {
-        reviewId: reviewId
-      };
-      data.bookmarked = true;
-
-      $http.post('/api/users/bookmark', data).then(successCallback, errorCallback);
-
-      function successCallback(res) {
-        vm.user.bookmark.splice(index, 1);
-        vm.bookmarkedReviews.splice(index, 1);
-        return true;
-      }
-
-      function errorCallback(res) {
-        alert(JSON.stringify(res));
-      }
-    };
-
 
   }
 ]);

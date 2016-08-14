@@ -19,7 +19,6 @@ angular.module('core').controller('HeaderController', ['$http', '$rootScope', '$
     });
 
     Socket.on('notification', function (res) {
-      $scope.authentication.user.notification.push(res);
       $rootScope.unseenAnnouce ++;
     });
 

@@ -163,7 +163,7 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   margin-left: 15px;
   
   color: black;
-  height: 35px;
+  height: 30px;
   padding-bottom: 10px;
   font-weight: bold;
 }
@@ -175,19 +175,7 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   font-weight: bold;
  
   color: black;
-  height: 35px;
-  padding-top: 8px;
-
-}
-.button-delete{
-  margin-top: 15px;
-  font-size: 12px;
-  margin-bottom: 20px;
-  margin-left: 15px;
-  font-weight: bold;
- 
-  color: black;
-  height: 35px;
+  height: 30px;
   padding-top: 8px;
 
 }
@@ -195,11 +183,11 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   margin-top: 15px;
   font-size: 15px;
   margin-bottom: 20px;
-  margin-left: 20px;
+  margin-left: 15px;
 
   background-color:#f1f1f1;
   color:black;
-  height: 35px;
+  height: 30px;
   font-weight: bold;
   
 }
@@ -247,7 +235,7 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   margin-bottom: 20px;
 }
 .review-detail{
-  
+  margin-left: 10px;
     font-weight:bold;
  
 }
@@ -255,7 +243,7 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   
    color: #7f7f7f;
    text-transform: lowercase;
-
+   margin-left: 10px;
 }
 
 
@@ -273,7 +261,7 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   color: #1ab21a;
 }
 .review-cmt-note{
-    color:#f24141;
+    color: red;
 }
 .date-review{
   font-size: 10px;
