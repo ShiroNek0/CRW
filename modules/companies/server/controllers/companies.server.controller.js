@@ -673,7 +673,6 @@ exports.listReportedReviews = function(req, res) {
         return detectCallback(!report.isConsidered);
       }, function(result) {
         if (result) {
-          console.log(result);
           // Có ít nhất một báo cáo chưa xử lý
           // Populate thông tin người viết báo cáo
           async.forEachOf(company.reviews.reports, function (elem, reportIndex, reportCallback) {

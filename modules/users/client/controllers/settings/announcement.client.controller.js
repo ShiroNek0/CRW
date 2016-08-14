@@ -4,6 +4,8 @@ angular.module('users').controller('AnnouncementController', ['$rootScope', '$wi
   function ($rootScope, $window, $scope, $http, $location, Users, Authentication) {
     $scope.user = Authentication.user;
 
+    $scope.itemsPerPage = 10;
+
     $scope.markAllRead = function() {
       $http.post('/api/users/markAllNoti').then(function(res) {
         Authentication.user.notification = res.data;

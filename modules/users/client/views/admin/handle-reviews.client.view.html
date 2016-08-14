@@ -203,8 +203,9 @@
                      <div ng-repeat="report in data.reviews.reports | filter: {isConsidered: false}">
                      <div style="margin:10px">
                      <!-- <a ui-sref="user({userId: report.user})" style="color:grey"> -->
-                     <div class="" style="border-bottom:solid 1px;border-color:lightgrey">
-                          <p style="color:black">{{report.content}}</p></a>
+                     <div style="border-bottom:solid 1px;border-color:lightgrey">
+                        <a ui-sref="user({userId: report.user._id})">{{report.user.name}}</a>
+                        <p style="color:black">{{report.content}}</p></a>
                      </div>
 
 
