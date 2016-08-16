@@ -84,6 +84,7 @@
     }
 
     var EditModalController = function ($scope, $modalInstance, company) {
+      //$scope.oldInfo = JSON.parse(JSON.stringify(company));
 
       if(vm.company.founded && vm.company.founded !== 'Chưa có năm thành lập') 
         vm.company.founded = new Date(vm.company.founded);
@@ -105,11 +106,11 @@
 
         function errorCallback(res) {
           alert(res.data.message);
-          $scope.error = res.data.message;
+          vm.error = res.data.message;
         }
       };
 
-      $scope.close = function() {$modalInstance.close();};
+      $scope.close = function() {$modalInstance.close($scope.oldInfo);};
     };
 
     function checkIfFollowed() {
@@ -337,6 +338,10 @@
     vm.cancelPhotoUploader = function() {
       vm.photoUploader.clearQueue();
       vm.photoTemp = null;
+    };
+
+     vm.back = function() {
+      $state.go($state.previous.state, $state.previous.params);
     };
   }
 }());

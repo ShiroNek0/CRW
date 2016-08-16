@@ -110,12 +110,12 @@
                                  <!-- Nút tải lên và hủy sau khi chọn của avatar -->
                                  <!-- Cái này là preview avatar trc khi upload -->
                                  <div ng-show="(vm.avatarTemp)"><img ng-src="{{vm.avatarTemp}} " style="height:200px;width:220px;"></div>
-                              </div>
-                              <div ng-show="(vm.company.avatar)"><img ng-src="{{vm.company.avatar}} " style="height:200px;width:200px;margin-left:-16px;border:solid 1px;border-color:lightgrey"></div>
-                              <div ng-show="vm.uploader.queue.length" style="margin-left:-16px">
+                                 <div ng-show="vm.uploader.queue.length" style="margin-left:-16px">
                                  <span style="font-size:25px;margin-right:20px" class="glyphicon glyphicon-remove" ng-click="vm.cancelUpload()"></span>
                                  <span style="font-size:25px;"  class="glyphicon glyphicon-ok" ng-click="vm.uploadPicture()"></span >
+                           </div>
                               </div>
+                              <div ng-show="(vm.company.avatar)"><img ng-src="{{vm.company.avatar}} " style="height:200px;width:200px;margin-left:-16px;border:solid 1px;border-color:lightgrey"></div>
                            </div>
                            <div class="row">
                               <div class="form-group">
@@ -240,7 +240,7 @@
                      </div>
                      <div class="col-sm-4">
                         <div class="col-sm-12">
-                           <button type="cancel" class="btn btn-info button-cancelcompany"> Hủy</button>
+                           <button type="button" ng-click="vm.back()" class="btn btn-info button-cancelcompany">Trở lại</button>
                            <button style="margin-left:10px" type="submit" class="btn btn-primary button-sendcompany"> Tạo công ty</button>
                         </div>
                      </div>

@@ -145,19 +145,7 @@
                  
                   </div>
                   <div class="col-sm-2" style="margin-top:10px;">
-                       
-                        
-                      
-                         <div class="pull-right" ng-show="vm.authentication.user && (vm.authentication.user._id === vm.company.reviews.userID._id)">
-                                          
-                                             <span  style="color:grey;font-size:100%">Ủng hộ (<b style="color:#079696; ">{{vm.company.reviews.upvoteUsers.length}}</b>) </span>
-                                            <style type="text/css">
-                                            a.fix-review:hover {
-                                                text-decoration: underline;
-                                            }
-                                            </style>
-                                        </div>
-                    
+
                   </div>
               </div>
                       <div class="row">
@@ -188,7 +176,7 @@
                                         
                   <div class="row">
                        
-                        <h5 style="line-height:1.4em;margin-left:5px;color:black"><a data-toggle="collapse" data-target="#salary">Xem thêm</a></h5>
+                        <h5 style="line-height:1.4em;margin-left:5px;color:black"><a data-toggle="collapse" data-target="#salary">Xem thêm đánh giá về lương và chế độ đãi ngộ</a></h5>
                         <div id="salary" class="collapse">
                            <div style="margin-left:5px">
                                              <div class="col-sm-6">
@@ -303,7 +291,7 @@
 
                     <div class="row">
                         <div class="row">
-                            <button type="button"  ng-show="vm.authentication.user" class="btn btn-success button-vote" data-toggle="modal" data-target="#modalUpvote"><span ng-hide="vm.checkIfUpvoted()" style="padding-bottom:20px"> <span style="font-size:14px;color:white">Ủng hộ</span></span><span ng-show="vm.checkIfUpvoted()"> <b style="font-size:14px;color:white">Bỏ ủng Hộ</b></span></button>
+                            <button type="button"  ng-show="vm.authentication.user" class="btn btn-success button-vote" data-toggle="modal" data-target="#modalUpvote"><span ng-hide="vm.checkIfUpvoted()" style="padding-bottom:20px"> <span style="font-size:14px;color:white">Ủng hộ ({{vm.company.reviews.upvoteUsers.length}})</span></span><span ng-show="vm.checkIfUpvoted()"> <b style="font-size:14px;color:white">Bỏ ủng Hộ ({{vm.company.reviews.upvoteUsers.length}})</b></span></button>
                             
                              
                             <button style="color:white" type="button" ng-show="vm.authentication.user && (vm.authentication.user._id != vm.company.reviews.userID._id)" class="btn btn-info  button-bookmark" ng-click="vm.bookmark()"><span ng-hide="vm.checkIfBookmarked()"> <span style="font-size:14px">Dấu trang</span></span><span ng-show="vm.checkIfBookmarked()">  <b style="font-size:14px">Bỏ lưu dấu trang</b></span></button>

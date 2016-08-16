@@ -7,12 +7,14 @@
                 <h6 class=" date-review" data-ng-bind="review.lastUpdated | date:'mediumDate'"></h6>
             </div>
             <div class="row">
-                <!-- <img ng-src="{{(review.userID.profileImageURL && !review.stayAnonymous) ? review.userID.profileImageURL : 'modules/users/client/img/profile/default.png'}}" class="content-avatar-review" > -->
-                   <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatars">
+                <img ng-src="{{(review.userID.profileImageURL && !review.stayAnonymous) ? review.userID.profileImageURL : 'modules/users/client/img/profile/default.png'}}" class="content-avatar-review" >
+                <!--    <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatars"> -->
             </div>
-            <div class="row">
-                
+              <div class="row">
+                <span class="text-center"  style="font-size:80%;font-weight:bold;margin-left:10px" ng-show="review.userID.name && !review.stayAnonymous" data-ng-bind="review.userID.name" class="review-user"></span>
+                <span class="text-center" style="font-size:80%;font-weight:bold;margin-left:10px" ng-hide="review.userID.name && !review.stayAnonymous" class="review-user">Anonymouse</span>
             </div>
+            
         </div>
         <div class="col-sm-6 review-detail-right">
             <div class="row" style="margin-top:30px;margin-left:0px">

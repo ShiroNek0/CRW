@@ -230,7 +230,10 @@
                   <option style="color:#333" value="10">10</option>
                   <option style="color:#333" value="20">20</option>
                </select>
-               <span style="margin-left:20px;color:#333;font-size:100%"><span style="font-size:17px">{{filteredReviews.length}}</span> <span style="color:#2c84cc"> Đánh giá</span></span>
+               <div>
+               <span ng-hide="keyword" style="color:#333;font-size:100%"><span style="font-size:17px">Tổng cộng {{filteredReviews.length}}</span> <span style="color:#2c84cc"> bài đánh giá</span></span>
+               <span ng-show="keyword" style="color:#333;font-size:100%"><span style="font-size:17px">{{filteredReviews.length}} kết quả cho từ khóa</span> <span style="color:#2c84cc"> {{keyword}}</span></span>
+               </div>
             </div>
             <div class="col-sm-3">
                <!--    <div class="row" style="margin-top:3px">
@@ -254,7 +257,7 @@
             </div>
          </div>
          <div class="row">
-            <div ng-repeat="review in vm.company.reviews | filter: { state: 'approved' } | filter: keyword as filteredReviews">
+            <div ng-repeat="review in vm.company.reviews | filter: { state: 'approved', highlight: false } | filter: keyword as filteredReviews">
             </div>
             <div class="col-sm-12">
                <div dir-paginate="review in vm.company.reviews | filter: { state: 'approved', highlight: false} | filter: keyword | orderBy:vm.sortKey:!vm.reverse | itemsPerPage:vm.itemsPerPage" ng-include="'modules/companies/client/views/panel-review.client.view.html'" ng-init="companyId=vm.company._id" class="list-review-all">></div>

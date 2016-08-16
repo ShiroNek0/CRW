@@ -61,7 +61,7 @@
    
         <div class="pull-right" ng-show="authentication.user.roles.indexOf('mod')>=0">
          <a a ui-sref="settings.reviews" ><span class="glyphicon glyphicon-time" style="font-size:17px;margin-top:17px;color:white" data-toggle="tooltip" data-placement="bottom" title="Bài đăng chờ/Báo cáo vi phạm"></span></a>
-            <span ng-show="(wtgrvNotif+rptrvNotif)>0" class="badge badge-notify" style="background-color:red" >{{wtgrvNotif + rptrvNotif}}</span>
+            <span ng-show="(wtgrvNotif+rptrvNotif)>0" class="badge badge-notify" style="background-color:red; font-size: 10px" >{{wtgrvNotif + rptrvNotif}}</span>
       </div>
     <div class="pull-right">
        <h6 style="margin-top:30px;color: #079696;margin-right:15px;"></h6>
@@ -70,7 +70,7 @@
    <div class="pull-right" ng-show="authentication.user">
           
             <a a ui-sref="settings.announcement"><span class="glyphicon glyphicon-bell" style="font-size:17px;margin-top:18px;color:white" data-toggle="tooltip" data-placement="bottom" title="Thông báo"></span></a>
-            <span ng-show="(unseenAnnouce)>0" class="badge badge-notify" style="background-color:red" >{{unseenAnnouce}}</span>
+            <span ng-show="(unseenAnnouce)>0" class="badge badge-notify" style="background-color:red; font-size: 10px" >{{unseenAnnouce}}</span>
 
            
       </div>

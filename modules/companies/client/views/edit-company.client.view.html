@@ -97,12 +97,14 @@
                               <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.avatar.$error" role="alert">
                                   <p class="help-block error-text" ng-message="required">Hãy nhập link ảnh đại diện.</p>
                               </div> -->
+                           <div ng-show="(vm.avatarTemp)"><img ng-src="{{vm.avatarTemp}} " style="height:200px;width:220px;"></div>
+                           <div ng-show="vm.uploader.queue.length" style="margin-left:-16px">
+                                 <span style="font-size:25px;margin-right:20px" class="glyphicon glyphicon-remove" ng-click="vm.cancelUpload()"></span>
+                                 <span style="font-size:25px;"  class="glyphicon glyphicon-ok" ng-click="vm.uploadPicture()"></span >
+                           </div>
                         </div>
-                        <div ng-show="(vm.company.avatar)"><img src="{{vm.company.avatar}} " style="height:200px;width:220px;border:solid 1px;border-color:lightgrey;margin-left:-15px"></div>
-                        <div ng-show="vm.uploader.queue.length" style="margin-top:10px;margin-left:-16px">
-                           <span style="font-size:25px;margin-right:20px" class="glyphicon glyphicon-remove" ng-click="vm.cancelUpload()"></span>
-                           <span style="font-size:25px;"  class="glyphicon glyphicon-ok" ng-click="vm.uploadPicture()"></span >
-                        </div>
+
+                        <div ng-show="(vm.company.avatar)"><img src="{{vm.company.avatar}} " style="height:200px;width:220px;border:solid 1px;border-color:lightgrey;margin-left:-15px"></div> 
                      </div>
                      <div class="row" style="">
                         <div class="form-group">
