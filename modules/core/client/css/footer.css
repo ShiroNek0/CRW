@@ -13,6 +13,12 @@
    margin-top: 20px;
 }
 .company-infor a{
-	color: white;
+	
 	margin-left: 35px;
+}
+a.home-tt{
+  color: white;
+}
+a.home-tt:hover{
+  text-decoration: underline;
 }

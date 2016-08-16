@@ -3,16 +3,16 @@
     <div class="" style="border:solid 2px;border-color:lightgrey;background-color:white;margin-left:20px;margin-right:20px">
         <div class="row">
             <div class="col-sm-8">
-                <b class="" style="color:white;font-weight:none;color:grey;margin-left:30px">Hiển thị</b>
-                <select ng-model="vm.itemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:black; margin-right:10px;margin-top:10px;">
+                <span class="" style="margin-left:30px">Hiển thị</span>
+                <select ng-model="vm.itemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:black; margin-right:10px;margin-top:10px;border:solid 1px; border-color:black">
                     <option style="color:black" value="5">5</option>
                     <option style="color:black" value="10">10</option>
                     <option style="color:black" value="20">20</option>
                 </select>
             </div>
             <div class="col-sm-4 " style="margin-top:10px;">
-                <b style="color:grey;margin-right:10px">Tìm kiếm</b>
-                <input type="search" ng-model="vm.keyword" style="" placeholder=" Tìm kiếm..." style="border:solid 1px;border-color:lightgrey;">
+                <span style="color:black;margin-right:10px">Tìm kiếm</span>
+                <input style="border:solid 1px; border-color:black" type="search" ng-model="vm.keyword" style="" placeholder=" Tìm kiếm..." >
             </div>
         </div>
         <div ng-show="vm.followedCompany.length>0" class="table-responsive" style="margin-right:10px;margin-left:10px;border:solid 1px;margin-top:10px;margin-bottom:10px;border-color:lightgrey">

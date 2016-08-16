@@ -1,3 +1,4 @@
+
 @-webkit-keyframes rotate360 {
   100% { -webkit-transform: rotate(360deg); }
 }
@@ -13,7 +14,31 @@
 @-o-keyframes rotate360 {
   100% { -o-transform: rotate(360deg); }
 }*/
- 
+ .alert {
+   
+    background-color:#56aaff;
+    color: white;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 0px;
+
+}
+
+.closebtn {
+   
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+
+}
+
+.closebtn:hover {
+    color: black;
+}
 @keyframes rotate360 {
   100% { transform: rotate(360deg); }
 }
@@ -98,6 +123,16 @@ a.text-reason:active{
 
 
 }
+.content-avatars{
+  width: 75px;
+  height: 55px;
+  border: solid 1px;
+  border-color: lightgrey;
+  margin-left: 5px;
+  
+
+
+}
 .content-avatar:hover{
 -moz-border-radius: 1px;
     -webkit-border-radius: 1px;
@@ -156,7 +191,6 @@ a.text-reason:active{
   color:black;
   margin-left: 140px;
   margin-top: 90px;
-  font-size: 22px;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -196,6 +230,8 @@ a.text-reason:active{
   margin-right: 10px;
   overflow: hidden;
   color:#666666;
+  margin-bottom: 3px;
+  margin-top: 3px;
 }
 
 .glyphicon-menu-right{
@@ -215,8 +251,15 @@ margin-top:10px;
 /*căn đều giữa ảnh*/
 
 }
+.btn-picture{
+  background: grey;
+}
+.btn-picture:hover{
+  background: #4c4c4c;
+}
+
 .list-picture-company img:hover{
--webkit-transform:scale(2.8); /*Webkit: Tăng kích cỡ ảnh lên 1.1 lần*/
+-webkit-transform:scale(3.8); /*Webkit: Tăng kích cỡ ảnh lên 1.1 lần*/
 -moz-transform:scale(1.1); 
 -o-transform:scale(1.1); 
 box-shadow:0px 0px 30px gray; /*Đổ bóng bằng CSS3*/
@@ -226,7 +269,7 @@ opacity: 1; /*Độ mờ của hình ảnh*/
 margin-top:50px;
 }
 .list-picture-company1{
-  width:80px;height:80px;
+  width:80px;height:60px;
   border:solid 1px;border-color:lightgrey;
  
 }
@@ -273,6 +316,8 @@ margin-top:50px;
 }
 .text-labels{
   color:#999999;
+  margin-bottom: 3px;
+  margin-top: 3px;
 }
 
 .review-sum{
@@ -296,9 +341,9 @@ margin-top:50px;
   margin-left: 20px;
 }
 .content-avatar-review{
-   height: 80px;
-   width: 80px;
-   border:solid 2px;
+   height: 70px;
+   width: 70px;
+   border:solid 1px;
    border-color: #b2b2b2;
    margin-left: 5px;
 }
@@ -309,14 +354,15 @@ margin-top:50px;
 }
 
 .title-review{
-    color:#079696; 
+    color:rgb(44, 132, 204); 
    font-weight:bold;
    margin-top: 20px;
+   font-size: 100%;
 
 }
 
 .review-detail-right{
-  margin-left: 10px;
+  margin-left: 0px;
 }
 
 .job-review{
@@ -429,6 +475,7 @@ margin-top:50px;
 
 .rating-disabled .rating {
     cursor: not-allowed;
+    
 }
 
 .rating-container .star {

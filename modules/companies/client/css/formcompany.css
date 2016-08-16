@@ -31,3 +31,25 @@
 .textarea-supplement{
 	color: white;
 }
+.btn-file{
+	color: grey;
+}
+.btn-file:hover{
+	color: #079696;
+}
+.glyphicon-remove{
+	color:#f24141;	
+
+
+}
+.glyphicon-remove:hover{
+		color:red;
+}
+.glyphicon-ok{
+	color:#0fc467;
+
+
+}
+.glyphicon-ok:hover{
+		color:green;
+}

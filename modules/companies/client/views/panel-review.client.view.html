@@ -7,23 +7,27 @@
                 <h6 class=" date-review" data-ng-bind="review.lastUpdated | date:'mediumDate'"></h6>
             </div>
             <div class="row">
-                <img ng-src="{{(review.userID.profileImageURL && !review.stayAnonymous) ? review.userID.profileImageURL : 'modules/users/client/img/profile/default.png'}}" class="content-avatar-review" style=" border-radius: 5px;">
+                <!-- <img ng-src="{{(review.userID.profileImageURL && !review.stayAnonymous) ? review.userID.profileImageURL : 'modules/users/client/img/profile/default.png'}}" class="content-avatar-review" > -->
+                   <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatars">
             </div>
             <div class="row">
-                <h6 class="text-center"  style="font-size:10px" ng-show="review.userID.name && !review.stayAnonymous" data-ng-bind="review.userID.name" class="review-user"></h6>
-                <h6 class="text-center" style="font-size:10px" ng-hide="review.userID.name && !review.stayAnonymous" class="review-user">Anonymouse</h6>
+                
             </div>
         </div>
         <div class="col-sm-6 review-detail-right">
-            <h4 class="text-left title-review" data-ng-bind="review.title" ng-class="{highlightReview: review.highlight}"></h4>
-            <h5 class="text-left " style="color:grey;white-space:nowrap;
-    width: 25em;
-    overflow: hidden;
-     text-overflow: ellipsis;"><span data-ng-bind="review.overallRev.pros"></span> </h5>
-            <h6 style="color:grey;font-weight:bold">Vị trí công việc:</h6>
-            <h6 style="color:grey;" class="text-left "><span ng-repeat="job in review.job">{{job}} - </span> </h6>
-            <h6 style="color:grey;font-weight:bold">Hiện đang làm việc:</h6>
-            <h6 class="text-left" style="color:grey"><span ng-hide="(review.isJobCurrent)" > Đã từng làm việc </span><span ng-show="(review.isJobCurrent)"> </span><span data-ng-bind="review.jobLength"></span></h6>
+            <div class="row" style="margin-top:30px;margin-left:0px">
+                 <span  class="text-left title-review" data-ng-bind="review.title" ng-class="{highlightReview: review.highlight}"></span>
+            </div>
+            <h6 style="color:#666;font-size:14px">Tôi làm tại vị trí <span ng-repeat="job in review.job">{{job}} - </span>( <span ng-hide="(review.isJobCurrent)" > </span><span ng-show="(review.isJobCurrent)"> </span><span data-ng-bind="review.jobLength"></span>)</h6>
+           <!--  <h6 style="color:#666;font-weight:bold">Vị trí công việc:</h6>
+            <h6 style="color:#666;" class="text-left "><span ng-repeat="job in review.job">{{job}} - </span> </h6>
+            <h6 style="color:#666;font-weight:bold">Hiện đang làm việc:</h6>
+            <h6 class="text-left" style="color:#666"><span ng-hide="(review.isJobCurrent)" > Đã từng làm việc </span><span ng-show="(review.isJobCurrent)"> </span><span data-ng-bind="review.jobLength"></span></h6> -->
+            <p style="color:#666;font-weight:bold;font-size:14px">Ưu điểm:</p>
+            <p class="text-left " style="color:#666;font-size:14px"><span style="line-height:1.4em" data-ng-bind="review.overallRev.pros"></span> </p>
+            <p style="color:#666;font-weight:bold;font-size:14px">Nhược điểm:</p>
+            <p class="text-left " style="color:#666;font-size:14px"><span style="line-height:1.4em" data-ng-bind="review.overallRev.cons"></span> </p>
+           
         </div>
         <div class="col-sm-4">
             <div class="text-center">
@@ -42,7 +46,7 @@
                         <c style="color:#f24141;margin-left:65px">{{review.overallRev.rating}}.0</c>
                     </fieldset>
                 </div>
-                <h5 style="margin-left:110px;color:grey"><b style="color:#079696 ;font-weight: bold; ">{{review.upvoteUsers.length}}</b> Lượt ủng hộ</h5>
+                <h5 style="margin-left:110px;color:#666"><b style="color:#079696 ;font-weight: bold; ">{{review.upvoteUsers.length}}</b> Lượt ủng hộ</h5>
             </div>
         </div>
     </div>

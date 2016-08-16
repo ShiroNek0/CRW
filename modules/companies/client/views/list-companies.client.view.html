@@ -5,7 +5,7 @@
             <div class="row" style="margin-bottom:20px;height:60px">
                <div class="col-sm-6" style="color:white;margin-top:10px">
                   <h5 style="color:grey" ng-show="(vm.keyword)">{{vm.companies.length}} kết quả cho từ khóa : {{vm.keyword}}</h5>
-                  <h5 style="color:black;font-weight:bold" ng-hide="(vm.keyword)"><span class="glyphicon glyphicon-th-list" style="font-size:13px;margin-left:12px;color:grey"></span> Danh sách tất cả công ty :</h5>
+                  <h5 style="color:black;font-size:18px;margin-left:15px" ng-hide="(vm.keyword)"></span> Danh Sách Tất Cả Công Ty :</h5>
                </div>
                <div class="col-sm-6">
                   <!--  PHẦN NÀY LÀ FORM COMPANY--START -->
@@ -15,27 +15,27 @@
             </div>
             <div class="row" style="margin-bottom:30px;margin-left:3px;">
                <div class="col-sm-4">
-                  <span style="color:grey;font-size: 13px;" >Hiển thị :</span> 
-                  <select ng-model="vm.itemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:#079696;">
+                  <span style="color:grey;font-size: 100%" >Hiển thị :</span> 
+                  <select ng-model="vm.itemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:#2c84cc">
                      <option style="color:black" value="8">8</option>
                      <option style="color:black" value="16">16</option>
                      <option style="color:black" value="32">32</option>
                   </select>
                </div>
                <div class="col-sm-8" style="">
-                  <span style="color:grey;font-size: 13px;" >Sắp xếp :</span>
+                  <span style="color:grey;font-size: 100%" >Sắp xếp :</span>
                   <span class="sep" style="width:2px;height:1.1em;border-right:1px solid;padding-left:5px;border-color:lightgrey"></span>
-                  <a style="padding-left:5px;font-size: 13px;color:#079696;" ng-click="vm.sort('name')" class="name-company-filter" >Tên công ty </a>
+                  <a style="padding-left:5px;font-size: 100%;color:#2c84cc" ng-click="vm.sort('name')" class="name-company-filter" >Tên công ty </a>
                   <span class="glyphicon sort-icon" ng-show="vm.sortKey==='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" style="color:green"></span></a>
                   <span class="sep" style="width:2px;height:1.1em;border-right:1px solid;padding-left:5px;border-color:lightgrey"></span>
-                  <a style="padding-left:5px;font-size: 13px;color:#079696;" ng-click="vm.sort('numOfReviews')"  class="review-company-filter">Đánh giá
+                  <a style="padding-left:5px;font-size: 100%;color:#2c84cc" ng-click="vm.sort('numOfReviews')"  class="review-company-filter">Đánh giá
                   <span class="glyphicon sort-icon" ng-show="vm.sortKey==='numOfReviews'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" ></span></a>
                   <span class="sep" style="width:2px;height:1.1em;padding-left:5px;border-color:lightgrey"></span>
                   <input type="search" ng-model="vm.keyword" style="width:140px;margin-left:20px;border:solid 1px;border-color:grey;color:grey" placeholder=" Tìm kiếm..." ng-change='vm.onChange()'>
                </div>
             </div>
             <div class="row">
-               <div class="col-sm-12">
+               <div class="col-sm-12" style="margin-left:-5px">
                   <div dir-paginate="company in vm.companies | orderBy:vm.sortKey:vm.reverse | itemsPerPage:vm.itemsPerPage" ng-include="'modules/companies/client/views/panel-company.client.view.html'"></div>
                </div>
             </div>
@@ -49,7 +49,7 @@
          </div>
          <div class="pull-right col-sm-4  " style="margin-top:20px;border:solid 1px;border-color:grey;background-color:white; overflow:hidden;margin-bottom:30px;margin-right:65px;">
             <div class="row">
-               <h5 style="margin-left:11px;margin-top:20px;font-weight:bold"><span style="font-size:13px;color:grey" class="glyphicon glyphicon-star"></span> Top 10 công ty nổi bật :</h5>
+               <h5 style="margin-left:11px;margin-top:20px;font-size:18px;"> Top 10 Công Ty Nổi Bật :</h5>
             </div>
             <div class="row" ng-repeat="company in vm.listTop10 | orderBy: '-overallRating' | limitTo: 10">
                <div class="col-sm-12 " >
@@ -69,11 +69,11 @@
                   </div> -->
             </div>
          </div>
-         <a  ui-sref="authentication.signup" >
+       <!--   <a  ui-sref="authentication.signup" >
             <div class="circles">
                <span class="glyphicon glyphicon-plus" style="font-size:11px;color:#03a9f4"></span><span class="glyphicon glyphicon-user" style="color:#03a9f4;padding-top:20px"></span>
             </div>
-         </a>
+         </a> -->
       </div>
    </div>
    <div id='bttop'>TRỞ VỀ ĐẦU TRANG</div>

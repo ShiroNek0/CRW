@@ -239,7 +239,7 @@
 
         fileReader.onload = function (fileReaderEvent) {
           $timeout(function () {
-            vm.photoTemp = fileReaderEvent.target.result;
+            vm.avatarTemp = fileReaderEvent.target.result;
           }, 0);
         };
       }
@@ -274,7 +274,7 @@
 
     vm.cancelUpload = function() {
       vm.uploader.clearQueue();
-      vm.photoTemp = null;
+      vm.avatarTemp = null;
     };
 
     // Photo Upload

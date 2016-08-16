@@ -1,132 +1,183 @@
+<style type="text/css">
+   @font-face {
+   font-family: 'Roboto-Regular';
+   src: url('/modules/companies/client/css/RobotoTTF/Roboto-Regular.ttf');
+   }
+</style>
 <section style="font-family: Roboto-Regular">
-    <div class="row">
-        <div class="col-sm-1">
-        </div>
-        <div class="col-sm-8" style="margin-left:30px">
-            <!--  //open top -->
-            <div class="row" style="background-image:url('modules/core/client/img/demo3.jpg');height:180px;margin-top:20px;border:solid 2px;border-color:lightgrey; ">
-                <div style="margin-top: 20px;">
-                    <div class="row" style="margin-left:0px;margin-right:0px; ">
-                        <div class="col-sm-7">
-                            <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar">
-                            <a style="text-decoration: none; "><h4 class="text-reason" style="color:white;">{{ vm.company.name }}</h4></a>
-                            <p style="margin-left:10px;color:black;font-weight:bold;color:white">Có <span style="color:white">({{ vm.company.followers.length }}) người </span>theo dõi</p>
+   <div class="row">
+   <div class="col-sm-1">
+   </div>
+   <div class="col-sm-8" style="margin-left:30px">
+      <!--  //open top -->
+      <div class="row" style="background-image:url('modules/core/client/img/demo.jpg');height:180px;margin-top:20px;border:solid 2px;border-color:lightgrey; ">
+         <button class="btn-picture" style="color:#3b5998;margin-left:84%;margin-top:5px;height:22px;border:none;color:white" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal-picture"><span class="glyphicon glyphicon-camera" ></span>
+         <span style="color:white;font-size:12px !important">Xem Tất Cả Ảnh</span>
+         </button>
+         <div class="modal fade" id="modal-picture" role="dialog">
+            <div class="modal-dialog">
+               <!-- Modal content-->
+               <div class="modal-content">
+                  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                     <!-- Indicators -->
+                     <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                     </ol>
+                     <!-- Wrapper for slides -->
+                     <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                           <img src="modules/core/client/img/demo1.jpg" alt="demo1" style="height:250px">
                         </div>
-                        <div class="col-sm-5">
-                            <button type="button" ng-show="vm.authentication.user" class="  btn-follow" data-toggle="modal" data-target="#modalFollow"><span class="glyphicon glyphicon-signal"></span><span ng-hide="vm.checkIfFollowed()"> Theo dõi</span><span ng-show="vm.checkIfFollowed()"> Bỏ theo dõi</span></button>
-                            <div id="modalFollow" ng-show="vm.authentication.user" class="modal fade" role="dialog">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header" style="background-color:#079676">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title" ng-hide="vm.checkIfFollowed()" style="color:white;font-weight:bold">Theo dõi</h4>
-                                            <h4 class="modal-title" ng-show="vm.checkIfFollowed()" style="color:white;font-weight:bold">Bỏ theo dõi</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p ng-hide="vm.checkIfFollowed()" style="color:grey">Bạn có muốn <b style="color:#079676">theo dõi</b> công ty này?</p>
-                                            <p ng-hide="vm.checkIfFollowed()" style="color:grey">Bạn sẽ nhận được <b style="color:#079676">thông báo</b> khi công ty này có <b style="color:#079676">bài đánh giá mới</b>.</p>
-                                            <p ng-show="vm.checkIfFollowed()" style="color:grey">Bạn có muốn <b style="color:#f24141">bỏ theo dõi</b> công ty này?</p>
-                                            <p ng-show="vm.checkIfFollowed()" style="color:grey">Bạn sẽ <b style="color:#f24141"> không nhận được thông báo</b> khi công ty này có bài đánh giá mới nữa.</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default cancel-follow" data-dismiss="modal">Hủy</button>
-                                            <button type="button" class="btn btn-primary accept-follow" data-dismiss="modal" ng-click="vm.follow()">Xác nhận</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" ui-sref="companies.createReview({companyId: vm.company._id})" class="pull-right  btn-review"> <span class="glyphicon glyphicon-plus"></span> Đánh giá</button>
+                        <div class="item">
+                           <img src="modules/core/client/img/demo.jpg" alt="demo" style="height:250px">
                         </div>
-                    </div>
-                </div>
+                        <div class="item">
+                           <img src="modules/core/client/img/demo2.png" alt="demo2" style="height:250px">
+                        </div>
+                        <div class="item">
+                           <img src="modules/core/client/img/demo3.jpg" alt="demo3" style="height:250px">
+                        </div>
+                     </div>
+                     <!-- Controls -->
+                     <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                     <span class="sr-only">Previous</span>
+                     </a>
+                     <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                     <span class="sr-only">Next</span>
+                     </a>
+                  </div>
+               </div>
             </div>
-            <!--     //ket thuc top -->
-            <div class="row">
-                <div class="col-sm-8">
-                    <div class="row" ng-init="vm.viewInit()">
-                        <div class="other">
-                            <div class="row" style="margin-left:0px;margin-right:0px">
-                                <h5 class="rating-review-all" style="color:black;margin-left:15px;font-weight:bold"><span style="color:black" class="glyphicon glyphicon-th"></span> Đánh giá công ty {{ vm.company.name }}  </h5>
-                            </div>
-                            <h6 style="color:grey;margin-left:15px;margin-top:20px">Điểm <b>trung bình</b> của tất cả các bài đánh giá.</h6>
-                            <div class="row" style="margin-top:20px;margin-bottom:58px">
-                                <div class="col-sm-2">
-                                    <p style="margin-left:70px;font-size:36px;color:#f24141;font-weight:bold;margin-top:10px">{{vm.company.averageRating | number:1}} </p>
-                                </div>
-                                <div class="col-sm-6">
-                                    <a><fieldset  class="pull-right rating" style="font-size:34px;margin-top:5px;margin-left:20px" >
-                                        <input  type="radio" id="star5" name="rating" ng-model="vm.company.pointDisplay" value="5" disabled="disabled" checked="checked" />
-                                        <label class="full" for="star5" title="Xuất sắc - 5 stars"></label>
-                                        <input type="radio" id="star4half" name="rating" ng-model="vm.company.pointDisplay" value="4.5" disabled="disabled" checked="checked" />
-                                        <label class="half" for="star4half" title="Rất tốt - 4.5 stars"></label>
-                                        <input type="radio" id="star4" name="rating" ng-model="vm.company.pointDisplay" value="4" disabled="disabled" checked="checked" />
-                                        <label class="full" for="star4" title="Tốt - 4 stars"></label>
-                                        <input type="radio" id="star3half" name="rating" ng-model="vm.company.pointDisplay" value="3.5" disabled="disabled" checked="checked" />
-                                        <label class="half" for="star3half" title="Khá - 3.5 stars"></label>
-                                        <input type="radio" id="star3" name="rating" ng-model="vm.company.pointDisplay" value="3" disabled="disabled" checked="checked" />
-                                        <label class="full" for="star3" title="Khá tốt - 3 stars"></label>
-                                        <input type="radio" id="star2half" name="rating" ng-model="vm.company.pointDisplay" value="2.5" disabled="disabled" checked="checked" />
-                                        <label class="half" for="star2half" title="Bình thường - 2.5 stars"></label>
-                                        <input type="radio" id="star2" name="rating" ng-model="vm.company.pointDisplay" value="2" disabled="disabled" checked="checked" />
-                                        <label class="full" for="star2" title="Hơi kém - 2 stars"></label>
-                                        <input type="radio" id="star1half" name="rating" ng-model="vm.company.pointDisplay" value="1.5" disabled="disabled" checked="checked" />
-                                        <label class="half" for="star1half" title="Kém - 1.5 stars"></label>
-                                        <input type="radio" id="star1" name="rating" ng-model="vm.company.pointDisplay" value="1" disabled="disabled" checked="checked" />
-                                        <label class="full" for="star1" title="Tệ - 1 star"></label>
-                                        <input type="radio" id="starhalf" name="rating" ng-model="vm.company.pointDisplay" value="0.5" disabled="disabled" checked="checked" />
-                                        <label class="half" for="starhalf" title="Tệ hại - 0.5 stars"></label>
-                                    </fieldset>
-                                </div>
-                                <a data-toggle="modal" data-target="#myModal">
-                                    <h5 style="margin-top:50px;color:#079696"><span class="glyphicon glyphicon-list"></span> Của {{vm.company.numOfReviews}} bài đánh giá</h5>
-                                </a>
-                                <div class="modal fade" id="myModal" role="dialog">
-                                    <div class="modal-dialog modal-sm">
-                                        <div class="modal-content" style="margin-top:150px;border:solid 1px;border-color:lightgrey;">
-                                            <h3 class="text-center" style="color:black;">{{ vm.company.name }} </h3>
-                                            <h5 style="margin-left:20px;color:grey">Chi tiết chỉ số đánh giá cho từng bài đăng</h5>
-                                            <span style="margin-left:30%;font-weight: bold;color:#079696"> Có {{vm.company.numOfReviews}} Đánh giá</span>
-                                            <div class="row" style="margin-bottom:30px;margin-left:10px;margin-right:10px">
-                                                <!--   <div class="col-sm-1" >
+         </div>
+         <div>
+            <div class="row" style="margin-left:0px;margin-right:0px; ">
+               <div class="col-sm-7">
+                  <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar">
+                  <a style="text-decoration: none; ">
+                     <h4 class="text-reason" style="color:white;font-size:22px">{{ vm.company.name }}</h4>
+                  </a>
+                  <p style="margin-left:10px;color:#333;font-weight:bold;color:white">Có <span style="color:white">({{ vm.company.followers.length }}) người </span>theo dõi</p>
+               </div>
+               <div class="col-sm-5">
+                  <button type="button" ng-show="vm.authentication.user" class="  btn-follow" data-toggle="modal" data-target="#modalFollow"><span class="glyphicon glyphicon-signal"></span><span ng-hide="vm.checkIfFollowed()"> Theo dõi</span><span ng-show="vm.checkIfFollowed()"> Bỏ theo dõi</span></button>
+                  <div id="modalFollow" ng-show="vm.authentication.user" class="modal fade" role="dialog">
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header" style="background-color:#079676">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title" ng-hide="vm.checkIfFollowed()" style="color:white;font-weight:bold">Theo dõi</h4>
+                              <h4 class="modal-title" ng-show="vm.checkIfFollowed()" style="color:white;font-weight:bold">Bỏ theo dõi</h4>
+                           </div>
+                           <div class="modal-body">
+                              <p ng-hide="vm.checkIfFollowed()" style="color:grey">Bạn có muốn <b style="color:#079676">theo dõi</b> công ty này?</p>
+                              <p ng-hide="vm.checkIfFollowed()" style="color:greys">Bạn sẽ nhận được <b style="color:#079676">thông báo</b> khi công ty này có <b style="color:#079676">bài đánh giá mới</b>.</p>
+                              <p ng-show="vm.checkIfFollowed()" style="color:grey">Bạn có muốn <b style="color:#f24141">bỏ theo dõi</b> công ty này?</p>
+                              <p ng-show="vm.checkIfFollowed()" style="color:grey">Bạn sẽ <b style="color:#f24141"> không nhận được thông báo</b> khi công ty này có bài đánh giá mới nữa.</p>
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-default cancel-follow" data-dismiss="modal">Hủy</button>
+                              <button type="button" class="btn btn-primary accept-follow" data-dismiss="modal" ng-click="vm.follow()">Xác nhận</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <button type="button" ui-sref="companies.createReview({companyId: vm.company._id})" class="pull-right  btn-review"> <span class="glyphicon glyphicon-plus"></span> Đánh giá</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--     //ket thuc top -->
+      <div class="row">
+         <div class="col-sm-8">
+            <div class="row" ng-init="vm.viewInit()">
+               <div class="other">
+                  <div class="row" style="margin-left:0px;margin-right:0px">
+                     <h5 class="rating-review-all" style="color:#333;margin-left:15px;font-size:18px"> Đánh Giá Tổng Quát   </h5>
+                  </div>
+                  <h6 style="color:grey;margin-left:15px;font-size:14px">Điểm <b>trung bình</b> của tất cả các bài đánh giá.</h6>
+                  <div class="row" style="margin-top:20px;margin-bottom:48px">
+                     <div class="col-sm-2">
+                        <p style="margin-left:110px;font-size:30px;color:#f24141;font-weight:bold;margin-top:7px">{{vm.company.averageRating | number:1}} </p>
+                     </div>
+                     <div class="col-sm-6" disabled="disabled" >
+                        <fieldset  class="pull-right rating" style="font-size:30px;margin-top:0px;margin-left:20px;" >
+                           <input   type="radio" id="star5" name="rating" ng-model="vm.company.pointDisplay" value="5" disabled="disabled" checked="checked" />
+                           <label class="full" for="star5" title="Xuất sắc - 5 stars"></label>
+                           <input type="radio" id="star4half" name="rating" ng-model="vm.company.pointDisplay" value="4.5" disabled="disabled" checked="checked" />
+                           <label class="half" for="star4half" title="Rất tốt - 4.5 stars"></label>
+                           <input type="radio" id="star4" name="rating" ng-model="vm.company.pointDisplay" value="4" disabled="disabled" checked="checked" />
+                           <label class="full" for="star4" title="Tốt - 4 stars"></label>
+                           <input type="radio" id="star3half" name="rating" ng-model="vm.company.pointDisplay" value="3.5" disabled="disabled" checked="checked" />
+                           <label class="half" for="star3half" title="Khá - 3.5 stars"></label>
+                           <input type="radio" id="star3" name="rating" ng-model="vm.company.pointDisplay" value="3" disabled="disabled" checked="checked" />
+                           <label class="full" for="star3" title="Khá tốt - 3 stars"></label>
+                           <input type="radio" id="star2half" name="rating" ng-model="vm.company.pointDisplay" value="2.5" disabled="disabled" checked="checked" />
+                           <label class="half" for="star2half" title="Bình thường - 2.5 stars"></label>
+                           <input type="radio" id="star2" name="rating" ng-model="vm.company.pointDisplay" value="2" disabled="disabled" checked="checked" />
+                           <label class="full" for="star2" title="Hơi kém - 2 stars"></label>
+                           <input type="radio" id="star1half" name="rating" ng-model="vm.company.pointDisplay" value="1.5" disabled="disabled" checked="checked" />
+                           <label class="half" for="star1half" title="Kém - 1.5 stars"></label>
+                           <input type="radio" id="star1" name="rating" ng-model="vm.company.pointDisplay" value="1" disabled="disabled" checked="checked" />
+                           <label class="full" for="star1" title="Tệ - 1 star"></label>
+                           <input type="radio" id="starhalf" name="rating" ng-model="vm.company.pointDisplay" value="0.5" disabled="disabled" checked="checked" />
+                           <label class="half" for="starhalf" title="Tệ hại - 0.5 stars"></label>
+                        </fieldset>
+                     </div>
+                     <a data-toggle="modal" data-target="#myModal">
+                        <h5 style="margin-top:20px;color:#3b5998;
+                           ss"><span class="glyphicon glyphicon-list"></span> Của {{vm.company.numOfReviews}} bài đánh giá</h5>
+                     </a>
+                     <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                           <div class="modal-content" style="margin-top:150px;border:solid 1px;border-color:lightgrey;">
+                              <h3 class="text-center" style="color:#333;font-weight: bold;">{{ vm.company.name }} </h3>
+                              <span style="margin-left:13%;font-weight: bold;color:#079696">Điểm trung bình <b style="color:#f24141">{{vm.company.averageRating | number:1}}</b> của <b style="color:#3b5998;">{{vm.company.numOfReviews}}</b> Đánh giá</span>
+                              <div class="row" style="margin-bottom:30px;margin-left:10px;margin-right:10px">
+                                 <!--   <div class="col-sm-1" >
                                     <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar" style="margin-top:25px;border:solid 2px;border-color:lightgrey">
                                     </div> -->
-                                                <div class="col-sm-3 " style="margin-top:10px">
-                                                    <!--      <h6 style="color:#079696;">{{vm.company.numOfReviews}} Đánh giá</h6> -->
-                                                    <div class="row">
-                                                        <div class="rating-detail text-right  ">
-                                                            <div ng-repeat="point in [5, 4, 3, 2, 1]">
-                                                                <h2 style="color:#079696;font-size:17px;font-weight:bold"><b>{{vm.count[point-1]}}</b></h2>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6 text-center" style="margin-top:0px">
-                                                    <div class="row" style="margin-bottom:10px;font-size:16px;color:#FFD700;margin-top:28px;">
-                                                        <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey;" "></span> <span class="glyphicon glyphicon-star " style="border:solid 1px;border-color:lightgrey;margin-left:5px "></span> <span class="glyphicon glyphicon-star " style="border:solid 1px;border-color:lightgrey;margin-left:5px "></span> <span class="glyphicon glyphicon-star " style="border:solid 1px;border-color:lightgrey;margin-left:5px "></span> <span class="glyphicon glyphicon-star " style="border:solid 1px;border-color:lightgrey;margin-left:5px "></span>
+                                 <div class="col-sm-3 " style="margin-top:10px;margin-left:10px">
+                                    <!--      <h6 style="color:#079696;">{{vm.company.numOfReviews}} Đánh giá</h6> -->
+                                    <div class="row">
+                                       <div class="rating-detail text-right  ">
+                                          <div ng-repeat="point in [5, 4, 3, 2, 1]">
+                                             <h2 style="color:#3b5998;font-size:17px;font-weight:bold"><b>{{vm.count[point-1]}}</b></h2>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-sm-6 text-center" style="margin-top:0px">
+                                    <div class="row" style="margin-bottom:10px;font-size:16px;color:#FFD700;margin-top:28px;">
+                                       <span class="glyphicon glyphicon-star" ></span> <span class="glyphicon glyphicon-star " style="margin-left:5px "></span> <span class="glyphicon glyphicon-star " style="margin-left:5px "></span> <span class="glyphicon glyphicon-star " style="margin-left:5px "></span> <span class="glyphicon glyphicon-star " style="margin-left:5px "></span>
                                     </div>
                                     <div class="row " style="margin-bottom:10px;font-size:16px;color:#FFD700;margin-top:17px; ">
-                                       <span class="glyphicon glyphicon-star " style="border:solid 1px;border-color:lightgrey; ""></span><span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey;margin-left:9px"></span><span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey;margin-left:9px"></span><span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey;margin-left:9px"></span><span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey;margin-left:8px;color:grey"></span>
-                                                    </div>
-                                                    <div class="row" style="margin-bottom:10px;font-size:16px;color:#FFD700;margin-top:16px;">
-                                                        <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey;" "></span><span class="glyphicon glyphicon-star " style="border:solid 1px;border-color:lightgrey;margin-left:9px "></span><span class="glyphicon glyphicon-star " style="border:solid 1px;border-color:lightgrey;margin-left:9px; "></span><span class="glyphicon glyphicon-star " style="border:solid 1px;border-color:lightgrey;margin-left:9px;color:grey "></span><span class="glyphicon glyphicon-star " style="border:solid 1px;border-color:lightgrey;margin-left:8px;color:grey "></span>
+                                       <span class="glyphicon glyphicon-star "></span><span class="glyphicon glyphicon-star" style="margin-left:9px"></span><span class="glyphicon glyphicon-star" style="margin-left:9px"></span><span class="glyphicon glyphicon-star" style="margin-left:9px"></span><span class="glyphicon glyphicon-star" style="margin-left:8px;color:grey"></span>
+                                    </div>
+                                    <div class="row" style="margin-bottom:10px;font-size:16px;color:#FFD700;margin-top:16px;">
+                                       <span class="glyphicon glyphicon-star" ></span><span class="glyphicon glyphicon-star " style="margin-left:9px "></span><span class="glyphicon glyphicon-star " style="margin-left:9px; "></span><span class="glyphicon glyphicon-star " style="margin-left:9px;color:grey "></span><span class="glyphicon glyphicon-star " style="margin-left:8px;color:grey "></span>
                                     </div>
                                     <div class="row " style="margin-bottom:10px;font-size:16px;color:#FFD700;margin-top:17px; ">
-                                       <span class="glyphicon glyphicon-star " style="border:solid 1px;border-color:lightgrey; ""></span><span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey;margin-left:9px"></span><span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey;margin-left:9px;color:grey"></span><span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey;margin-left:9px;color:grey"></span><span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey;margin-left:8px;color:grey"></span>
-                                                    </div>
-                                                    <div class="row" style="margin-bottom:10px;font-size:16px;color:#FFD700;margin-top:15px;">
-                                                        <span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey;"></span><span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey;margin-left:9px;color:grey"></span><span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey;margin-left:9px;color:grey"></span><span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey;margin-left:9px;color:grey"></span><span class="glyphicon glyphicon-star" style="border:solid 1px;border-color:lightgrey;margin-left:8px;color:grey"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                       <span class="glyphicon glyphicon-star " ></span><span class="glyphicon glyphicon-star" style="margin-left:9px"></span><span class="glyphicon glyphicon-star" style="margin-left:9px;color:grey"></span><span class="glyphicon glyphicon-star" style="margin-left:9px;color:grey"></span><span class="glyphicon glyphicon-star" style="margin-left:8px;color:grey"></span>
                                     </div>
-                                </div>
-                            </div>
+                                    <div class="row" style="margin-bottom:10px;font-size:16px;color:#FFD700;margin-top:15px;">
+                                       <span class="glyphicon glyphicon-star" style=""></span><span class="glyphicon glyphicon-star" style="margin-left:9px;color:grey"></span><span class="glyphicon glyphicon-star" style="margin-left:9px;color:grey"></span><span class="glyphicon glyphicon-star" style="margin-left:9px;color:grey"></span><span class="glyphicon glyphicon-star" style="margin-left:8px;color:grey"></span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <!--  <div class="row label-picture" style="height:230px;">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-sm-4">
+            <!--  <div class="row label-picture" style="height:230px;">
                <div class="row">
                   <h5 class="pull-left " style="margin-left:36px;color:#079696; font-weight:bold">Hình ảnh công ty {{ vm.company.name }} </h5>
                </div>
@@ -137,265 +188,280 @@
                      </div>
                </div>
                </div> -->
-                    <div class="row label-picture">
-                        <div class="row" style="margin-left:0px;margin-right:0px">
-                            <h5 class="pull-left " style="margin-left:15px;color:black; font-weight:bold"><span style="color:black" class="glyphicon glyphicon-picture"></span> Hình ảnh công ty {{ vm.company.name }} </h5>
+            <div class="row label-picture">
+               <div class="row" style="margin-left:0px;margin-right:0px">
+                  <h5 class="pull-left " style="margin-left:15px;color:#333; font-size:18px"> Hình Ảnh Công Ty  </h5>
+               </div>
+               <div class="row ">
+                  <div class="list-picture-company" style="margin-left:10px;margin-bottom:150px">
+                     <div class="col-sm-12">
+                        <div>
+                           <img src="{{photo}}" ng-repeat="photo in vm.company.photo" class="list-picture-company1" style="margin-left:5px">
                         </div>
-                        <div class="row ">
-                            <div class="list-picture-company" style="margin-left:10px;margin-bottom:190px">
-                                <div class="col-sm-12">
-                                    <div>
-                                        <img src="{{photo}}" ng-repeat="photo in vm.company.photo" class="list-picture-company1" style="margin-left:5px">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-            <div class="row" style=" border:solid 1px;border-color:#b2b2b2;background-color:white;margin-top:10px;margin-bottom:10px">
-                <div class="" style="border-bottom:solid 1px;border-color:lightgrey;background-color:#079696">
-                    <div class="row">
-                        <h5 class="pull-left text-company-overview-reivew" style="color:white; font-weight:bold">Đánh giá công ty</h5>
-                        <h6 class="pull-left review-sum" style="margin-bottom:10px;margin-top:12px;color:white">(Có <b style="color:#FFD700">{{filteredReviews.length}}</b> bài đánh giá)</h6>
-                        <b style="font-size:11px;margin-left:340px;color:white;margin-top:15px">Tìm kiếm :</b>
-                        <input type="search" ng-model="keyword" style="width:160px;border:solid 1px;border-color:lightgrey ;font-size:12px;margin-top:15px" placeholder="Theo chủ đề...">
-                    </div>
-                    <div class=" col-sm-4 " style="font-size:13px;margin-top:5px">
-                        <b style="font-size:12px;color:white">Hiển thị :</b>
-                        <select ng-model="vm.itemsPerPage" class="show-itemsPerPage" style="width:70px;height:20px;color:#079696;border:solid 1px;border-color:lightgrey;">
-                            <option style="color:black" value="5">5</option>
-                            <option style="color:black" value="10">10</option>
-                            <option style="color:black" value="20">20</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-3">
-                        <!--    <div class="row" style="margin-top:3px">
+         </div>
+      </div>
+      <div class="row" style="order-bottom:solid 1px;border-color:lightgrey;background-color:white;margin-top:10px;">
+         <h5   style="color:#333; font-size:18px;margin-left:15px;">Bài Đánh Giá Nổi Bật Nhất</h5>
+         <div  ng-repeat="review in vm.company.reviews | orderBy:'-lastUpdated' | filter: { state: 'approved', highlight: true }" ng-include="'modules/companies/client/views/panel-review.client.view.html'" ng-init="companyId=vm.company._id" class="list-review-all">
+         </div>
+      </div>
+      <div class="row" style=" border:solid 1px;border-color:#b2b2b2;background-color:white;margin-top:10px;margin-bottom:10px">
+         <div class="" style="border-bottom:solid 1px;border-color:lightgrey;background-color:white">
+            <div class="row">
+               <style>
+               </style>
+               <div class="alert">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                  <strong>Quan trọng!</strong> Chúng tôi sẽ kiểm duyệt các bài đánh giá trước khi đăng.Xin vui lòng chờ phản hồi từ hệ thống!
+               </div>
+               <h5 class="pull-left text-company-overview-reivew" style="color:#333; font-size:18px">Các Đánh Giá Khác Về Công Ty</h5>
+               <span style="font-size:100%;margin-left:360px;color:#333;margin-top:15px">Tìm kiếm :</span>
+               <input type="search" ng-model="keyword" style="width:120px;border:solid 1px;border-color:lightgrey ;font-size:12px;margin-top:15px" placeholder="Nhập chủ đề...">
+            </div>
+            <div class=" col-sm-4 " style="font-size:100%;margin-top:5px">
+               <span style="font-size:100%;color:#333">Hiển thị :</span> 
+               <select ng-model="vm.itemsPerPage" class="show-itemsPerPage" style="width:70px;height:20px;color:#2c84cc;
+                  ;border:solid 1px;border-color:lightgrey;">
+                  <option style="color:#079696" value="5">5</option>
+                  <option style="color:#333" value="10">10</option>
+                  <option style="color:#333" value="20">20</option>
+               </select>
+               <span style="margin-left:20px;color:#333;font-size:100%"><span style="font-size:17px">{{filteredReviews.length}}</span> <span style="color:#2c84cc"> Đánh giá</span></span>
+            </div>
+            <div class="col-sm-3">
+               <!--    <div class="row" style="margin-top:3px">
                   </div> -->
-                    </div>
-                    <div class="col-sm-5">
-                    </div>
-                    <div class="row" style="margin-bottom:10px;">
-                        <h5 style="margin-left:470px;"> <b style="font-size:12px;color:white"> Sắp xếp theo :</b>
-                  <a style="color:white;margin-left:10px;font-size:12px" ng-click="vm.sort('overallRev.rating')" class="">Điểm đánh giá</a>
-                  <span class="glyphicon sort-icon" ng-show="vm.sortKey=='overallRev.rating'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" style="color:white;font-size:10px"></span>
-                  <a style="margin-left:15px;color:white;font-size:12px" ng-click="vm.sort('lastUpdated')" class="">Thời gian cập nhật
+            </div>
+            <div class="col-sm-5">
+            </div>
+            <div class="row" style="margin-bottom:10px;">
+               <h5 style="margin-left:520px;"> <span style="font-size:100%;color:#333"> Sắp xếp theo :</span>
+                  <a style="color:#2c84cc;
+                     ;margin-left:10px;font-size:100%" ng-click="vm.sort('overallRev.rating')" class="">Đánh giá</a>
+                  <span class="glyphicon sort-icon" ng-show="vm.sortKey=='overallRev.rating'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" style="color:#333;font-size:10px"></span>
+                  <span class="sep" style="width:2px;height:1.1em;border-right:1px solid;padding-left:5px;border-color:lightgrey"></span>
+                  <a style="margin-left:15px;color:#2c84cc;
+                     ;font-size:100%" ng-click="vm.sort('lastUpdated')" class="">Thời gian
                   <span class="glyphicon sort-icon" ng-show="vm.sortKey=='lastUpdated'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" style="font-size:10px" ></span></a>
-                  <a style="margin-left:15px;color:white;font-size:12px" ng-click="vm.sort('upvoteUsers.length')" class="">Lượt ủng hộ
+                  <span class="sep" style="width:2px;height:1.1em;border-right:1px solid;padding-left:5px;border-color:lightgrey"></span>
+                  <a style="margin-left:15px;color:#2c84cc;font-size:100%" ng-click="vm.sort('upvoteUsers.length')" class="">Ủng hộ
                   <span class="glyphicon sort-icon" ng-show="vm.sortKey=='upvoteUsers.length'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" style="font-size:10px" ></span></a>
                </h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div ng-repeat="review in vm.company.reviews | filter: { state: 'approved' } | filter: keyword as filteredReviews">
-                    </div>
-                    <div class="col-sm-12">
-                        <div ng-repeat="review in vm.company.reviews | orderBy:'-lastUpdated' | filter: { state: 'approved', highlight: true }" ng-include="'modules/companies/client/views/panel-review.client.view.html'" ng-init="companyId=vm.company._id" class="list-review-all">
-                        </div>
-                        <div dir-paginate="review in vm.company.reviews | filter: { state: 'approved', highlight: false} | filter: keyword | orderBy:vm.sortKey:!vm.reverse | itemsPerPage:vm.itemsPerPage" ng-include="'modules/companies/client/views/panel-review.client.view.html'" ng-init="companyId=vm.company._id" class="list-review-all">></div>
-                        <div class="row" style="margin-left:0px;margin-right:0px">
-                            <div class=" pull-right" style="font-size:10px;margin-right:10px">
-                                <dir-pagination-controls max-size="4" direction-links="true" boundary-links="true">
-                                </dir-pagination-controls>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div class="row" style=" border:solid 1px;border-color:#b2b2b2;background-color:white;margin-top:10px;margin-bottom:10px">
-                <div class="row" style="background-color:#079696;margin-left:0px;margin-right:0px;">
-                    <h5 class="pull-left text-company-overview" style="color:white; font-weight:bold;"><span style=" color:white" class="glyphicon glyphicon-hdd"></span> Thông tin công ty :</h5>
-                    <a style="font-size:12px;color:white" class="pull-right fix-company" ng-show="(vm.authentication.user.roles.indexOf('admin')>0)" ng-click="vm.editCompany()">Sửa thông tin</a>
-                </div>
-                <div class="row text-company-overview-detail">
-                    <div class="col-sm-6 text-company-overview-left">
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <h6 class="pull-left text-label">
-                     Tên công ty : </h6>
-                            </div>
-                            <div class="col-sm-7">
-                                <h6 class="text-labels" data-ng-bind="vm.company.name"></h6>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <h6 class="pull-left text-label">
-                     Tên gọi khác : </h6>
-                            </div>
-                            <div class="col-sm-7">
-                                <div ng-show="(vm.company.alias.length >0)">
-                                    <h6>
+         </div>
+         <div class="row">
+            <div ng-repeat="review in vm.company.reviews | filter: { state: 'approved' } | filter: keyword as filteredReviews">
+            </div>
+            <div class="col-sm-12">
+               <div dir-paginate="review in vm.company.reviews | filter: { state: 'approved', highlight: false} | filter: keyword | orderBy:vm.sortKey:!vm.reverse | itemsPerPage:vm.itemsPerPage" ng-include="'modules/companies/client/views/panel-review.client.view.html'" ng-init="companyId=vm.company._id" class="list-review-all">></div>
+               <div class="row" style="margin-left:0px;margin-right:0px">
+                  <div class=" pull-right" style="font-size:10px;margin-right:10px">
+                     <dir-pagination-controls max-size="4" direction-links="true" boundary-links="true">
+                     </dir-pagination-controls>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row" style=" border:solid 1px;border-color:#b2b2b2;background-color:white;margin-top:10px;margin-bottom:10px;">
+         <div class="row" style="background-color:white;margin-left:0px;margin-right:0px;">
+            <h5 class="pull-left text-company-overview" style="color:#333; font-size:18px">Thông Tin Công Ty :</h5>
+            <a style="font-size:12px;color:#3b5998;
+               " class="pull-right fix-company" ng-show="(vm.authentication.user.roles.indexOf('admin')>0)" ng-click="vm.editCompany()">Sửa thông tin</a>
+         </div>
+         <div class="row text-company-overview-detail">
+            <div class="col-sm-6 text-company-overview-left">
+               <div class="row">
+                  <div class="col-sm-5">
+                     <span class="pull-left text-label">
+                     Tên công ty : </span >
+                  </div>
+                  <div class="col-sm-7">
+                     <span  class="text-labels" data-ng-bind="vm.company.name"></span >
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-5">
+                     <span class="pull-left text-label">
+                     Tên gọi khác : </span >
+                  </div>
+                  <div class="col-sm-7">
+                     <div ng-show="(vm.company.alias.length >0)">
+                        <span >
                            <div ng-repeat="name in vm.company.alias" style="color:#999999;"><span> {{name}}</span></div>
-                        </h6>
-                                </div>
-                                <h6><div ng-hide="(vm.company.alias.length >0)" style="color:grey"> Không có tên gọi nào khác</div></h6>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <h6 class="pull-left text-label">
-                     <span class="glyphicon glyphicon-link"></span> Website : </h5>
+                        </span >
+                     </div>
+                     <span >
+                        <span ng-hide="(vm.company.alias.length >0)" style="color:#999999"> Không có tên gọi nào khác</span>
+                     </span >
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-5">
+                     <span class="pull-left text-label">
+                     Website : </span >
                   </div>
                   <div class="col-sm-7">
                      <a href="{{vm.company.website}}">
-                        <h6 style="color:#107ce8" class="pull-left text-labels" data-ng-bind="vm.company.website"></h6>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <h6 class="pull-left text-label">
-                     Loại hình công ty : </h6>
-                            </div>
-                            <div class="col-sm-7">
-                                <h6 class="pull-left text-labels" data-ng-bind="vm.company.companyType"></h6>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <h6 class="pull-left text-label" style=""><span class="glyphicon glyphicon-map-marker"></span> Trụ sở chính : </h6>
-                            </div>
-                            <div class="col-sm-7">
-                                <h6 class="text-labels" data-ng-bind="vm.company.hq" style="white-space:nowrap;width: 18em; overflow: hidden;text-overflow: ellipsis"></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 text-company-overview-left">
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <h6 class="pull-left text-label">
+                     <span  style="color:#107ce8" class="pull-left text-labels" data-ng-bind="vm.company.website"></span >
+                     </a>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-5">
+                     <span class="pull-left text-label">
+                     Loại hình công ty : </span >
+                  </div>
+                  <div class="col-sm-7">
+                     <span  class="pull-left text-labels" data-ng-bind="vm.company.companyType"></span >
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-5">
+                     <span  class="pull-left text-label" style="">Trụ sở chính : </span >
+                  </div>
+                  <div class="col-sm-7" style="white-space: nowrap;width: 14em; overflow: hidden;text-overflow: ellipsis;">
+                     <span  class="text-labels" data-ng-bind="vm.company.hq" ></span >
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-6 text-company-overview-left">
+               <div class="row">
+                  <div class="col-sm-5">
+                     <span class="pull-left text-label">
                      <span class=""></span> 
-                     Thành lập : </h6>
-                            </div>
-                            <div class="col-sm-7">
-                                <h6 class="text-labels">{{vm.company.founded | date: 'yyyy'}}</h6>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <h6 class="pull-left text-label">
-                     Quy mô nhân sự : </h6>
-                            </div>
-                            <div class="col-sm-7">
-                                <h6 class="text-labels" data-ng-bind="vm.company.personnelSize"></h6>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <h6 class="pull-left text-label">
-                     <span class="glyphicon glyphicon-phone-alt"></span>  Liên hệ : </h6>
-                            </div>
-                            <div class="col-sm-7">
-                                <h6 class="text-labels" data-ng-bind="vm.company.contact" style="white-space:nowrap;width: 18em; overflow: hidden;text-overflow: ellipsis"></h6>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <h6 class="pull-left text-label">
-                     Ngành nghề chính : </h6>
-                            </div>
-                            <div class="col-sm-7">
-                                <h6 class="text-labels" data-ng-bind="vm.company.industry"></h6>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <h6 class="pull-left text-label">
-                     Giới thiệu, mô tả : </h6>
-                            </div>
-                            <div class="col-sm-7">
-                                <h6 style="white-space:nowrap;width: 18em; overflow: hidden;text-overflow: ellipsis" class="text-labels" data-ng-bind="vm.company.description"></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                     Thành lập : </span >
+                  </div>
+                  <div class="col-sm-7">
+                     <span  class="text-labels">{{vm.company.founded | date: 'yyyy'}}</span >
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-5">
+                     <span class="pull-left text-label">
+                     Quy mô nhân sự : </span >
+                  </div>
+                  <div class="col-sm-7">
+                     <span  class="text-labels" data-ng-bind="vm.company.personnelSize"></span >
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-5">
+                     <span class="pull-left text-label">
+                     Liên hệ : </span >
+                  </div>
+                  <div class="col-sm-7" style="white-space:nowrap;width: 14em; overflow: hidden;text-overflow: ellipsis">
+                     <span  class="text-labels" data-ng-bind="vm.company.contact" ></span >
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-5">
+                     <span class="pull-left text-label">
+                     Ngành nghề chính : </span >
+                  </div>
+                  <div class="col-sm-7">
+                     <span  class="text-labels" data-ng-bind="vm.company.industry"></span >
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-5">
+                     <span class="pull-left text-label">
+                     Giới thiệu, mô tả : </span >
+                  </div>
+                  <div class="col-sm-7"  style="white-space:nowrap;width: 14em; overflow: hidden;text-overflow: ellipsis" >
+                     <span class="text-labels" data-ng-bind="vm.company.description"></span >
+                  </div>
+               </div>
             </div>
-        </div>
-        <div class="col-sm-2" style="margin-top:20px;margin-right:30px">
-            <!--   <div class=" Tops" style="border:solid 2px; border-color:lightgrey;background-color:white;margin-top:20px"  >
-          <div class="">
-              <div class="row" style="background-color:#079696;margin-left:0px;margin-right:0px">
-              <h5 style="margin-left:10px;color:white;font-weight:bold"><span class="glyphicon glyphicon-user"></span> Nói sự thật</h5>
+         </div>
+      </div>
+   </div>
+   <div class="col-sm-2" style="margin-top:20px;margin-right:30px">
+      <!--   <div class=" Tops" style="border:solid 2px; border-color:lightgrey;background-color:white;margin-top:20px"  >
+         <div class="">
+             <div class="row" style="background-color:#079696;margin-left:0px;margin-right:0px">
+             <h5 style="margin-left:10px;color:white;font-weight:bold"><span class="glyphicon glyphicon-user"></span> Nói sự thật</h5>
+          </div>
+           <div class="row" >
+             
            </div>
-            <div class="row" >
-              
-            </div>
+                  
+         </div> 
+                      
                    
-          </div> 
-                       
-
-                    
-       </div> -->
-            <div class="row" style="background-color:#079696;margin-left:2px;">
-                <h5 style="color:white;font-weight:bold;margin-left:15px;"><span class="glyphicon glyphicon-user"></span> Nói sự thật</h5>
+         </div> -->
+      <div class="row" style="background-color:#079696;margin-left:2px;">
+         <h5 style="color:white;font-weight:bold;margin-left:15px;"><span class="glyphicon glyphicon-user"></span> Nói sự thật</h5>
+      </div>
+      <div class="row" style="margin-left:2px;background-color:white;">
+         <div class="col-sm-12" style="line-height:1.4em;padding-top:10px;margin-bottom:10px;font-size:13px">
+            Cảm ơn bạn đã đóng góp cho cộng đồng. Ý kiến của bạn sẽ giúp ích cho những người khác đưa ra quyết định cho công việc tương lai của họ và công ty mà họ mong muốn.
+         </div>
+      </div>
+      <div class="row" style="margin-left:2px;background-color:#079696;margin-top:20px;color:white">
+         <div class="col-sm-12" style="line-height:1.4em;padding-top:10px;margin-bottom:10px;font-size:13px">
+            Vui lòng xem <a data-toggle="modal" data-target="#myModalPolicy"><b style="color:#FFD700;
+               ">Chính sách bảo mật</b></a> và không đăng những điều sau: Ngôn ngữ thù địch hoặc phân biệt đối xử. Bí mật thương mại/ thông tin bí mật của công ty.
+            <div class="modal fade" id="myModalPolicy" role="dialog">
+               <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="color:#333">Chính sách bảo mật công ty</h4>
+                     </div>
+                     <div class="modal-body" style="color:grey">
+                        <h5 style="color:#333">Chấp Thuận Điều Khoản & Điều Kiện</h5>
+                        <p style="line-height:1.4em">Vui lòng đọc kỹ các Điều Khoản & Điều Kiện này trước khi truy nhập và sử dụng dịch vụ trên website companyrating.xyz. Bằng việc chấp thuận Điều Khoản & Điều Kiện này, bạn đồng ý bị ràng buộc bởi các quy định về sử dụng Dịch vụ trên Company Rating Website (CRW). Nếu bạn có bất kỳ câu hỏi nào về bản thỏa thuận này, vui lòng liên hệ chúng tôi qua email info@companyrating.xyz.</p>
+                        <h5 style="color:#333">Dịch Vụ Của CRW</h5>
+                        <p style="line-height:1.4em">Companyrating.xyz là một trang Web trên mạng Internet được thiết kế cho phép những người sử dụng đăng thông tin doanh nghiệp và/hoặc xem thông tin doanh nghiệp, đánh giá, chia sẻ những trải nghiệm ở các doanh nghiệp do những doanh nghiệp thứ ba đăng lên, hoặc tương tác với những người sử dụng khác. CRW chứa và có thể chứa các thông tin, tin tức, các ý kiến, văn bản, đồ hoạ, các liên kết, sản phẩm nghệ thuật điện tử, hình ảnh động, âm thanh, video, phần mềm, tranh ảnh, âm nhạc, tiếng động và các nội dung, dữ liệu khác (gọi chung là “nội dung”) được định dạng, tổ chức và thu thập dưới nhiều hình thức khác nhau mà người sử dụng có thể truy nhập tới được, gồm các thư mục, cơ sở dữ liệu và các vùng trên website của Companyrating.xyz mà người sử dụng có thể thay đổi được, chẳng hạn như đăng quảng cáo tuyển dụng, tải lên các tệp đa phương tiện, đăng ký các hồ sơ người sử dụng và tạo các hồ sơ tự thông báo (“vùng tương tác”). Để có thể sử dụng đầy đủ tiện ích dịch vụ trên CRW, bạn cần phải đăng ký tạo lập một tài khoản sử dụng và cung cấp CRW một số thông tin cá nhân nhất định để phục vụ cho việc liên lạc giao tiếp giữa bạn và CRW cũng như những người sử dụng khác sau này. Bằng việc đăng ký này, bạn đồng ý nhận các thư thông báo, các thư điện tử hoặc các hình thức truyền thông khác về các sản phẩm và dịch vụ của CRW. Bất cứ khi nào bạn không mong muốn nhận các thư điện tử này nữa, thì bạn hãy thông báo cho CRW bằng cách chọn chức năng hủy đăng ký có sẵn trên CRW hoặc gửi thư điện tử yêu cầu hủy đăng ký cho CRW. Các thông tin cá nhân của bạn sẽ được bảo quản và xử lý một cách bảo mật theo chính sách bảo mật của CRW.
+                        </p>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
+                     </div>
+                  </div>
+               </div>
             </div>
-            <div class="row" style="margin-left:2px;background-color:white;">
-                <div class="col-sm-12" style="line-height:1.4em;padding-top:10px;margin-bottom:10px;font-size:13px">
-                    Cảm ơn bạn đã đóng góp cho cộng đồng. Ý kiến của bạn sẽ giúp ích cho những người khác đưa ra quyết định cho công việc tương lai của họ và công ty mà họ mong muốn.
-                </div>
-            </div>
-            <div class="row" style="margin-left:2px;background-color:#079696;margin-top:20px;color:white">
-                <div class="col-sm-12" style="line-height:1.4em;padding-top:10px;margin-bottom:10px;font-size:13px">
-                    Vui lòng xem <a data-toggle="modal" data-target="#myModalPolicy"><b style="color:#FFD700;
-">Chính sách bảo mật</b></a> và không đăng những điều sau: Ngôn ngữ thù địch hoặc phân biệt đối xử. Bí mật thương mại/ thông tin bí mật của công ty.
-                    <div class="modal fade" id="myModalPolicy" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title" style="color:black">Chính sách bảo mật công ty</h4>
-                                </div>
-                                <div class="modal-body" style="color:grey">
-                                    <h5 style="color:black">Chấp Thuận Điều Khoản & Điều Kiện</h5>
-                                    <p style="line-height:1.4em">Vui lòng đọc kỹ các Điều Khoản & Điều Kiện này trước khi truy nhập và sử dụng dịch vụ trên website companyrating.xyz. Bằng việc chấp thuận Điều Khoản & Điều Kiện này, bạn đồng ý bị ràng buộc bởi các quy định về sử dụng Dịch vụ trên Company Rating Website (CRW). Nếu bạn có bất kỳ câu hỏi nào về bản thỏa thuận này, vui lòng liên hệ chúng tôi qua email info@companyrating.xyz.</p>
-                                    <h5 style="color:black">Dịch Vụ Của CRW</h5>
-                                    <p style="line-height:1.4em">Companyrating.xyz là một trang Web trên mạng Internet được thiết kế cho phép những người sử dụng đăng thông tin doanh nghiệp và/hoặc xem thông tin doanh nghiệp, đánh giá, chia sẻ những trải nghiệm ở các doanh nghiệp do những doanh nghiệp thứ ba đăng lên, hoặc tương tác với những người sử dụng khác. CRW chứa và có thể chứa các thông tin, tin tức, các ý kiến, văn bản, đồ hoạ, các liên kết, sản phẩm nghệ thuật điện tử, hình ảnh động, âm thanh, video, phần mềm, tranh ảnh, âm nhạc, tiếng động và các nội dung, dữ liệu khác (gọi chung là “nội dung”) được định dạng, tổ chức và thu thập dưới nhiều hình thức khác nhau mà người sử dụng có thể truy nhập tới được, gồm các thư mục, cơ sở dữ liệu và các vùng trên website của Companyrating.xyz mà người sử dụng có thể thay đổi được, chẳng hạn như đăng quảng cáo tuyển dụng, tải lên các tệp đa phương tiện, đăng ký các hồ sơ người sử dụng và tạo các hồ sơ tự thông báo (“vùng tương tác”). Để có thể sử dụng đầy đủ tiện ích dịch vụ trên CRW, bạn cần phải đăng ký tạo lập một tài khoản sử dụng và cung cấp CRW một số thông tin cá nhân nhất định để phục vụ cho việc liên lạc giao tiếp giữa bạn và CRW cũng như những người sử dụng khác sau này. Bằng việc đăng ký này, bạn đồng ý nhận các thư thông báo, các thư điện tử hoặc các hình thức truyền thông khác về các sản phẩm và dịch vụ của CRW. Bất cứ khi nào bạn không mong muốn nhận các thư điện tử này nữa, thì bạn hãy thông báo cho CRW bằng cách chọn chức năng hủy đăng ký có sẵn trên CRW hoặc gửi thư điện tử yêu cầu hủy đăng ký cho CRW. Các thông tin cá nhân của bạn sẽ được bảo quản và xử lý một cách bảo mật theo chính sách bảo mật của CRW.
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div id='bttop'>TRỞ VỀ ĐẦU TRANG</div>
+         </div>
+      </div>
+   </div>
+   <div id='bttop'>TRỞ VỀ ĐẦU TRANG</div>
 </section>
 <script>
-$(document).ready(function() {
-    $('[data-toggle="tooltip"]').tooltip();
-});
+   $(document).ready(function() {
+       $('[data-toggle="tooltip"]').tooltip();
+   });
 </script>
 <script>
-$(function() {
-    $(window).scroll(function() {
-        if ($(this).scrollTop() != 0) {
-            $('#bttop').fadeIn();
-        } else {
-            $('#bttop').fadeOut();
-        }
-    });
-    $('#bttop').click(function() {
-        $('body,html').animate({
-            scrollTop: 0
-        }, 800);
-    });
-});
+   $(function() {
+       $(window).scroll(function() {
+           if ($(this).scrollTop() != 0) {
+               $('#bttop').fadeIn();
+           } else {
+               $('#bttop').fadeOut();
+           }
+       });
+       $('#bttop').click(function() {
+           $('body,html').animate({
+               scrollTop: 0
+           }, 800);
+       });
+   });
 </script>
 <script>
-jQuery.ajax({
-    type: "POST",
-    dataType: "json",
-    success: function(msg) {
-        jQuery('.star').attr('disabled', true);
-    },
-    error: function(XMLHttpRequest, textStatus, errorThrown) {
-        displayError();
-    }
-});
+   jQuery.ajax({
+       type: "POST",
+       dataType: "json",
+       success: function(msg) {
+           jQuery('.star').attr('disabled', true);
+       },
+       error: function(XMLHttpRequest, textStatus, errorThrown) {
+           displayError();
+       }
+   });
 </script>

@@ -86,14 +86,25 @@ font-size:20px;
     margin-left: 25px;
     width: 100px;
 }
+.quantri-a{
+	color:grey;
+}
+h6.quantri{
+  color: grey;
+ 
+}
 
-s
+h6.quantri:hover{
+  color: grey;
+  text-decoration: underline;
+}
 /* selected link */
 .navbar-name:active {
     color: #3b5998;
 
+}.nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
+	background-color: #079696;
 }
-
 .navbar{
 	background-color: #079696; 
 	height: 50px;
@@ -318,12 +329,40 @@ li a.signup:active {
 #searchs input[type="search"]:-moz-placeholder { color: #42454e; }
 #searchs input[type="search"]:-ms-input-placeholder { color: #42454e; }
 
-a.link-company:hover{
-  color: red;
+li a.link-company{
+  color: white;
 
 }
 
+li a.link-company:hover{
+  color: white;
+  text-decoration:underline;
 
+}
+li a.signin{
+  color: white;
+
+}
+
+li a.signin:hover{
+  color: white;
+  text-decoration:underline;
+
+}
+li a.user-header-dropdown-toggle{
+	background-color: #079696;
+}
+li a.user-header-dropdown-toggle:hover{
+	background-color: #079696;
+}
+
+span.navbar-name{
+   color: white;
+}
+span.navbar-name:hover{
+   color: white;
+   text-decoration: underline;
+}
 
 div.navbar-account{
 	background-color: #079696;
@@ -332,7 +371,5 @@ div.navbar-account:hover{
 	background-color: #079696;
 }
 div.navbar-account:link{
-	background-color: #079696;
-}ZZXXCr-account:active{
 	background-color: #079696;
 }

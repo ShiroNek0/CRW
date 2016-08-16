@@ -30,12 +30,19 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   float: left;
 }
 
+.ratings{ 
+  font-size: 50px;
+  
+  border: none;
+  float: left;
+}
 .rating > input { display: none; } 
 .rating > label:before { 
   margin: 5px;
   font-family: FontAwesome;
   display: inline-block;
   content: "\f005";
+
 }
 
 .rating > .half:before { 
@@ -51,13 +58,12 @@ h1 { font-size: 1.5em; margin: 10px; }*/
 /***** CSS Magic to Highlight Stars on Hover *****/
 
 .rating > input:checked ~ label, /* show gold star when clicked */
-.rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
 
 .rating > input:checked + label:hover, /* hover current star when changing rating */
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+.rating > input:checked ~ label:hover ~ label { color: #FFD700;  } 
 .rating { 
   font-size: 50px;
   
@@ -167,6 +173,16 @@ h1 { font-size: 1.5em; margin: 10px; }*/
   padding-bottom: 10px;
   font-weight: bold;
 }
+.button-fix{
+  
+  margin-bottom: 5px;
+  margin-left: 15px;
+  
+  color: white;
+  height: 35px;
+  
+ font-weight: bold;
+}
 .button-votes{
   margin-top: 15px;
   font-size: 12px;
@@ -180,7 +196,7 @@ h1 { font-size: 1.5em; margin: 10px; }*/
 
 }
 .button-delete{
-  margin-top: 15px;
+ 
   font-size: 12px;
   margin-bottom: 20px;
   margin-left: 15px;
