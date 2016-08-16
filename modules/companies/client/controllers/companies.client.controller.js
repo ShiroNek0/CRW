@@ -110,7 +110,7 @@
         }
       };
 
-      $scope.close = function() {$modalInstance.close($scope.oldInfo);};
+      $scope.close = function() {$modalInstance.close();};
     };
 
     function checkIfFollowed() {
