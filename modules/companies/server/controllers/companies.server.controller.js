@@ -849,8 +849,8 @@ exports.createComment = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      // Gửi thông báo tới người viết bài
-      if (review.userID) {
+      // Gửi thông báo tới người viết bài nếu có người khác bình luận
+      if (review.userID && !review.userID._id.equals(comment.userID)) {
         broadcastMessage([review.userID._id], {
           message: req.user.name + ' đã thêm một bình luận vào bài đánh giá mang tên ' + review.title + ' của bạn',
           targetLink: '/companies/' + company._id + '/reviews/' + review._id

@@ -149,14 +149,9 @@ var CompanySchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'User'
     }],
-    proof: {
-      type: String,
-      default: '',
-      trim: true
-    },
     state: {
       type: String,
-      enum: ['waiting', 'approved', 'denied', 'trusted'],
+      enum: ['waiting', 'approved', 'denied'],
       default: 'waiting'
     },
     lastUpdated: {

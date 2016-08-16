@@ -58,7 +58,7 @@ exports.signin = function (req, res, next) {
   passport.authenticate('local', function (err, user, info) {
     if (err || !user) {
       res.status(400).send(info);
-    } else {
+    } else if (user.accState === 'active') {
       // Remove sensitive data before login
       user.password = undefined;
       user.salt = undefined;
@@ -69,6 +69,10 @@ exports.signin = function (req, res, next) {
         } else {
           res.json(user);
         }
+      });
+    } else {
+      return res.status(400).send({
+        message: 'Tài khoản của bạn đã bị khóa'
       });
     }
   })(req, res, next);
