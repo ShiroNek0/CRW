@@ -82,8 +82,7 @@
                <th class="col-sm-2" ng-click="vm.sort('numOfReviews')"><h6 style="font-weight:bold">Số bài đánh giá</h6> <span class="glyphicon sort-icon" ng-show="vm.sortKey=='numOfReviews'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
                <th class="col-sm-1  " ng-click="vm.sort('averageRating')"><h6 style="font-weight:bold">Điểm đánh giá trung bình</h6>  <span class="glyphicon sort-icon" ng-show="vm.sortKey=='averageRating'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
                <th class="col-sm-1" ng-click="vm.sort('overallRating')"><h6 style="font-weight:bold"> Điểm xếp hạng </h6><span class="glyphicon sort-icon" ng-show="vm.sortKey=='overallRating'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
-               <th class="col-sm-1" ng-click="vm.sort('website')"><h6 style="font-weight:bold"> Website </h6><span class="glyphicon sort-icon" ng-show="vm.sortKey=='website'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
-               <th class="col-sm-2" ng-click="vm.sort('contact')"><h6 style="font-weight:bold">Liên Hệ </h6> <span class="glyphicon sort-icon" ng-show="vm.sortKey=='contact'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+               <th class="col-sm-3" ng-click="vm.sort('contact')"><h6 style="font-weight:bold">Liên Hệ </h6> <span class="glyphicon sort-icon" ng-show="vm.sortKey=='contact'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
             </tr>
          </thead>
       </table>
@@ -96,8 +95,7 @@
                   <td class="col-sm-2" style="word-wrap: break-word;">{{company.numOfReviews}}</td>
                   <td class="col-sm-1" style="word-wrap: break-word;"> {{company.averageRating | number:2}}</td>
                   <td class="col-sm-1" style="word-wrap: break-word;"> {{company.overallRating | number:2}}</td>
-                  <td class="col-sm-1" style="word-wrap: break-word;"> <a href="{{company.website}}"></td>
-                  <td class="col-sm-2" style=":solid 1px;word-wrap: break-word;"> {{company.contact}} </td>
+                  <td class="col-sm-3" style=":solid 1px;word-wrap: break-word;"> {{company.contact}} </td>
             
             </tbody>
          </table>

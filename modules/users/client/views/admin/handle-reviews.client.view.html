@@ -67,10 +67,11 @@
                                              </h5>
                                              <h5 class="text-left " style="font-weight:bold">Nghề nghiệp:</h5>
                                              <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.job"> </h5>
-                                             <h5 class="text-left " style="font-weight:bold">Đang làm tại vị trí này:</h5>
-                                             <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.isJobCurrent"></h5>
-                                             <h5 class="text-left " style="font-weight:bold">Thời gian làm việc vị trí trên:</h5>
-                                             <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.jobLength"></h5>
+
+                                             <h5 class="text-left review-detail" ng-show="data.reviews.isJobCurrent">Hiện đang làm việc:</h5>
+                                            <h5 class="text-left review-detail" ng-hide="data.reviews.isJobCurrent">Đã từng làm việc:</h5>
+                                            <h5 class="text-left review-details" data-ng-bind="data.reviews.jobLength"></h5>
+
                                              <h5 class="text-left " style="font-weight:bold">Loại nhân viên:</h5>
                                              <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.contract"></h5>
                                              <h5 class="text-left " style="font-weight:bold">Ưu điểm:</h5>
@@ -241,10 +242,9 @@
                   </h5>
                   <h5 class="text-left " style="font-weight:bold">Nghề nghiệp:</h5>
                   <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.job"> </h5>
-                  <h5 class="text-left " style="font-weight:bold">Đang làm tại vị trí này:</h5>
-                  <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.isJobCurrent"></h5>
-                  <h5 class="text-left " style="font-weight:bold">Thời gian làm việc vị trí trên:</h5>
-                  <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.jobLength"></h5>
+                  <h5 class="text-left review-detail" ng-show="data.reviews.isJobCurrent">Hiện đang làm việc:</h5>
+                 <h5 class="text-left review-detail" ng-hide="data.reviews.isJobCurrent">Đã từng làm việc:</h5>
+                 <h5 class="text-left review-details" data-ng-bind="data.reviews.jobLength"></h5>
                   <h5 class="text-left " style="font-weight:bold">Loại nhân viên:</h5>
                   <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.contract"></h5>
                   <h5 class="text-left " style="font-weight:bold">Ưu điểm:</h5>

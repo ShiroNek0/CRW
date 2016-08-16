@@ -7,8 +7,8 @@
       <h3 class="col-md-12 text-center" style="font-weight:bold">Đăng nhập </h3>
     </div>
           <div class="row" style="border-color:solid 1px;color:white">
-              <h4 class="text-center" style="background-color:#3b5998;width:550px;margin-left:60px"><img ng-click="callOauthProvider('/api/auth/facebook')" ng-src="/modules/users/client/img/buttons/fb.png" style="height:40px;">
-            Đăng nhập với facebook</h4>
+              <button class="button text-center" ng-click="callOauthProvider('/api/auth/facebook')"  style="background-color:#3b5998;width:550px;margin-left:60px"><img ng-src="/modules/users/client/img/buttons/fb.png" style="height:40px;">
+            Đăng nhập với facebook</button>
           </div>
           <div class="row">
              <div class="text-center text-muted">Chúng tôi sẽ không đăng bất cứ gì lên Facebook mà không được sự cho phép của bạn.</div>
@@ -39,7 +39,7 @@
                         </div>
                         
                         <alert type="danger" ng-show="error" class="text-center text-danger">
-                          <span ng-bind="error"></span>
+                          <span ng-bind="error" style="color: black"></span>
                         </alert>
                       </fieldset>
                     </form>

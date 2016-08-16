@@ -10,7 +10,7 @@
    </div>
    <div class="col-sm-8" style="margin-left:30px">
       <!--  //open top -->
-      <div class="row" style="background-image:url('modules/core/client/img/demo.jpg');height:180px;margin-top:20px;border:solid 2px;border-color:lightgrey; ">
+      <div class="row" id="randomPic" style="height:180px;margin-top:20px;border:solid 2px;border-color:lightgrey; ">
          <button class="btn-picture" style="color:#3b5998;margin-left:84%;margin-top:5px;height:22px;border:none;color:white" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal-picture"><span class="glyphicon glyphicon-camera" ></span>
          <span style="color:white;font-size:12px !important">Xem Tất Cả Ảnh</span>
          </button>
@@ -437,8 +437,16 @@
 </section>
 <script>
    $(document).ready(function() {
-       $('[data-toggle="tooltip"]').tooltip();
+      $('[data-toggle="tooltip"]').tooltip();
+
+      var myPix = new Array("modules/core/client/img/demo.jpg","modules/core/client/img/demo1.jpg","modules/core/client/img/demo2.png", "modules/core/client/img/demo3.jpg");
+      choosePic(myPix);
    });
+
+   function choosePic(myPix) {
+        var randomNum = Math.floor(Math.random() * myPix.length);
+        document.getElementById("randomPic").style.background = 'url('+myPix[randomNum]+')';
+      }
 </script>
 <script>
    $(function() {

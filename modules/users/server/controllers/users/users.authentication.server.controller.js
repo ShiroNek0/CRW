@@ -117,12 +117,18 @@ exports.oauthCallback = function (strategy) {
       if (!user) {
         return res.redirect('/authentication/signin');
       }
-      req.login(user, function (err) {
-        if (err) {
-          return res.redirect('/authentication/signin');
-        }
-        return res.redirect(typeof redirectURL === 'string' ? redirectURL : sessionRedirectURL || '/');
-      });
+      if (user.accState === 'active') {
+        req.login(user, function (err) {
+          if (err) {
+            return res.redirect('/authentication/signin');
+          }
+          return res.redirect(typeof redirectURL === 'string' ? redirectURL : sessionRedirectURL || '/');
+        });
+      } else {
+        return res.status(400).send({
+          message: 'Tài khoản của bạn đã bị khóa'
+        });
+      }
     })(req, res, next);
   };
 };

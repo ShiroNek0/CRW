@@ -45,7 +45,7 @@
                    <b>Email đăng nhập:<h5 style="color:grey"  data-ng-bind="vm.user.email"></h5></b>
                     <b>Tên hiển thị:</b><h5 style="color:grey" data-ng-bind="vm.user.name"></h5>
                     <b>Quyền hạn: <h5><span ng-repeat="role in vm.user.roles" class="badge">{{role}}</span></h5></b>
-                    <b>Tình trạng tài khoản:<h5  style="color:grey" data-ng-bind="vm.user.accState"></h5></b>
+                    <b>Tình trạng tài khoản: <h5 style="color:grey"><span ng-show="vm.user.accState==='active'">Hoạt động</span><span ng-show="vm.user.accState==='deactive'">Bị khóa</span><span ng-show="vm.user.accState==='unverified'">Chưa kích hoạt</span></h5></b>
 
             </div>
 

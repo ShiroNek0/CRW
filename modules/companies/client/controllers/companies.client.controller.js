@@ -340,7 +340,7 @@
       vm.photoTemp = null;
     };
 
-     vm.back = function() {
+    vm.back = function() {
       $state.go($state.previous.state, $state.previous.params);
     };
   }
