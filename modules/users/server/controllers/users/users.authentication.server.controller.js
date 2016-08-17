@@ -125,9 +125,7 @@ exports.oauthCallback = function (strategy) {
           return res.redirect(typeof redirectURL === 'string' ? redirectURL : sessionRedirectURL || '/');
         });
       } else {
-        return res.status(400).send({
-          message: 'Tài khoản của bạn đã bị khóa'
-        });
+        return res.redirect('/authentication/signin?err=' + encodeURIComponent('Tài khoản của bạn đã bị khóa'));
       }
     })(req, res, next);
   };
