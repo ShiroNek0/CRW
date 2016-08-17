@@ -379,8 +379,7 @@ exports.delete = function(req, res) {
 };
 
 exports.listNormal = function(req, res) {
-  var findCondition = { 'state': 'approved' };
-  list(req, res, findCondition);
+  list(req, res);
 };
 
 exports.listFollowed = function (req, res) {
@@ -596,6 +595,7 @@ exports.updateReview = function(req, res) {
 exports.deleteReview = function(req, res) {
   var company = req.company;
   var review = req.review;
+  var oldState = review.state;
   // Ngăn cản xóa bài nếu không đủ quyền hạn
   if (!req.user || !req.user._id.equals(review.userID._id)) {
     // Là người dùng nhưng không phải người sở hữu bài
@@ -614,6 +614,10 @@ exports.deleteReview = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      // Gửi thông báo tới admin và mod khi một bài ở trạng thái chờ bị xóa
+      if (oldState === 'waiting') {
+        users.notiEventEmitter.emit('review waiting');
+      }
       res.send('Đã xóa bài đánh giá ' + review.title);
     }
   });
