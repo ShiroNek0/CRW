@@ -35,9 +35,16 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var user = req.model;
 
-  // For security purposes only merge these parameters
-  user.roles = req.body.roles;
-  user.accState = req.body.accState;
+  // Admin có toàn quyền
+  if (req.user.roles.indexOf('admin') !== -1) {
+    if (req.body.roles) user.roles = req.body.roles;
+    if (req.body.accState) user.accState = req.body.accState;
+  } else {
+    // Mod chỉ được đổi trạng thái của người dùng bình thường
+    if (user.roles.indexOf('mod') === -1 && user.roles.indexOf('admin') === -1) {
+      if (req.body.accState) user.accState = req.body.accState;
+    }
+  }
 
   user.save(function (err) {
     if (err) {
