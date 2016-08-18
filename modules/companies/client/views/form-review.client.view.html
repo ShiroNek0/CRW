@@ -17,10 +17,6 @@
                         <div class="modal-body">
                             <p style="color:black"></p>
                         </div>
-                        <!-- <div class="modal-footer">
-                <button class="btn btn-default" data-dismiss="modal">
-                    Close</button>
-               </div> -->
                     </div>
                     <!-- /.modal-content -->
                 </div>
@@ -128,7 +124,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row" data-toggle="collapse" data-target="#ND">
+                                <div class="row">
                                     <div class="form-group" show-errors style="margin-left:0px;margin-right:0px">
                                         <h5 class="label-review-cons">Nhược điểm<span style="color:#f24141">(*)</span>:</h5>
                                         <textarea style="line-height:1.4em;color:grey" class="form-control textarea-cons" rows="5" ng-model="vm.company.newReview.overallRev.cons" name="cons" placeholder="Nhược điểm..." required data-toggle="tooltip" data-placement="bottom" title="Nhược điểm của công ty là những bất lợi của công ty này!"></textarea>
@@ -142,6 +138,9 @@
                                         <h5 class="label-review-supplement" style="">Nội dung:</h5>
                                         <textarea style="line-height:1.4em;color:grey" class="form-control textarea-supplement" rows="5" ng-model="vm.company.newReview.overallRev.supplement" name="supplement" placeholder="Nội dung..." data-toggle="tooltip" data-placement="bottom" title="Nếu bạn muốn bổ sung thêm thông tin thì hãy đánh giá thêm !"></textarea>
                                     </div>
+                                </div>
+                                <div class="row text-center">
+                                     <h5 style="" data-toggle="collapse" data-target="#ND"><a data-toggle="collapse" data-target="#ND">+ Đánh giá về lương và chế độ đãi ngộ</a></h5>
                                 </div>
                                 <div id="ND" class="collapse">
                                     <div class="row">
@@ -192,6 +191,7 @@
                                         <h5 class="label-review-chance">Cơ hội thăng tiến:</h5>
                                         <h6 style="color:grey">(Đánh giá của bạn về cơ hội thăng tiến khi làm việc tại vị trí trên)</h6>
                                         <select id="opportunityRating" ng-model="vm.company.newReview.salaryAndBenefit.opportunityRating">
+                                            <option value=""></option>
                                             <option value="1">Kém</option>
                                             <option value="2">Bình thường</option>
                                             <option value="3">Tốt</option>
@@ -203,6 +203,7 @@
                                         <h5 class="label-review-insurrance" data-toggle="tooltip" data-placement="bottom">Bảo hiểm và các chế độ chăm sóc sức khỏe:</h5>
                                         <h6 style="color:grey">(Đánh giá dựa trên các chế độ chăm sóc sức khỏe tại công ty)</h6>
                                         <select id="healthRating" ng-model="vm.company.newReview.salaryAndBenefit.healthRating">
+                                            <option value=""></option>
                                             <option value="1">Kém</option>
                                             <option value="2">Bình thường</option>
                                             <option value="3">Tốt</option>
@@ -214,6 +215,7 @@
                                         <h5 class="label-review-resttime" data-toggle="tooltip" data-placement="bottom">Thời gian nghỉ lương thưởng:</h5>
                                         <h6 style="color:grey">(Đánh giá chế độ công ty hàng năm về ngày nghỉ lễ, ngày nghỉ lương thưởng)</h6>
                                         <select id="timeOffRating" ng-model="vm.company.newReview.salaryAndBenefit.timeOffRating">
+                                            <option value=""></option>
                                             <option value="1">Kém</option>
                                             <option value="2">Bình thường</option>
                                             <option value="3">Tốt</option>
@@ -225,6 +227,7 @@
                                         <h5 class="label-review-pension" data-toggle="tooltip" data-placement="bottom">Chế độ lương hưu:</h5>
                                         <h6 style="color:grey">(Đánh giá về lương hưu nếu bạn đã nghỉ việc tại công ty này)</h6>
                                         <select id="pensionRating" ng-model="vm.company.newReview.salaryAndBenefit.pensionRating">
+                                            <option value=""></option>
                                             <option value="1">Kém</option>
                                             <option value="2">Bình thường</option>
                                             <option value="3">Tốt</option>
@@ -236,6 +239,7 @@
                                         <h5 class="label-review-wife">Chế độ thai sản/ nghỉ vợ đẻ:</h5>
                                         <h6 style="color:grey">(Đánh giá của bạn về chế độ thai sản, và chăm sóc vợ đẻ ở công ty này)</h6>
                                         <select id="parentalLeaveRating" ng-model="vm.company.newReview.salaryAndBenefit.parentalLeaveRating">
+                                            <option value=""></option>
                                             <option value="1">Kém</option>
                                             <option value="2">Bình thường</option>
                                             <option value="3">Tốt</option>

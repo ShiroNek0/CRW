@@ -81,21 +81,29 @@
                                              <h5 style="line-height:1.4em;color:grey" class="text-left " data-ng-bind="data.reviews.overallRev.supplement"></h5>
                                           </div>
                                           <div class="col-sm-6" style="color:black;margin-bottom:10px" >
-                                             <h5 class="text-left "  style="font-weight:bold">Lương cơ bản:</h5>
-                                             <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.basePay"></h5>
-                                             <h5 class="text-left "  style="font-weight:bold">Mức tăng lương trung bình:</h5>
-                                             <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.payRaise"></h5>
-                                             <h5 class="text-left "  style="font-weight:bold">Lương thưởng:</h5>
-                                             <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.cashBonus"></h5>
-                                             <h5 class="text-left "  style="font-weight:bold">Tiền lương ngoài:</h5>
-                                             <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.profitSharing"></h5>
-                                             <h5 class="text-left "  style="font-weight:bold">Cơ hội thăng tiến:</h5>
+                                             <h5 class="text-left" style="font-weight:bold">Lương cơ bản:</h5>
+                                             <h5 style="color:grey" class="text-left" ng-show="data.reviews.salaryAndBenefit.basePay" data-ng-bind="data.reviews.salaryAndBenefit.basePay"></h5>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.basePay">Chưa có thông tin về lương cơ bản</h5>
+
+                                             <h5 class="text-left" style="font-weight:bold">Mức tăng lương trung bình:</h5>
+                                             <h5 style="color:grey" class="text-left" ng-show="data.reviews.salaryAndBenefit.payRaise" data-ng-bind="data.reviews.salaryAndBenefit.payRaise"></h5>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.payRaise">Chưa có thông tin về mức tăng lương trung bình</h5>
+
+                                             <h5 class="text-left" style="font-weight:bold">Lương thưởng:</h5>
+                                             <h5 style="color:grey" class="text-left " ng-show="data.reviews.salaryAndBenefit.cashBonus" data-ng-bind="data.reviews.salaryAndBenefit.cashBonus"></h5>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.cashBonus">Chưa có thông tin về lương thưởng</h5>
+
+                                             <h5 class="text-left" style="font-weight:bold">Tiền lương ngoài:</h5>                 
+                                             <h5 style="color:grey" class="text-left" ng-show="data.reviews.salaryAndBenefit.profitSharing" data-ng-bind="data.reviews.salaryAndBenefit.profitSharing"></h5>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.profitSharing">Chưa có thông tin về lương ngoài</h5>
                                            
                                              <style type="text/css">
                                                 .br-theme-bars-movie .br-widget .br-current-rating{
                                                 font-size: 12px;
                                                 }
                                              </style>
+
+                                             <h5 class="text-left" style="font-weight:bold">Cơ hội thăng tiến:</h5>
                                              <div style="margin-left:0px;color:grey" ng-show="data.reviews.salaryAndBenefit.opportunityRating">
                                                 <div ng-show="data.reviews.salaryAndBenefit.opportunityRating===1">Kém</div>
                                                 <div ng-show="data.reviews.salaryAndBenefit.opportunityRating===2">Bình thường</div>
@@ -103,6 +111,8 @@
                                                 <div ng-show="data.reviews.salaryAndBenefit.opportunityRating===4">Rất tốt</div>
                                                 <div ng-show="data.reviews.salaryAndBenefit.opportunityRating===5">Xuất sắc</div>
                                              </div>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.opportunityRating">Chưa có thông tin về cơ hội thăng tiến</h5>
+
                                              <h5 class="text-left " style="font-weight:bold">Bảo hiểm và các chế độ chăm sóc sức khỏe:</h5>
                                              
                                              <div style="margin-left:0px;color:grey" ng-show="data.reviews.salaryAndBenefit.healthRating">
@@ -112,6 +122,7 @@
                                                 <div ng-show="data.reviews.salaryAndBenefit.healthRating===4">Rất tốt</div>
                                                 <div ng-show="data.reviews.salaryAndBenefit.healthRating===5">Xuất sắc</div>
                                              </div>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.healthRating">Chưa có thông tin về bảo hiểm.</h5>
                                              <h5 class="text-left " style="font-weight:bold">Thời gian nghỉ lương thưởng:</h5>
                                           
                                              <div style="margin-left:0px;color:grey" ng-show="data.reviews.salaryAndBenefit.timeOffRating">
@@ -121,6 +132,8 @@
                                                 <div ng-show="data.reviews.salaryAndBenefit.timeOffRating===4">Rất tốt</div>
                                                 <div ng-show="data.reviews.salaryAndBenefit.timeOffRating===5">Xuất sắc</div>
                                              </div>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.timeOffRating">Chưa có thông tin về thời gian nghỉ lương thưởng:</h5>
+
                                              <h5 class="text-left " style="font-weight:bold">Chế độ lương hưu:</h5>
                                             
                                              <div style="margin-left:0px;color:grey" ng-show="data.reviews.salaryAndBenefit.pensionRating">
@@ -130,8 +143,9 @@
                                                 <div ng-show="data.reviews.salaryAndBenefit.pensionRating===4">Rất tốt</div>
                                                 <div ng-show="data.reviews.salaryAndBenefit.pensionRating===5">Xuất sắc</div>
                                              </div>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.pensionRating">Chưa có thông tin về chế độ lương hưu</h5>
+
                                              <h5 class="text-left " style="font-weight:bold">Chế độ thai sản/ nghỉ vợ đẻ:</h5>
-                                             <!--  <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.parentalLeaveRating"></h5> -->
                                              <div style="margin-left:0px;color:grey" ng-model="data.reviews.salaryAndBenefit.parentalLeaveRating">
                                                 <div ng-show="data.reviews.salaryAndBenefit.parentalLeaveRating===1">Kém</div>
                                                 <div ng-show="data.reviews.salaryAndBenefit.parentalLeaveRating===2">Bình thường</div>
@@ -139,6 +153,7 @@
                                                 <div ng-show="data.reviews.salaryAndBenefit.parentalLeaveRating===4">Rất tốt</div>
                                                 <div ng-show="data.reviews.salaryAndBenefit.parentalLeaveRating===5">Xuất sắc</div>
                                              </div>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.parentalLeaveRating">Chưa có thông tin về xhế độ thai sản</h5>
                                           </div>
                                        </div>
                                     </div>
@@ -229,20 +244,28 @@
                                           </div>
                                           <div class="col-sm-6" style="color:black;margin-bottom:10px" >
                                              <h5 class="text-left" style="font-weight:bold">Lương cơ bản:</h5>
-                                             <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.basePay"></h5>
-                                             <h5 class="text-left "  style="font-weight:bold">Mức tăng lương trung bình:</h5>
-                                             <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.payRaise"></h5>
-                                             <h5 class="text-left "  style="font-weight:bold">Lương thưởng:</h5>
-                                             <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.cashBonus"></h5>
-                                             <h5 class="text-left "  style="font-weight:bold">Tiền lương ngoài:</h5>
-                                             <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.profitSharing"></h5>
-                                             <h5 class="text-left "  style="font-weight:bold">Cơ hội thăng tiến:</h5>
+                                             <h5 style="color:grey" class="text-left" ng-show="data.reviews.salaryAndBenefit.basePay" data-ng-bind="data.reviews.salaryAndBenefit.basePay"></h5>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.basePay">Chưa có thông tin về lương cơ bản</h5>
+
+                                             <h5 class="text-left" style="font-weight:bold">Mức tăng lương trung bình:</h5>
+                                             <h5 style="color:grey" class="text-left" ng-show="data.reviews.salaryAndBenefit.payRaise" data-ng-bind="data.reviews.salaryAndBenefit.payRaise"></h5>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.payRaise">Chưa có thông tin về mức tăng lương trung bình</h5>
+
+                                             <h5 class="text-left" style="font-weight:bold">Lương thưởng:</h5>
+                                             <h5 style="color:grey" class="text-left " ng-show="data.reviews.salaryAndBenefit.cashBonus" data-ng-bind="data.reviews.salaryAndBenefit.cashBonus"></h5>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.cashBonus">Chưa có thông tin về lương thưởng</h5>
+
+                                             <h5 class="text-left" style="font-weight:bold">Tiền lương ngoài:</h5>                 
+                                             <h5 style="color:grey" class="text-left" ng-show="data.reviews.salaryAndBenefit.profitSharing" data-ng-bind="data.reviews.salaryAndBenefit.profitSharing"></h5>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.profitSharing">Chưa có thông tin về lương ngoài</h5>
                                            
                                              <style type="text/css">
                                                 .br-theme-bars-movie .br-widget .br-current-rating{
                                                 font-size: 12px;
                                                 }
                                              </style>
+
+                                             <h5 class="text-left" style="font-weight:bold">Cơ hội thăng tiến:</h5>
                                              <div style="margin-left:0px;color:grey" ng-show="data.reviews.salaryAndBenefit.opportunityRating">
                                                 <div ng-show="data.reviews.salaryAndBenefit.opportunityRating===1">Kém</div>
                                                 <div ng-show="data.reviews.salaryAndBenefit.opportunityRating===2">Bình thường</div>
@@ -250,6 +273,8 @@
                                                 <div ng-show="data.reviews.salaryAndBenefit.opportunityRating===4">Rất tốt</div>
                                                 <div ng-show="data.reviews.salaryAndBenefit.opportunityRating===5">Xuất sắc</div>
                                              </div>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.opportunityRating">Chưa có thông tin về cơ hội thăng tiến</h5>
+
                                              <h5 class="text-left " style="font-weight:bold">Bảo hiểm và các chế độ chăm sóc sức khỏe:</h5>
                                              
                                              <div style="margin-left:0px;color:grey" ng-show="data.reviews.salaryAndBenefit.healthRating">
@@ -259,6 +284,7 @@
                                                 <div ng-show="data.reviews.salaryAndBenefit.healthRating===4">Rất tốt</div>
                                                 <div ng-show="data.reviews.salaryAndBenefit.healthRating===5">Xuất sắc</div>
                                              </div>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.healthRating">Chưa có thông tin về bảo hiểm.</h5>
                                              <h5 class="text-left " style="font-weight:bold">Thời gian nghỉ lương thưởng:</h5>
                                           
                                              <div style="margin-left:0px;color:grey" ng-show="data.reviews.salaryAndBenefit.timeOffRating">
@@ -268,6 +294,8 @@
                                                 <div ng-show="data.reviews.salaryAndBenefit.timeOffRating===4">Rất tốt</div>
                                                 <div ng-show="data.reviews.salaryAndBenefit.timeOffRating===5">Xuất sắc</div>
                                              </div>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.timeOffRating">Chưa có thông tin về thời gian nghỉ lương thưởng:</h5>
+
                                              <h5 class="text-left " style="font-weight:bold">Chế độ lương hưu:</h5>
                                             
                                              <div style="margin-left:0px;color:grey" ng-show="data.reviews.salaryAndBenefit.pensionRating">
@@ -277,8 +305,9 @@
                                                 <div ng-show="data.reviews.salaryAndBenefit.pensionRating===4">Rất tốt</div>
                                                 <div ng-show="data.reviews.salaryAndBenefit.pensionRating===5">Xuất sắc</div>
                                              </div>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.pensionRating">Chưa có thông tin về chế độ lương hưu</h5>
+
                                              <h5 class="text-left " style="font-weight:bold">Chế độ thai sản/ nghỉ vợ đẻ:</h5>
-                                             <!--  <h5 style="color:grey" class="text-left " data-ng-bind="data.reviews.salaryAndBenefit.parentalLeaveRating"></h5> -->
                                              <div style="margin-left:0px;color:grey" ng-model="data.reviews.salaryAndBenefit.parentalLeaveRating">
                                                 <div ng-show="data.reviews.salaryAndBenefit.parentalLeaveRating===1">Kém</div>
                                                 <div ng-show="data.reviews.salaryAndBenefit.parentalLeaveRating===2">Bình thường</div>
@@ -286,6 +315,7 @@
                                                 <div ng-show="data.reviews.salaryAndBenefit.parentalLeaveRating===4">Rất tốt</div>
                                                 <div ng-show="data.reviews.salaryAndBenefit.parentalLeaveRating===5">Xuất sắc</div>
                                              </div>
+                                             <h5 class="text-left review-details" ng-hide="data.reviews.salaryAndBenefit.parentalLeaveRating">Chưa có thông tin về xhế độ thai sản</h5>
                                           </div>
                                        </div>
                                     </div>

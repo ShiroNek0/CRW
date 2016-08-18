@@ -173,8 +173,9 @@
                                             <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details" data-ng-bind="vm.company.reviews.overallRev.supplement"></h5>
                                         </div>
 	                <div class="row">
-		                <div style="padding-left: 30%">
-				                
+		                <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-4">				                
 	                                    <fieldset class="rating" style="font-size:26px">
 	                                        <input type="radio" id="overallRevRating5" name="overallRevRating" ng-model="vm.company.reviews.overallRev.rating" value="5" disabled="disabled" checked="checked" />
 	                                        <label class="full" for="overallRevRating5" title="Xuất sắc - 5 stars"></label>
@@ -191,11 +192,13 @@
 	                                        <input type="radio" id="overallRevRating1" name="companyRating" ng-model="vm.company.reviews.overallRev.rating" value="1" disabled="disabled" checked="checked" />
 	                                        <label class="full" for="overallRevRating1" title="Tệ - 1 star"></label>
 	                                    </fieldset>
-	                                </div>
-	                	
+
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
 	                </div>
                                         
-                  <div class="row">
+                  <div class="row text-center">
                        
                         <h5 style="line-height:1.4em;margin-left:5px;color:black"><a data-toggle="collapse" data-target="#salary">Xem thêm đánh giá về lương và chế độ đãi ngộ</a></h5>
                         <div id="salary" class="collapse">
@@ -207,14 +210,14 @@
                                                 <h5 class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.basePay">Chưa có thông tin về lương cơ bản</h5>
                                             </div>
                                             <div class="row">
-                                                <h5  class="text-left review-detail">Mức tăng lương trung bình: </h5>
+                                                <h5 class="text-left review-detail">Mức tăng lương trung bình: </h5>
                                                 <h5 data-toggle="tooltip" data-placement="bottom" title="Mỗi tháng lương của bạn tăng khoảng bao nhiêu !"  class="text-left review-details" ng-show="vm.company.reviews.salaryAndBenefit.payRaise">{{vm.company.reviews.salaryAndBenefit.payRaise | number}} VND / Tháng</h5>
-                                                <h5  class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.payRaise">Chưa có thông tin về mức tăng lương trung bình</h5>
+                                                <h5 class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.payRaise">Chưa có thông tin về mức tăng lương trung bình</h5>
                                             </div>
                                             <div class="row">
-                                                <h5  class="text-left review-detail">Lương thưởng:</h5>
+                                                <h5 class="text-left review-detail">Lương thưởng:</h5>
                                                 <h5 data-toggle="tooltip" data-placement="bottom" title="Hàng năm công ty thưởng trung bình bạn bao nhiêu tiền!" class="text-left review-details" ng-show="vm.company.reviews.salaryAndBenefit.cashBonus">{{vm.company.reviews.salaryAndBenefit.cashBonus | number}} VND / Năm</h5>
-                                                <h5  class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.cashBonus">Chưa có thông tin về lương thưởng</h5>
+                                                <h5 class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.cashBonus">Chưa có thông tin về lương thưởng</h5>
                                             </div>
                                             <div class="row">
                                                 <h5  class="text-left review-detail">Tiền lương ngoài: </h5>
@@ -222,6 +225,7 @@
                                                 <h5  class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.profitSharing">Chưa có thông tin về lương ngoài</h5>
                                             </div>
                                              </div>
+
                                          <div class="col-sm-6" >
                                                 <div class="row" >
                                                 <h5  class="text-left review-detail">Cơ hội thăng tiến: </h5>
@@ -234,9 +238,9 @@
                                                         <option value="5">Xuất sắc</option>
                                                     </select>
                                                 </div>
-                                                <div   ng-hide="vm.company.reviews.salaryAndBenefit.opportunityRating">
+                                                <h5 class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.opportunityRating">
                                                     Chưa có đánh giá về cơ hội thăng tiến
-                                                </div>
+                                                </h5>
                                             </div>
                                             <div class="row">
                                                 <h5  class="text-left review-detail">Bảo hiểm và các chế độ chăm sóc sức khỏe: </h5>
@@ -249,9 +253,9 @@
                                                         <option value="5">Xuất sắc</option>
                                                     </select>
                                                 </div>
-                                                <div   ng-hide="vm.company.reviews.salaryAndBenefit.healthRating">
+                                                <h5 class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.healthRating">
                                                     Chưa có đánh giá về bảo hiểm và các chế độ chăm sóc sức khỏe
-                                                </div>
+                                                </h5>
                                             </div>
                                             <div class="row">
                                                 <h5  class="text-left review-detail">Thời gian nghỉ lương thưởng: </h5>
@@ -264,9 +268,9 @@
                                                         <option value="5">Xuất sắc</option>
                                                     </select>
                                                 </div>
-                                                <div   ng-hide="vm.company.reviews.salaryAndBenefit.timeOffRating">
+                                                <h5 class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.timeOffRating">
                                                     Chưa có đánh giá về thời gian nghỉ lương thưởng
-                                                </div>
+                                                </h5>
                                             </div>
                                             <div class="row" >
                                                 <h5  class="text-left review-detail">Chế độ lương hưu: </h5>
@@ -279,9 +283,9 @@
                                                         <option value="5">Xuất sắc</option>
                                                     </select>
                                                 </div>
-                                                <div  ng-hide="vm.company.reviews.salaryAndBenefit.pensionRating">
+                                                <h5 class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.pensionRating">
                                                     Chưa có đánh giá về chế độ lương hưu
-                                                </div>
+                                                </h5>
                                             </div>
                                             <div class="row">
                                                 <h5  class="text-left review-detail">Chế độ thai sản/ nghỉ vợ đẻ: </h5>
@@ -294,9 +298,9 @@
                                                         <option value="5">Xuất sắc</option>
                                                     </select>
                                                 </div>
-                                                <div   ng-hide="vm.company.reviews.salaryAndBenefit.parentalLeaveRating">
+                                                <h5 class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.parentalLeaveRating">
                                                     Chưa có đánh giá về chế độ thai sản
-                                                </div>
+                                                </h5>
                                             </div>
                                          </div>
                            </div>
