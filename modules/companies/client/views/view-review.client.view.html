@@ -5,7 +5,7 @@
                 <div class="modal-content">
                     <div class="modal-header" style="background:#079696;color:white">
                         <button class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" >Thông báo!</h4>
+                        <h4 class="modal-title">Thông báo!</h4>
                     </div>
                     <div class="modal-body">
                         <p></p>
@@ -34,25 +34,25 @@
                                 </div>
                                 <div class="pull-right">
                                     <fieldset class="pull-right rating" style="font-size:26px;margin-top:15px;padding-right:30px">
-                                        <input type="radio" id="star5" name="rating" ng-model="vm.company.pointDisplay" value="5" disabled="disabled" checked="checked" />
+                                        <input type="radio" id="star5" name="companyRating" ng-model="vm.company.pointDisplay" value="5" disabled="disabled" checked="checked" />
                                         <label class="full" for="star5" title="Xuất sắc - 5 stars"></label>
-                                        <input type="radio" id="star4half" name="rating" ng-model="vm.company.pointDisplay" value="4.5" disabled="disabled" checked="checked" />
+                                        <input type="radio" id="star4half" name="companyRating" ng-model="vm.company.pointDisplay" value="4.5" disabled="disabled" checked="checked" />
                                         <label class="half" for="star4half" title="Rất tốt - 4.5 stars"></label>
-                                        <input type="radio" id="star4" name="rating" ng-model="vm.company.pointDisplay" value="4" disabled="disabled" checked="checked" />
+                                        <input type="radio" id="star4" name="companyRating" ng-model="vm.company.pointDisplay" value="4" disabled="disabled" checked="checked" />
                                         <label class="full" for="star4" title="Tốt - 4 stars"></label>
-                                        <input type="radio" id="star3half" name="rating" ng-model="vm.company.pointDisplay" value="3.5" disabled="disabled" checked="checked" />
+                                        <input type="radio" id="star3half" name="companyRating" ng-model="vm.company.pointDisplay" value="3.5" disabled="disabled" checked="checked" />
                                         <label class="half" for="star3half" title="Khá - 3.5 stars"></label>
-                                        <input type="radio" id="star3" name="rating" ng-model="vm.company.pointDisplay" value="3" disabled="disabled" checked="checked" />
+                                        <input type="radio" id="star3" name="companyRating" ng-model="vm.company.pointDisplay" value="3" disabled="disabled" checked="checked" />
                                         <label class="full" for="star3" title="Khá tốt - 3 stars"></label>
-                                        <input type="radio" id="star2half" name="rating" ng-model="vm.company.pointDisplay" value="2.5" disabled="disabled" checked="checked" />
+                                        <input type="radio" id="star2half" name="companyRating" ng-model="vm.company.pointDisplay" value="2.5" disabled="disabled" checked="checked" />
                                         <label class="half" for="star2half" title="Bình thường - 2.5 stars"></label>
-                                        <input type="radio" id="star2" name="rating" ng-model="vm.company.pointDisplay" value="2" disabled="disabled" checked="checked" />
+                                        <input type="radio" id="star2" name="companyRating" ng-model="vm.company.pointDisplay" value="2" disabled="disabled" checked="checked" />
                                         <label class="full" for="star2" title="Hơi kém - 2 stars"></label>
-                                        <input type="radio" id="star1half" name="rating" ng-model="vm.company.pointDisplay" value="1.5" disabled="disabled" checked="checked" />
+                                        <input type="radio" id="star1half" name="companyRating" ng-model="vm.company.pointDisplay" value="1.5" disabled="disabled" checked="checked" />
                                         <label class="half" for="star1half" title="Kém - 1.5 stars"></label>
-                                        <input type="radio" id="star1" name="rating" ng-model="vm.company.pointDisplay" value="1" disabled="disabled" checked="checked" />
+                                        <input type="radio" id="star1" name="companyRating" ng-model="vm.company.pointDisplay" value="1" disabled="disabled" checked="checked" />
                                         <label class="full" for="star1" title="Tệ - 1 star"></label>
-                                        <input type="radio" id="starhalf" name="rating" ng-model="vm.company.pointDisplay" value="0.5" disabled="disabled" checked="checked" />
+                                        <input type="radio" id="starhalf" name="companyRating" ng-model="vm.company.pointDisplay" value="0.5" disabled="disabled" checked="checked" />
                                         <label class="half" for="starhalf" title="Tệ hại - 0.5 stars"></label>
                                     </fieldset>
                                     <h5 class=" review-sum" style="color:black;font-size:100%">(của<b style="color:#079696;"> {{vm.company.numOfReviews}}</b> bài đánh giá )</h5>
@@ -172,6 +172,28 @@
                                             <h5 style="margin-left:5px" class="text-left review-detail">Nội dung:</h5>
                                             <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details" data-ng-bind="vm.company.reviews.overallRev.supplement"></h5>
                                         </div>
+	                <div class="row">
+		                <div style="padding-left: 30%">
+				                
+	                                    <fieldset class="rating" style="font-size:26px">
+	                                        <input type="radio" id="overallRevRating5" name="overallRevRating" ng-model="vm.company.reviews.overallRev.rating" value="5" disabled="disabled" checked="checked" />
+	                                        <label class="full" for="overallRevRating5" title="Xuất sắc - 5 stars"></label>
+
+	                                        <input type="radio" id="overallRevRating4" name="overallRevRating" ng-model="vm.company.reviews.overallRev.rating" value="4" disabled="disabled" checked="checked" />
+	                                        <label class="full" for="overallRevRating4" title="Tốt - 4 stars"></label>
+
+	                                        <input type="radio" id="overallRevRating3" name="overallRevRating" ng-model="vm.company.reviews.overallRev.rating" value="3" disabled="disabled" checked="checked" />
+	                                        <label class="full" for="overallRevRating3" title="Khá tốt - 3 stars"></label>
+
+	                                        <input type="radio" id="overallRevRating2" name="overallRevRating" ng-model="vm.company.reviews.overallRev.rating" value="2" disabled="disabled" checked="checked" />
+	                                        <label class="full" for="overallRevRating2" title="Hơi kém - 2 stars"></label>
+
+	                                        <input type="radio" id="overallRevRating1" name="companyRating" ng-model="vm.company.reviews.overallRev.rating" value="1" disabled="disabled" checked="checked" />
+	                                        <label class="full" for="overallRevRating1" title="Tệ - 1 star"></label>
+	                                    </fieldset>
+	                                </div>
+	                	
+	                </div>
                                         
                   <div class="row">
                        
