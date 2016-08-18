@@ -97,7 +97,7 @@
             <div class="row" ng-init="vm.viewInit()">
                <div class="other">
                   <div class="row" style="margin-left:0px;margin-right:0px">
-                     <h5 class="rating-review-all" style="color:#333;margin-left:15px;font-size:18px"> Đánh Giá Tổng Quát   </h5>
+                     <h5 class="rating-review-all" style="color:#333;margin-left:15px;font-size:18px"> Đánh Giá Tổng Quát </h5>
                   </div>
                   <h6 style="color:grey;margin-left:15px;font-size:14px">Điểm <b>trung bình</b> của tất cả các bài đánh giá.</h6>
                   <div class="row" style="margin-top:20px;margin-bottom:48px">
@@ -177,17 +177,6 @@
             </div>
          </div>
          <div class="col-sm-4">
-            <!--  <div class="row label-picture" style="height:230px;">
-               <div class="row">
-                  <h5 class="pull-left " style="margin-left:36px;color:#079696; font-weight:bold">Hình ảnh công ty {{ vm.company.name }} </h5>
-               </div>
-               <div class="row " >
-                     <div class="list-picture-company" ng-repeat="photo in vm.company.photo"  >
-                              <img src="{{photo}}" style="width:60px;height:60px;border:solid 1px;border-color:lightgrey;margin-left:10px">
-               
-                     </div>
-               </div>
-               </div> -->
             <div class="row label-picture">
                <div class="row" style="margin-left:0px;margin-right:0px">
                   <h5 class="pull-left " style="margin-left:15px;color:#333; font-size:18px"> Hình Ảnh Công Ty  </h5>
@@ -205,7 +194,7 @@
          </div>
       </div>
       <div class="row" style="order-bottom:solid 1px;border-color:lightgrey;background-color:white;margin-top:10px;">
-         <h5   style="color:#333; font-size:18px;margin-left:15px;">Bài Đánh Giá Nổi Bật Nhất</h5>
+         <h5   style="color:#333; font-size:18px;margin-left:15px;">Bài Đánh Giá Nổi Bật</h5>
          <div  ng-repeat="review in vm.company.reviews | orderBy:'-lastUpdated' | filter: { state: 'approved', highlight: true }" ng-include="'modules/companies/client/views/panel-review.client.view.html'" ng-init="companyId=vm.company._id" class="list-review-all">
          </div>
       </div>

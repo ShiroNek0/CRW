@@ -36,7 +36,7 @@
             </div>
             <div class="row">
                <div class="col-sm-12" style="margin-left:-5px">
-                  <div dir-paginate="company in vm.companies | orderBy:vm.sortKey:vm.reverse | itemsPerPage:vm.itemsPerPage" ng-include="'modules/companies/client/views/panel-company.client.view.html'"></div>
+                  <div dir-paginate="company in vm.companies | orderBy:vm.sortKey:vm.reverse | filter:{state: 'approved'} | itemsPerPage:vm.itemsPerPage" ng-include="'modules/companies/client/views/panel-company.client.view.html'"></div>
                </div>
             </div>
             <div class="row pull-right" style="font-size:10px;margin-right:10px" >
@@ -51,7 +51,7 @@
             <div class="row">
                <h5 style="margin-left:11px;margin-top:20px;font-size:18px;"> Top 10 Công Ty Nổi Bật :</h5>
             </div>
-            <div class="row" ng-repeat="company in vm.listTop10 | orderBy: '-overallRating' | limitTo: 10">
+            <div class="row" ng-repeat="company in vm.listTop10 | filter:{state: 'approved'} |orderBy: '-overallRating' | limitTo: 10">
                <div class="col-sm-12 " >
                   <div class="col-sm-4 " >
                      <div class="row " >

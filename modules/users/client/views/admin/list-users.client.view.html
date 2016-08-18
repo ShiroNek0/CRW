@@ -83,8 +83,8 @@
          <thead>
             <tr style="color:white;font-weight:bold;background-color:#1fbaba">
                 <th style="font-size:13px" class="col-sm-4" ng-click="vm.sort('email')">Email <span class="glyphicon sort-icon" ng-show="vm.sortKey=='email'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
-                <th   style="font-size:13px" class="col-sm-4" ng-click="vm.sort('name')">Tên hiển thị <span class="glyphicon sort-icon" ng-show="vm.sortKey=='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
-                <th  style="font-size:13px" class="col-sm-2" ng-click="vm.sort('accState')">Trạng thái tài khoản <span class="glyphicon sort-icon" ng-show="vm.sortKey=='accState'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                <th style="font-size:13px" class="col-sm-4" ng-click="vm.sort('name')">Tên hiển thị <span class="glyphicon sort-icon" ng-show="vm.sortKey=='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                <th style="font-size:13px" class="col-sm-2" ng-click="vm.sort('accState')">Trạng thái tài khoản <span class="glyphicon sort-icon" ng-show="vm.sortKey=='accState'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
                 <th style="font-size:13px"  class="col-sm-2" ng-click="vm.sort('roles')">Quyền hạn <span class="glyphicon sort-icon" ng-show="vm.sortKey=='roles'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
             </tr>
         </thead>
@@ -95,7 +95,7 @@
                 <tr style="color:black">
                     <td class="col-sm-4" style="font-size:13px"><a style="color:black">{{user.email}}</a></td>
                     <td class="col-sm-4" style="font-size:13px"><a style="color:#1672ce" ui-sref="user({userId: user._id})">{{user.name}}</a></td>
-                    <td class="col-sm-2" style="font-size:13px"><span ng-show="user.accState==='active'">Hoạt động</span><span ng-show="user.accState==='deactive'">Bị khóa</span><span ng-show="user.accState==='unverified'">Chưa kích hoạt</span></td>
+                    <td class="col-sm-2" style="font-size:13px"><span ng-show="user.accState==='active'" style="color:#0dbc0d">Hoạt động</span><span ng-show="user.accState==='deactive'" style="color:#f24141">Bị khóa</span><span ng-show="user.accState==='unverified'">Chưa kích hoạt</span></td>
                     <td class="col-sm-2" style="font-size:13px"> <span ng-repeat="role in user.roles" class="badge" style="background-color:#079696"> {{role}}</span></td>
                 </tr>
             </tbody>

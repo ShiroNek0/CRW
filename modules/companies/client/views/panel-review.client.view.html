@@ -3,16 +3,16 @@
         <div class="col-sm-1 review-detail-left">
             <div class="row">
             </div>
-            <div class="row">
-                <h6 class=" date-review" data-ng-bind="review.lastUpdated | date:'mediumDate'"></h6>
+            <div class="row text-center">
+                <h6 class="date-review" data-ng-bind="review.lastUpdated | date:'mediumDate'"></h6>
             </div>
             <div class="row">
                 <img ng-src="{{(review.userID.profileImageURL && !review.stayAnonymous) ? review.userID.profileImageURL : 'modules/users/client/img/profile/default.png'}}" class="content-avatar-review" >
                 <!--    <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatars"> -->
             </div>
-              <div class="row">
-                <span class="text-center"  style="font-size:80%;font-weight:bold;margin-left:10px" ng-show="review.userID.name && !review.stayAnonymous" data-ng-bind="review.userID.name" class="review-user"></span>
-                <span class="text-center" style="font-size:80%;font-weight:bold;margin-left:10px" ng-hide="review.userID.name && !review.stayAnonymous" class="review-user">Anonymouse</span>
+              <div class="row text-center">
+                <span style="font-size:80%;font-weight:bold" ng-show="review.userID.name && !review.stayAnonymous" data-ng-bind="review.userID.name" class="review-user"></span>
+                <span style="font-size:80%;font-weight:bold" ng-hide="review.userID.name && !review.stayAnonymous" class="review-user">Anonymouse</span>
             </div>
             
         </div>

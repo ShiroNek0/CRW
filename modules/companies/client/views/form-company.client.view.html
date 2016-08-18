@@ -96,6 +96,15 @@
                                  </div>
                               </div>
                            </div>
+
+                           <div class="row">
+                              <div class="form-group">
+                                 <h5 style="font-weight:bold;color:black">
+                                 Giới thiệu - mô tả về công ty:</h5 style="font-weight:bold;color:grey">
+                                 <textarea class="form-control textarea-supplement" rows="4" ng-model="vm.company.description" name="description" placeholder="Mô tả..." style="background-color:white;overflow:hidden;color:black"></textarea>
+                              </div>
+                           </div>
+                           
                            <div class="row">
                               <div class="form-group">
                                  <h5 style="font-weight:bold;color:black">
@@ -111,13 +120,7 @@
                               </div>
                               <div ng-show="(vm.company.avatar)"><img ng-src="{{vm.company.avatar}} " style="height:200px;width:200px;margin-left:-16px;border:solid 1px;border-color:lightgrey"></div>
                            </div>
-                           <div class="row">
-                              <div class="form-group">
-                                 <h5 style="font-weight:bold;color:black">
-                                 Giới thiệu - mô tả về công ty:</h5 style="font-weight:bold;color:grey">
-                                 <textarea class="form-control textarea-supplement" rows="4" ng-model="vm.company.description" name="description" placeholder="Mô tả..." style="background-color:white;overflow:hidden;color:black"></textarea>
-                              </div>
-                           </div>
+                           
                         </div>
                         <div class="col-sm-2">
                         </div>
@@ -225,6 +228,7 @@
                      </div>
                   </div>
                   <strong style="margin-left:50px;color:#079696;font-size:13px" ng-show="vm.progress">{{vm.progress}}</strong>
+                  <strong style="margin-left:50px;color:#079696;font-size:13px" ng-hide="vm.progress">Chỉ chọn các file có định dạng .jpg/ .jpeg/ .gif/ .png với dung lượng < 1MB </strong>
                   <div class="row">
                      <hr class="text-left">
                   </div>

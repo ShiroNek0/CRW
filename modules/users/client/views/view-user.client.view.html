@@ -32,19 +32,13 @@
             </div>
           
              
-            <div class="row">
-                <h3 style="margin-left:20px;color:grey">Các bài đánh giá của bạn</h3>
-                <div ng-repeat="data in vm.postedReviews" style="margin-left:10px;margin-right:10px;">
-                    <div style="border: solid 1px lightgrey; margin-bottom: 10px">
-                       <div class="" style="margin-left:20px;margin-right:20px;margin-top:20px;margin-bottom:20px">
-                            <p><b>Công ty: <a ui-sref="companies.view({companyId: data._id})">{{data.name}}</a></p>
-                        <p><b>Chủ đề:</b> <a ui-sref="companies.review({companyId: data._id, reviewId: data.reviews._id})">{{data.reviews.title}}</a></p>
-                        <p><b>Điểm đánh giá:</b> {{data.reviews.overallRev.rating}}</p>
-                        <p><b>Số bình luận:</b> {{data.reviews.comments.length}}</p>
-                        <p><b>Lượt ủng hộ:</b> {{data.reviews.upvoteUsers.length}}</p>
-                       </div>
-                    </div>
-                </div>
+            <div class="row" ng-show="vm.postedReviews.length>0">
+            <h3 style="margin-left:20px;color:grey">Các bài đánh giá đã đăng</h3>
+                <div ng-repeat="company in vm.postedReviews | filter: { state: 'approved'}" ng-include="'modules/companies/client/views/panel-review.client.view.html'" ng-init="companyId=company._id; review=company.reviews; review.userID=vm.user" class="list-review-all">></div>
+            </div>
+
+            <div class="row" ng-hide="vm.postedReviews.length>0">
+            <h3 style="margin-left:20px;color:grey">Chưa đăng bài đánh giá nào</h3>
             </div>
         </div>
         <div class="col-sm-2">

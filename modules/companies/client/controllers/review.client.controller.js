@@ -270,5 +270,9 @@
         vm.error = res.data.message;
       }
     };
+
+    vm.back = function() {
+      $state.go($state.previous.state, $state.previous.params);
+    };
   }
 }());
