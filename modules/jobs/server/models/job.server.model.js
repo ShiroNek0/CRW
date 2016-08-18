@@ -12,12 +12,10 @@ var mongoose = require('mongoose'),
 var JobSchema = new Schema({
   name: {
     type: String,
-    required: 'Xin nhập tên nghề nghiệp',
-    unique: 'Nghề nghiệp đã tồn tại trong hệ thống',
+    required: true,
+    unique: true,
     trim: true
   }
 });
-
-JobSchema.index({ name: 'text' });
 
 module.exports = mongoose.model('Job', JobSchema);
