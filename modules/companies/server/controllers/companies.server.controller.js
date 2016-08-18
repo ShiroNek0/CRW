@@ -470,7 +470,6 @@ exports.createReview = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      jobs.createList(review.job);
       if (review.state === 'waiting') {
         users.notiEventEmitter.emit('review waiting');
       }
@@ -480,6 +479,7 @@ exports.createReview = function(req, res) {
         if (_.contains(['approved', 'trusted'], review.state)) {
           // Bài vừa gửi lên đã set approved hoặc trusted luôn
           // Gửi thông báo tới người theo dõi
+          jobs.createList(review.job);
           broadcastMessage(company.followers, {
             message: (req.user ? req.user.name : 'Người dùng ẩn') + ' đăng bài đánh giá mới cho công ty ' + company.name,
             targetLink: '/companies/' + company._id + '/reviews/' + review._id
