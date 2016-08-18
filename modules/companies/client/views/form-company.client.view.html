@@ -10,7 +10,7 @@
       </div>
       <div class="col-sm-8">
          <h4 class="addcompany">Thêm công ty mới</h4>
-         <h5 class="note-add-company" style="color:#0eaf5c">Bạn cần chắc chắn công ty bạn muốn thêm vào chưa có trong hệ thống chúng tôi.Hãy tìm kiếm lại công ty bạn đang cần đánh giá.</h5>
+         <h5 class="note-add-company" style="color:#079696">Bạn cần chắc chắn công ty bạn muốn thêm vào chưa có trong hệ thống chúng tôi.Hãy tìm kiếm lại công ty bạn đang cần đánh giá.</h5>
          <div class="abc" style="background-color:white;margin-bottom:20px">
             <form name="vm.form.companyForm" class="form-horizontal" ng-submit="vm.save(vm.form.companyForm.$valid)" novalidate>
                <fieldset ng-init="vm.init()">
@@ -102,15 +102,9 @@
                                  Ảnh đại diện/logo công ty<span style="color:#f24141">(*)</span>:<span class="glyphicon glyphicon-camera btn-file" ng-hide="vm.uploader.queue.length" style="font-size:25px;margin-bottom:-5px;margin-left:5px">
                                  <input type="file" nv-file-select uploader="vm.uploader">
                                  </span></h5 style="font-weight:bold;color:grey">
-                                 <!-- <input type="text" name="avatar" class="form-control" ng-model="vm.company.avatar" placeholder="Đường dẫn tới ảnh đại diện/logo..." name="avatar" required>
-                                    <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.avatar.$error" role="alert">
-                                        <p class="help-block error-text" ng-message="required">Hãy nhập link ảnh đại diện.</p>
-                                    </div> -->
-                                 <!-- Nút chọn ảnh của avatar -->
-                                 <!-- Nút tải lên và hủy sau khi chọn của avatar -->
-                                 <!-- Cái này là preview avatar trc khi upload -->
-                                 <div ng-show="(vm.avatarTemp)"><img ng-src="{{vm.avatarTemp}} " style="height:200px;width:220px;"></div>
-                                 <div ng-show="vm.uploader.queue.length" style="margin-left:-16px">
+                           
+                                 <div ng-show="(vm.avatarTemp)"><img ng-src="{{vm.avatarTemp}} " style="height:200px;width:220px;border:solid 1px;border-color:lightgrey"></div>
+                                 <div ng-show="vm.uploader.queue.length" style="margin-top:20px" >
                                  <span style="font-size:25px;margin-right:20px" class="glyphicon glyphicon-remove" ng-click="vm.cancelUpload()"></span>
                                  <span style="font-size:25px;"  class="glyphicon glyphicon-ok" ng-click="vm.uploadPicture()"></span >
                            </div>
@@ -209,15 +203,15 @@
                                  <!-- Nút chọn ảnh của ảnh giới thiệu -->
                                  <!-- Nút tải lên và hủy sau khi chọn của ảnh giới thiệu -->
                                  <!-- Cái này là preview ảnh giới thiệu trc khi upload -->
-                                 <div ng-show="(vm.photoTemp)"><img ng-src="{{vm.photoTemp}} " style="height:80px;width:100px"></div>
-                                 <div ng-show="vm.photoUploader.queue.length">
-                                    <span style="font-size:25px;margin-right:20px" class="glyphicon glyphicon-remove" ng-click="vm.cancelPhotoUploader()"></span>
+                                 <div ng-show="(vm.photoTemp)"><img ng-src="{{vm.photoTemp}} " style="height:80px;width:100px;border:solid 1px;border-color:lightgrey;"></div>
+                                 <div ng-show="vm.photoUploader.queue.length" style="margin-top:10px">
+                                    <span style="font-size:25px;margin-right:20px;" class="glyphicon glyphicon-remove" ng-click="vm.cancelPhotoUploader()"></span>
                                     <span style="font-size:25px;" class="glyphicon glyphicon-ok" ng-click="vm.uploadPhoto()"></span>
                                  </div>
                                  <div class="row">
                                     <div class="col-sm-4" ng-repeat="photo in vm.company.photo" style="">
                                        <div>
-                                          <img ng-src="{{photo}}"    style="width:100px;height:80px;border:solid 1px;border-color:lightgrey;">
+                                          <img ng-src="{{photo}}"  style="width:100px;height:80px;border:solid 1px;border-color:lightgrey;">
                                           <button type="button" ng-click="vm.deletePhoto($index)" style="background-color:#f24141;color:white">Xóa</button>
                                        </div>
                                     </div>
@@ -236,7 +230,7 @@
                   </div>
                   <div class="row" style="margin-bottom:20px">
                      <div class="col-sm-8">
-                        <strong ng-bind="vm.error" class="error-company" style="color: red"></strong>
+                        <strong ng-bind="vm.error" class="error-company" style="color: red;margin-left:50px"></strong>
                      </div>
                      <div class="col-sm-4">
                         <div class="col-sm-12">

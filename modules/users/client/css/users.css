@@ -12,9 +12,7 @@
 }
 
 /* visited link */
-li.active {
-   background-color: #079696; 
-}
+
 
 li a.settings:link{
    

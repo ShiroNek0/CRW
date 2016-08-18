@@ -21,15 +21,16 @@
                 <div class="review-detail-companyrating">
                     <div class="row">
                         <div class="col-sm-2">
-                            <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar-detail" style="  height: 130px;max-width: 130px;margin-left:5px">
+                            <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar-detail" style="  height: 120px;max-width: 130px;margin-left:5px">
                         </div>
                         <div class="col-sm-10">
                             <div class="row" style="margin-left:6px">
-                                <div class="pull-left">
-                                    <h6 class=" text-label" style="margin-top:20px;color:black">Công ty:<a style="font-size:20px" ui-sref="companies.view({companyId: vm.company._id})"> {{ vm.company.name }}</a></h6>
-                                    <h6 class=" text-label" style="line-height:1.4em; color:black;">Ngành nghề chính: <b style="line-height:1.4em"  data-ng-bind="vm.company.industry"></b></h6>
-                                    <h6 class=" text-label" style="line-height:1.4em; color:black">Website: <a href="{{vm.company.website}}"><b style="color:black;line-height:1.4em;color:#3b5998;" class=" text-labels" data-ng-bind="vm.company.website"></b></a> </h6>
-                                    <h6 class=" text-label" style="line-height:1.4em; color:black">Số người theo dõi: <b style="color:red">{{ vm.company.numOfFollowers }}</b></h6>
+                                <div class="pull-left" style="margin-top:15px">
+                                    <span class=" text-labelss" style="margin-top:20px;color:grey"><span style="font-size:100%">Công ty:</span><a style="font-size:100%;font-weight:bold" ui-sref="companies.view({companyId: vm.company._id})"> {{ vm.company.name }}</a></span>
+                                     <h5 class=" text-labelss" style="line-height:1.4em; color:grey"><span  style="font-size:100%" >Website:</span> <a href="{{vm.company.website}}"><span style="color:grey;line-height:1.4em;color:#3b5998;" class=" text-labels" data-ng-bind="vm.company.website"></span></a> </h5>
+                                    <h5 class=" text-labelss" style="line-height:1.4em; color:grey;"><span style="font-size:100%">Ngành nghề chính:</span> <span style="line-height:1.4em;color:"  data-ng-bind="vm.company.industry"></span></h5>
+                                   
+                                    <h5 class=" text-labelss" style="line-height:1.4em; color:grey"><span  style="font-size:100%">Số người theo dõi:</span> <span style="color:black;font-weight:bold">{{ vm.company.numOfFollowers }}</span></h5>
                                 </div>
                                 <div class="pull-right">
                                     <fieldset class="pull-right rating" style="font-size:26px;margin-top:15px;padding-right:30px">
@@ -54,17 +55,18 @@
                                         <input type="radio" id="starhalf" name="rating" ng-model="vm.company.pointDisplay" value="0.5" disabled="disabled" checked="checked" />
                                         <label class="half" for="starhalf" title="Tệ hại - 0.5 stars"></label>
                                     </fieldset>
-                                    <h6 class=" review-sum" style="color:black">(<b style="color:#f2c40e;">{{vm.company.numOfReviews}}</b> bài đánh giá )</h6>
+                                    <h5 class=" review-sum" style="color:black;font-size:100%">(của<b style="color:#079696;"> {{vm.company.numOfReviews}}</b> bài đánh giá )</h5>
                                 </div>
                             </div>
                             <div class="row" style="margin-left:5px;color:grey">
-                                <h5>Bạn là nhân viên của công ty <b style="color:grey;line-height:1.4em">{{ vm.company.name }}</b>?.Xin vui lòng chia sẽ những kinh nghiệm của bạn.<a ui-sref="companies.createReview({companyId: vm.company._id})" class="reviewnow">Đánh giá ngay!</a>   
+                                <h5>Bạn là nhân viên của công ty <b style="color:grey;line-height:1.4em">{{ vm.company.name }}</b>?.Xin vui lòng chia sẽ những kinh nghiệm của bạn.<a ui-sref="companies.createReview({companyId: vm.company._id})" class="reviewnow"> Đánh giá ngay!</a>   
                         </h5>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="row review-detail-center">
                 <div class="row" style="background-color:#079696">
                     <h5 style="color:white;font-weight:bold;margin-left:30px;"><span class="glyphicon glyphicon-plus"></span> Đánh giá chi tiết</h5>
@@ -142,19 +144,21 @@
 
                   </div>
               </div>
-                      <div class="row">
-                                            <h5 style="margin-left:5px" class="text-left review-detail">Vị trí công việc:</h5>
-                                            <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details">- <span ng-repeat="job in vm.company.reviews.job">{{job}} - </span> </h5>
-                                        </div>
+
                                         <div class="row">
-                                            <h5 style="margin-left:5px" class="text-left review-detail" ng-show="(vm.company.reviews.isJobCurrent)">Hiện đang làm việc:</h5>
-                                            <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-detail" ng-hide="(vm.company.reviews.isJobCurrent)">Đã từng làm việc:</h5>
-                                            <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details" data-ng-bind="vm.company.reviews.jobLength"></h5>
+                                            
+                                            <span style="margin-left:5px;line-height:1.4em;font-size:100%" class="text-left review-details">
+                                          
+                                            <span style="text-transform:uppercase">T</span>ôi 
+                                            <span ng-show="(vm.company.reviews.isJobCurrent)">Hiện đang làm việc </span>
+                                             <span style="line-height:1.4em"  ng-hide="(vm.company.reviews.isJobCurrent)">Đã từng làm việc 
+                                             </span>
+                                              tại vị trí  ( <span ng-repeat="job in vm.company.reviews.job"> {{job}} - </span> ) <span data-ng-bind="vm.company.reviews.jobLength"></span> và là <span data-ng-bind="vm.company.reviews.contract"></span>. 
+
+
+                                            </span>
                                         </div>
-                                        <div class="row">
-                                            <h5 style="margin-left:5px" class="text-left review-detail">Kiểu nhân viên:</h5>
-                                            <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details" data-ng-bind="vm.company.reviews.contract"></h5>
-                                        </div>
+            
                                         <div class="row">
                                             <h5 style="margin-left:5px" class="text-left review-detail">Ưu điểm: </h5>
                                             <h5 style="margin-left:5px;line-height:1.4em" class="text-left review-details" data-ng-bind="vm.company.reviews.overallRev.pros"></h5>
@@ -288,12 +292,38 @@
                             <button type="button"  ng-show="vm.authentication.user" class="btn btn-success button-vote" data-toggle="modal" data-target="#modalUpvote"><span ng-hide="vm.checkIfUpvoted()" style="padding-bottom:20px"> <span style="font-size:14px;color:white">Ủng hộ ({{vm.company.reviews.upvoteUsers.length}})</span></span><span ng-show="vm.checkIfUpvoted()"> <b style="font-size:14px;color:white">Bỏ ủng Hộ ({{vm.company.reviews.upvoteUsers.length}})</b></span></button>
                             
                              
-                            <button style="color:white" type="button" ng-show="vm.authentication.user && (vm.authentication.user._id != vm.company.reviews.userID._id)" class="btn btn-info  button-bookmark" ng-click="vm.bookmark()"><span ng-hide="vm.checkIfBookmarked()"> <span style="font-size:14px">Dấu trang</span></span><span ng-show="vm.checkIfBookmarked()">  <b style="font-size:14px">Bỏ lưu dấu trang</b></span></button>
-                             <button type="button" class="button-fix btn btn-primary" ui-sref="companies.editReview({companyId: vm.company._id, reviewId: vm.company.reviews._id, message: 'Lưu ý: Bài sửa xong sẽ phải duyệt lại'})">
-                                                <b >Sửa bài đánh giá</b>
-                                            </button>
-                            <button class="pull-right button-report" ng-show="vm.authentication.user" style="margin-bottom:13px" type="button" data-toggle="modal" data-target="#baocaoModal"><span class="glyphicon glyphicon-flag" data-toggle="tooltip" data-placement="left" title="Báo cáo vi phạm"></span> </button>
+                        <button style="color:white" type="button" ng-show="vm.authentication.user && (vm.authentication.user._id != vm.company.reviews.userID._id)" class="btn btn-info  button-bookmark" ng-click="vm.bookmark()"><span ng-hide="vm.checkIfBookmarked()"> <span style="font-size:14px">Dấu trang</span></span><span ng-show="vm.checkIfBookmarked()">  <b style="font-size:14px">Bỏ lưu dấu trang</b></span></button>
 
+                             <button type="button" ng-show="vm.authentication.user && (vm.authentication.user.roles.indexOf('mod')>=0 || vm.authentication.user._id===vm.company.reviews.userID._id)"   class="button-fix btn btn-primary" ui-sref="companies.editReview({companyId: vm.company._id, reviewId: vm.company.reviews._id, message: 'Lưu ý: Bài sửa xong sẽ phải duyệt lại'})">
+                             <b >Sửa bài đánh giá</b>
+                             </button>
+                              <button style="color:white" type="button" class="btn btn-danger button-delete" ng-show="vm.authentication.user && (vm.authentication.user.roles.indexOf('mod')>=0 || vm.authentication.user._id===vm.company.reviews.userID._id)" data-toggle="modal" data-target="#modalDelete" ><span style="font-size:14px">Xóa bài đánh giá</span></button>
+
+                            <button class="pull-right button-report" ng-show="vm.authentication.user" style="margin-bottom:13px" type="button" data-toggle="modal" data-target="#baocaoModal"><span class="glyphicon glyphicon-flag" data-toggle="tooltip" data-placement="left" title="Báo cáo vi phạm"></span> </button>
+                                  <div id="baocaoModal" class="modal fade" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header" style="background-color:#079696;color:grey">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title" style="color:white">Báo cáo vi phạm</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label for="message-text" class="control-label">
+                                                                        <h5>Bạn có chắc chắn muốn <b style="color:#f24141
+                                                              ">báo cáo</b> vị phạm bài đánh giá này, <b style="color:#f24141
+                                                              ">hãy chắc chắn</b> với nhưng điều đó trước khi gửi báo cáo cho chúng tôi.</h5>
+                                                                    </label>
+                                                                    <textarea class="form-control" rows="5" style="border:solid 1px;border-color:#bfbbbb" id="message-text" ng-model="vm.report.content" placeholder="Nhập nội dung bạn muốn báo cáo..."></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                                                                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="vm.sendReport()">Hoàn thành</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                            
                         </div>
                     </div>
@@ -307,7 +337,7 @@
                          
                     <div class="review-detail-comment">
                         <div class="row" ng-hide="vm.authentication.user">
-                            <b style="color:grey;margin-left:40px;font-size:13px;">Hãy đăng nhập để tham gia bình luận</b>
+                            <span style="color:grey;margin-left:15px;font-size:100%;">Hãy đăng nhập để tham gia bình luận</span>
                         </div>
                         <div ng-show="vm.authentication.user">
                             <h5 style="color:#079696;">Xin vui lòng hãy dùng từ ngữ lịch sự khi sử dụng tính năng bình luận.</h5>
@@ -369,36 +399,13 @@
                     </div>
                 </div>
             </div>
-            <div id="baocaoModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header" style="background-color:#079696;color:grey">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title" style="color:white">Báo cáo vi phạm</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="message-text" class="control-label">
-                                        <h5>Bạn có chắc chắn muốn <b style="color:#f24141
-                              ">báo cáo</b> vị phạm bài đánh giá này, <b style="color:#f24141
-                              ">hãy chắc chắn</b> với nhưng điều đó trước khi gửi báo cáo cho chúng tôi.</h5>
-                                    </label>
-                                    <textarea class="form-control" rows="5" style="border:solid 1px;border-color:#bfbbbb" id="message-text" ng-model="vm.report.content" placeholder="Nhập nội dung bạn muốn báo cáo..."></textarea>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="vm.sendReport()">Hoàn thành</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <div class="row" style="background-color:white;border:solid 1px; border-color:lightgrey;margin-left:0px;margin-top:20px" ng-show="(vm.authentication.user.roles.indexOf('mod')>0)">
+          
+            <div class="row" style="background-color:#079696;border:solid 1px; border-color:lightgrey;margin-left:0px;margin-top:20px" ng-show="(vm.authentication.user.roles.indexOf('mod')>0)">
 
               <button style="color:white" type="button" ng-show="(vm.authentication.user.roles.indexOf('mod')>0)" class="btn btn-warning  button-votes" ng-click="vm.highlight()"><span ng-hide="vm.company.reviews.highlight"> <span style="font-size:14px">Đánh giá nổi bật</span></span><span ng-show="vm.company.reviews.highlight"> <span style="font-size:14px">Bỏ đánh giá nổi bật</span></span>
                             </button>
                 
-             <button style="color:white" type="button" class="btn btn-danger button-delete" ng-show="vm.authentication.user && (vm.authentication.user.roles.indexOf('mod')>=0 || vm.authentication.user._id===vm.company.reviews.userID._id)" data-toggle="modal" data-target="#modalDelete" ><span style="font-size:14px">Xóa bài đánh giá</span></button>
+            
 
                 <div id="baocaoModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">

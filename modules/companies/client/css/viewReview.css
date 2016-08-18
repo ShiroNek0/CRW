@@ -18,6 +18,7 @@ h1 { font-size: 1.5em; margin: 10px; }*/
  color:#fff;
  font-size:11px;
  font-weight:900
+
  }
  #bttop:hover{
  border:1px solid #ffa789;
@@ -186,8 +187,8 @@ h1 { font-size: 1.5em; margin: 10px; }*/
 .button-votes{
   margin-top: 15px;
   font-size: 12px;
-  margin-bottom: 20px;
-  margin-left: 15px;
+  margin-bottom: 15px;
+  margin-left: 25px;
   font-weight: bold;
  
   color: black;
@@ -198,7 +199,7 @@ h1 { font-size: 1.5em; margin: 10px; }*/
 .button-delete{
  
   font-size: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 6px;
   margin-left: 15px;
   font-weight: bold;
  

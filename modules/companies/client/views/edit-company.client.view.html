@@ -16,8 +16,8 @@
                         <div class="form-group">
                            <h5 class="congty">
                            Trạng thái</span>:</h5>
-                          <input type="radio" name="status" ng-model="vm.company.state" value="approved"> Hoạt động<br>
-                          <input type="radio" name="status" ng-model="vm.company.state" value="denied"> Khóa<br>
+                          <input type="radio" name="status" ng-model="vm.company.state" value="approved" ><span style="color:green"> Hoạt động<span><br>
+                          <input  type="radio" name="status" ng-model="vm.company.state" value="denied"> <span style="color:red">Khóa</span><br>
                            
                         </div>
                         <div class="form-group" show-errors>
@@ -104,8 +104,8 @@
                               <div ng-messages="vm.form.companyForm.$submitted && vm.form.companyForm.avatar.$error" role="alert">
                                   <p class="help-block error-text" ng-message="required">Hãy nhập link ảnh đại diện.</p>
                               </div> -->
-                           <div ng-show="(vm.avatarTemp)"><img ng-src="{{vm.avatarTemp}} " style="height:200px;width:220px;"></div>
-                           <div ng-show="vm.uploader.queue.length" style="margin-left:-16px">
+                           <div ng-show="(vm.avatarTemp)"><img ng-src="{{vm.avatarTemp}} " style="height:200px;width:220px;border:solid 1px; border-color:lightgrey"></div>
+                           <div ng-show="vm.uploader.queue.length" style="margin-left:0px;margin-top:20px">
                                  <span style="font-size:25px;margin-right:20px" class="glyphicon glyphicon-remove" ng-click="vm.cancelUpload()"></span>
                                  <span style="font-size:25px;"  class="glyphicon glyphicon-ok" ng-click="vm.uploadPicture()"></span >
                            </div>
@@ -204,7 +204,7 @@
                         <!-- <input type="text" placeholder="Nhập đường dẫn ảnh giới thiệu..." data-placement="bottom" ng-model="vm.introducePhoto">
                            <button type="button" ng-click="vm.addPhoto()" style="background-color:#0cb20c;color:white">Thêm ảnh</button> -->
                         <div ng-show="(vm.photoTemp)"><img ng-src="{{vm.photoTemp}} " style="height:100px;width:120px;border:solid 1px;border-color:lightgrey"></div>
-                        <div ng-show="vm.photoUploader.queue.length">
+                        <div ng-show="vm.photoUploader.queue.length" style="margin-top:10px">
                            <span style="font-size:25px;margin-right:20px" class="glyphicon glyphicon-remove" ng-click="vm.cancelPhotoUploader()"></span>
                            <span style="font-size:25px;" class="glyphicon glyphicon-ok" ng-click="vm.uploadPhoto()"></span>
                         </div>

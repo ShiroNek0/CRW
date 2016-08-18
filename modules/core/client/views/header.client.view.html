@@ -10,7 +10,7 @@
  
          -webkit-animation: shine 2s infinite;
         -webkit-background-clip: text;
-         -webkit-background-size: 300px;">
+         -webkit-background-size: 500px;">
       <img src="modules/users/client/img/logo2.png" style="width:54px;height:44px">
      <b style="padding-right:10px">Company rating website</b></a>
        
@@ -22,9 +22,19 @@
     <div class="pull-right">
           <ul class="nav navbar-nav" ng-hide="authentication.user">
             <li ui-sref-active="active">
+              <a ui-sref="authentication.signup" class="signin">
+                <span class="glyphicon glyphicon-registration-mark"></span>
+                <b id="c-name" style="font-size:10px"> ĐĂNG KÝ</b>
+              </a>
+            </li>
+          </ul>
+     </div>
+       <div class="pull-right">
+          <ul class="nav navbar-nav" ng-hide="authentication.user">
+            <li ui-sref-active="active">
               <a ui-sref="authentication.signin" class="signin">
                 <span class="glyphicon glyphicon-log-in"></span>
-                <b id="c-name" style="font-size:10px"> ĐĂNG NHẬP</b>
+                <b id="c-name" style="font-size:10px"> ĐĂNG NhẬP</b>
               </a>
             </li>
           </ul>
@@ -86,7 +96,7 @@
 
     </div>
     <div class="pull-right">
-      <div id="searchs" style="margin-right:20px;">
+      <div id="searchs" style="margin-right:10px;">
 
       <form method="GET">
 

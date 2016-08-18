@@ -284,7 +284,7 @@
                      Tên công ty : </span >
                   </div>
                   <div class="col-sm-7">
-                     <span  class="text-labels" data-ng-bind="vm.company.name"></span >
+                     <span  class="text-labels" data-ng-bind="vm.company.name" style="white-space: nowrap;width: 14em; overflow: hidden;text-overflow: ellipsis;"></span >
                   </div>
                </div>
                <div class="row">
@@ -295,11 +295,11 @@
                   <div class="col-sm-7">
                      <div ng-show="(vm.company.alias.length >0)">
                         <span >
-                           <div ng-repeat="name in vm.company.alias" style="color:#999999;"><span> {{name}}</span></div>
+                           <div ng-repeat="name in vm.company.alias" style="color:#999999;white-space: nowrap;width: 14em; overflow: hidden;text-overflow: ellipsis;"><span> {{name}}</span></div>
                         </span >
                      </div>
                      <span >
-                        <span ng-hide="(vm.company.alias.length >0)" style="color:#999999"> Không có tên gọi nào khác</span>
+                        <span ng-hide="(vm.company.alias.length >0)" style="color:#999999;white-space: nowrap;width: 14em; overflow: hidden;text-overflow: ellipsis;"> Không có tên gọi nào khác</span>
                      </span >
                   </div>
                </div>
@@ -316,19 +316,23 @@
                </div>
                <div class="row">
                   <div class="col-sm-5">
-                     <span class="pull-left text-label">
+                     <span class="pull-left text-label" >
                      Loại hình công ty : </span >
                   </div>
                   <div class="col-sm-7">
-                     <span  class="pull-left text-labels" data-ng-bind="vm.company.companyType"></span >
+                     <span  class="pull-left text-labels" data-ng-bind="vm.company.companyType" style="white-space: nowrap;width: 14em; overflow: hidden;text-overflow: ellipsis;"></span >
                   </div>
                </div>
                <div class="row">
                   <div class="col-sm-5">
                      <span  class="pull-left text-label" style="">Trụ sở chính : </span >
                   </div>
+
+                  <div class="popup2" onclick="myFunction2()">
                   <div class="col-sm-7" style="white-space: nowrap;width: 14em; overflow: hidden;text-overflow: ellipsis;">
                      <span  class="text-labels" data-ng-bind="vm.company.hq" ></span >
+                  </div>
+                  <span class="popuptext2" id="myPopup2"> <span style="color:white"  class="text-labels" data-ng-bind="vm.company.hq" ></span></span>
                   </div>
                </div>
             </div>
@@ -357,9 +361,15 @@
                      <span class="pull-left text-label">
                      Liên hệ : </span >
                   </div>
+
+               <div class="popup" onclick="myFunction()">
                   <div class="col-sm-7" style="white-space:nowrap;width: 14em; overflow: hidden;text-overflow: ellipsis">
-                     <span  class="text-labels" data-ng-bind="vm.company.contact" ></span >
+                     <span  class="text-labels" data-ng-bind="vm.company.contact" >
+                     </span >
                   </div>
+                   <span class="popuptext" id="myPopup"> <span style="color:white"  class="text-labels" data-ng-bind="vm.company.contact" ></span></span>
+                </div>
+
                </div>
                <div class="row">
                   <div class="col-sm-5">
@@ -375,9 +385,14 @@
                      <span class="pull-left text-label">
                      Giới thiệu, mô tả : </span >
                   </div>
-                  <div class="col-sm-7"  style="white-space:nowrap;width: 14em; overflow: hidden;text-overflow: ellipsis" >
+
+                  <div class="popup1" onclick="myFunction1()">
+                     <div class="col-sm-7"  style="white-space:nowrap;width: 14em; overflow: hidden;text-overflow: ellipsis" >
                      <span class="text-labels" data-ng-bind="vm.company.description"></span >
                   </div>
+                          <span class="popuptext1" id="myPopup1"> <span style="color:white"  class="text-labels" data-ng-bind="vm.company.description" ></span></span>
+                  </div>
+                  
                </div>
             </div>
          </div>
@@ -438,11 +453,9 @@
 <script>
    $(document).ready(function() {
       $('[data-toggle="tooltip"]').tooltip();
-
       var myPix = new Array("modules/core/client/img/demo.jpg","modules/core/client/img/demo1.jpg","modules/core/client/img/demo2.png", "modules/core/client/img/demo3.jpg");
       choosePic(myPix);
    });
-
    function choosePic(myPix) {
         var randomNum = Math.floor(Math.random() * myPix.length);
         document.getElementById("randomPic").style.background = 'url('+myPix[randomNum]+')';
@@ -476,3 +489,205 @@
        }
    });
 </script>
+<script>
+// When the user clicks on div, open the popup
+function myFunction() {
+    var popup = document.getElementById('myPopup');
+    popup.classList.toggle('show');
+}
+</script>
+
+<script>
+// When the user clicks on div, open the popup
+function myFunction1() {
+    var popup1 = document.getElementById('myPopup1');
+    popup1.classList.toggle('show');
+}
+</script>
+<script>
+// When the user clicks on div, open the popup
+function myFunction2() {
+    var popup2 = document.getElementById('myPopup2');
+    popup2.classList.toggle('show');
+}
+</script>
+<style>
+/* Popup container - can be anything you want */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+</style>
+
+
+
+<style>
+/* Popup container - can be anything you want */
+.popup1 {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup1 .popuptext1 {
+    visibility: hidden;
+    width: 200%;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left:-160px;
+}
+
+/* Popup arrow */
+.popup1 .popuptext1::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup1 .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+</style>
+
+
+<style>
+/* Popup container - can be anything you want */
+.popup2 {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup2 .popuptext2 {
+    visibility: hidden;
+    width: 200%;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left:-160px;
+}
+
+/* Popup arrow */
+.popup2 .popuptext2::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup2 .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+</style>
+
