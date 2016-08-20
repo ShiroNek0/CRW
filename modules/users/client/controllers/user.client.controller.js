@@ -37,7 +37,7 @@ angular.module('users').controller('UserProfileController', ['$http', '$scope', 
       }
 
       function errorCallback(res) {
-        alert(res.data.message);
+        alert(res.message);
       }
     };
   }

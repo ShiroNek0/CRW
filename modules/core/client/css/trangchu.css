@@ -5,21 +5,14 @@ div.search{
 	 background: rgba(59,89,152, 0.5);
 }
  .search{
- 	 width: 660px;
- 	 height: 250px;
- 	 margin-bottom: 180px;
- 	 margin-left: 60px;
+ 	 width: 80%;
+ 	 height: 30%;
+ 	 margin: auto;
+ 	 margin-bottom: 30%;
      background-color: rgb(	59,89,152);
-    -moz-border-radius-topleft:10px;
-    -webkit-border-top-left-radius:10px;
-    -moz-border-radius-bottomleft:10px;
-	-webkit-border-bottom-left-radius:10px;
-	-moz-border-radius-topright:10px;
-	-webkit-border-top-right-radius:10px;
-	-moz-border-radius-bottomright:10px;
-	-webkit-border-bottom-right-radius:10px;
-
+     border-radius: 10px;
  }
+
  div.tab-contents-avatar{
  	background: rgba(59,89,152, 0.5)
  }

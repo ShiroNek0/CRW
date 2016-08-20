@@ -4,7 +4,7 @@
          <div class="col-sm-7  " style="margin-top:20px;border:solid 1px;border-color:grey;background-color:white; overflow:hidden;margin-bottom:30px;" >
             <div class="row" style="margin-bottom:20px;height:60px">
                <div class="col-sm-6" style="color:white;margin-top:10px">
-                  <h5 style="color:grey" ng-show="(vm.keyword)">{{vm.companies.length}} kết quả cho từ khóa : {{vm.keyword}}</h5>
+                  <h5 style="color:black;font-size:18px;margin-left:15px" ng-show="(vm.keyword)">{{vm.companies.length}} kết quả cho từ khóa : {{vm.keyword}}</h5>
                   <h5 style="color:black;font-size:18px;margin-left:15px" ng-hide="(vm.keyword)"></span> Danh Sách Tất Cả Công Ty :</h5>
                </div>
                <div class="col-sm-6">
@@ -38,6 +38,10 @@
                <div class="col-sm-12" style="margin-left:-5px">
                   <div dir-paginate="company in vm.companies | orderBy:vm.sortKey:vm.reverse | filter:{state: 'approved'} | itemsPerPage:vm.itemsPerPage" ng-include="'modules/companies/client/views/panel-company.client.view.html'"></div>
                </div>
+               <div ng-repeat="company in vm.companies | filter:{state: 'approved'} as results"></div>
+               <div class="text-center" ng-hide="results.length>0">
+               Công ty của bạn chưa có trên hệ thống? <a ui-sref="companies.create">Tạo công ty mới</a>
+               </div>
             </div>
             <div class="row pull-right" style="font-size:10px;margin-right:10px" >
                <dir-pagination-controls
@@ -65,15 +69,8 @@
                   </div>
                   </a>
                </div>
-               <!--            <div class="col-sm-2">
-                  </div> -->
             </div>
          </div>
-       <!--   <a  ui-sref="authentication.signup" >
-            <div class="circles">
-               <span class="glyphicon glyphicon-plus" style="font-size:11px;color:#03a9f4"></span><span class="glyphicon glyphicon-user" style="color:#03a9f4;padding-top:20px"></span>
-            </div>
-         </a> -->
       </div>
    </div>
    <div id='bttop'>TRỞ VỀ ĐẦU TRANG</div>

@@ -45,7 +45,6 @@ exports.update = function (req, res) {
       if (req.body.accState) user.accState = req.body.accState;
     }
   }
-
   user.save(function (err) {
     if (err) {
       return res.status(400).send({
