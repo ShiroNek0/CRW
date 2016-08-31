@@ -568,7 +568,7 @@ exports.updateReview = function(req, res) {
         jobs.createList(review.job);
         // Gửi thông báo tới người theo dõi
         broadcastMessage(company.followers, {
-          message: (req.user ? req.user.name : 'Người dùng ẩn') + ' đăng bài đánh giá mới cho công ty ' + company.name,
+          message: (req.user && !review.stayAnonymous ? req.user.name : 'Người dùng ẩn') + ' đăng bài đánh giá mới cho công ty ' + company.name,
           targetLink: '/companies/' + company._id + '/reviews/' + review._id
         });
 

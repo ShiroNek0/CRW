@@ -57,7 +57,7 @@
          <div>
             <div class="row" style="margin-left:0px;margin-right:0px; ">
                <div class="col-sm-7">
-                  <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar">
+                  <img style="border:solid 2px;border-color:lightgrey" src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar">
                   <a style="text-decoration: none; ">
                      <h4 class="text-reason" style="color:white;font-size:22px">{{ vm.company.name }}</h4>
                   </a>
@@ -99,7 +99,7 @@
                   <div class="row" style="margin-left:0px;margin-right:0px">
                      <h5 class="rating-review-all" style="color:#333;margin-left:15px;font-size:18px"> Đánh Giá Tổng Quát </h5>
                   </div>
-                  <h6 style="color:grey;margin-left:15px;font-size:14px">Điểm <b>trung bình</b> của tất cả các bài đánh giá.</h6>
+                  <h6 style="color:black;margin-left:15px;font-size:14px">Điểm <b>trung bình</b> của tất cả các bài đánh giá.</h6>
                   <div class="row" style="margin-top:20px;margin-bottom:48px">
                      <div class="col-sm-2">
                         <p style="margin-left:110px;font-size:30px;color:#f24141;font-weight:bold;margin-top:7px">{{vm.company.averageRating | number:1}} </p>
@@ -195,7 +195,7 @@
       </div>
       <div class="row" style="order-bottom:solid 1px;border-color:lightgrey;background-color:white;margin-top:10px;">
          <h5   style="color:#333; font-size:18px;margin-left:15px;">Bài Đánh Giá Nổi Bật</h5>
-         <div  ng-repeat="review in vm.company.reviews | orderBy:'-lastUpdated' | filter: { state: 'approved', highlight: true }" ng-include="'modules/companies/client/views/panel-review.client.view.html'" ng-init="companyId=vm.company._id" class="list-review-all">
+         <div style="line-height:1.4em"  ng-repeat="review in vm.company.reviews | orderBy:'-lastUpdated' | filter: { state: 'approved', highlight: true }" ng-include="'modules/companies/client/views/panel-review.client.view.html'" ng-init="companyId=vm.company._id" class="list-review-all">
          </div>
       </div>
       <div class="row" style=" border:solid 1px;border-color:#b2b2b2;background-color:white;margin-top:10px;margin-bottom:10px">
@@ -205,10 +205,10 @@
                </style>
                <div class="alert">
                   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                  <strong>Quan trọng!</strong> Chúng tôi sẽ kiểm duyệt các bài đánh giá trước khi đăng.Xin vui lòng chờ phản hồi từ hệ thống!
+                  <strong>Quan trọng!</strong> Chúng tôi sẽ kiểm duyệt các bài đánh giá trước khi đăng. Xin vui lòng chờ phản hồi từ hệ thống!
                </div>
                <h5 class="pull-left text-company-overview-reivew" style="color:#333; font-size:18px">Các Đánh Giá Khác Về Công Ty</h5>
-               <span style="font-size:100%;margin-left:360px;color:#333;margin-top:15px">Tìm kiếm :</span>
+               <span style="font-size:100%;margin-left:370px;color:#333;margin-top:15px">Tìm kiếm :</span>
                <input type="search" ng-model="keyword" style="width:120px;border:solid 1px;border-color:lightgrey ;font-size:12px;margin-top:15px" placeholder="Nhập chủ đề...">
             </div>
             <div class=" col-sm-4 " style="font-size:100%;margin-top:5px">

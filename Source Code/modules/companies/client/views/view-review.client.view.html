@@ -21,16 +21,16 @@
                 <div class="review-detail-companyrating">
                     <div class="row">
                         <div class="col-sm-2">
-                            <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar-detail" style="  height: 120px;max-width: 130px;margin-left:5px">
+                            <img src="{{vm.company.avatar}}" alt="avatar" class="pull-left content-avatar-detail" style="  height: 110px;max-width: 130px;margin-left:10px;border:solid 2px;border-color:lightgrey">
                         </div>
                         <div class="col-sm-10">
                             <div class="row" style="margin-left:6px">
                                 <div class="pull-left" style="margin-top:15px">
-                                    <span class=" text-labelss" style="margin-top:20px;color:grey"><span style="font-size:100%">Công ty:</span><a style="font-size:100%;font-weight:bold" ui-sref="companies.view({companyId: vm.company._id})"> {{ vm.company.name }}</a></span>
-                                     <h5 class=" text-labelss" style="line-height:1.4em; color:grey"><span  style="font-size:100%" >Website:</span> <a href="{{vm.company.website}}"><span style="color:grey;line-height:1.4em;color:#3b5998;" class=" text-labels" data-ng-bind="vm.company.website"></span></a> </h5>
-                                    <h5 class=" text-labelss" style="line-height:1.4em; color:grey;"><span style="font-size:100%">Ngành nghề chính:</span> <span style="line-height:1.4em;color:"  data-ng-bind="vm.company.industry"></span></h5>
+                                    <span class=" text-labelss" style="margin-top:20px;color:black"><span style="font-size:100%">Công ty:</span><a style="font-size:100%;font-weight:bold" ui-sref="companies.view({companyId: vm.company._id})"> {{ vm.company.name }}</a></span>
+                                     <h5 class=" text-labelss" style="line-height:1.4em; color:black"><span  style="font-size:100%" >Website:</span> <a href="{{vm.company.website}}"><span style="color:black;line-height:1.4em;color:#3b5998;" class=" text-labels" data-ng-bind="vm.company.website"></span></a> </h5>
+                                    <h5 class=" text-labelss" style="line-height:1.4em; color:black;"><span style="font-size:100%">Ngành nghề chính:</span> <span style="line-height:1.4em;"  data-ng-bind="vm.company.industry"></span></h5>
                                    
-                                    <h5 class=" text-labelss" style="line-height:1.4em; color:grey"><span  style="font-size:100%">Số người theo dõi:</span> <span style="color:black;font-weight:bold">{{ vm.company.numOfFollowers }}</span></h5>
+                                    <h5 class=" text-labelss" style="line-height:1.4em; color:black"><span  style="font-size:100%">Số người theo dõi:</span> <span style="color:black;font-weight:bold">{{ vm.company.numOfFollowers }}</span></h5>
                                 </div>
                                 <div class="pull-right">
                                     <fieldset class="pull-right rating" style="font-size:26px;margin-top:15px;padding-right:30px">
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="row" style="margin-left:5px;color:grey">
-                                <h5>Bạn là nhân viên của công ty <b style="color:grey;line-height:1.4em">{{ vm.company.name }}</b>?.Xin vui lòng chia sẽ những kinh nghiệm của bạn.<a ui-sref="companies.createReview({companyId: vm.company._id})" class="reviewnow"> Đánh giá ngay!</a>   
+                                <h5>Bạn là nhân viên của công ty <b style="color:black;line-height:1.4em">{{ vm.company.name }}</b>?.Xin vui lòng chia sẽ những kinh nghiệm của bạn.<a ui-sref="companies.createReview({companyId: vm.company._id})" class="reviewnow"> Đánh giá ngay!</a>   
                         </h5>
                             </div>
                         </div>
@@ -175,8 +175,8 @@
 	                <div class="row">
 		                <div class="col-sm-4">
                         </div>
-                        <div class="col-sm-4">				                
-	                                    <fieldset class="rating" style="font-size:26px">
+                        <div class="col-sm-4" >				                
+	                                    <fieldset class="rating" style="font-size:26px;margin-left:25px">
 	                                        <input type="radio" id="overallRevRating5" name="overallRevRating" ng-model="vm.company.reviews.overallRev.rating" value="5" disabled="disabled" checked="checked" />
 	                                        <label class="full" for="overallRevRating5" title="Xuất sắc - 5 stars"></label>
 
@@ -200,7 +200,7 @@
                                         
                   <div class="row text-center">
                        
-                        <h5 style="line-height:1.4em;margin-left:5px;color:black"><a data-toggle="collapse" data-target="#salary">Xem thêm đánh giá về lương và chế độ đãi ngộ</a></h5>
+                        <h5 style="line-height:1.4em;color:black"><a data-toggle="collapse" data-target="#salary">Xem thêm đánh giá về lương và chế độ đãi ngộ</a></h5>
                         <div id="salary" class="collapse">
                            <div style="margin-left:5px">
                                              <div class="col-sm-6">
@@ -216,7 +216,7 @@
                                             </div>
                                             <div class="row">
                                                 <h5 class="text-left review-detail">Lương thưởng:</h5>
-                                                <h5 data-toggle="tooltip" data-placement="bottom" title="Hàng năm công ty thưởng trung bình bạn bao nhiêu tiền!" class="text-left review-details" ng-show="vm.company.reviews.salaryAndBenefit.cashBonus">{{vm.company.reviews.salaryAndBenefit.cashBonus | number}} VND / Năm</h5>
+                                                <h5 data-toggle="tooltip" data-placement="bottom" title="Hàng năm công ty thưởng trung bình bạn bao nhiêu tiền!" class="text-left review-details" ng-show="vm.company.reviews.salaryAndBenefit.cashBonus">{{vm.company.reviews.salaryAndBenefit.cashBonus | number}} VND / Tháng</h5>
                                                 <h5 class="text-left review-details" ng-hide="vm.company.reviews.salaryAndBenefit.cashBonus">Chưa có thông tin về lương thưởng</h5>
                                             </div>
                                             <div class="row">
@@ -371,9 +371,9 @@
                             <div id=cmtSection>
                                 <form>
                                     <div class="form-group textarea-cmt">
-                                        <textarea name="comment" ng-trim="true" ng-model="vm.newComment" class="form-control textarea-cmt-inside" rows="3" style="border:solid 1px;border-color:#cccccc;" placeholder="Nhập bình luận..." minlength="10" maxlength="600"></textarea>
+                                        <textarea name="comment" ng-trim="true" ng-model="vm.newComment" class="form-control textarea-cmt-inside" rows="3" style="border:solid 1px;border-color:#cccccc;" placeholder="Nhập bình luận..." minlength="5" maxlength="500"></textarea>
                                         <div class="row">
-                                              <h6 class="pull-left review-cmt-note" style="font-weight:bold;margin-left:16px">*Bình luận chỉ từ 10 đến 600 ký tự.</h6>
+                                              <h6 class="pull-left review-cmt-note" style="margin-left:16px">*Bình luận chỉ từ 5 đến 500 ký tự.</h6>
                                     
                                             <button style="margin-bottom:10px;font-size:12px;margin-right:16px;margin-top:5px" type="submit" class="pull-right btn btn-primary" ng-click="vm.postComment(vm.newComment)" style="font-weight:bold">Gửi bình luận</button>
                                         </div>

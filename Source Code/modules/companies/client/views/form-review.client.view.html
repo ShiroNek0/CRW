@@ -62,7 +62,7 @@
                                             {{job}}
                                             <button style="background-color:#f43a3a;color:white" type="button" ng-click="vm.deleteJob($index)">Xóa</button>
                                         </div>
-                                        <input type="text" list="jobList" class="form-control input-review-title" placeholder="Điền nghề nghiệp cho bài đánh giá..." data-toggle="tooltip" data-placement="bottom" title="Vị trí công việc sẽ giúp tăng tính khách quan hơn trong bài đá.h giá của bạn!" ng-model="vm.job" ng-keypress="vm.jobEnter($event)">
+                                        <input type="text" list="jobList" class="form-control input-review-title" placeholder="Điền nghề nghiệp cho bài đánh giá..." data-toggle="tooltip" data-placement="bottom" title="Vị trí công việc sẽ giúp tăng tính khách quan hơn trong bài đánh giá của bạn!" ng-model="vm.job" ng-keypress="vm.jobEnter($event)">
                                         <datalist id="jobList">
                                             <option ng-repeat="job in vm.jobList" value="{{job.name}}">
                                         </datalist>
@@ -169,7 +169,7 @@
                                         <div class=" rightAlign">
                                             <h5 class="label-review-salary-year">Lương thưởng:</h5>
                                             <input type="number" min="0" name="cashBonus" class="form-control input-review-salary" placeholder="Nhập lương thưởng..." ng-model="vm.company.newReview.salaryAndBenefit.cashBonus" data-toggle="tooltip" data-placement="bottom" title="Hàng năm công ty thưởng trung bình bạn bao nhiêu tiền!">
-                                            <div>{{vm.company.newReview.salaryAndBenefit.cashBonus | number}} VND / Năm</div>
+                                            <div>{{vm.company.newReview.salaryAndBenefit.cashBonus | number}} VND / Tháng </div>
                                             <div ng-messages="vm.form.reviewForm.cashBonus.$error" role="alert">
                                                 <p class="help-block error-text" ng-message="number" style="color: red">Invalid</p>
                                                 <p class="help-block error-text" ng-message="min" style="color: red">Chỉ nhập số lớn hơn 0.</p>

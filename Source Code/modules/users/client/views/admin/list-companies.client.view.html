@@ -92,7 +92,7 @@
             <tbody style="word-wrap: break-word;">
             
                   <td class="col-sm-3" ><a ui-sref="companies.view({companyId: company._id})" style="word-wrap:break-word" >{{company.name}}</a></td>
-                  <td class="col-sm-2" style="word-wrap: break-word"> <span  ng-repeat="alias in company.alias" class="badge" style="word-wrap: break-word;background-color:#079696"> {{alias}}</span></td>
+                  <td class="col-sm-2" style="word-wrap: break-word"> <span  ng-repeat="alias in company.alias" class="badge" style="word-wrap: break-word;background-color:#079696;white-space:nowrap;width: 10em; overflow: hidden;text-overflow: ellipsis"> {{alias}}</span></td>
                   <td class="col-sm-1" style="word-wrap: break-word;">{{company.numOfReviews}}</td>
                   <td class="col-sm-1" style="word-wrap: break-word;"> {{company.averageRating | number:2}}</td>
                   <td class="col-sm-1" style="word-wrap: break-word;"> {{company.overallRating | number:2}}</td>

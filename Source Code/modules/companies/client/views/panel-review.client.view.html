@@ -20,15 +20,15 @@
             <div class="row" style="margin-top:30px;margin-left:0px">
                  <span  class="text-left title-review" data-ng-bind="review.title" ng-class="{highlightReview: review.highlight}"></span>
             </div>
-            <h6 style="color:#666;font-size:14px">Tôi làm tại vị trí <span ng-repeat="job in review.job">{{job}} - </span>( <span ng-hide="(review.isJobCurrent)" > </span><span ng-show="(review.isJobCurrent)"> </span><span data-ng-bind="review.jobLength"></span>)</h6>
-           <!--  <h6 style="color:#666;font-weight:bold">Vị trí công việc:</h6>
-            <h6 style="color:#666;" class="text-left "><span ng-repeat="job in review.job">{{job}} - </span> </h6>
-            <h6 style="color:#666;font-weight:bold">Hiện đang làm việc:</h6>
-            <h6 class="text-left" style="color:#666"><span ng-hide="(review.isJobCurrent)" > Đã từng làm việc </span><span ng-show="(review.isJobCurrent)"> </span><span data-ng-bind="review.jobLength"></span></h6> -->
-            <p style="color:#666;font-weight:bold;font-size:14px">Ưu điểm:</p>
-            <p class="text-left " style="color:#666;font-size:14px"><span style="line-height:1.4em" data-ng-bind="review.overallRev.pros"></span> </p>
-            <p style="color:#666;font-weight:bold;font-size:14px">Nhược điểm:</p>
-            <p class="text-left " style="color:#666;font-size:14px"><span style="line-height:1.4em" data-ng-bind="review.overallRev.cons"></span> </p>
+            <h6 style="color:black;font-size:14px">Tôi làm tại vị trí <span ng-repeat="job in review.job">{{job}} - </span>( <span ng-hide="(review.isJobCurrent)" > </span><span ng-show="(review.isJobCurrent)"> </span><span data-ng-bind="review.jobLength"></span>)</h6>
+           <!--  <h6 style="color:black;font-weight:bold">Vị trí công việc:</h6>
+            <h6 style="color:black;" class="text-left "><span ng-repeat="job in review.job">{{job}} - </span> </h6>
+            <h6 style="color:black;font-weight:bold">Hiện đang làm việc:</h6>
+            <h6 class="text-left" style="color:black"><span ng-hide="(review.isJobCurrent)" > Đã từng làm việc </span><span ng-show="(review.isJobCurrent)"> </span><span data-ng-bind="review.jobLength"></span></h6> -->
+            <p style="color:black;font-weight:bold;font-size:14px">Ưu điểm:</p>
+            <p class="text-left " style="color:black;font-size:14px"><span style="line-height:1.4em" data-ng-bind="review.overallRev.pros"></span> </p>
+            <p style="color:black;font-weight:bold;font-size:14px">Nhược điểm:</p>
+            <p class="text-left " style="color:black;font-size:14px"><span style="line-height:1.4em" data-ng-bind="review.overallRev.cons"></span> </p>
            
         </div>
         <div class="col-sm-4">
@@ -48,7 +48,7 @@
                         <c style="color:#f24141;margin-left:65px">{{review.overallRev.rating}}.0</c>
                     </fieldset>
                 </div>
-                <h5 style="margin-left:110px;color:#666"><b style="color:#079696 ;font-weight: bold; ">{{review.upvoteUsers.length}}</b> Lượt ủng hộ</h5>
+                <h5 style="margin-left:110px;color:black"><b style="color:#079696 ;font-weight: bold; ">{{review.upvoteUsers.length}}</b> Lượt ủng hộ</h5>
             </div>
         </div>
     </div>

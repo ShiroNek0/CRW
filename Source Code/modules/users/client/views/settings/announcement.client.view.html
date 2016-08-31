@@ -1,6 +1,6 @@
 <section class="row" ng-controller="AnnouncementController" style="overflow:hidden;max-height:800px">
    <h5 style="color:black;margin-top:20px;margin-left:15px;font-weight:bold;background-color:lightgrey;margin-right:15px;height:30px;padding-left:10px;padding-top:10px"><span class="glyphicon glyphicon-bell"></span> Quản lý thông báo</h5>
-   <a  ng-click="markAllRead()" style="margin-left:825px"> <span class="glyphicon glyphicon-check"></span> Đánh dấu tất cả là đã đọc</a>
+   <a  ng-click="markAllRead()" style="margin-left:80%"> <span class="glyphicon glyphicon-check"></span> Đánh dấu tất cả là đã đọc</a>
    <div class="" style="margin-right:15px;margin-left:15px;border:solid 1px;margin-top:10px;margin-bottom:10px;border-color:lightgrey;background:white;">
       <div class="row" style="margin-bottom:10px">
          <div class="col-sm-8">
@@ -12,11 +12,11 @@
             </select>
          </div>
          <div class="col-sm-4 " style="margin-top:10px;">
-            <span style="color:black">Tìm kiếm</span>
+            <span style="color:black;margin-left:20%">Tìm kiếm</span>
             <input style="border:solid 1px;border-color:black;" type="search" ng-model="keyword" style="" placeholder=" Tìm theo tên hiển thị..." >
          </div>
       </div>
-      <div ng-show="user.notification.length>0" style="margin-left:20px;margin-right:20px;">
+      <div ng-show="user.notification.length>0" style="margin-left:20px;margin-right:20px;margin-bottom:10px">
          <table class="table table-striped" style="">
             <thead>
                <tr style="color:white;font-weight:bold;background-color:#1fbaba;">

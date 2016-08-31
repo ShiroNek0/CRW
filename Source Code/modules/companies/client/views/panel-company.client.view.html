@@ -6,7 +6,7 @@
                     <a ui-sref="companies.view({companyId: company._id})"><img src="{{company.avatar}}" alt="avatar" class="picture" style="width:115px;height:90px;margin-left:21px;border:solid 1px;border-color:white">
                 </div>
                 <div class="row">
-                    <h5 class="pull-left companyname" data-ng-bind="company.name" style="color:black"></h5>
+                    <h5 class="pull-left companyname" data-ng-bind="company.name" style="color:black;white-space: nowrap;width: 8em; overflow: hidden;text-overflow: ellipsis;"></h5>
                 </div>
                 <div class=row>
                     <p class="pull-left point" style="color:red;margin-top:3px;">{{company.averageRating | number: 1}}</p>

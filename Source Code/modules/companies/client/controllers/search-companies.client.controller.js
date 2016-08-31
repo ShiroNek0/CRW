@@ -12,7 +12,6 @@
     vm.onChange = onChange;
     vm.companies = companies;
     vm.listTop10 = SearchService.query();
-
     vm.keyword = $stateParams.keyword;
     vm.sort = sort;
     vm.itemsPerPage = 16;
