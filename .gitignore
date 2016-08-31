@@ -7,21 +7,21 @@ Thumbs.db
 
 # Node and related ecosystem
 # ==========================
-.nodemonignore
-.sass-cache/
-node_modules/
-public/lib/
-app/tests/coverage/
-.bower-*/
-.idea/
-coverage/
+Source Code/.nodemonignore
+Source Code/.sass-cache/
+Source Code/node_modules/
+Source Code/public/lib/
+Source Code/app/tests/coverage/
+Source Code/.bower-*/
+Source Code/.idea/
+Source Code/coverage/
 
 # MEAN.js app and assets
 # ======================
-public/dist/
+Source Code/public/dist/
 uploads
-modules/users/client/img/profile/uploads
-config/env/local.js
+Source Code/modules/users/client/img/profile/uploads
+Source Code/config/env/local.js
 *.pem
 
 # Ignoring MEAN.JS's gh-pages branch for documenation

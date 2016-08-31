@@ -1,0 +1,55 @@
+.editCompany-modal-window .tencongty{
+	font-weight: bold;
+}
+.editCompany-modal-window .modal-dialog{
+	width: auto;
+	padding-left:125px; 
+	margin: 30px auto;
+	padding-right:125px; 
+	padding-bottom: 30px;
+	color: grey;
+	
+}
+.editCompany-modal-window .congty{
+	font-weight: bold;
+}
+.add-company-new{
+	margin-top: 20px;
+	margin-left: 180px;
+}
+.addcompany{
+	font-weight: bold;
+	margin-top: 20px;
+}
+.note-add-company{
+	color: #999999;
+
+}
+.form-group > h4 {
+	font-weight: bold;
+}
+.textarea-supplement{
+	color: white;
+}
+.btn-file{
+	color: grey;
+}
+.btn-file:hover{
+	color: #079696;
+}
+.glyphicon-remove{
+	color:#f24141;	
+
+
+}
+.glyphicon-remove:hover{
+		color:red;
+}
+.glyphicon-ok{
+	color:#0fc467;
+
+
+}
+.glyphicon-ok:hover{
+		color:green;
+}

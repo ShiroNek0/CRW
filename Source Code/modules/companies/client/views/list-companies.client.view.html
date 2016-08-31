@@ -1,0 +1,132 @@
+<section style="font-family: Roboto-Regular" >
+   <div class="container" style="overflow:hidden;">
+      <div class="row" style="margin-left:40px">
+         <div class="col-sm-7  " style="margin-top:20px;border:solid 1px;border-color:grey;background-color:white; overflow:hidden;margin-bottom:30px;" >
+            <div class="row" style="margin-bottom:20px;height:60px">
+               <div class="col-sm-6" style="color:white;margin-top:10px">
+                  <h5 style="color:black;font-size:18px;margin-left:15px" ng-show="(vm.keyword)">{{vm.companies.length}} kết quả cho từ khóa : {{vm.keyword}}</h5>
+                  <h5 style="color:black;font-size:18px;margin-left:15px" ng-hide="(vm.keyword)"></span> Danh Sách Tất Cả Công Ty :</h5>
+               </div>
+               <div class="col-sm-6">
+                  <!--  PHẦN NÀY LÀ FORM COMPANY--START -->
+                  <button ui-sref="companies.create"  class="pull-right btn btn-info" style="font-weight:bold;height:40px;margin-top:10px;  box-shadow: 0 3px 0 0 black" >Tạo công ty mới</button>
+                  <!-- PHẦN NÀY LÀ FORM COMPANY--END -->
+               </div>
+            </div>
+            <div class="row" style="margin-bottom:30px;margin-left:3px;">
+               <div class="col-sm-4">
+                  <span style="color:grey;font-size: 100%" >Hiển thị :</span> 
+                  <select ng-model="vm.itemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:#2c84cc">
+                     <option style="color:black" value="8">8</option>
+                     <option style="color:black" value="16">16</option>
+                     <option style="color:black" value="32">32</option>
+                  </select>
+               </div>
+               <div class="col-sm-8" style="">
+                  <span style="color:grey;font-size: 100%" >Sắp xếp :</span>
+                  <span class="sep" style="width:2px;height:1.1em;border-right:1px solid;padding-left:5px;border-color:lightgrey"></span>
+                  <a style="padding-left:5px;font-size: 100%;color:#2c84cc" ng-click="vm.sort('name')" class="name-company-filter" >Tên công ty </a>
+                  <span class="glyphicon sort-icon" ng-show="vm.sortKey==='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" style="color:green"></span></a>
+                  <span class="sep" style="width:2px;height:1.1em;border-right:1px solid;padding-left:5px;border-color:lightgrey"></span>
+                  <a style="padding-left:5px;font-size: 100%;color:#2c84cc" ng-click="vm.sort('numOfReviews')"  class="review-company-filter">Đánh giá
+                  <span class="glyphicon sort-icon" ng-show="vm.sortKey==='numOfReviews'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}" ></span></a>
+                  <span class="sep" style="width:2px;height:1.1em;padding-left:5px;border-color:lightgrey"></span>
+                  <input type="search" ng-model="vm.keyword" style="width:120px;margin-left:20px;border:solid 1px;border-color:grey;color:grey" placeholder=" Tìm kiếm..." ng-change='vm.onChange()'>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-sm-12" style="margin-left:-5px">
+                  <div dir-paginate="company in vm.companies | orderBy:vm.sortKey:vm.reverse | filter:{state: 'approved'} | itemsPerPage:vm.itemsPerPage" ng-include="'modules/companies/client/views/panel-company.client.view.html'"></div>
+               </div>
+               <div ng-repeat="company in vm.companies | filter:{state: 'approved'} as results"></div>
+               <div class="text-center" ng-hide="results.length>0">
+               Công ty của bạn chưa có trên hệ thống? <a ui-sref="companies.create">Tạo công ty mới</a>
+               </div>
+            </div>
+            <div class="row pull-right" style="font-size:10px;margin-right:10px" >
+               <dir-pagination-controls
+                  max-size="4"
+                  direction-links="true"
+                  boundary-links="true" >
+               </dir-pagination-controls>
+            </div>
+         </div>
+         <div class="pull-right col-sm-4  " style="margin-top:20px;border:solid 1px;border-color:grey;background-color:white; overflow:hidden;margin-bottom:30px;margin-right:65px;">
+            <div class="row">
+               <h5 style="margin-left:11px;margin-top:20px;font-size:18px;"> Top 10 Công Ty Nổi Bật :</h5>
+            </div>
+            <div class="row" ng-repeat="company in vm.listTop10 | filter:{state: 'approved'} |orderBy: '-overallRating' | limitTo: 10">
+               <div class="col-sm-12 " >
+                  <div class="col-sm-4 " >
+                     <div class="row " >
+                        <a ui-sref="companies.view({companyId: company._id})">
+                           <img src="{{company.avatar}}" alt="avatar" class="picture "  style="width:115px;height:90px;margin-bottom:20px">
+                     </div>
+                  </div>
+                  <div class="col-sm-8">
+                  <h5 style="color:black;font-weight:bold;text-transform: uppercase;">{{company.name}}</h5>
+                  <h5 style="color:grey">Điểm trung bình :<b style="color:red"> {{company.averageRating | number: 2}} </b>của <b style="color: #079696; "> {{company.numOfReviews}}</b>  bài đánh giá.</h5>
+                  </div>
+                  </a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div id='bttop'>TRỞ VỀ ĐẦU TRANG</div>
+</section>
+<script >
+   $(function() {
+    $(window).scroll(function() {
+    if ($(this).scrollTop() != 0) {
+    $('.tesr').fadeIn();
+    } 
+   
+    
+    });
+    $('.tesr').click(function() {
+    $('body,html').animate({
+    scrollTop: 0
+    }, 800);
+    });
+   });
+</script>
+<style type='text/css'>
+   a:hover {
+   text-decoration: none;
+   }
+   #bttop{
+   border:1px solid #4adcff;
+   background:#24bde2;
+   text-align:center;
+   padding:5px;
+   position:fixed;
+   bottom:35px;
+   right:10px;
+   cursor:pointer;
+   display:none;
+   color:#fff;
+   font-size:11px;
+   font-weight:900
+   }
+   #bttop:hover{
+   border:1px solid #ffa789;
+   background:#ff6734
+   }
+</style>
+<script >
+   $(function() {
+    $(window).scroll(function() {
+    if ($(this).scrollTop() != 0) {
+    $('#bttop').fadeIn();
+    } else {
+    $('#bttop').fadeOut();
+    }
+    });
+    $('#bttop').click(function() {
+    $('body,html').animate({
+    scrollTop: 0
+    }, 800);
+    });
+   });
+</script>

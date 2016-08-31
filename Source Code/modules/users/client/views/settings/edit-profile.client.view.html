@@ -1,0 +1,48 @@
+<section class="row" ng-controller="EditProfileController" style="margin-left:20px;font-family: Roboto-Regular">
+
+   <div class="col-sm-1">
+    
+  </div>
+
+    <h4 style="color:grey">Company rating website</h4>
+  <div class="col-sm-12"  style="background-color:white;border:solid 2px;border-color:lightgrey">
+    <h5 style="font-weight:bold;margin-left:20px;margin-top:20px;">Cập nhật tài khoản</h5>
+
+    <div class="" style="background-color:white;border:solid 2px;border-color:lightgrey;margin:40px 20px 20px 20px;">
+         <form name="userForm" ng-submit="updateUserProfile(userForm.$valid)" class="signinpro" novalidate autocomplete="off" style="margin-left:100px;margin-right:20px">
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="email" style="margin-top:20px">Email đăng nhập:</label>
+          <input type="email" id="email" name="email" class="form-control" ng-model="user.email" lowercase readonly style="margin-top:10px ">
+
+        <div class="form-group" show-errors>
+          <label for="name" style="margin-top:10px">Tên hiển thị</label>
+          <input type="text" id="name" name="name" class="form-control" ng-model="user.name" placeholder="Nhập tên hiển thị..." required>
+          <div ng-messages="userForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Nhập tên hiển thị</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="description" style="margin-top:10px">Giới thiệu về bạn:</label>
+          <textarea id="description" name="description" class="form-control" ng-model="user.description" placeholder="Giới thiệu về bạn..." ></textarea>
+        </div>
+        
+        <div ng-show="success" class="text-center text-success">
+          <strong>Tài khoản của bạn thay đổi thành công</strong>
+        </div>
+        <div ng-show="error" class="text-center text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </fieldset>
+
+      <div class="text-center form-group">
+          <div class="text-left form-group">
+          <button type="submit" class="btn btn-info" style="margin-bottom:100px;margin-left:20px" >Cập nhật</button>
+        </div>
+        </div>
+
+    </form>
+    </div>
+  </div>
+</section>

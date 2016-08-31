@@ -1,0 +1,52 @@
+<section style="font-family: Roboto-Regular;">
+    <h5 style="color:black;margin-top:20px;margin-left:20px;font-weight:bold;background-color:lightgrey;margin-right:20px;height:30px;padding-left:20px;padding-top:10px"><span class="glyphicon glyphicon-signal"></span> Bài đánh giá đã theo dõi</h5>
+    <div class="" style="border:solid 2px;border-color:lightgrey;background-color:white;margin-left:20px;margin-right:20px">
+        <div class="row">
+            <div class="col-sm-8">
+                <span class="" style="margin-left:30px">Hiển thị</span>
+                <select ng-model="vm.itemsPerPage" class="show-itemsPerPage" style="width:70px;height:25px;color:black; margin-right:10px;margin-top:10px;border:solid 1px; border-color:black">
+                    <option style="color:black" value="5">5</option>
+                    <option style="color:black" value="10">10</option>
+                    <option style="color:black" value="20">20</option>
+                </select>
+            </div>
+            <div class="col-sm-4 " style="margin-top:10px;">
+                <span style="color:black;margin-right:10px">Tìm kiếm</span>
+                <input style="border:solid 1px; border-color:black" type="search" ng-model="vm.keyword" style="" placeholder=" Tìm kiếm..." >
+            </div>
+        </div>
+        <div ng-show="vm.followedCompany.length>0" class="table-responsive" style="margin-right:10px;margin-left:10px;border:solid 1px;margin-top:10px;margin-bottom:10px;border-color:lightgrey">
+            <table class="table table-striped table-bordered table-condensed">
+                <thead>
+                    <tr style="color:white;font-weight:bold;background-color:#1fbaba;">
+                        <th class="col-sm-4" ng-click="vm.sort('name')">Tên công ty<span class="glyphicon sort-icon" ng-show="vm.sortKey=='name'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                        <th class="col-sm-4" ng-click="vm.sort('alias')">Tên gọi khác<span class="glyphicon sort-icon" ng-show="vm.sortKey=='alias'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                        <th class="col-sm-2" ng-click="vm.sort('numOfReviews')">Số bài đánh giá<span class="glyphicon sort-icon" ng-show="vm.sortKey=='numOfReviews'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                        <th class="col-sm-2" ng-click="vm.sort('averageRating')">Tác vụ<span class="glyphicon sort-icon" ng-show="vm.sortKey=='averageRating'" ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"></span></th>
+                    </tr>
+                </thead>
+            </table>
+            <div dir-paginate="company in vm.followedCompany | orderBy:vm.sortKey:!vm.reverse | itemsPerPage:vm.itemsPerPage | filter: vm.keyword">
+                <table class="table table-striped table-bordered table-condensed" style="">
+                    <tbody>
+                        <tr style="color:black">
+                            <td class="col-sm-4" style="font-weight:bold;:solid 1px;border-color:lightgrey;color:grey"><a ui-sref="companies.view({companyId: company._id})" style="word-wrap:break-word">{{company.name}}</a></td>
+                            <td class="col-sm-4" style=":solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word"> <span ng-repeat="alias in company.alias" class="badge" style="word-wrap: break-word"> {{alias}}</span></td>
+                            <td class="col-sm-2" style="font-weight:bold;:solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word;">{{company.numOfReviews}}</td>
+                            <td class="col-sm-2" style=":solid 1px;border-color:lightgrey;color:grey;word-wrap: break-word;">
+                                <button style="margin-left:30px" type="button" class="btn btn-danger" ng-click="vm.unfollow(company._id, $index)">Bỏ theo dõi</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div ng-hide="vm.followedCompany.length>0">
+          <div class="text-center">Chưa có công ty nào được theo dõi</div>
+        </div>
+        <div class="row pull-right" style="font-size:10px;margin-right:10px">
+            <dir-pagination-controls max-size="4" direction-links="true" boundary-links="true">
+            </dir-pagination-controls>
+        </div>
+    </div>
+</section>

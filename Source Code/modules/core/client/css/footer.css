@@ -1,0 +1,24 @@
+
+.about{
+	background-color: #079696; 
+	float: bottom;
+}
+.company-name{
+ color: white;
+ padding-left: 135px;
+
+
+}
+.company-infor {
+   margin-top: 20px;
+}
+.company-infor a{
+	
+	margin-left: 35px;
+}
+a.home-tt{
+  color: white;
+}
+a.home-tt:hover{
+  text-decoration: underline;
+}

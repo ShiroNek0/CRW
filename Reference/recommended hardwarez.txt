@@ -1,0 +1,20 @@
+W10
+
+Processor: 1 gigahertz (GHz) or faster.
+RAM: 1 gigabyte (GB) for 32-bit or 2 GB for 64-bit
+Free hard disk space: 16 GB for 32-bit OS 20 GB for 64-bit OS
+Graphics card: DirectX 9 or later with WDDM 1.0 driver
+A Microsoft account and Internet access.
+
+Chrome 52.0.2743.116
+
+Windows 7, Windows 8, Windows 8.1, Windows 10 or later
+An Intel Pentium 4 processor or later that's SSE2 capable
+512MB of RAM
+200MB of hard drive space
+
+Firefox 48.0.2
+
+Pentium 4 or newer processor that supports SSE2
+512MB of RAM
+200MB of hard drive space

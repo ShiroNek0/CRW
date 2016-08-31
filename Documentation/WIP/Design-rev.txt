@@ -1,0 +1,36 @@
+Thiết kế đồng bộ trước
+Bỏ margin cứng, chuyển qua dùng bootstrap, attribute hỗ trợ (center) và padding phần trăm để hỗ trợ điện thoại
+Code trong CSS thay vì để nguyên trong HTML, đặt class mới để phân biệt
+Giảm hoặc bỏ shadow cho các phần tử và nút vì không cần thiết trừ khi cần gây nổi bật quan trọng
+Sử dụng các hiệu ứng hỗ trợ bởi cả firefox và chrome hoặc chú thích trang web chỉ chạy đẹp trên chrome
+
+Các dấu hai chấm phải căn bằng nhau hoặc theo lề
+Bỏ animation thừa và animation lỗi (slide xuống)
+Giảm thời gian animation xuống dưới nửa giây
+Không để các chữ và nút lơ lửng giữa màn hình
+Thống nhất về cách ghi điểm (3/5, 3.0, 3.0/5 ?) và màu sắc (xanh/đỏ/đen?)
+Thống nhất kiểu nút, màu chủ đạo trang
+Khi lướt con trỏ qua các nút phải phát sáng và theo cùng một màu không va chạm với chữ bên trong
+Bấm vào vùng trên/dưới chữ cũng phải được thay vì phải vào chính xác chữ (nên dùng nút hoặc format để <a> có khoảng trống ẩn để bấm vào)
+Drop-down không được phát sáng trắng khi bỏ chuột ra (màn hình quản lý của admin)
+Drop-down submenu phải đẩy sang phải hoặc nhỏ lại để phân biệt với menu
+Chữ click được con trỏ phải biến thành hình bàn tay khi đưa vào, có thể có thêm gạch chân
+Dòng trong bảng có thể bấm vào để mở rộng (quản lý bài đánh giá...) cũng như trên: đổi con trỏ, đổi màu dòng đó
+Chữ chính phải là màu đen chủ đạo thay vì đề mục đen và chữ xám
+Không hiển thị ID mà là tên người dùng (quản lý bài đánh giá...)
+Sau các dấu như hai chấm phải có dấu cách
+"Chủ đề" một công ty là gì?
+Phần huy hiệu (tag bầu dục) thống nhất chỉ để dưới hoặc bên phải chữ.
+Không để table rỗng, cần thông báo
+Không để màu nền trong bảng trùng với màu nền trang (xám)
+Khoảng cách giữa nội dung trang và giới hạn khung không thống nhất
+Không để khoảng trống giữa các dòng trong bảng (quản lý người dùng)
+Drop-down: đánh dấu trắng quanh khung thì bỏ khoảng trống giữa drop-down với menu tab dưới
+Tên (công ty, người dùng...) cũng phải ấn được, không chỉ mỗi ảnh
+Khoảng trống quá nhiều phần thông tin công ty, "của 1 bài đánh giá" lệch vị trí
+//Noti và số noti lệch nhau
+//Trang admin nhiều phần bên trong không có title
+
+/iPad: 
+/Sao phải thay đổi kích thước nếu màn hình bé lại
+/Chữ đè vào hình ảnh và ngược lại
